@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-10T16:38:56.4694450Z",
+  "version": "0.3.0",
+  "javascriptTests": 15,
+  "wasmGcTests": 15,
+  "awkCliScenarios": 6,
+  "gnuAwkCases": 46,
+  "matched": 44,
+  "knownDifferences": 2,
+  "archivesRebuilt": false,
+  "sourceSha256": {
+    "parser.mbt": "f2d56e34cb0ed6cf6924dfb1c379a4abd92e0e431c44af6d51ea633bb863d2ed",
+    "tools/awk.mjs": "55642fbd2d6403766c4815347ba96a48c770f7556156afc29688a62a9c6a881a",
+    "lexer.mbt": "615edf6e425aab0ee5a9ab207bc669287696a25c9f4161ee3624a6a17a10512f",
+    "web/engine.mjs": "0d18122120105fdb85279110f0f573f091203bcd30a495bb1dae559b79da80a8",
+    "interpreter.mbt": "05a9e4279f8e22f27185b42c2009f775a2bced04f612fcd84ccfe328a1bec74e",
+    "values.mbt": "602648e601508108406fd8df731c582a321a33c7f9358ff025ae1219f99c627e",
+    "evaluator.mbt": "064daa41bcdfffc86800da9d9ffabdf8aa1ad44a50aa35ddcda51727a305d926"
+  }
+}

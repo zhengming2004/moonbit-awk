@@ -12,6 +12,13 @@ pub fn run(input : String) -> String {
 }
 
 ///|
+pub fn execute(program : String, input : String, separator : String) -> String {
+  @lib.run_with_status(program, input, separator~).to_json().stringify() catch {
+    e => "ERROR: " + Repr(e).to_string()
+  }
+}
+
+///|
 fn main {
 
 }

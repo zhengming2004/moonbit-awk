@@ -30,6 +30,10 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'browser engine test failed'}
   node tools/test-cli.mjs
   if ($LASTEXITCODE -ne 0) {throw 'CLI test failed'}
+  node tools/test-awk-cli.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'AWK CLI test failed'}
+  node tools/test-gawk.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'GNU Awk reference comparison failed'}
   node tools/robustness.mjs
   if ($LASTEXITCODE -ne 0) {throw 'robustness failed'}
   node tools/benchmark.mjs

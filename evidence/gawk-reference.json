@@ -1,0 +1,424 @@
+{
+  "version": "GNU Awk 5.3.2, API 4.0, PMA Avon 8-g1, (GNU MPFR 4.2.2, GNU MP 6.3.0)",
+  "locale": "C.UTF-8",
+  "results": [
+    {
+      "id": "if-else",
+      "program": "{ if($2>=3) print $1; else print \"small\" }",
+      "input": "a 2\nb 3\nc 4\n",
+      "separator": " ",
+      "output": "small\nb\nc\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "nested-if",
+      "program": "BEGIN { for(i=0;i<4;i++) if(i<2) if(i==0) print \"zero\"; else print \"one\"; else print \"big\" }",
+      "input": "",
+      "separator": " ",
+      "output": "zero\none\nbig\nbig\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "for-continue-break",
+      "program": "BEGIN { for(i=0;i<10;i++) { if(i==3) continue; if(i==7) break; s+=i }; print s,i }",
+      "input": "",
+      "separator": " ",
+      "output": "18 7\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "nested-loops",
+      "program": "BEGIN { for(i=0;i<3;i++) for(j=0;j<4;j++) { if(j==2) break; s+=i+j }; print s }",
+      "input": "",
+      "separator": " ",
+      "output": "9\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "while",
+      "program": "BEGIN { i=3; while(i) { print i; --i } }",
+      "input": "",
+      "separator": " ",
+      "output": "3\n2\n1\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "do-continue",
+      "program": "BEGIN { i=0; do { i++; if(i<3) continue; s+=i } while(i<4); print s,i }",
+      "input": "",
+      "separator": " ",
+      "output": "7 4\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "group-sum",
+      "program": "{a[$1]+=$2} END {for(k in a) print k,a[k]}",
+      "input": "pear 2.5\napple 3\npear 4\n",
+      "separator": " ",
+      "unordered": true,
+      "output": "apple 3\npear 6.5\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "histogram",
+      "program": "{for(i=1;i<=NF;i++) count[$i]++} END {for(k in count) print k,count[k]}",
+      "input": "red blue red\nblue green\n",
+      "separator": " ",
+      "unordered": true,
+      "output": "red 2\ngreen 1\nblue 2\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "array-membership-read-delete",
+      "program": "BEGIN {print (\"x\" in a); x=a[\"x\"]; print (\"x\" in a); delete a[\"x\"]; print (\"x\" in a)}",
+      "input": "",
+      "separator": " ",
+      "output": "0\n1\n0\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "array-clear",
+      "program": "BEGIN {a[1]=2; a[2]=3; delete a; print (1 in a),(2 in a)}",
+      "input": "",
+      "separator": " ",
+      "output": "0 0\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "array-composite",
+      "program": "BEGIN {SUBSEP=\"|\"; a[\"x\",2]=9; print a[\"x|2\"], ((\"x\",2) in a); delete a[\"x\",2]; print (\"x|2\" in a)}",
+      "input": "",
+      "separator": " ",
+      "output": "9 1\n0\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "array-index-once",
+      "program": "BEGIN {i=0; a[i++]+=3; print i,a[0],(1 in a)}",
+      "input": "",
+      "separator": " ",
+      "output": "1 3 0\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "prefix-postfix",
+      "program": "BEGIN {i=1; print i++,++i,--i,i--; print i}",
+      "input": "",
+      "separator": " ",
+      "output": "1 3 2 2\n1\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "compound-assign",
+      "program": "BEGIN {x=3; x+=2; x*=4; x-=3; x/=2; x%=3; x^=2; print x}",
+      "input": "",
+      "separator": " ",
+      "output": "6.25\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "assignment-order",
+      "program": "BEGIN {x=1; x+=(x=2); print x}",
+      "input": "",
+      "separator": " ",
+      "output": "4\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "arithmetic",
+      "program": "BEGIN {print .5,1.25e2,2^3^2,-2^2,2^-2,7/2,-7%3,10.5%2}",
+      "input": "",
+      "separator": " ",
+      "output": "0.5 125 512 -4 0.25 3.5 -1 0.5\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "string-and-number",
+      "program": "BEGIN {print (\"10\"<\"2\"),(10<2),(\"0\"?1:0),(0?1:0), (x==0), (x==\"\")}",
+      "input": "",
+      "separator": " ",
+      "output": "1 0 1 0 1 1\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "numeric-string-fields",
+      "program": "{print ($1==1),($1==\"1\"),$1,($2?1:0),$3+0}",
+      "input": "01 0 12abc\n",
+      "separator": " ",
+      "output": "1 0 01 0 12\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "short-circuit",
+      "program": "BEGIN {z=0; print (0&&1/z),(1||1/z),(1?\"ok\":1/z); x=0; y=0&&(x=2); print x,y}",
+      "input": "",
+      "separator": " ",
+      "output": "0 1 ok\n0 0\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "concat",
+      "program": "BEGIN {x=\"ab\"; print x \"-\" 3, 1+2 \"x\", \"x\" 1+2}",
+      "input": "",
+      "separator": " ",
+      "output": "ab-3 3x x3\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "next",
+      "program": "{if(NR==2) next; print NR,$1} END {print \"end\",NR,$0}",
+      "input": "a\nb\nc\n",
+      "separator": " ",
+      "output": "1 a\n3 c\nend 3 c\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "exit-record",
+      "program": "{print $1; if(NR==2) exit 7} END {print \"done\",NR,$1}",
+      "input": "a\nb\nc\n",
+      "separator": " ",
+      "output": "a\nb\ndone 2 b\n",
+      "exit_status": 7,
+      "stderr": ""
+    },
+    {
+      "id": "exit-begin",
+      "program": "BEGIN {print \"begin\"; exit 3} BEGIN {print \"bad\"} END {print \"end\",NR}",
+      "input": "ignored\n",
+      "separator": " ",
+      "output": "begin\nend 0\n",
+      "exit_status": 3,
+      "stderr": ""
+    },
+    {
+      "id": "exit-end",
+      "program": "BEGIN {exit 7} END {print \"end\"; exit 4} END {print \"bad\"}",
+      "input": "",
+      "separator": " ",
+      "output": "end\n",
+      "exit_status": 4,
+      "stderr": ""
+    },
+    {
+      "id": "range-default",
+      "program": "NR==2,NR==3\nEND {print \"done\",NR}",
+      "input": "a\nb\nc\nd\n",
+      "separator": " ",
+      "output": "b\nc\ndone 4\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "range-repeat",
+      "program": "$1==\"start\",$1==\"stop\" {print}",
+      "input": "none\nstart\na\nstop\nnone\nstart\nb\nstop\n",
+      "separator": " ",
+      "output": "start\na\nstop\nstart\nb\nstop\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "truth-pattern",
+      "program": "$1",
+      "input": "0\n1\ntext\n\n",
+      "separator": " ",
+      "output": "1\ntext\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "field-extension",
+      "program": "BEGIN {OFS=\"|\"} {$4=\"z\"; print NF,$0; NF=2; print $0} END {print NF,$1}",
+      "input": "a b c\n",
+      "separator": " ",
+      "output": "4|a|b|c|z\na|b\n2|a\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "field-zero",
+      "program": "BEGIN {FS=\":\"} {$0=\"x:y:z\"; print NF,$2} END {print $0}",
+      "input": "old\n",
+      "separator": " ",
+      "output": "3 y\nx:y:z\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "field-increment",
+      "program": "{$2++; ++$3; print $0,NF}",
+      "input": "x 4 5\n",
+      "separator": " ",
+      "output": "x 5 6 3\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "field-empty",
+      "program": "{print NF,$1,$3}",
+      "input": "\nx::3\n",
+      "separator": ":",
+      "output": "0  \n3 x 3\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "separators",
+      "program": "BEGIN {FS=\",\";OFS=\"|\";ORS=\";\"} {print NF,$1,$2}",
+      "input": "a,b\nx,y\n",
+      "separator": " ",
+      "output": "2|a|b;2|x|y;",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "nr-assignment",
+      "program": "{if(NR==1) NR=10; print NR,FNR} END {print NR,NF,$0}",
+      "input": "x\ny\n",
+      "separator": " ",
+      "output": "10 1\n11 2\n11 1 y\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "split",
+      "program": "BEGIN {a[9]=1; n=split(\"a::3\",a,\":\"); print n,a[2],a[3],(9 in a)}",
+      "input": "",
+      "separator": " ",
+      "output": "3  3 0\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "split-empty",
+      "program": "BEGIN {a[1]=1; print split(\"\",a), (1 in a)}",
+      "input": "",
+      "separator": " ",
+      "output": "0 0\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "split-space",
+      "program": "BEGIN {print split(\"  a\tb  c \",a); print a[1],a[2],a[3]}",
+      "input": "",
+      "separator": " ",
+      "output": "3\na b c\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "substring",
+      "program": "BEGIN {print substr(\"abcde\",2,3),substr(\"abcde\",0,2),substr(\"abcde\",9),substr(\"abcde\",2,-1)}",
+      "input": "",
+      "separator": " ",
+      "output": "bcd ab  \n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "strings",
+      "program": "BEGIN {print length(\"abc\"),index(\"abcabc\",\"bc\"),index(\"abc\",\"x\"),index(\"abc\",\"\"),toupper(\"Abc\"),tolower(\"XYZ\")}",
+      "input": "",
+      "separator": " ",
+      "output": "3 2 0 1 ABC xyz\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "unicode",
+      "program": "BEGIN {print length(\"象棋\"),substr(\"象棋很好\",2,2),index(\"象棋很好\",\"很\")}",
+      "input": "",
+      "separator": " ",
+      "output": "2 棋很 3\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "math",
+      "program": "BEGIN {print int(-3.8),sqrt(9),int(\"12.8junk\"),int(\"x\")}",
+      "input": "",
+      "separator": " ",
+      "output": "-3 3 12 0\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "multiline",
+      "program": "BEGIN {\nfor (i=0;\ni<3;\ni++)\n{print i}\nif(0)\n print \"bad\"\nelse\n print \"ok\"\n}",
+      "input": "",
+      "separator": " ",
+      "output": "0\n1\n2\nok\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "comment-continuation",
+      "program": "BEGIN { x=1+\\\n2; # comment\n print x }",
+      "input": "",
+      "separator": " ",
+      "output": "3\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "quoted-delimiters",
+      "program": "BEGIN {print \"{ } ; if else\"; print \"x\\n\\t\\\"\"}",
+      "input": "",
+      "separator": " ",
+      "output": "{ } ; if else\nx\n\t\"\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "empty-program",
+      "program": "",
+      "input": "data\n",
+      "separator": " ",
+      "output": "",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "format-gap",
+      "program": "BEGIN {print 1/3}",
+      "input": "",
+      "separator": " ",
+      "knownDifference": "Default numeric output uses shortest Double text, not AWK OFMT %.6g.",
+      "output": "0.333333\n",
+      "exit_status": 0,
+      "stderr": ""
+    },
+    {
+      "id": "constant-folding-gap",
+      "program": "BEGIN {print (0&&1/0),(1||1/0),(1?\"ok\":1/0)}",
+      "input": "",
+      "separator": " ",
+      "knownDifference": "GNU Awk rejects constant division by zero during compilation even in dead branches; this interpreter checks division when evaluated.",
+      "output": "",
+      "exit_status": 1,
+      "stderr": "gawk: cmd. line:1: error: division by zero attempted\ngawk: cmd. line:1: error: division by zero attempted\ngawk: cmd. line:1: error: division by zero attempted\n"
+    }
+  ]
+}

@@ -17,4 +17,4 @@ test "literal separator retains empty columns" {
 }
 ```
 
-限制：不是 POSIX AWK；缺少完整语法、数组、函数、正则和文件 I/O。
+0.3 已增加数组、控制流、字符串/浮点值和专用文件宿主；正则、用户函数、格式化和完整 I/O 仍未完成。

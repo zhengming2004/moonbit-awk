@@ -38,7 +38,7 @@ test "arithmetic grouping" {
 test "malformed scripts rejected" {
   for
     p in [
-      "BEGIN { print 1 / 0 }", "{ print (1 }", "{ if (1) print 2 }", "{ print \"bad }",
+      "BEGIN { print 1 / 0 }", "{ print (1 }", "{ if (1 print 2 }", "{ print \"bad }",
     ] {
     assert_true(
       try {

@@ -1,66 +1,56 @@
 # AWK 记录处理器
 
-MoonBit 本地候选版 0.2.0。BEGIN/END、字段、数值表达式、赋值与 print。
+MoonBit 本地候选版 0.3.0。脚本先解析为语法树，再执行字符串/浮点表达式、数组统计和控制流。规则与执行器均为 MoonBit；Node.js 只处理文件、标准输入输出和退出码。
 
-## 快速试用
+## 快速使用
 
-已附真实 MoonBit 编译的浏览器引擎。需要 Python 3：
+已附编译引擎，需要 Node.js 24。直接从标准输入处理数据：
+
+```powershell
+"apple 2.5`npear 3`napple 4" | node tools/awk.mjs '{ total[$1]+=$2 } END { for(k in total) print k,total[k] }'
+node tools/awk.mjs -F, -f report.awk data.csv
+node tools/awk.mjs --help
+```
+
+当前宿主支持一个输入文件或标准输入、`-f` 脚本文件、`-F` 字面量字段分隔符。它一次读入全部输入；不支持多文件/FILENAME、`-v`、管道、`getline`、文件重定向或 shell 命令。`data.csv` 示例按逗号直接切分，不处理 CSV 引号和嵌入换行。
+
+保留原有交互网页和组合输入 CLI：
 
 ```powershell
 ./start-review.ps1
-```
-
-浏览器打开 http://127.0.0.1:8791/web/ 。也可以从第二批合集审查页直接运行。
-
-## 构建与测试
-
-MoonBit 工具链与 Node.js 安装好后，在此目录运行：
-
-```powershell
-./verify.ps1
-# 或指定编译器
-./verify.ps1 -MoonPath C:/path/to/moon/bin/moon.exe
-```
-
-脚本检查源码、在 Wasm-GC 和 JS 跑测试、构建浏览器引擎并运行示例。直接执行命令行示例：`moon run cmd/main`。`pkg.generated.mbti` 是生成的公共 API。
-
-## 已实现范围
-
-BEGIN/END、字段、数值表达式、赋值与 print。示例输入与调用逻辑见 `cmd/main/main.mbt`；网页允许修改输入并执行实际编译代码。
-
-## 当前边界
-
-整数记录处理子集：不含正则、数组、用户函数、循环、浮点、文件重定向；非整除明确报错，整数运算使用 32 位语义，不声称 POSIX/GoAWK 兼容。
-
-## 来源与许可证
-
-按[公开规格/参考项目](https://github.com/benhoyt/goawk)重新实现，没有复制上游代码或大规模词库。源码采用 MIT；原始测试输入为本地新编写。
-
-[查重](DUPLICATION.md)只描述本轮检索证据。`localreview` 是本地命名空间，正式发布前需替换为申请人的命名空间。
-
-## 下一步
-
-保留候选：先补边界和上游兼容范围，再决定是否申报。
-
-所有文件仅在本地，未创建远程仓库、上传、发布包或提交比赛。
-
-## 独立仓库工作流
-
-本目录是该项目后续开发的唯一主仓库，旧批次目录及 ZIP 为历史审查快照。没有 Git remote，没有共享构建目录，没有上级 moon.work。
-
-真实 CLI 支持输入参数、文件和标准输入：
-
-```powershell
-node tools/cli.mjs --help
 node tools/cli.mjs --file sample.txt --json
 ```
 
-需要安装 MoonBit 后传 `-MoonPath` 或将 moon 加入 PATH；不依赖工作区之外的私有脚本。详见 [TESTING.md](TESTING.md) 和 [CONTRIBUTING.md](CONTRIBUTING.md)。
+网页地址 http://127.0.0.1:8791/web/ 。组合输入格式为 AWK 程序、单独一行 `---`、输入数据。
 
-## 本轮功能升级
+## 当前能力
 
-增加可配置的字面量字段分隔符，保留空字段。
+- BEGIN/END、多条记录规则、表达式模式、包含首尾记录的范围模式、缺省 print；END 保留最后一条记录与字段。
+- 字符串、双精度数值、数字字符串、未初始化值；算术/幂/比较/拼接、逻辑短路、三元表达式、赋值、复合赋值及前后自增减。
+- 字段 `$0`、动态字段、NR/FNR/NF；字段赋值重建记录、赋值 `$0` 重分字段、NF 截断/扩展；FS/OFS/ORS/SUBSEP。
+- if/else、while、do/while、for、for-in、break/continue、next/exit。`run_with_status` 返回输出、退出状态和执行步数。
+- 关联数组、复合下标、`in`、元素删除、整数组删除；数组与标量误用报错。for-in 在开始时复制并按词典序排列键，顺序为本实现选择，不是 AWK 顺序保证。
+- `length()`、`substr`、`index`、`split`、`tolower`、`toupper`、`int`、`sqrt`。读取缺失数组元素会创建空元素，membership 查询不创建。
 
-不是 POSIX AWK；缺少完整语法、数组、函数、正则和文件 I/O。
+API 见 [pkg.generated.mbti](pkg.generated.mbti) 和 [可执行示例](README.mbt.md)。`run` 保留返回输出字符串的用法；需要处理 `exit` 状态时使用 `run_with_status`。
 
-[可执行 API 示例](README.mbt.md)会随测试运行；[功能边界](FEATURES.md)和[测试说明](TESTING.md)用于独立审查。网页与 CLI 展示示例入口，新 API 的完整使用见可执行示例。
+## 兼容性与限制
+
+这仍不是 POSIX AWK / GoAWK 的完整实现。正则、用户函数、printf/sprintf、完整词法/内建函数、I/O、多文件/环境变量和区域设置还未完成。FS 与 split 的分隔符是字面量，空分隔符不支持。`print a > b` 会明确拒绝为未支持的重定向；比较请写 `print (a > b)`。
+
+数值改为 IEEE 754 Double，旧版 32 位整数溢出和“非整除报错”行为不再保留。默认数字输出采用最短可往返文本，尚不支持 OFMT/CONVFMT；例如 `1/3` 与 GNU Awk 默认输出不同。常量除零在实际求值时报错，GNU Awk 某些未执行分支会在编译时提前报错。两项差异均保留于独立对照报告。
+
+资源边界：源程序 100,000 个 UTF-16 单元、输入/记录/输出各 1,000,000、字段最多 10,000、数组元素合计 100,000；默认执行步预算 1,000,000，API 可设为 1–10,000,000。语法和求值递归也有限制。退出状态限定 0–255。长时间流式处理、极端规模与原生后端尚未验证。
+
+## 验证与本地开发
+
+安装 MoonBit 后运行 `./verify.ps1`，或传 `-MoonPath C:/path/to/moon/bin/moon.exe`。独立检查：
+
+```powershell
+node tools/test-awk-cli.mjs
+node tools/test-gawk.mjs
+```
+
+本轮 JS 和 Wasm-GC 各 15 项测试通过；46 个 GNU Awk 5.3.2 实际对照中 44 个一致、2 个已记录差异；6 个专用 CLI 场景与原有 CLI 检查通过。对照脚本先由系统 GNU Awk 单独产生结果，之后才运行 MoonBit；数组遍历的对照忽略顺序。详见 [TESTING.md](TESTING.md) 与 `evidence/gawk-comparison.json`。
+
+参考 [GoAWK](https://github.com/benhoyt/goawk) 的公开能力独立实现，没有复制其解释器代码；本仓库为 MIT。没有创建 remote、上传、发布或提交比赛。此目录是唯一开发主仓库，旧 ZIP/bundle 是历史快照，本轮未重打包。
