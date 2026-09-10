@@ -1,0 +1,49 @@
+{
+  "project": "awk",
+  "checks": [
+    {
+      "command": "moon fmt",
+      "exit_code": 0,
+      "output": "Finished. moon: ran 9 tasks, now up to date\n",
+      "utc": "2026-09-10T06:01:04.387297+00:00"
+    },
+    {
+      "command": "moon info",
+      "exit_code": 0,
+      "output": "Finished. moon: ran 2 tasks, now up to date\n",
+      "utc": "2026-09-10T06:01:06.663798+00:00"
+    },
+    {
+      "command": "moon check --deny-warn",
+      "exit_code": 0,
+      "output": "Finished. moon: ran 2 tasks, now up to date\n",
+      "utc": "2026-09-10T06:01:08.104018+00:00"
+    },
+    {
+      "command": "moon test --target wasm-gc --deny-warn",
+      "exit_code": 0,
+      "output": "Total tests: 7, passed: 7, failed: 0.\n",
+      "utc": "2026-09-10T06:01:10.001218+00:00"
+    },
+    {
+      "command": "moon test --target js --deny-warn",
+      "exit_code": 0,
+      "output": "Total tests: 7, passed: 7, failed: 0.\n",
+      "utc": "2026-09-10T06:01:12.378010+00:00"
+    },
+    {
+      "command": "moon build --target js --deny-warn",
+      "exit_code": 0,
+      "output": "Finished. moon: no work to do\n",
+      "utc": "2026-09-10T06:01:13.589119+00:00"
+    },
+    {
+      "command": "moon run cmd/main",
+      "exit_code": 0,
+      "output": "1 apple 12\n2 pear 7\n3 peach 9\ntotal 28\n\n",
+      "utc": "2026-09-10T06:01:14.305858+00:00"
+    }
+  ],
+  "demo": "1 apple 12\n2 pear 7\n3 peach 9\ntotal 28",
+  "source_lines": 464
+}

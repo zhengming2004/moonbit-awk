@@ -1,0 +1,20 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "localreview/awk"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn run(String, String) -> String raise ParseError
+
+// Errors
+pub suberror ParseError {
+  Invalid(String)
+} derive(@debug.Debug)
+
+// Types and methods
+
+// Type aliases
+
+// Traits
