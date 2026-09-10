@@ -1,0 +1,47 @@
+{
+  "project": "moonbit-awk",
+  "timestamp": "2026-09-10T10:39:17.706167+00:00",
+  "exit_code": 0,
+  "backend_test_counts": [
+    [
+      "8",
+      "8",
+      "0"
+    ],
+    [
+      "8",
+      "8",
+      "0"
+    ]
+  ],
+  "scope": "Local Windows verify.ps1; remote CI and full upstream conformance not run",
+  "coverage": {
+    "covered": 208,
+    "total": 272,
+    "measurement": "MoonBit instrumentation points, not upstream feature coverage"
+  },
+  "robustness": {
+    "project": "awk",
+    "seed": 20260910,
+    "cases": 307,
+    "expected_error_responses": 306,
+    "uncaught_exceptions": 0,
+    "scope": "bounded malformed-input robustness, not proof of full language/protocol conformance"
+  },
+  "benchmark": {
+    "project": "awk",
+    "utc": "2026-09-10T10:39:17.488Z",
+    "runtime": "v24.11.0",
+    "platform": "win32",
+    "cpu": "Intel(R) Core(TM) i7-14700HX",
+    "input_utf8_bytes": 111,
+    "samples": 30,
+    "warmup": 5,
+    "median_ms": 0.08990000000000009,
+    "p95_ms": 0.188600000000001,
+    "max_ms": 0.4613000000000014,
+    "scope": "JS warm execution of documented example; no cross-project or upstream performance claim"
+  },
+  "remote_ci": "not run",
+  "network_interoperability": "not run"
+}

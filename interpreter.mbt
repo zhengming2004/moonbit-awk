@@ -176,7 +176,14 @@ fn action(tokens : Array[Token], st : State) -> Unit raise ParseError {
 }
 
 ///|
-pub fn run(program : String, input : String) -> String raise ParseError {
+pub fn run(
+  program : String,
+  input : String,
+  separator? : String = " ",
+) -> String raise ParseError {
+  if separator.is_empty() || separator.contains("\n") {
+    raise Invalid("invalid literal separator")
+  }
   if input.length() > 1000000 {
     raise Invalid("input limit")
   }
@@ -232,12 +239,16 @@ pub fn run(program : String, input : String) -> String raise ParseError {
   }
   for i in 0..<n {
     let line = lines[i].to_owned()
-    let fields = line
+    let fields = if separator == " " {
+      line
       .split(" ")
       .flat_map(s => s.split("\t"))
       .filter(s => !s.is_empty())
       .map(s => s.to_owned())
       .collect()
+    } else {
+      line.split(separator).map(x => x.to_owned()).collect()
+    }
     vars["NR"] = i + 1
     vars["NF"] = fields.length()
     let st = State::{ vars, fields, record: line, output, }

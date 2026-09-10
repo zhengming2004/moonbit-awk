@@ -6,7 +6,7 @@ import {
 }
 
 // Values
-pub fn run(String, String) -> String raise ParseError
+pub fn run(String, String, separator? : String) -> String raise ParseError
 
 // Errors
 pub suberror ParseError {
