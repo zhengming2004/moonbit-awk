@@ -1,6 +1,7 @@
 ///|
 priv enum Expr {
   Literal(Value)
+  RegexLiteral(String)
   Variable(String)
   Field(Expr)
   Element(String, Array[Expr])
@@ -17,6 +18,7 @@ priv enum Expr {
 priv enum Statement {
   Block(Array[Statement])
   Print(Array[Expr])
+  Printf(Array[Expr])
   Expression(Expr)
   If(Expr, Statement, Statement?)
   While(Expr, Statement)
@@ -27,7 +29,9 @@ priv enum Statement {
   Break
   Continue
   Next
+  NextFile
   Exit(Expr?)
+  Return(Expr?)
 }
 
 ///|
@@ -40,10 +44,24 @@ priv struct Rule {
 }
 
 ///|
+priv struct FunctionDef {
+  params : Array[String]
+  body : Statement
+}
+
+///|
+priv struct Program {
+  rules : Array[Rule]
+  functions : Map[String, FunctionDef]
+  kinds : Map[String, Int]
+}
+
+///|
 fn reserved(s : String) -> Bool {
   [
     "BEGIN", "END", "if", "else", "while", "do", "for", "in", "break", "continue",
-    "next", "exit", "delete", "print", "printf", "function", "return", "getline",
+    "next", "nextfile", "exit", "delete", "print", "printf", "function", "func",
+    "return", "getline",
   ].contains(s)
 }
 
@@ -55,11 +73,12 @@ fn priority(op : String) -> Int {
     "||" => 3
     "&&" => 4
     "in" => 5
-    "==" | "!=" | "<" | ">" | "<=" | ">=" => 6
-    "+" | "-" => 8
-    "*" | "/" | "%" => 9
-    "^" => 11
-    "++" | "--" => 12
+    "~" | "!~" => 6
+    "==" | "!=" | "<" | ">" | "<=" | ">=" => 7
+    "+" | "-" => 9
+    "*" | "/" | "%" => 10
+    "^" => 12
+    "++" | "--" => 13
     _ => 0
   }
 }
@@ -83,7 +102,10 @@ fn Cursor::expression(
     raise Invalid("expression depth")
   }
   let t = self.take()
-  let mut left = if t.quoted {
+  let mut left = if t.regexp {
+    ignore(compile_regex(t.text))
+    RegexLiteral(t.text)
+  } else if t.quoted {
     Literal(Text(t.text))
   } else if t.text == "(" {
     let first = self.expression(1, depth + 1)
@@ -98,11 +120,11 @@ fn Cursor::expression(
       Tuple(entries)
     }
   } else if t.text == "$" {
-    Field(self.expression(13, depth + 1))
+    Field(self.expression(14, depth + 1))
   } else if ["+", "-", "!"].contains(t.text) {
-    Unary(t.text, self.expression(10, depth + 1))
+    Unary(t.text, self.expression(11, depth + 1))
   } else if t.text == "++" || t.text == "--" {
-    let target = self.expression(12, depth + 1)
+    let target = self.expression(13, depth + 1)
     if !lvalue(target) {
       raise Invalid("increment target")
     }
@@ -114,13 +136,12 @@ fn Cursor::expression(
         raise Invalid("empty array subscript")
       }
       Element(t.text, keys)
-    } else if self.eat("(") {
-      if ![
-          "length", "substr", "index", "split", "int", "sqrt", "tolower", "toupper",
-        ].contains(t.text) {
-        raise Invalid("unsupported function " + t.text)
-      }
+    } else if self.peek() == "(" &&
+      (self.tokens[self.pos].adjacent || builtin_name(t.text)) {
+      self.pos += 1
       Call(t.text, self.arguments(")", depth + 1))
+    } else if t.text == "length" {
+      Call("length", [])
     } else {
       Variable(t.text)
     }
@@ -132,6 +153,7 @@ fn Cursor::expression(
     Literal(
       finite(
         @strconv.parse_double(t.text) catch {
+          Failure::Failure("value out of range") => 1.0 / 0.0
           _ => raise Invalid("invalid number")
         },
       ),
@@ -154,7 +176,7 @@ fn Cursor::expression(
         (identifier(op) && !reserved(op)) ||
         (op.to_array().get(0) is Some(c) && digit(c))
       ) {
-      p = 7
+      p = 8
       concat = true
     }
     if p == 0 || p < min {
@@ -288,24 +310,48 @@ fn Cursor::statement(self : Cursor, depth : Int) -> Statement raise ParseError {
     self.need(")")
     return For(first, condition, step, self.statement(depth + 1))
   }
-  let result = if self.eat("print") {
+  let result = if self.peek() == "print" || self.peek() == "printf" {
+    let formatted = self.eat("printf")
+    if !formatted {
+      self.need("print")
+    }
     let values = []
     if ![";", "\n", "}", "<eof>", "else"].contains(self.peek()) {
-      values.push(self.expression(1, 0, printing=true))
+      match self.expression(1, 0, printing=true) {
+        Tuple(xs) =>
+          for x in xs {
+            values.push(x)
+          }
+        e => values.push(e)
+      }
       while self.eat(",") {
         values.push(self.expression(1, 0, printing=true))
       }
     }
-    Print(values)
+    if formatted {
+      Printf(values)
+    } else {
+      Print(values)
+    }
   } else if self.eat("break") {
     Break
   } else if self.eat("continue") {
     Continue
+  } else if self.eat("nextfile") {
+    NextFile
   } else if self.eat("next") {
     Next
   } else if self.eat("exit") {
     Exit(
       if [";", "\n", "}", "<eof>", "else"].contains(self.peek()) {
+        None
+      } else {
+        Some(self.expression(1, 0))
+      },
+    )
+  } else if self.eat("return") {
+    Return(
+      if [";", "\n", "}", "<eof>"].contains(self.peek()) {
         None
       } else {
         Some(self.expression(1, 0))
@@ -335,11 +381,56 @@ fn Cursor::end_statement(self : Cursor) -> Unit raise ParseError {
 }
 
 ///|
-fn parse(program : String) -> Array[Rule] raise ParseError {
+fn parse(program : String) -> Program raise ParseError {
   let c = lex(program, true)
   let rules = []
+  let functions : Map[String, FunctionDef] = Map([])
   c.separators()
   while c.peek() != "<eof>" {
+    if c.eat("function") || c.eat("func") {
+      let name = c.take()
+      if name.quoted ||
+        name.regexp ||
+        !identifier(name.text) ||
+        reserved(name.text) ||
+        builtin_name(name.text) ||
+        functions.contains(name.text) {
+        raise Invalid("invalid or duplicate function name")
+      }
+      c.need("(")
+      let params = []
+      if !c.eat(")") {
+        while true {
+          let token = c.take()
+          if token.quoted ||
+            token.regexp ||
+            !identifier(token.text) ||
+            reserved(token.text) ||
+            builtin_name(token.text) ||
+            special_variable(token.text) ||
+            params.contains(token.text) {
+            raise Invalid("invalid or duplicate parameter")
+          }
+          params.push(token.text)
+          if params.length() > 128 {
+            raise Invalid("function parameter limit")
+          }
+          if !c.eat(",") {
+            break
+          }
+        }
+        c.need(")")
+      }
+      c.newlines()
+      if c.peek() != "{" {
+        raise Invalid("function requires a block")
+      }
+      let body = c.statement(0)
+      validate_control(body, 0, "function")
+      functions[name.text] = { params, body, }
+      c.separators()
+      continue
+    }
     let phase = if c.eat("BEGIN") {
       "BEGIN"
     } else if c.eat("END") {
@@ -372,7 +463,9 @@ fn parse(program : String) -> Array[Rule] raise ParseError {
     rules.push({ phase, condition, until, body, active: false, })
     c.separators()
   }
-  rules
+  let program : Program = { rules, functions, kinds: Map([]), }
+  validate_program(program)
+  program
 }
 
 ///|
@@ -386,7 +479,14 @@ fn validate_control(
       if loops == 0 {
         raise Invalid("break/continue outside loop")
       }
-    Next => if phase != "record" { raise Invalid("next outside record action") }
+    Next | NextFile =>
+      if phase != "record" && phase != "function" {
+        raise Invalid("next outside record action")
+      }
+    Return(_) =>
+      if phase != "function" {
+        raise Invalid("return outside function")
+      }
     Block(statements) =>
       for statement in statements {
         validate_control(statement, loops, phase)
@@ -401,4 +501,12 @@ fn validate_control(
       validate_control(body, loops + 1, phase)
     _ => ()
   }
+}
+
+///|
+fn builtin_name(name : String) -> Bool {
+  [
+    "length", "substr", "index", "split", "int", "sqrt", "tolower", "toupper", "sprintf",
+    "match", "sub", "gsub", "sin", "cos", "atan2", "exp", "log", "rand", "srand",
+  ].contains(name)
 }

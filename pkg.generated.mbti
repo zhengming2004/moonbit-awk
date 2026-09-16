@@ -6,9 +6,11 @@ import {
 }
 
 // Values
+pub fn new_session(String, separator? : String, variables? : Map[String, String], environment? : Map[String, String], arguments? : Array[String], step_limit? : Int, clock_seconds? : Double) -> Session raise ParseError
+
 pub fn run(String, String, separator? : String) -> String raise ParseError
 
-pub fn run_with_status(String, String, separator? : String, step_limit? : Int) -> RunResult raise ParseError
+pub fn run_with_status(String, String, separator? : String, step_limit? : Int, clock_seconds? : Double) -> RunResult raise ParseError
 
 // Errors
 pub suberror ParseError {
@@ -21,6 +23,23 @@ pub(all) struct RunResult {
   exit_status : Int
   steps : Int
 } derive(Eq, ToJson, @debug.Debug)
+
+pub struct Session {
+  // private fields
+}
+pub fn Session::argument(Self, Int) -> String raise ParseError
+pub fn Session::argument_count(Self) -> Int raise ParseError
+pub fn Session::assign(Self, String, String) -> Unit raise ParseError
+pub fn Session::begin(Self) -> Unit raise ParseError
+pub fn Session::begin_file(Self, String) -> Unit raise ParseError
+pub fn Session::drain(Self) -> String
+pub fn Session::exit_status(Self) -> Int
+pub fn Session::feed(Self, String) -> Unit raise ParseError
+pub fn Session::finish(Self) -> Unit raise ParseError
+pub fn Session::is_stopped(Self) -> Bool
+pub fn Session::needs_input(Self) -> Bool
+pub fn Session::should_skip_file(Self) -> Bool
+pub fn Session::steps(Self) -> Int
 
 // Type aliases
 

@@ -1,5 +1,6 @@
 import {
   "localreview/awk" @lib,
+  "moonbitlang/core/json",
 }
 
 supported_targets = "js"
@@ -7,5 +8,7 @@ supported_targets = "js"
 pkgtype(kind: "executable")
 
 options(
-  link: { "js": { "exports": [ "run", "execute" ], "format": "esm" } },
+  link: {
+    "js": { "exports": [ "run", "execute", "session_json" ], "format": "esm" },
+  },
 )

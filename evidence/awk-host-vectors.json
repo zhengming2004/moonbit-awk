@@ -1,0 +1,630 @@
+{
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "platform": "win32",
+  "options": [
+    "-c",
+    "-N",
+    "raw"
+  ],
+  "cases": [
+    {
+      "id": "host-0",
+      "args": [
+        "-v",
+        "x=007",
+        "BEGIN{print x,x+0,(x==7);print ENVIRON[\"MOON_AWK_TEST\"]}"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-1",
+      "args": [
+        "-v",
+        "x=a\\tb\\nC",
+        "BEGIN{printf \"%s\",x}"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-2",
+      "args": [
+        "-F:",
+        "-vFS=,",
+        "{print NF,$1,$2}"
+      ],
+      "input": "a,b:c\n"
+    },
+    {
+      "id": "host-3",
+      "args": [
+        "-vFS=,",
+        "-F:",
+        "{print NF,$1,$2}"
+      ],
+      "input": "a,b:c\n"
+    },
+    {
+      "id": "host-4",
+      "args": [
+        "-F",
+        "\\t",
+        "{print NF,$1,$2}"
+      ],
+      "input": "a\tb\n"
+    },
+    {
+      "id": "host-5",
+      "args": [
+        "-f",
+        "one.awk",
+        "-f",
+        "two.awk",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-6",
+      "args": [
+        "BEGIN{print \"start\",x,ARGC} {print FILENAME,FNR,NR,x,$0} END{print \"end\",x}",
+        "x=1",
+        "a.txt",
+        "x=2",
+        "b.txt",
+        "x=3"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-7",
+      "args": [
+        "{print FILENAME,FNR,NR,$0} END{print \"end\",FILENAME,FNR,NR}",
+        "empty.txt",
+        "a.txt",
+        "empty.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-8",
+      "args": [
+        "{print FILENAME,FNR,NR,$0;nextfile} END{print \"end\",NR}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-9",
+      "args": [
+        "function skip(){nextfile} {print FILENAME,FNR;skip();print \"bad\"} END{print NR}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-10",
+      "args": [
+        "{print $0;exit 7} END{print \"end\",NR}",
+        "a.txt",
+        "missing.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-11",
+      "args": [
+        "BEGIN{print \"begin\";exit 5} END{print \"end\"}",
+        "missing.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-12",
+      "args": [
+        "BEGIN{print \"begin\"}",
+        "missing.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-13",
+      "args": [
+        "BEGIN{print ARGC,ARGV[1],ARGV[2];delete ARGV[1]} {print FILENAME,$0}",
+        "missing.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-14",
+      "args": [
+        "BEGIN{ARGV[1]=\"b.txt\";ARGC=2} {print FILENAME,$0}",
+        "missing.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-15",
+      "args": [
+        "BEGIN{ARGV[2]=\"b.txt\";ARGC=3} {print FILENAME,FNR,NR}",
+        "a.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-16",
+      "args": [
+        "BEGIN{delete ARGV[1]} {print FILENAME,$0}",
+        "missing.txt"
+      ],
+      "input": "stdin record\n"
+    },
+    {
+      "id": "host-17",
+      "args": [
+        "{print FILENAME,FNR,NR,$0}",
+        "-",
+        "a.txt",
+        "-"
+      ],
+      "input": "stdin1\nstdin2\n"
+    },
+    {
+      "id": "host-18",
+      "args": [
+        "{print x,$0} END{print x}",
+        "x=9"
+      ],
+      "input": "a\nb\n"
+    },
+    {
+      "id": "host-19",
+      "args": [
+        "BEGIN{print \"start\"} END{print FILENAME,FNR,NR}",
+        "empty.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-20",
+      "args": [
+        "BEGIN{print \"start\"} {print $0;print 1/zero} END{print \"bad\"}",
+        "a.txt"
+      ],
+      "input": "",
+      "error": true
+    },
+    {
+      "id": "host-21",
+      "args": [
+        "BEGIN{print \"before\";print 1/zero} END{print \"bad\"}"
+      ],
+      "input": "",
+      "error": true
+    },
+    {
+      "id": "host-22",
+      "args": [
+        "{print $0} END{print \"before\";print 1/zero}",
+        "a.txt"
+      ],
+      "input": "",
+      "error": true
+    },
+    {
+      "id": "host-23",
+      "args": [
+        "BEGIN{print \"before\"} {print} END{print \"bad\"}",
+        "missing.txt"
+      ],
+      "input": "",
+      "error": true
+    },
+    {
+      "id": "host-24",
+      "args": [
+        "BEGIN{exit -1}"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-25",
+      "args": [
+        "BEGIN{exit 257}"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-26",
+      "args": [
+        "BEGIN{exit 5} END{exit}"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-27",
+      "args": [
+        "BEGIN{exit 5} END{exit 9}"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-28",
+      "args": [
+        "{print NF,$0}"
+      ],
+      "input": "a\r\nb\nlast"
+    },
+    {
+      "id": "host-29",
+      "args": [
+        "{print FNR,NF,$1,$2}",
+        "unicode.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-30",
+      "args": [
+        "{sum+=$2} END{print NR,sum}",
+        "large.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-31",
+      "args": [
+        "{print $0}",
+        "large.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-32",
+      "args": [
+        "{print $0; if(NR==3) nextfile}",
+        "large.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-33",
+      "args": [
+        "-f",
+        "-"
+      ],
+      "input": "BEGIN{print \"source from stdin\"}\n"
+    },
+    {
+      "id": "host-34",
+      "args": [
+        "--",
+        "BEGIN{print \"ok\"}"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-35",
+      "args": [
+        "-v",
+        "bad",
+        "BEGIN{}"
+      ],
+      "input": "",
+      "error": true
+    },
+    {
+      "id": "host-36",
+      "args": [
+        "-f",
+        "absent.awk"
+      ],
+      "input": "",
+      "error": true
+    }
+  ],
+  "references": [
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "007 7 1\nfixture-value\n",
+      "outputLength": 22,
+      "outputSha256": "4a877c7ebc88f996d042801a722bd00e9732404ac275fccaad3908073f331add",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a\tb\nC",
+      "outputLength": 5,
+      "outputSha256": "16b6da6106f1c80f7b30450a62213411f7f7fc8e9d16e7a1f49f3499cb41aa9d",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "2 a b:c\n",
+      "outputLength": 8,
+      "outputSha256": "1b40753dd0ee0a1e57521c285fa8e88916675def51311526bc3fea04fc68437c",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "2 a b:c\n",
+      "outputLength": 8,
+      "outputSha256": "1b40753dd0ee0a1e57521c285fa8e88916675def51311526bc3fea04fc68437c",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "2 a b\n",
+      "outputLength": 6,
+      "outputSha256": "567fb32520d73889120cc5b7d3a51c13b946c141ee7a7f772b7c3acdf99fa43a",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "begin\n4 14\n",
+      "outputLength": 11,
+      "outputSha256": "82390e346f40c7d21d85b488d4a29a93ef9ddc2218bf349b8ed75093879468fb",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "start  6\na.txt 1 1 1 a 2\na.txt 2 2 1 b 3\nb.txt 1 3 2 c 4\nb.txt 2 4 2 d 5\nend 3\n",
+      "outputLength": 79,
+      "outputSha256": "ab9efe96e9a52f23e3eae538771ec88306bba1d7ee77da1d4bbec9fdc2bd12c7",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a.txt 1 1 a 2\na.txt 2 2 b 3\nb.txt 1 3 c 4\nb.txt 2 4 d 5\nend b.txt 2 4\n",
+      "outputLength": 70,
+      "outputSha256": "440f5e1330f95dbd287e64eddff3398e0688d8a736e587cf25c69138709aeae5",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a.txt 1 1 a 2\nb.txt 1 2 c 4\nend 2\n",
+      "outputLength": 34,
+      "outputSha256": "e1114ce55854c19ded12e29dbe51d9c88229659ff7bd58bc624ac75352869fe4",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a.txt 1\nb.txt 1\n2\n",
+      "outputLength": 18,
+      "outputSha256": "5a2c74b86bf5364810d5f2ca09483c8d79fa7e753d9c15cf17c9a00e3a1fd137",
+      "hasError": false
+    },
+    {
+      "status": 7,
+      "nativeStatus": 7,
+      "output": "a 2\nend 1\n",
+      "outputLength": 10,
+      "outputSha256": "58758a6642e9434adbdab0c1956759136b224ad692e98f74315aaaccd37a5e15",
+      "hasError": false
+    },
+    {
+      "status": 5,
+      "nativeStatus": 5,
+      "output": "begin\nend\n",
+      "outputLength": 10,
+      "outputSha256": "527d1b3b75a49ea8d2b4f9ba46e965ee1303cc245aa73006f6e3bf56cb5326ff",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "begin\n",
+      "outputLength": 6,
+      "outputSha256": "72dd223af541dd7fd5df48bef765603c5ca070ce3b42154ba1975bc2b7452625",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "3 missing.txt b.txt\nb.txt c 4\nb.txt d 5\n",
+      "outputLength": 40,
+      "outputSha256": "11a4c24ad028f1c988ddf7ad75abe6acaec423da34e975d37151da7b75121c3e",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "b.txt c 4\nb.txt d 5\n",
+      "outputLength": 20,
+      "outputSha256": "aea5f8c1260d5ddbb0c7e867f5f319b2c41152c2256be8a21787e8b3bba61e7b",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a.txt 1 1\na.txt 2 2\nb.txt 1 3\nb.txt 2 4\n",
+      "outputLength": 40,
+      "outputSha256": "c7c2162b019e62624de823ea3067750bc9e0645b7c1083994bcccf78bc224468",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "- stdin record\n",
+      "outputLength": 15,
+      "outputSha256": "dd68b02b74c6782a8e45d348f576b5b42830f28a22e42f716830bea98374efb7",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "- 1 1 stdin1\n- 2 2 stdin2\na.txt 1 3 a 2\na.txt 2 4 b 3\n",
+      "outputLength": 54,
+      "outputSha256": "a1507f78e6f575da4bced2b57a61fe0f53b3bf7f86ee4542fcb77523a4cdb1da",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "9 a\n9 b\n9\n",
+      "outputLength": 10,
+      "outputSha256": "442aabc916f1a777091ae60ac85a333b1b6818b751f5622526562ddb77eacfd4",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "start\nempty.txt 0 0\n",
+      "outputLength": 20,
+      "outputSha256": "1084982f07c8aee011c80c955e3adbf4d3b49b67afef7142e699a0b884496c9b",
+      "hasError": false
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "start\na 2\n",
+      "outputLength": 10,
+      "outputSha256": "99e114f7359549ec631e3a13956f114a887ce4c32f01840a47b51a3f4b3f1470",
+      "hasError": true
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "before\n",
+      "outputLength": 7,
+      "outputSha256": "9160d4be34c8695bd172a76c7c7966587ea5a4d991ad22c87b2b91af54aa9ebb",
+      "hasError": true
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "a 2\nb 3\nbefore\n",
+      "outputLength": 15,
+      "outputSha256": "c1922b3a1bc8ec93586905dd6f2979b0f3d81d4fd0b27670f7ac89c29e978b32",
+      "hasError": true
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "before\n",
+      "outputLength": 7,
+      "outputSha256": "9160d4be34c8695bd172a76c7c7966587ea5a4d991ad22c87b2b91af54aa9ebb",
+      "hasError": true
+    },
+    {
+      "status": 255,
+      "nativeStatus": 4294967295,
+      "output": "",
+      "outputLength": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hasError": false
+    },
+    {
+      "status": 1,
+      "nativeStatus": 257,
+      "output": "",
+      "outputLength": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hasError": false
+    },
+    {
+      "status": 5,
+      "nativeStatus": 5,
+      "output": "",
+      "outputLength": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hasError": false
+    },
+    {
+      "status": 9,
+      "nativeStatus": 9,
+      "output": "",
+      "outputLength": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "1 a\n1 b\n1 last\n",
+      "outputLength": 15,
+      "outputSha256": "1770afe3096cb9053be1f30ef5bf334fe1e74796ce2c5e7435d5b85f21b0f44b",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "1 2 象棋 2\n2 2 🙂 3\n",
+      "outputLength": 18,
+      "outputSha256": "c36d5fc834b3a13a760087d402d585bf2c71a4068b2eaff8985ba2fee09b264d",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "600000 1200000\n",
+      "outputLength": 15,
+      "outputSha256": "14b5038cec41e2b609745106d15719f73af2ce18f794bbbd7682edb0170240b2",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": null,
+      "outputLength": 4800000,
+      "outputSha256": "788e597a6d903286430de85428405e7be1069ecf14e7a22bf767f5ec74fd3af3",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "value 2\nvalue 2\nvalue 2\nc 4\nd 5\n",
+      "outputLength": 32,
+      "outputSha256": "1b6d5044c5f876ce8583e3b75c0c9b0522cd60838967b45de05a4ce17b55ad3d",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "source from stdin\n",
+      "outputLength": 18,
+      "outputSha256": "d6a14cb343eb6d16ce8bf7500da7375299d1c5301d34ba69a01608125d58be30",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "ok\n",
+      "outputLength": 3,
+      "outputSha256": "dc51b8c96c2d745df3bd5590d990230a482fd247123599548e0632fdbf97fc22",
+      "hasError": false
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "",
+      "outputLength": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hasError": true
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "",
+      "outputLength": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hasError": true
+    }
+  ]
+}

@@ -7,22 +7,16 @@ priv enum Value {
 }
 
 ///|
-fn finite(n : Double) -> Value raise ParseError {
-  if n.is_nan() || n.is_inf() {
-    raise Invalid("non-finite number")
-  }
+fn finite(n : Double) -> Value {
   Number(n)
 }
 
 ///|
 fn input_value(text : String) -> Value {
   let trimmed = text.trim().to_owned()
-  let cs = trimmed.to_array()
-  if !cs.is_empty() && number_end(cs, 0, true) == cs.length() {
-    let n = @strconv.parse_double(trimmed) catch { _ => return Text(text) }
-    if !n.is_nan() && !n.is_inf() {
-      return NumericString(text, n)
-    }
+  let (n, end, overflow) = numeric_prefix(trimmed)
+  if end > 0 && end == trimmed.to_array().length() && !overflow {
+    return NumericString(text, n)
   }
   Text(text)
 }
@@ -37,22 +31,12 @@ fn Value::text(self : Value) -> String {
 }
 
 ///|
-fn Value::number(self : Value) -> Double raise ParseError {
+fn Value::number(self : Value) -> Double {
   match self {
     Empty => 0.0
     Number(n) | NumericString(_, n) => n
     Text(s) => {
-      let cs = s.trim().to_owned().to_array()
-      let end = number_end(cs, 0, true)
-      if end == 0 {
-        return 0.0
-      }
-      let n = @strconv.parse_double(
-        cs[0:end].to_owned().map(c => c.to_string()).join(""),
-      ) catch {
-        _ => raise Invalid("numeric conversion")
-      }
-      ignore(finite(n))
+      let (n, _, _) = numeric_prefix(s.trim().to_owned())
       n
     }
   }
@@ -84,6 +68,13 @@ priv struct State {
   step_limit : Int
   mut entries : Int
   mut eval_depth : Int
+  regexes : Map[String, Regex]
+  functions : Map[String, FunctionDef]
+  kinds : Map[String, Int]
+  frames : Array[Frame]
+  mut random_state : Int64
+  mut random_seed : Double
+  clock_seconds : Double
 }
 
 ///|
@@ -96,13 +87,17 @@ fn State::tick(self : State) -> Unit raise ParseError {
 
 ///|
 fn State::variable(self : State, name : String) -> Value raise ParseError {
-  if self.arrays.contains(name) {
+  let vars = match self.local_frame(name) {
+    Some(frame) => frame.vars
+    None => self.vars
+  }
+  if self.has_array(name) {
     raise Invalid("array used as scalar: " + name)
   }
-  match self.vars.get(name) {
+  match vars.get(name) {
     Some(value) => value
     None => {
-      self.vars[name] = Empty
+      vars[name] = Empty
       Empty
     }
   }
@@ -113,14 +108,26 @@ fn State::array(
   self : State,
   name : String,
 ) -> Map[String, Value] raise ParseError {
-  if self.vars.contains(name) {
+  let frame = self.local_frame(name)
+  let vars = match frame {
+    Some(f) => f.vars
+    None => self.vars
+  }
+  let arrays = match frame {
+    Some(f) => f.arrays
+    None => self.arrays
+  }
+  if vars.contains(name) {
     raise Invalid("scalar used as array: " + name)
   }
-  match self.arrays.get(name) {
+  match arrays.get(name) {
     Some(a) => a
     None => {
       let a : Map[String, Value] = Map([])
-      self.arrays[name] = a
+      arrays[name] = a
+      if frame is Some(f) {
+        f.owned.push(a)
+      }
       a
     }
   }
@@ -147,14 +154,16 @@ fn State::put_element(
 fn split_fields(
   text : String,
   separator : String,
+  st : State,
+  is_regex? : Bool = false,
 ) -> Array[Value] raise ParseError {
-  if separator.is_empty() || separator.contains("\n") {
-    raise Invalid("invalid literal separator")
-  }
   if text.is_empty() {
     return []
   }
-  if separator == " " {
+  if separator.is_empty() {
+    return text.to_array().map(c => input_value(c.to_string()))
+  }
+  if separator == " " && !is_regex {
     text
     .split(" ")
     .flat_map(s => s.split("\t"))
@@ -162,8 +171,45 @@ fn split_fields(
     .filter(s => !s.is_empty())
     .map(s => input_value(s.to_owned()))
     .collect()
-  } else {
+  } else if separator.to_array().length() == 1 && !is_regex {
     text.split(separator).map(s => input_value(s.to_owned())).collect()
+  } else {
+    let regex = st.regex(separator)
+    let chars = text.to_array()
+    let fields = []
+    let mut start = 0
+    let mut from = 0
+    let mut last_nonempty_end = -1
+    let mut final_empty = false
+    while from <= chars.length() {
+      match regex_match(regex, chars, from, st) {
+        None => break
+        Some((a, b)) => {
+          if a == b && a == last_nonempty_end {
+            from = a + 1
+            continue
+          }
+          if b > 0 {
+            fields.push(input_value(String::from_array(chars[start:a])))
+          }
+          start = b
+          final_empty = a == b && b == chars.length()
+          if a == b {
+            from = a + 1
+          } else {
+            from = b
+            last_nonempty_end = b
+          }
+        }
+      }
+      if fields.length() > 10000 {
+        raise Invalid("field count budget")
+      }
+    }
+    if !final_empty {
+      fields.push(input_value(String::from_array(chars[start:])))
+    }
+    fields
   }
 }
 
@@ -173,7 +219,7 @@ fn State::set_record(self : State, text : String) -> Unit raise ParseError {
     raise Invalid("record length budget")
   }
   self.record = text
-  let fields = split_fields(text, self.variable("FS").text())
+  let fields = split_fields(text, self.text(self.variable("FS")), self)
   if fields.length() > 10000 {
     raise Invalid("field count budget")
   }
@@ -186,15 +232,15 @@ fn State::set_record(self : State, text : String) -> Unit raise ParseError {
 
 ///|
 fn State::rebuild(self : State) -> Unit raise ParseError {
-  let ofs = self.variable("OFS").text()
+  let ofs = self.text(self.variable("OFS"))
   let mut length = 0
   for value in self.fields {
-    length += value.text().length() + ofs.length()
+    length += self.text(value).length() + ofs.length()
     if length > 1000000 {
       raise Invalid("record length budget")
     }
   }
-  self.record = self.fields.map(v => v.text()).join(ofs)
+  self.record = self.fields.map(v => self.text(v)).join(ofs)
   self.vars["NF"] = Number(self.fields.length().to_double())
 }
 
@@ -244,7 +290,7 @@ fn State::write(
 ) -> Unit raise ParseError {
   match slot {
     VariableSlot(name) => {
-      if self.arrays.contains(name) {
+      if self.has_array(name) {
         raise Invalid("array used as scalar: " + name)
       }
       if name == "NF" {
@@ -257,19 +303,25 @@ fn State::write(
         }
         self.rebuild()
       } else {
-        if ["RS", "OFMT", "CONVFMT", "ARGV", "ARGC", "ENVIRON"].contains(name) {
+        if ["RS", "ARGV", "ENVIRON"].contains(name) {
           raise Invalid("unsupported special variable " + name)
         }
-        if name == "FS" &&
-          (value.text().is_empty() || value.text().contains("\n")) {
-          raise Invalid("invalid literal separator")
+        match self.local_frame(name) {
+          Some(frame) => frame.vars[name] = value
+          None =>
+            self.vars[name] = if ["NR", "FNR", "ARGC", "RSTART", "RLENGTH"].contains(
+                name,
+              ) {
+              Number(value.number().trunc())
+            } else {
+              value
+            }
         }
-        self.vars[name] = value
       }
     }
     FieldSlot(i) =>
       if i == 0 {
-        self.set_record(value.text())
+        self.set_record(self.text(value))
       } else {
         while self.fields.length() < i {
           self.fields.push(Empty)

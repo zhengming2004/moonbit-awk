@@ -1,14 +1,14 @@
 ///|
-fn array_key(keys : Array[Expr], st : State) -> String raise ParseError {
+fn array_key(keys : Array[Expr], st : State) -> String raise {
   let values = []
   for key in keys {
-    values.push(evaluate(key, st).text())
+    values.push(st.text(evaluate(key, st)))
   }
-  values.join(st.variable("SUBSEP").text())
+  values.join(st.text(st.variable("SUBSEP")))
 }
 
 ///|
-fn slot(expr : Expr, st : State) -> Slot raise ParseError {
+fn slot(expr : Expr, st : State) -> Slot raise {
   match expr {
     Variable(name) => VariableSlot(name)
     Field(index) => FieldSlot(field_index(evaluate(index, st).number()))
@@ -18,17 +18,27 @@ fn slot(expr : Expr, st : State) -> Slot raise ParseError {
 }
 
 ///|
-fn calculate(op : String, a : Value, b : Value) -> Value raise ParseError {
+fn calculate(
+  op : String,
+  a : Value,
+  b : Value,
+  st : State,
+) -> Value raise ParseError {
   if op == "concat" {
-    let text = a.text() + b.text()
+    let text = st.text(a) + st.text(b)
     if text.length() > 1000000 {
       raise Invalid("string length budget")
     }
     return Text(text)
   }
   if ["==", "!=", "<", ">", "<=", ">="].contains(op) {
+    if !(a is Text(_)) &&
+      !(b is Text(_)) &&
+      (a.number().is_nan() || b.number().is_nan()) {
+      return boolean(op == "!=")
+    }
     let cmp = if a is Text(_) || b is Text(_) {
-      a.text().lexical_compare(b.text())
+      st.text(a).lexical_compare(st.text(b))
     } else {
       a.number().compare(b.number())
     }
@@ -69,14 +79,21 @@ fn calculate(op : String, a : Value, b : Value) -> Value raise ParseError {
 }
 
 ///|
-fn evaluate(expr : Expr, st : State) -> Value raise ParseError {
+fn evaluate(expr : Expr, st : State) -> Value raise {
   st.tick()
   st.eval_depth += 1
   if st.eval_depth > 128 {
     raise Invalid("evaluation depth budget")
   }
+  defer {
+    st.eval_depth -= 1
+  }
   let result = match expr {
     Literal(v) => v
+    RegexLiteral(pattern) =>
+      boolean(
+        regex_match(st.regex(pattern), st.record.to_array(), 0, st) != None,
+      )
     Variable(_) | Field(_) | Element(_, _) => st.read(slot(expr, st))
     Tuple(_) => raise Invalid("tuple is only supported with in")
     Unary(op, child) => {
@@ -93,7 +110,7 @@ fn evaluate(expr : Expr, st : State) -> Value raise ParseError {
       let value = if op == "=" {
         right
       } else {
-        calculate(op, st.read(location), right)
+        calculate(op, st.read(location), right, st)
       }
       st.write(location, value)
       value
@@ -101,7 +118,7 @@ fn evaluate(expr : Expr, st : State) -> Value raise ParseError {
     Increment(target, delta, prefix) => {
       let location = slot(target, st)
       let before = finite(st.read(location).number())
-      let after = calculate("+", before, Number(delta.to_double()))
+      let after = calculate("+", before, Number(delta.to_double()), st)
       st.write(location, after)
       if prefix {
         after
@@ -118,40 +135,91 @@ fn evaluate(expr : Expr, st : State) -> Value raise ParseError {
     Binary("in", left, Variable(name)) => {
       let key = match left {
         Tuple(keys) => array_key(keys, st)
-        _ => evaluate(left, st).text()
+        _ => st.text(evaluate(left, st))
       }
       boolean(st.array(name).contains(key))
     }
     Binary("in", _, _) => raise Invalid("in requires an array name")
+    Binary("~" | "!~" as op, left, right) => {
+      let text = st.text(evaluate(left, st))
+      let pattern = regex_pattern(right, st)
+      boolean(
+        (regex_match(st.regex(pattern), text.to_array(), 0, st) != None) ==
+        (op == "~"),
+      )
+    }
     Binary(op, left, right) =>
-      calculate(op, evaluate(left, st), evaluate(right, st))
-    Call(name, args) => builtin(name, args, st)
+      calculate(op, evaluate(left, st), evaluate(right, st), st)
+    Call(name, args) =>
+      if st.functions.contains(name) {
+        call_function(name, args, st)
+      } else {
+        builtin(name, args, st)
+      }
   }
-  st.eval_depth -= 1
   result
 }
 
 ///|
-fn builtin(
-  name : String,
-  args : Array[Expr],
-  st : State,
-) -> Value raise ParseError {
+fn builtin(name : String, args : Array[Expr], st : State) -> Value raise {
+  if name == "rand" {
+    st.random_state = st.random_state * 48271L % 2147483647L
+    return Number(st.random_state.to_double() / 2147483647.0)
+  }
+  if name == "srand" {
+    let old = st.random_seed
+    let seed = if args.is_empty() {
+      st.clock_seconds.trunc()
+    } else {
+      evaluate(args[0], st).number()
+    }
+    st.random_seed = seed
+    let normalized = (seed.trunc() % 2147483646.0).abs()
+    st.random_state = if normalized.is_nan() || normalized.is_inf() {
+      1L
+    } else {
+      normalized.to_int64() + 1L
+    }
+    return Number(old)
+  }
+  if name == "match" {
+    if args.length() != 2 {
+      raise Invalid("match arguments")
+    }
+    let text = st.text(evaluate(args[0], st))
+    let pattern = regex_pattern(args[1], st)
+    let (start, length) = match
+      regex_match(st.regex(pattern), text.to_array(), 0, st) {
+      None => (0, -1)
+      Some((a, b)) => (a + 1, b - a)
+    }
+    st.vars["RSTART"] = Number(start.to_double())
+    st.vars["RLENGTH"] = Number(length.to_double())
+    return Number(start.to_double())
+  }
+  if name == "sub" || name == "gsub" {
+    return substitute(args, st, name == "gsub")
+  }
   if name == "split" {
     if args.length() < 2 || args.length() > 3 {
       raise Invalid("split arguments")
     }
-    let text = evaluate(args[0], st).text()
+    let text = st.text(evaluate(args[0], st))
     let array = match args[1] {
       Variable(name) => name
       _ => raise Invalid("split requires array name")
     }
     let sep = if args.length() == 3 {
-      evaluate(args[2], st).text()
+      regex_pattern(args[2], st)
     } else {
-      st.variable("FS").text()
+      st.text(st.variable("FS"))
     }
-    let fields = split_fields(text, sep)
+    let fields = split_fields(
+      text,
+      sep,
+      st,
+      is_regex=args.length() == 3 && args[2] is RegexLiteral(_),
+    )
     let dest = st.array(array)
     st.entries -= dest.length()
     dest.clear()
@@ -160,6 +228,12 @@ fn builtin(
     }
     return Number(fields.length().to_double())
   }
+  if name == "length" &&
+    args.length() == 1 &&
+    args[0] is Variable(array) &&
+    st.has_array(array) {
+    return Number(st.array(array).length().to_double())
+  }
   if name == "length" {
     if args.length() > 1 {
       raise Invalid("length arguments")
@@ -167,7 +241,7 @@ fn builtin(
     let text = if args.is_empty() {
       st.record
     } else {
-      evaluate(args[0], st).text()
+      st.text(evaluate(args[0], st))
     }
     return Number(text.to_array().length().to_double())
   }
@@ -175,11 +249,17 @@ fn builtin(
   for arg in args {
     values.push(evaluate(arg, st))
   }
+  if name == "sprintf" {
+    if values.is_empty() {
+      raise Invalid("sprintf requires a format")
+    }
+    return Text(format_values(st.text(values[0]), values[1:].to_owned(), st))
+  }
   if name == "substr" {
     if values.length() < 2 || values.length() > 3 {
       raise Invalid("substr arguments")
     }
-    let cs = values[0].text().to_array()
+    let cs = st.text(values[0]).to_array()
     let start_number = values[1].number().trunc()
     let start = if start_number < 1.0 {
       0
@@ -209,13 +289,16 @@ fn builtin(
     if values.length() != 2 {
       raise Invalid("index arguments")
     }
-    let text = values[0].text()
+    let text = st.text(values[0])
     return Number(
-      match text.find(values[1].text()) {
+      match text.find(st.text(values[1])) {
         Some(i) => (text[0:i].to_owned().to_array().length() + 1).to_double()
         None => 0.0
       },
     )
+  }
+  if name == "atan2" {
+    return finite(@math.atan2(values[0].number(), values[1].number()))
   }
   if values.length() != 1 {
     raise Invalid(name + " requires one argument")
@@ -223,8 +306,12 @@ fn builtin(
   match name {
     "int" => finite(values[0].number().trunc())
     "sqrt" => finite(values[0].number().sqrt())
-    "tolower" => Text(values[0].text().to_lower())
-    "toupper" => Text(values[0].text().to_upper())
+    "sin" => finite(@math.sin(values[0].number()))
+    "cos" => finite(@math.cos(values[0].number()))
+    "exp" => finite(@math.exp(values[0].number()))
+    "log" => finite(@math.ln(values[0].number()))
+    "tolower" => Text(st.text(values[0]).to_lower())
+    "toupper" => Text(st.text(values[0]).to_upper())
     _ => raise Invalid("unsupported function " + name)
   }
 }

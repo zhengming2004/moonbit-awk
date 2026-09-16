@@ -4,11 +4,18 @@ priv enum Flow {
   BreakFlow
   ContinueFlow
   NextFlow
+  NextFileFlow
   ExitFlow(Int?)
+  ReturnFlow(Value)
 }
 
 ///|
-fn execute_statement(stmt : Statement, st : State) -> Flow raise ParseError {
+priv suberror RuntimeFlow {
+  Jump(Flow)
+}
+
+///|
+fn execute_statement(stmt : Statement, st : State) -> Flow raise {
   st.tick()
   match stmt {
     Block(statements) => {
@@ -27,14 +34,22 @@ fn execute_statement(stmt : Statement, st : State) -> Flow raise ParseError {
     Print(exprs) => {
       let values = []
       for expr in exprs {
-        values.push(evaluate(expr, st).text())
+        values.push(st.text(evaluate(expr, st), printing=true))
       }
       let line = if exprs.is_empty() {
         st.record
       } else {
-        values.join(st.variable("OFS").text())
+        values.join(st.text(st.variable("OFS")))
       }
-      st.emit(line + st.variable("ORS").text())
+      st.emit(line + st.text(st.variable("ORS")))
+      Normal
+    }
+    Printf(exprs) => {
+      let values = exprs.map(e => evaluate(e, st))
+      if values.is_empty() {
+        raise Invalid("printf requires a format")
+      }
+      st.emit(format_values(st.text(values[0]), values[1:].to_owned(), st))
       Normal
     }
     If(condition, yes, no) =>
@@ -127,19 +142,24 @@ fn execute_statement(stmt : Statement, st : State) -> Flow raise ParseError {
     Break => BreakFlow
     Continue => ContinueFlow
     Next => NextFlow
+    NextFile => NextFileFlow
     Exit(value) => {
       let status = match value {
         None => None
         Some(expr) => {
           let n = evaluate(expr, st).number().trunc()
-          if n < 0.0 || n > 255.0 {
-            raise Invalid("exit status 0..255 required")
-          }
-          Some(n.to_int())
+          Some(if n.is_nan() || n.is_inf() { 0 } else { n.to_int64().to_int() })
         }
       }
       ExitFlow(status)
     }
+    Return(value) =>
+      ReturnFlow(
+        match value {
+          Some(expr) => evaluate(expr, st)
+          None => Empty
+        },
+      )
   }
 }
 
@@ -151,62 +171,21 @@ pub(all) struct RunResult {
 } derive(Debug, Eq, ToJson)
 
 ///|
-/// In-memory AWK subset with one input stream and explicit resource budgets.
-/// FS and split separators are literal, not regular expressions.
+/// Run an in-memory stream. For incremental file processing use Session.
 pub fn run_with_status(
   program : String,
   input : String,
   separator? : String = " ",
   step_limit? : Int = 1000000,
+  clock_seconds? : Double = 0.0,
 ) -> RunResult raise ParseError {
-  if separator.is_empty() || separator.contains("\n") {
-    raise Invalid("invalid literal separator")
-  }
   if input.length() > 1000000 {
     raise Invalid("input limit")
   }
-  if step_limit < 1 || step_limit > 10000000 {
-    raise Invalid("step limit 1..10000000 required")
-  }
-  let rules = parse(program)
-  let st : State = {
-    vars: {
-      "NR": Number(0.0),
-      "FNR": Number(0.0),
-      "NF": Number(0.0),
-      "FS": Text(separator),
-      "OFS": Text(" "),
-      "ORS": Text("\n"),
-      "SUBSEP": Text("\u001c"),
-    },
-    arrays: {},
-    fields: [],
-    record: "",
-    output: [],
-    output_size: 0,
-    steps: 0,
-    step_limit,
-    entries: 0,
-    eval_depth: 0,
-  }
-  let mut status = 0
-  let mut exiting = false
-  for rule in rules {
-    if rule.phase == "BEGIN" {
-      match execute_statement(rule.body, st) {
-        Normal => ()
-        ExitFlow(code) => {
-          if code is Some(n) {
-            status = n
-          }
-          exiting = true
-          break
-        }
-        _ => raise Invalid("next/break/continue outside record or loop")
-      }
-    }
-  }
-  if !exiting {
+  let session = new_session(program, separator~, step_limit~, clock_seconds~)
+  session.begin()
+  if !session.is_stopped() && session.needs_input() {
+    session.begin_file("-")
     let lines = input.split("\n").collect()
     let count = if input.is_empty() {
       0
@@ -216,60 +195,25 @@ pub fn run_with_status(
       lines.length()
     }
     for i in 0..<count {
-      st.tick()
-      st.set_record(lines[i].to_owned())
-      st.vars["NR"] = finite(st.variable("NR").number() + 1.0)
-      st.vars["FNR"] = finite(st.variable("FNR").number() + 1.0)
-      for rule in rules {
-        if rule.phase != "record" {
-          continue
-        }
-        let yes = if rule.active {
-          true
+      let line = lines[i].to_owned()
+      session.feed(
+        if line.has_suffix("\r") {
+          line[:line.length() - 1].to_owned()
         } else {
-          match rule.condition {
-            None => true
-            Some(expr) => evaluate(expr, st).truth()
-          }
-        }
-        if yes {
-          if rule.until is Some(expr) {
-            rule.active = !evaluate(expr, st).truth()
-          }
-          match execute_statement(rule.body, st) {
-            Normal => ()
-            NextFlow => break
-            ExitFlow(code) => {
-              if code is Some(n) {
-                status = n
-              }
-              exiting = true
-              break
-            }
-            _ => raise Invalid("break/continue outside loop")
-          }
-        }
-      }
-      if exiting {
+          line
+        },
+      )
+      if session.is_stopped() || session.should_skip_file() {
         break
       }
     }
   }
-  for rule in rules {
-    if rule.phase == "END" {
-      match execute_statement(rule.body, st) {
-        Normal => ()
-        ExitFlow(code) => {
-          if code is Some(n) {
-            status = n
-          }
-          break
-        }
-        _ => raise Invalid("next/break/continue outside record or loop")
-      }
-    }
+  session.finish()
+  {
+    output: session.drain(),
+    exit_status: session.exit_status(),
+    steps: session.steps(),
   }
-  { output: st.output.join(""), exit_status: status, steps: st.steps, }
 }
 
 ///|
@@ -279,4 +223,35 @@ pub fn run(
   separator? : String = " ",
 ) -> String raise ParseError {
   run_with_status(program, input, separator~).output
+}
+
+///|
+fn execute_rule(body : Statement, st : State) -> Flow raise ParseError {
+  execute_statement(body, st) catch {
+    Jump(flow) => flow
+    Invalid(message) => raise Invalid(message)
+    e => raise Invalid(Repr(e).to_string())
+  }
+}
+
+///|
+fn execute_record_rule(rule : Rule, st : State) -> Flow raise ParseError {
+  try {
+    let yes = rule.active ||
+      (match rule.condition {
+        None => true
+        Some(expr) => evaluate(expr, st).truth()
+      })
+    if !yes {
+      return Normal
+    }
+    if rule.until is Some(expr) {
+      rule.active = !evaluate(expr, st).truth()
+    }
+    execute_statement(rule.body, st)
+  } catch {
+    Jump(flow) => flow
+    Invalid(message) => raise Invalid(message)
+    e => raise Invalid(Repr(e).to_string())
+  }
 }

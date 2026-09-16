@@ -13,9 +13,9 @@ try {
   writeFileSync(join(folder,'sum.awk'),'BEGIN {OFS=":"} {s+=$2} END {print NR,s}');
   r=run(['-F,','-f',join(folder,'sum.awk'),join(folder,'input.txt')]); assert.equal(r.status,0,r.stderr); assert.equal(r.stdout,'2:5\n');
   r=run(['BEGIN {print "done"; exit 7}']); assert.equal(r.status,7); assert.equal(r.stdout,'done\n');
-  r=run(['BEGIN {print 1/0}']); assert.equal(r.status,2); assert.match(r.stderr,/division by zero/);
-  r=run(['-v','x=1','BEGIN{print x}']); assert.equal(r.status,2); assert.match(r.stderr,/unsupported option/);
-  r=run(['{print}',join(folder,'missing.txt')]); assert.equal(r.status,2); assert.match(r.stderr,/ENOENT/);
+  r=run(['BEGIN {print 1/0}']); assert.equal(r.status,1); assert.match(r.stderr,/division by zero/);
+  r=run(['-v','x=1','BEGIN{print x}']); assert.equal(r.status,0); assert.equal(r.stdout,'1\n');
+  r=run(['{print}',join(folder,'missing.txt')]); assert.equal(r.status,1); assert.match(r.stderr,/ENOENT/);
   console.log('6 AWK CLI scenarios passed');
 } finally {
   const target = resolve(folder);

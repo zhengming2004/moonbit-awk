@@ -1,0 +1,5679 @@
+{
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "options": [
+    "-c",
+    "-N",
+    "raw"
+  ],
+  "cases": [
+    {
+      "id": "if-else",
+      "program": "{ if($2>=3) print $1; else print \"small\" }",
+      "input": "a 2\nb 3\nc 4\n",
+      "separator": " "
+    },
+    {
+      "id": "nested-if",
+      "program": "BEGIN { for(i=0;i<4;i++) if(i<2) if(i==0) print \"zero\"; else print \"one\"; else print \"big\" }",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "for-continue-break",
+      "program": "BEGIN { for(i=0;i<10;i++) { if(i==3) continue; if(i==7) break; s+=i }; print s,i }",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "nested-loops",
+      "program": "BEGIN { for(i=0;i<3;i++) for(j=0;j<4;j++) { if(j==2) break; s+=i+j }; print s }",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "while",
+      "program": "BEGIN { i=3; while(i) { print i; --i } }",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "do-continue",
+      "program": "BEGIN { i=0; do { i++; if(i<3) continue; s+=i } while(i<4); print s,i }",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "group-sum",
+      "program": "{a[$1]+=$2} END {for(k in a) print k,a[k]}",
+      "input": "pear 2.5\napple 3\npear 4\n",
+      "separator": " ",
+      "unordered": true
+    },
+    {
+      "id": "histogram",
+      "program": "{for(i=1;i<=NF;i++) count[$i]++} END {for(k in count) print k,count[k]}",
+      "input": "red blue red\nblue green\n",
+      "separator": " ",
+      "unordered": true
+    },
+    {
+      "id": "array-membership-read-delete",
+      "program": "BEGIN {print (\"x\" in a); x=a[\"x\"]; print (\"x\" in a); delete a[\"x\"]; print (\"x\" in a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "array-clear",
+      "program": "BEGIN {a[1]=2; a[2]=3; delete a; print (1 in a),(2 in a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "array-composite",
+      "program": "BEGIN {SUBSEP=\"|\"; a[\"x\",2]=9; print a[\"x|2\"], ((\"x\",2) in a); delete a[\"x\",2]; print (\"x|2\" in a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "array-index-once",
+      "program": "BEGIN {i=0; a[i++]+=3; print i,a[0],(1 in a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "prefix-postfix",
+      "program": "BEGIN {i=1; print i++,++i,--i,i--; print i}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "compound-assign",
+      "program": "BEGIN {x=3; x+=2; x*=4; x-=3; x/=2; x%=3; x^=2; print x}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "assignment-order",
+      "program": "BEGIN {x=1; x+=(x=2); print x}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "arithmetic",
+      "program": "BEGIN {print .5,1.25e2,2^3^2,-2^2,2^-2,7/2,-7%3,10.5%2}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "string-and-number",
+      "program": "BEGIN {print (\"10\"<\"2\"),(10<2),(\"0\"?1:0),(0?1:0), (x==0), (x==\"\")}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "numeric-string-fields",
+      "program": "{print ($1==1),($1==\"1\"),$1,($2?1:0),$3+0}",
+      "input": "01 0 12abc\n",
+      "separator": " "
+    },
+    {
+      "id": "short-circuit",
+      "program": "BEGIN {z=0; print (0&&1/z),(1||1/z),(1?\"ok\":1/z); x=0; y=0&&(x=2); print x,y}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "concat",
+      "program": "BEGIN {x=\"ab\"; print x \"-\" 3, 1+2 \"x\", \"x\" 1+2}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "next",
+      "program": "{if(NR==2) next; print NR,$1} END {print \"end\",NR,$0}",
+      "input": "a\nb\nc\n",
+      "separator": " "
+    },
+    {
+      "id": "exit-record",
+      "program": "{print $1; if(NR==2) exit 7} END {print \"done\",NR,$1}",
+      "input": "a\nb\nc\n",
+      "separator": " "
+    },
+    {
+      "id": "exit-begin",
+      "program": "BEGIN {print \"begin\"; exit 3} BEGIN {print \"bad\"} END {print \"end\",NR}",
+      "input": "ignored\n",
+      "separator": " "
+    },
+    {
+      "id": "exit-end",
+      "program": "BEGIN {exit 7} END {print \"end\"; exit 4} END {print \"bad\"}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "range-default",
+      "program": "NR==2,NR==3\nEND {print \"done\",NR}",
+      "input": "a\nb\nc\nd\n",
+      "separator": " "
+    },
+    {
+      "id": "range-repeat",
+      "program": "$1==\"start\",$1==\"stop\" {print}",
+      "input": "none\nstart\na\nstop\nnone\nstart\nb\nstop\n",
+      "separator": " "
+    },
+    {
+      "id": "truth-pattern",
+      "program": "$1",
+      "input": "0\n1\ntext\n\n",
+      "separator": " "
+    },
+    {
+      "id": "field-extension",
+      "program": "BEGIN {OFS=\"|\"} {$4=\"z\"; print NF,$0; NF=2; print $0} END {print NF,$1}",
+      "input": "a b c\n",
+      "separator": " "
+    },
+    {
+      "id": "field-zero",
+      "program": "BEGIN {FS=\":\"} {$0=\"x:y:z\"; print NF,$2} END {print $0}",
+      "input": "old\n",
+      "separator": " "
+    },
+    {
+      "id": "field-increment",
+      "program": "{$2++; ++$3; print $0,NF}",
+      "input": "x 4 5\n",
+      "separator": " "
+    },
+    {
+      "id": "field-empty",
+      "program": "{print NF,$1,$3}",
+      "input": "\nx::3\n",
+      "separator": ":"
+    },
+    {
+      "id": "separators",
+      "program": "BEGIN {FS=\",\";OFS=\"|\";ORS=\";\"} {print NF,$1,$2}",
+      "input": "a,b\nx,y\n",
+      "separator": " "
+    },
+    {
+      "id": "nr-assignment",
+      "program": "{if(NR==1) NR=10; print NR,FNR} END {print NR,NF,$0}",
+      "input": "x\ny\n",
+      "separator": " "
+    },
+    {
+      "id": "split",
+      "program": "BEGIN {a[9]=1; n=split(\"a::3\",a,\":\"); print n,a[2],a[3],(9 in a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "split-empty",
+      "program": "BEGIN {a[1]=1; print split(\"\",a), (1 in a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "split-space",
+      "program": "BEGIN {print split(\"  a\tb  c \",a); print a[1],a[2],a[3]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "substring",
+      "program": "BEGIN {print substr(\"abcde\",2,3),substr(\"abcde\",0,2),substr(\"abcde\",9),substr(\"abcde\",2,-1)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "strings",
+      "program": "BEGIN {print length(\"abc\"),index(\"abcabc\",\"bc\"),index(\"abc\",\"x\"),index(\"abc\",\"\"),toupper(\"Abc\"),tolower(\"XYZ\")}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "unicode",
+      "program": "BEGIN {print length(\"象棋\"),substr(\"象棋很好\",2,2),index(\"象棋很好\",\"很\")}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "math",
+      "program": "BEGIN {print int(-3.8),sqrt(9),int(\"12.8junk\"),int(\"x\")}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "multiline",
+      "program": "BEGIN {\nfor (i=0;\ni<3;\ni++)\n{print i}\nif(0)\n print \"bad\"\nelse\n print \"ok\"\n}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "comment-continuation",
+      "program": "BEGIN { x=1+\\\n2; # comment\n print x }",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "quoted-delimiters",
+      "program": "BEGIN {print \"{ } ; if else\"; print \"x\\n\\t\\\"\"}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "empty-program",
+      "program": "",
+      "input": "data\n",
+      "separator": " "
+    },
+    {
+      "id": "format-gap",
+      "program": "BEGIN {print 1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "constant-folding-gap",
+      "program": "BEGIN {print (0&&1/0),(1||1/0),(1?\"ok\":1/0)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-46",
+      "program": "BEGIN {printf \"%g\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-47",
+      "program": "BEGIN {printf \"%.2g\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-48",
+      "program": "BEGIN {printf \"%#g\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-49",
+      "program": "BEGIN {printf \"%.0f\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-50",
+      "program": "BEGIN {printf \"%08.2f\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-51",
+      "program": "BEGIN {printf \"%+.6e\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-52",
+      "program": "BEGIN {printf \"%-12.3G\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-53",
+      "program": "BEGIN {printf \"%d\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-54",
+      "program": "BEGIN {printf \"%x\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-55",
+      "program": "BEGIN {printf \"%s\\n\",0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-56",
+      "program": "BEGIN {printf \"%g\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-57",
+      "program": "BEGIN {printf \"%.2g\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-58",
+      "program": "BEGIN {printf \"%#g\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-59",
+      "program": "BEGIN {printf \"%.0f\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-60",
+      "program": "BEGIN {printf \"%08.2f\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-61",
+      "program": "BEGIN {printf \"%+.6e\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-62",
+      "program": "BEGIN {printf \"%-12.3G\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-63",
+      "program": "BEGIN {printf \"%d\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-64",
+      "program": "BEGIN {printf \"%x\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-65",
+      "program": "BEGIN {printf \"%s\\n\",-0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-66",
+      "program": "BEGIN {printf \"%g\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-67",
+      "program": "BEGIN {printf \"%.2g\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-68",
+      "program": "BEGIN {printf \"%#g\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-69",
+      "program": "BEGIN {printf \"%.0f\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-70",
+      "program": "BEGIN {printf \"%08.2f\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-71",
+      "program": "BEGIN {printf \"%+.6e\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-72",
+      "program": "BEGIN {printf \"%-12.3G\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-73",
+      "program": "BEGIN {printf \"%d\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-74",
+      "program": "BEGIN {printf \"%x\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-75",
+      "program": "BEGIN {printf \"%s\\n\",1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-76",
+      "program": "BEGIN {printf \"%g\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-77",
+      "program": "BEGIN {printf \"%.2g\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-78",
+      "program": "BEGIN {printf \"%#g\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-79",
+      "program": "BEGIN {printf \"%.0f\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-80",
+      "program": "BEGIN {printf \"%08.2f\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-81",
+      "program": "BEGIN {printf \"%+.6e\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-82",
+      "program": "BEGIN {printf \"%-12.3G\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-83",
+      "program": "BEGIN {printf \"%d\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-84",
+      "program": "BEGIN {printf \"%x\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-85",
+      "program": "BEGIN {printf \"%s\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-86",
+      "program": "BEGIN {printf \"%g\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-87",
+      "program": "BEGIN {printf \"%.2g\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-88",
+      "program": "BEGIN {printf \"%#g\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-89",
+      "program": "BEGIN {printf \"%.0f\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-90",
+      "program": "BEGIN {printf \"%08.2f\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-91",
+      "program": "BEGIN {printf \"%+.6e\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-92",
+      "program": "BEGIN {printf \"%-12.3G\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-93",
+      "program": "BEGIN {printf \"%d\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-94",
+      "program": "BEGIN {printf \"%x\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-95",
+      "program": "BEGIN {printf \"%s\\n\",1.25}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-96",
+      "program": "BEGIN {printf \"%g\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-97",
+      "program": "BEGIN {printf \"%.2g\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-98",
+      "program": "BEGIN {printf \"%#g\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-99",
+      "program": "BEGIN {printf \"%.0f\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-100",
+      "program": "BEGIN {printf \"%08.2f\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-101",
+      "program": "BEGIN {printf \"%+.6e\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-102",
+      "program": "BEGIN {printf \"%-12.3G\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-103",
+      "program": "BEGIN {printf \"%d\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-104",
+      "program": "BEGIN {printf \"%x\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-105",
+      "program": "BEGIN {printf \"%s\\n\",1.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-106",
+      "program": "BEGIN {printf \"%g\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-107",
+      "program": "BEGIN {printf \"%.2g\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-108",
+      "program": "BEGIN {printf \"%#g\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-109",
+      "program": "BEGIN {printf \"%.0f\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-110",
+      "program": "BEGIN {printf \"%08.2f\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-111",
+      "program": "BEGIN {printf \"%+.6e\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-112",
+      "program": "BEGIN {printf \"%-12.3G\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-113",
+      "program": "BEGIN {printf \"%d\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-114",
+      "program": "BEGIN {printf \"%x\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-115",
+      "program": "BEGIN {printf \"%s\\n\",2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-116",
+      "program": "BEGIN {printf \"%g\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-117",
+      "program": "BEGIN {printf \"%.2g\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-118",
+      "program": "BEGIN {printf \"%#g\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-119",
+      "program": "BEGIN {printf \"%.0f\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-120",
+      "program": "BEGIN {printf \"%08.2f\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-121",
+      "program": "BEGIN {printf \"%+.6e\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-122",
+      "program": "BEGIN {printf \"%-12.3G\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-123",
+      "program": "BEGIN {printf \"%d\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-124",
+      "program": "BEGIN {printf \"%x\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-125",
+      "program": "BEGIN {printf \"%s\\n\",-2.5}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-126",
+      "program": "BEGIN {printf \"%g\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-127",
+      "program": "BEGIN {printf \"%.2g\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-128",
+      "program": "BEGIN {printf \"%#g\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-129",
+      "program": "BEGIN {printf \"%.0f\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-130",
+      "program": "BEGIN {printf \"%08.2f\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-131",
+      "program": "BEGIN {printf \"%+.6e\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-132",
+      "program": "BEGIN {printf \"%-12.3G\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-133",
+      "program": "BEGIN {printf \"%d\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-134",
+      "program": "BEGIN {printf \"%x\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-135",
+      "program": "BEGIN {printf \"%s\\n\",1/3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-136",
+      "program": "BEGIN {printf \"%g\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-137",
+      "program": "BEGIN {printf \"%.2g\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-138",
+      "program": "BEGIN {printf \"%#g\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-139",
+      "program": "BEGIN {printf \"%.0f\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-140",
+      "program": "BEGIN {printf \"%08.2f\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-141",
+      "program": "BEGIN {printf \"%+.6e\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-142",
+      "program": "BEGIN {printf \"%-12.3G\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-143",
+      "program": "BEGIN {printf \"%d\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-144",
+      "program": "BEGIN {printf \"%x\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-145",
+      "program": "BEGIN {printf \"%s\\n\",0.00001}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-146",
+      "program": "BEGIN {printf \"%g\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-147",
+      "program": "BEGIN {printf \"%.2g\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-148",
+      "program": "BEGIN {printf \"%#g\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-149",
+      "program": "BEGIN {printf \"%.0f\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-150",
+      "program": "BEGIN {printf \"%08.2f\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-151",
+      "program": "BEGIN {printf \"%+.6e\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-152",
+      "program": "BEGIN {printf \"%-12.3G\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-153",
+      "program": "BEGIN {printf \"%d\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-154",
+      "program": "BEGIN {printf \"%x\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-155",
+      "program": "BEGIN {printf \"%s\\n\",0.00009999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-156",
+      "program": "BEGIN {printf \"%g\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-157",
+      "program": "BEGIN {printf \"%.2g\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-158",
+      "program": "BEGIN {printf \"%#g\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-159",
+      "program": "BEGIN {printf \"%.0f\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-160",
+      "program": "BEGIN {printf \"%08.2f\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-161",
+      "program": "BEGIN {printf \"%+.6e\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-162",
+      "program": "BEGIN {printf \"%-12.3G\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-163",
+      "program": "BEGIN {printf \"%d\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-164",
+      "program": "BEGIN {printf \"%x\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-165",
+      "program": "BEGIN {printf \"%s\\n\",9.999999}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-166",
+      "program": "BEGIN {printf \"%g\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-167",
+      "program": "BEGIN {printf \"%.2g\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-168",
+      "program": "BEGIN {printf \"%#g\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-169",
+      "program": "BEGIN {printf \"%.0f\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-170",
+      "program": "BEGIN {printf \"%08.2f\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-171",
+      "program": "BEGIN {printf \"%+.6e\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-172",
+      "program": "BEGIN {printf \"%-12.3G\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-173",
+      "program": "BEGIN {printf \"%d\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-174",
+      "program": "BEGIN {printf \"%x\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-175",
+      "program": "BEGIN {printf \"%s\\n\",999999.9}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-176",
+      "program": "BEGIN {printf \"%g\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-177",
+      "program": "BEGIN {printf \"%.2g\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-178",
+      "program": "BEGIN {printf \"%#g\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-179",
+      "program": "BEGIN {printf \"%.0f\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-180",
+      "program": "BEGIN {printf \"%08.2f\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-181",
+      "program": "BEGIN {printf \"%+.6e\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-182",
+      "program": "BEGIN {printf \"%-12.3G\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-183",
+      "program": "BEGIN {printf \"%d\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-184",
+      "program": "BEGIN {printf \"%x\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-185",
+      "program": "BEGIN {printf \"%s\\n\",1e20}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-186",
+      "program": "BEGIN {printf \"%g\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-187",
+      "program": "BEGIN {printf \"%.2g\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-188",
+      "program": "BEGIN {printf \"%#g\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-189",
+      "program": "BEGIN {printf \"%.0f\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-190",
+      "program": "BEGIN {printf \"%08.2f\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-191",
+      "program": "BEGIN {printf \"%+.6e\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-192",
+      "program": "BEGIN {printf \"%-12.3G\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-193",
+      "program": "BEGIN {printf \"%d\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-194",
+      "program": "BEGIN {printf \"%x\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-195",
+      "program": "BEGIN {printf \"%s\\n\",1e-300}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-196",
+      "program": "BEGIN {printf \"%g\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-197",
+      "program": "BEGIN {printf \"%.2g\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-198",
+      "program": "BEGIN {printf \"%#g\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-199",
+      "program": "BEGIN {printf \"%.0f\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-200",
+      "program": "BEGIN {printf \"%08.2f\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-201",
+      "program": "BEGIN {printf \"%+.6e\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-202",
+      "program": "BEGIN {printf \"%-12.3G\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-203",
+      "program": "BEGIN {printf \"%d\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-204",
+      "program": "BEGIN {printf \"%x\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-205",
+      "program": "BEGIN {printf \"%s\\n\",1.23456789012345}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-206",
+      "program": "BEGIN {OFMT=\"%.2f\";CONVFMT=\"%.2f\"; x=1/3;print x,(x \"\"),12}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-207",
+      "program": "BEGIN {OFMT=\"%g\";CONVFMT=\"%g\"; x=1/3;print x,(x \"\"),12}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-208",
+      "program": "BEGIN {OFMT=\"%s\";CONVFMT=\"%s\"; x=1/3;print x,(x \"\"),12}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-209",
+      "program": "BEGIN {OFMT=\"%d\";CONVFMT=\"%d\"; x=1/3;print x,(x \"\"),12}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-210",
+      "program": "BEGIN {OFMT=\"%08x\";CONVFMT=\"%08x\"; x=1/3;print x,(x \"\"),12}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-211",
+      "program": "BEGIN {printf \"%*.*f|%%|%c|%.2s\\n\",8,2,1.25,65,\"象棋很好\"}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-212",
+      "program": "BEGIN {print sprintf(\"%#x:%#o:%-5s\",31,9,\"x\")}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-213",
+      "program": "BEGIN {printf \"%u\\n\",-1}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-214",
+      "program": "BEGIN {printf \"%2$s %1$d\\n\",7,\"x\"}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-215",
+      "program": "BEGIN{s=\"\";print match(s,/a/),RSTART,RLENGTH,(s~/a/),(s!~/a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-216",
+      "program": "BEGIN{s=\"ababa\";print match(s,/a/),RSTART,RLENGTH,(s~/a/),(s!~/a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-217",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/a/),RSTART,RLENGTH,(s~/a/),(s!~/a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-218",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/a/),RSTART,RLENGTH,(s~/a/),(s!~/a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-219",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/a/),RSTART,RLENGTH,(s~/a/),(s!~/a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-220",
+      "program": "BEGIN{s=\"\";print match(s,/a|ab/),RSTART,RLENGTH,(s~/a|ab/),(s!~/a|ab/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-221",
+      "program": "BEGIN{s=\"ababa\";print match(s,/a|ab/),RSTART,RLENGTH,(s~/a|ab/),(s!~/a|ab/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-222",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/a|ab/),RSTART,RLENGTH,(s~/a|ab/),(s!~/a|ab/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-223",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/a|ab/),RSTART,RLENGTH,(s~/a|ab/),(s!~/a|ab/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-224",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/a|ab/),RSTART,RLENGTH,(s~/a|ab/),(s!~/a|ab/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-225",
+      "program": "BEGIN{s=\"\";print match(s,/ab|a/),RSTART,RLENGTH,(s~/ab|a/),(s!~/ab|a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-226",
+      "program": "BEGIN{s=\"ababa\";print match(s,/ab|a/),RSTART,RLENGTH,(s~/ab|a/),(s!~/ab|a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-227",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/ab|a/),RSTART,RLENGTH,(s~/ab|a/),(s!~/ab|a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-228",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/ab|a/),RSTART,RLENGTH,(s~/ab|a/),(s!~/ab|a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-229",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/ab|a/),RSTART,RLENGTH,(s~/ab|a/),(s!~/ab|a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-230",
+      "program": "BEGIN{s=\"\";print match(s,/a*/),RSTART,RLENGTH,(s~/a*/),(s!~/a*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-231",
+      "program": "BEGIN{s=\"ababa\";print match(s,/a*/),RSTART,RLENGTH,(s~/a*/),(s!~/a*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-232",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/a*/),RSTART,RLENGTH,(s~/a*/),(s!~/a*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-233",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/a*/),RSTART,RLENGTH,(s~/a*/),(s!~/a*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-234",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/a*/),RSTART,RLENGTH,(s~/a*/),(s!~/a*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-235",
+      "program": "BEGIN{s=\"\";print match(s,/a+/),RSTART,RLENGTH,(s~/a+/),(s!~/a+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-236",
+      "program": "BEGIN{s=\"ababa\";print match(s,/a+/),RSTART,RLENGTH,(s~/a+/),(s!~/a+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-237",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/a+/),RSTART,RLENGTH,(s~/a+/),(s!~/a+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-238",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/a+/),RSTART,RLENGTH,(s~/a+/),(s!~/a+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-239",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/a+/),RSTART,RLENGTH,(s~/a+/),(s!~/a+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-240",
+      "program": "BEGIN{s=\"\";print match(s,/a?/),RSTART,RLENGTH,(s~/a?/),(s!~/a?/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-241",
+      "program": "BEGIN{s=\"ababa\";print match(s,/a?/),RSTART,RLENGTH,(s~/a?/),(s!~/a?/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-242",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/a?/),RSTART,RLENGTH,(s~/a?/),(s!~/a?/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-243",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/a?/),RSTART,RLENGTH,(s~/a?/),(s!~/a?/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-244",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/a?/),RSTART,RLENGTH,(s~/a?/),(s!~/a?/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-245",
+      "program": "BEGIN{s=\"\";print match(s,/a{2,3}/),RSTART,RLENGTH,(s~/a{2,3}/),(s!~/a{2,3}/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-246",
+      "program": "BEGIN{s=\"ababa\";print match(s,/a{2,3}/),RSTART,RLENGTH,(s~/a{2,3}/),(s!~/a{2,3}/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-247",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/a{2,3}/),RSTART,RLENGTH,(s~/a{2,3}/),(s!~/a{2,3}/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-248",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/a{2,3}/),RSTART,RLENGTH,(s~/a{2,3}/),(s!~/a{2,3}/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-249",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/a{2,3}/),RSTART,RLENGTH,(s~/a{2,3}/),(s!~/a{2,3}/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-250",
+      "program": "BEGIN{s=\"\";print match(s,/(ab|a)+/),RSTART,RLENGTH,(s~/(ab|a)+/),(s!~/(ab|a)+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-251",
+      "program": "BEGIN{s=\"ababa\";print match(s,/(ab|a)+/),RSTART,RLENGTH,(s~/(ab|a)+/),(s!~/(ab|a)+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-252",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/(ab|a)+/),RSTART,RLENGTH,(s~/(ab|a)+/),(s!~/(ab|a)+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-253",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(ab|a)+/),RSTART,RLENGTH,(s~/(ab|a)+/),(s!~/(ab|a)+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-254",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/(ab|a)+/),RSTART,RLENGTH,(s~/(ab|a)+/),(s!~/(ab|a)+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-255",
+      "program": "BEGIN{s=\"\";print match(s,/^/),RSTART,RLENGTH,(s~/^/),(s!~/^/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-256",
+      "program": "BEGIN{s=\"ababa\";print match(s,/^/),RSTART,RLENGTH,(s~/^/),(s!~/^/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-257",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/^/),RSTART,RLENGTH,(s~/^/),(s!~/^/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-258",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/^/),RSTART,RLENGTH,(s~/^/),(s!~/^/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-259",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/^/),RSTART,RLENGTH,(s~/^/),(s!~/^/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-260",
+      "program": "BEGIN{s=\"\";print match(s,/^a/),RSTART,RLENGTH,(s~/^a/),(s!~/^a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-261",
+      "program": "BEGIN{s=\"ababa\";print match(s,/^a/),RSTART,RLENGTH,(s~/^a/),(s!~/^a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-262",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/^a/),RSTART,RLENGTH,(s~/^a/),(s!~/^a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-263",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/^a/),RSTART,RLENGTH,(s~/^a/),(s!~/^a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-264",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/^a/),RSTART,RLENGTH,(s~/^a/),(s!~/^a/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-265",
+      "program": "BEGIN{s=\"\";print match(s,/$/),RSTART,RLENGTH,(s~/$/),(s!~/$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-266",
+      "program": "BEGIN{s=\"ababa\";print match(s,/$/),RSTART,RLENGTH,(s~/$/),(s!~/$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-267",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/$/),RSTART,RLENGTH,(s~/$/),(s!~/$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-268",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/$/),RSTART,RLENGTH,(s~/$/),(s!~/$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-269",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/$/),RSTART,RLENGTH,(s~/$/),(s!~/$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-270",
+      "program": "BEGIN{s=\"\";print match(s,/a$/),RSTART,RLENGTH,(s~/a$/),(s!~/a$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-271",
+      "program": "BEGIN{s=\"ababa\";print match(s,/a$/),RSTART,RLENGTH,(s~/a$/),(s!~/a$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-272",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/a$/),RSTART,RLENGTH,(s~/a$/),(s!~/a$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-273",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/a$/),RSTART,RLENGTH,(s~/a$/),(s!~/a$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-274",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/a$/),RSTART,RLENGTH,(s~/a$/),(s!~/a$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-275",
+      "program": "BEGIN{s=\"\";print match(s,/^$/),RSTART,RLENGTH,(s~/^$/),(s!~/^$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-276",
+      "program": "BEGIN{s=\"ababa\";print match(s,/^$/),RSTART,RLENGTH,(s~/^$/),(s!~/^$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-277",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/^$/),RSTART,RLENGTH,(s~/^$/),(s!~/^$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-278",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/^$/),RSTART,RLENGTH,(s~/^$/),(s!~/^$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-279",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/^$/),RSTART,RLENGTH,(s~/^$/),(s!~/^$/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-280",
+      "program": "BEGIN{s=\"\";print match(s,/[a-z]+/),RSTART,RLENGTH,(s~/[a-z]+/),(s!~/[a-z]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-281",
+      "program": "BEGIN{s=\"ababa\";print match(s,/[a-z]+/),RSTART,RLENGTH,(s~/[a-z]+/),(s!~/[a-z]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-282",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/[a-z]+/),RSTART,RLENGTH,(s~/[a-z]+/),(s!~/[a-z]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-283",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/[a-z]+/),RSTART,RLENGTH,(s~/[a-z]+/),(s!~/[a-z]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-284",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/[a-z]+/),RSTART,RLENGTH,(s~/[a-z]+/),(s!~/[a-z]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-285",
+      "program": "BEGIN{s=\"\";print match(s,/[^a]+/),RSTART,RLENGTH,(s~/[^a]+/),(s!~/[^a]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-286",
+      "program": "BEGIN{s=\"ababa\";print match(s,/[^a]+/),RSTART,RLENGTH,(s~/[^a]+/),(s!~/[^a]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-287",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/[^a]+/),RSTART,RLENGTH,(s~/[^a]+/),(s!~/[^a]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-288",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/[^a]+/),RSTART,RLENGTH,(s~/[^a]+/),(s!~/[^a]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-289",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/[^a]+/),RSTART,RLENGTH,(s~/[^a]+/),(s!~/[^a]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-290",
+      "program": "BEGIN{s=\"\";print match(s,/[[:digit:]]+/),RSTART,RLENGTH,(s~/[[:digit:]]+/),(s!~/[[:digit:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-291",
+      "program": "BEGIN{s=\"ababa\";print match(s,/[[:digit:]]+/),RSTART,RLENGTH,(s~/[[:digit:]]+/),(s!~/[[:digit:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-292",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/[[:digit:]]+/),RSTART,RLENGTH,(s~/[[:digit:]]+/),(s!~/[[:digit:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-293",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/[[:digit:]]+/),RSTART,RLENGTH,(s~/[[:digit:]]+/),(s!~/[[:digit:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-294",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/[[:digit:]]+/),RSTART,RLENGTH,(s~/[[:digit:]]+/),(s!~/[[:digit:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-295",
+      "program": "BEGIN{s=\"\";print match(s,/[[:alpha:]]+/),RSTART,RLENGTH,(s~/[[:alpha:]]+/),(s!~/[[:alpha:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-296",
+      "program": "BEGIN{s=\"ababa\";print match(s,/[[:alpha:]]+/),RSTART,RLENGTH,(s~/[[:alpha:]]+/),(s!~/[[:alpha:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-297",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/[[:alpha:]]+/),RSTART,RLENGTH,(s~/[[:alpha:]]+/),(s!~/[[:alpha:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-298",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/[[:alpha:]]+/),RSTART,RLENGTH,(s~/[[:alpha:]]+/),(s!~/[[:alpha:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-299",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/[[:alpha:]]+/),RSTART,RLENGTH,(s~/[[:alpha:]]+/),(s!~/[[:alpha:]]+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-300",
+      "program": "BEGIN{s=\"\";print match(s,/a.*b/),RSTART,RLENGTH,(s~/a.*b/),(s!~/a.*b/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-301",
+      "program": "BEGIN{s=\"ababa\";print match(s,/a.*b/),RSTART,RLENGTH,(s~/a.*b/),(s!~/a.*b/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-302",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/a.*b/),RSTART,RLENGTH,(s~/a.*b/),(s!~/a.*b/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-303",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/a.*b/),RSTART,RLENGTH,(s~/a.*b/),(s!~/a.*b/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-304",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/a.*b/),RSTART,RLENGTH,(s~/a.*b/),(s!~/a.*b/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-305",
+      "program": "BEGIN{s=\"\";print match(s,/(a?)*/),RSTART,RLENGTH,(s~/(a?)*/),(s!~/(a?)*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-306",
+      "program": "BEGIN{s=\"ababa\";print match(s,/(a?)*/),RSTART,RLENGTH,(s~/(a?)*/),(s!~/(a?)*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-307",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/(a?)*/),RSTART,RLENGTH,(s~/(a?)*/),(s!~/(a?)*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-308",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(a?)*/),RSTART,RLENGTH,(s~/(a?)*/),(s!~/(a?)*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-309",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/(a?)*/),RSTART,RLENGTH,(s~/(a?)*/),(s!~/(a?)*/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-310",
+      "program": "BEGIN{s=\"\";print match(s,/[.]/),RSTART,RLENGTH,(s~/[.]/),(s!~/[.]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-311",
+      "program": "BEGIN{s=\"ababa\";print match(s,/[.]/),RSTART,RLENGTH,(s~/[.]/),(s!~/[.]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-312",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/[.]/),RSTART,RLENGTH,(s~/[.]/),(s!~/[.]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-313",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/[.]/),RSTART,RLENGTH,(s~/[.]/),(s!~/[.]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-314",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/[.]/),RSTART,RLENGTH,(s~/[.]/),(s!~/[.]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-315",
+      "program": "BEGIN{s=\"\";print match(s,/\\d+/),RSTART,RLENGTH,(s~/\\d+/),(s!~/\\d+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-316",
+      "program": "BEGIN{s=\"ababa\";print match(s,/\\d+/),RSTART,RLENGTH,(s~/\\d+/),(s!~/\\d+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-317",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/\\d+/),RSTART,RLENGTH,(s~/\\d+/),(s!~/\\d+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-318",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/\\d+/),RSTART,RLENGTH,(s~/\\d+/),(s!~/\\d+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-319",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/\\d+/),RSTART,RLENGTH,(s~/\\d+/),(s!~/\\d+/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-320",
+      "program": "BEGIN{s=\"\";print match(s,/[a-]/),RSTART,RLENGTH,(s~/[a-]/),(s!~/[a-]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-321",
+      "program": "BEGIN{s=\"ababa\";print match(s,/[a-]/),RSTART,RLENGTH,(s~/[a-]/),(s!~/[a-]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-322",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/[a-]/),RSTART,RLENGTH,(s~/[a-]/),(s!~/[a-]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-323",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/[a-]/),RSTART,RLENGTH,(s~/[a-]/),(s!~/[a-]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-324",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/[a-]/),RSTART,RLENGTH,(s~/[a-]/),(s!~/[a-]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-325",
+      "program": "BEGIN{s=\"\";print match(s,/[-a]/),RSTART,RLENGTH,(s~/[-a]/),(s!~/[-a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-326",
+      "program": "BEGIN{s=\"ababa\";print match(s,/[-a]/),RSTART,RLENGTH,(s~/[-a]/),(s!~/[-a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-327",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/[-a]/),RSTART,RLENGTH,(s~/[-a]/),(s!~/[-a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-328",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/[-a]/),RSTART,RLENGTH,(s~/[-a]/),(s!~/[-a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-329",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/[-a]/),RSTART,RLENGTH,(s~/[-a]/),(s!~/[-a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-330",
+      "program": "BEGIN{s=\"\";print match(s,/[]a]/),RSTART,RLENGTH,(s~/[]a]/),(s!~/[]a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-331",
+      "program": "BEGIN{s=\"ababa\";print match(s,/[]a]/),RSTART,RLENGTH,(s~/[]a]/),(s!~/[]a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-332",
+      "program": "BEGIN{s=\"123 abc\";print match(s,/[]a]/),RSTART,RLENGTH,(s~/[]a]/),(s!~/[]a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-333",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/[]a]/),RSTART,RLENGTH,(s~/[]a]/),(s!~/[]a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-334",
+      "program": "BEGIN{s=\"象棋a\";print match(s,/[]a]/),RSTART,RLENGTH,(s~/[]a]/),(s!~/[]a]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-335",
+      "program": "BEGIN{s=\"\";n=gsub(/a/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-336",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/a/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-337",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/a/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-338",
+      "program": "BEGIN{s=\"\";n=gsub(/a|ab/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-339",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/a|ab/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-340",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/a|ab/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-341",
+      "program": "BEGIN{s=\"\";n=gsub(/ab|a/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-342",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/ab|a/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-343",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/ab|a/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-344",
+      "program": "BEGIN{s=\"\";n=gsub(/a*/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-345",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/a*/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-346",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/a*/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-347",
+      "program": "BEGIN{s=\"\";n=gsub(/x*/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-348",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/x*/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-349",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/x*/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-350",
+      "program": "BEGIN{s=\"\";n=gsub(/^/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-351",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/^/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-352",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/^/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-353",
+      "program": "BEGIN{s=\"\";n=gsub(/$/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-354",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/$/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-355",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/$/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-356",
+      "program": "BEGIN{s=\"\";n=gsub(/^|$/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-357",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/^|$/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-358",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/^|$/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-359",
+      "program": "BEGIN{s=\"\";n=gsub(/[0-9]+/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-360",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/[0-9]+/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-361",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/[0-9]+/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-362",
+      "program": "BEGIN{s=\"\";n=gsub(/(.)/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-363",
+      "program": "BEGIN{s=\"ababa\";n=gsub(/(.)/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-364",
+      "program": "BEGIN{s=\"aa12b34\";n=gsub(/(.)/,\"[&]\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-365",
+      "program": "BEGIN {n=split(\" a::b,c \",a,\" \");print n;for(i=1;i<=n;i++)printf \"[%s]\",a[i]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-366",
+      "program": "BEGIN {n=split(\" a::b,c \",a,\":\");print n;for(i=1;i<=n;i++)printf \"[%s]\",a[i]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-367",
+      "program": "BEGIN {n=split(\" a::b,c \",a,\"::\");print n;for(i=1;i<=n;i++)printf \"[%s]\",a[i]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-368",
+      "program": "BEGIN {n=split(\" a::b,c \",a,\"[,:]+\");print n;for(i=1;i<=n;i++)printf \"[%s]\",a[i]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-369",
+      "program": "BEGIN {n=split(\" a::b,c \",a,\"x*\");print n;for(i=1;i<=n;i++)printf \"[%s]\",a[i]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-370",
+      "program": "BEGIN {n=split(\" a::b,c \",a,\"\");print n;for(i=1;i<=n;i++)printf \"[%s]\",a[i]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-371",
+      "program": "BEGIN{s=\" a b \";n=split(s,a,/ /); print n,a[1],a[2],a[3],a[4]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-372",
+      "program": "BEGIN{s=\"a.b\";print sub(/\\./,\"!\",s),s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-373",
+      "program": "BEGIN{print \"aa\"~/a/, \"a\"!~/b/,6/2,/a/}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-374",
+      "program": "function twice(x){return x*2} BEGIN{print twice(3),twice(1.5)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-375",
+      "program": "function fact(n){if(n<2)return 1;return n*fact(n-1)} BEGIN{print fact(8)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-376",
+      "program": "function f(x,local){local=9;x=7;return x+local} BEGIN{x=1;local=2;print f(x),x,local}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-377",
+      "program": "function f(a){a[1]+=3;return a[1]} BEGIN{a[1]=2;print f(a),a[1]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-378",
+      "program": "function f(a){return g(a)} function g(b){b[1]=9;return length(b)} BEGIN{print f(x),x[1]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-379",
+      "program": "function f(a,b){a[1]=2; b[1]=3; return a[1]} BEGIN{print f(x,x),x[1]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-380",
+      "program": "function f(x,a){a[1]=x;return a[1]} BEGIN{print f(3),f(7)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-381",
+      "program": "function f(){x=9;return} BEGIN{x=1;print \"[\" f() \"]\",x}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-382",
+      "program": "function f(x){return x+g()} function g(){return x} BEGIN{x=9;print f(2)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-383",
+      "program": "function f(n,a){if(n==0)return a[1];a[1]++;return f(n-1,a)} BEGIN{print f(5,a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-384",
+      "program": "function f(x){if(x)return \"y\";return \"n\"} BEGIN{printf(\"%s:%s\\n\",f(1),f(0))}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-385",
+      "program": "function skip(){next} {skip();print \"bad\"} END{print NR}",
+      "input": "x\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\nx\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-386",
+      "program": "function stop(){exit 7} {print $0;stop()} END{print \"end\",NR}",
+      "input": "a\nb\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-387",
+      "program": "function hit(){return $0~/a/} hit() {print $0}",
+      "input": "abc\nx\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-388",
+      "program": "BEGIN{FS=\"[,:]+\"} {print NF,$1,$2,$3}",
+      "input": "a,,b:c\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-389",
+      "program": "function f(a,a){} BEGIN{}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-390",
+      "program": "BEGIN{print missing(1)}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-391",
+      "program": "function f(a){a[1]=1;print a} BEGIN{}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-392",
+      "program": "function f(a){a[1]=1} BEGIN{f(1)}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-393",
+      "program": "BEGIN{return 1}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-394",
+      "program": "function f(){break} BEGIN{}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-395",
+      "program": "BEGIN {print match(\"x\",/[z-a]/)}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-396",
+      "program": "BEGIN {print match(\"x\",/*a/)}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-397",
+      "program": "function f(a){} BEGIN{f(1,2)}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "runtime-398",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/\\d+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-399",
+      "program": "BEGIN{s=\"AbC\";print match(s,/\\d+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-400",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/\\d+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-401",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/\\d+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-402",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/\\d+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-403",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/\\w+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-404",
+      "program": "BEGIN{s=\"AbC\";print match(s,/\\w+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-405",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/\\w+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-406",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/\\w+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-407",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/\\w+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-408",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/(?i)a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-409",
+      "program": "BEGIN{s=\"AbC\";print match(s,/(?i)a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-410",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/(?i)a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-411",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/(?i)a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-412",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(?i)a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-413",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/(?i:ab)c/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-414",
+      "program": "BEGIN{s=\"AbC\";print match(s,/(?i:ab)c/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-415",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/(?i:ab)c/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-416",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/(?i:ab)c/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-417",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(?i:ab)c/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-418",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/(?i)k/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-419",
+      "program": "BEGIN{s=\"AbC\";print match(s,/(?i)k/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-420",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/(?i)k/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-421",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/(?i)k/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-422",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(?i)k/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-423",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/(?i)s/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-424",
+      "program": "BEGIN{s=\"AbC\";print match(s,/(?i)s/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-425",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/(?i)s/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-426",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/(?i)s/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-427",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(?i)s/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-428",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/(?i)σ/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-429",
+      "program": "BEGIN{s=\"AbC\";print match(s,/(?i)σ/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-430",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/(?i)σ/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-431",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/(?i)σ/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-432",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(?i)σ/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-433",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/(?m)^a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-434",
+      "program": "BEGIN{s=\"AbC\";print match(s,/(?m)^a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-435",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/(?m)^a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-436",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/(?m)^a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-437",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(?m)^a/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-438",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/(?-s)a.b/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-439",
+      "program": "BEGIN{s=\"AbC\";print match(s,/(?-s)a.b/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-440",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/(?-s)a.b/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-441",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/(?-s)a.b/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-442",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(?-s)a.b/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-443",
+      "program": "BEGIN{s=\"Aabc\";print match(s,/(?:ab|a)+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-444",
+      "program": "BEGIN{s=\"AbC\";print match(s,/(?:ab|a)+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-445",
+      "program": "BEGIN{s=\"Kſςσ\";print match(s,/(?:ab|a)+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-446",
+      "program": "BEGIN{s=\"x\\na\";print match(s,/(?:ab|a)+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-447",
+      "program": "BEGIN{s=\"a\\nb\";print match(s,/(?:ab|a)+/),RLENGTH}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-448",
+      "program": "BEGIN{print sqrt(-1),log(0),exp(10000),atan2(1,1),sin(0),cos(0)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-449",
+      "program": "BEGIN{print 1e400,1e-400,0x10,077}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-450",
+      "program": "BEGIN{srand(7);a=rand();print (a>=0&&a<1);srand(7);print (a==rand());print srand(9)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-451",
+      "program": "BEGIN{x=\"a b\"; print length(x);printf(\"%s:%d\\n\",x,7)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-452",
+      "program": "function swap(a,x,y,t){t=a[x];a[x]=a[y];a[y]=t} BEGIN{a[1]=\"x\";a[2]=\"y\";swap(a,1,2);print a[1],a[2]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-453",
+      "program": "function q(a,lo,hi,i,j,p,t){i=lo;j=hi;p=a[int((lo+hi)/2)];while(i<=j){while(a[i]<p)i++;while(a[j]>p)j--;if(i<=j){t=a[i];a[i]=a[j];a[j]=t;i++;j--}};if(lo<j)q(a,lo,j);if(i<hi)q(a,i,hi)} BEGIN{n=split(\"7 3 1 9 2 8 4\",a);q(a,1,n);for(i=1;i<=n;i++)print a[i]}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-454",
+      "program": "BEGIN{s=\" a  b \";n=gsub(/x/,\"y\",s);print n,s}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-455",
+      "program": "BEGIN{a[1]=7;print length(a);delete a;print length(a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-456",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "1e400\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-457",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "-1e400\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-458",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "1e-400\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-459",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "Inf\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-460",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "inf\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-461",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "+Inf\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-462",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "-Inf\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-463",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "NaN\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-464",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "nan\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-465",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "+NaN\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-466",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "-NaN\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-467",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "Infinity\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-468",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "nanx\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-469",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "infinite\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-470",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "infinityx\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-471",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x10\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-472",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "-0x10\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-473",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1.8p2\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-474",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1.8\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-475",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0xg\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-476",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "1e400x\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-477",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "1e+\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-478",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0b10\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-479",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0o77\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-480",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "1_000\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-481",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1.fffffffffffffp1023\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-482",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1.fffffffffffff8p1023\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-483",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1p-1074\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-484",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1p-1075\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-485",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1.0000000000000001p-1075\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-486",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1.00000000000008p0\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-487",
+      "program": "{print $0+0,($0==16),($0==6),($0==0),($0==1e400),($0<0)}",
+      "input": "0x1.000000000000080001p0\n",
+      "separator": " "
+    },
+    {
+      "id": "runtime-488",
+      "program": "BEGIN{x=sqrt(-1);print (x==x),(x!=x),(x<0),(x>0),(x<=0),(x>=0)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-489",
+      "program": "BEGIN{print (\"\\u000b\"~/\\s/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-490",
+      "program": "BEGIN{print (\"5\"~/\\s/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-491",
+      "program": "BEGIN{print (\"_\"~/\\s/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-492",
+      "program": "BEGIN{print (\"象\"~/\\s/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-493",
+      "program": "BEGIN{print (\"\\u000b\"~/[\\d]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-494",
+      "program": "BEGIN{print (\"5\"~/[\\d]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-495",
+      "program": "BEGIN{print (\"_\"~/[\\d]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-496",
+      "program": "BEGIN{print (\"象\"~/[\\d]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-497",
+      "program": "BEGIN{print (\"\\u000b\"~/[\\D]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-498",
+      "program": "BEGIN{print (\"5\"~/[\\D]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-499",
+      "program": "BEGIN{print (\"_\"~/[\\D]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-500",
+      "program": "BEGIN{print (\"象\"~/[\\D]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-501",
+      "program": "BEGIN{print (\"\\u000b\"~/[a\\w]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-502",
+      "program": "BEGIN{print (\"5\"~/[a\\w]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-503",
+      "program": "BEGIN{print (\"_\"~/[a\\w]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-504",
+      "program": "BEGIN{print (\"象\"~/[a\\w]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-505",
+      "program": "BEGIN{print (\"\\u000b\"~/[^\\W]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-506",
+      "program": "BEGIN{print (\"5\"~/[^\\W]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-507",
+      "program": "BEGIN{print (\"_\"~/[^\\W]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-508",
+      "program": "BEGIN{print (\"象\"~/[^\\W]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-509",
+      "program": "BEGIN{print (\"\\u000b\"~/[\\S]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-510",
+      "program": "BEGIN{print (\"5\"~/[\\S]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-511",
+      "program": "BEGIN{print (\"_\"~/[\\S]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-512",
+      "program": "BEGIN{print (\"象\"~/[\\S]/)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "runtime-513",
+      "program": "{print NF,$0}",
+      "input": "a\r\nb\nlast\r",
+      "separator": " "
+    }
+  ],
+  "references": [
+    {
+      "output": "small\nb\nc\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "zero\none\nbig\nbig\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "18 7\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "9\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3\n2\n1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "7 4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "pear 6.5\napple 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "green 1\nred 2\nblue 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n1\n0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "9 1\n0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 3 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 3 2 2\n1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "6.25\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.5 125 512 -4 0.25 3.5 -1 0.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 0 1 0 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 0 01 0 12\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 1 ok\n0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "ab-3 3x x3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 a\n3 c\nend 3 c\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "a\nb\ndone 2 b\n",
+      "exit_status": 7,
+      "error": ""
+    },
+    {
+      "output": "begin\nend 0\n",
+      "exit_status": 3,
+      "error": ""
+    },
+    {
+      "output": "end\n",
+      "exit_status": 4,
+      "error": ""
+    },
+    {
+      "output": "b\nc\ndone 4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "start\na\nstop\nstart\nb\nstop\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\ntext\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "4|a|b|c|z\na|b\n2|a\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 y\nx:y:z\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "x 5 6 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0  \n3 x 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2|a|b;2|x|y;",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "10 1\n11 2\n11 1 y\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3  3 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3\na b c\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "bcd ab  \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 2 0 1 ABC xyz\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 棋很 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-3 3 12 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n1\n2\nok\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "{ } ; if else\nx\n\t\"\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.333333\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 1 ok\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.00000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00000.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+0.000000e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0           \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0.00000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0000.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0.000000e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0          \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.00000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00001.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+1.000000e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1           \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-1.00000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0001.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-1.000000e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-1          \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "ffffffffffffffff\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.25\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.25000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00001.25\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+1.250000e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.25        \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.25\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.50000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00001.50\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+1.500000e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.5         \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2.50000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00002.50\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+2.500000e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2.5         \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-2.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-2.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-2.50000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-0002.50\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-2.500000e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-2.5        \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "fffffffffffffffe\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-2.5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.333333\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.33\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.333333\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00000.33\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+3.333333e-01\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.333       \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.333333\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e-05\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e-05\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.00000e-05\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00000.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+1.000000e-05\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1E-05       \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e-05\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.0001\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.0001\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.000100000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00000.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+9.999999e-05\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.0001      \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.0001\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "10\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "10\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "10.0000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "10\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00010.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+9.999999e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "10          \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "9\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "9\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "10\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e+06\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e+06\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.00000e+06\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1000000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "999999.90\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+9.999999e+05\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1E+06       \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "999999\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "f423f\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e+06\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e+20\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e+20\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.00000e+20\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "100000000000000000000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "100000000000000000000.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+1.000000e+20\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1E+20       \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-9223372036854775808\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "8000000000000000\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e+20\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e-300\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e-300\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.00000e-300\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00000.00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+1.000000e-300\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1E-300      \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1e-300\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.23457\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.23457\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00001.23\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "+1.234568e+00\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.23        \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.23457\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.33 0.33 12\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.333333 0.333333 12\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "  12\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 12\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "00000000 00000000 12\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "    1.25|%|A|象棋\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0x1f:011:x    \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "18446744073709551615\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "format error: invalid format type '$'\n"
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 2 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 2 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 2 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 2 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 5 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 2 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "6 6 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "8 8 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "4 4 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "4 4 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 5 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 3 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 2 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 4 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 2 2 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 2 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 3 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 5 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 3 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 4 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 2 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 3 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 3 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 -1 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3 1 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 [a]b[a]b[a]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 [a][a]12b34\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 [ab][ab][a]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 [a][a]12b34\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 [ab][ab][a]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 [a][a]12b34\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 []\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 [a]b[a]b[a]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "6 [aa]1[]2[]b[]3[]4[]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 []\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "6 []a[]b[]a[]b[]a[]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "8 []a[]a[]1[]2[]b[]3[]4[]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 []\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 []ababa\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 []aa12b34\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 []\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 ababa[]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 aa12b34[]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 []\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 []ababa[]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 []aa12b34[]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 ababa\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 aa[12]b[34]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 [a][b][a][b][a]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "7 [a][a][1][2][b][3][4]\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n[a::b,c]",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3\n[ a][][b,c ]",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2\n[ a][b,c ]",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3\n[ a][b][c ]",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "8\n[ ][a][:][:][b][,][c][ ]",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "8\n[ ][a][:][:][b][,][c][ ]",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "4  a b \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 a!b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 3 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "6 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "40320\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "16 1 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 9\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 7\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[] 9\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "11\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "y:n\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "150\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "a\nend 1\n",
+      "exit_status": 7,
+      "error": ""
+    },
+    {
+      "output": "abc\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 a b c\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:14: duplicate parameter name \"a\"\nfunction f(a,a){} BEGIN{}\n             ^\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:13: undefined function \"missing\"\nBEGIN{print missing(1)}\n            ^\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:28: can't use array \"a\" as scalar\nfunction f(a){a[1]=1;print a} BEGIN{}\n                           ^\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:29: can't pass scalar 1 as array param\nfunction f(a){a[1]=1} BEGIN{f(1)}\n                            ^\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:7: return must be inside a function\nBEGIN{return 1}\n      ^\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:14: break must be inside a loop body\nfunction f(){break} BEGIN{}\n             ^\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:24: error parsing regexp: invalid character class range: `z-a`\nBEGIN {print match(\"x\",/[z-a]/)}\n                       ^\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:24: error parsing regexp: missing argument to repetition operator: `*`\nBEGIN {print match(\"x\",/*a/)}\n                       ^\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:23: \"f\" called with more arguments than declared\nfunction f(a){} BEGIN{f(1,2)}\n                      ^\n"
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 -1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "nan -inf inf 0.785398 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 77\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n1\n7\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3\na b:7\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "y x\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n2\n3\n4\n7\n8\n9\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0  a  b \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-inf 0 0 0 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 0 1 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-inf 0 0 0 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "nan 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "nan 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "nan 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "nan 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 1 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "nan 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "16 1 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "-16 0 0 0 0 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "6 0 1 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.5 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1.79769e+308 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "inf 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "4.94066e-324 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 0 1 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "4.94066e-324 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 0 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 1 0 0 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 a\n1 b\n1 last\n",
+      "exit_status": 0,
+      "error": ""
+    }
+  ]
+}

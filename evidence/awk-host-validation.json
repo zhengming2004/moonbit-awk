@@ -1,7 +1,14 @@
 {
-  "utc": "2026-09-16T20:45:53.170Z",
-  "version": "0.4.0",
-  "status": "local incremental upgrade; full GoAWK parity incomplete",
+  "utc": "2026-09-16T20:44:55.965Z",
+  "mode": "live GoAWK",
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "total": 37,
+  "passed": 37,
+  "failed": 0,
+  "engineSha256": "767fed1aaad035419122efc4a1e0529eb67656a87d554f307a1e6984d9c9d801",
+  "cliSha256": "ecf257a42078aacd77723a8e5eb4890325a8a0f469b68ccaab71c8cdb8fbbb2b",
+  "platform": "win32",
   "sourceSha256": {
     ".gitattributes": "968aed8752f58f3554e38c1db0b611ba4663668909552d8d17c2874ff5966312",
     ".github/workflows/ci.yml": "53d536a5e848970ef8a0eed231b02fec8536ee69b1c683afc660f48294fbdd85",
@@ -63,68 +70,5 @@
     "web/engine.mjs": "767fed1aaad035419122efc4a1e0529eb67656a87d554f307a1e6984d9c9d801",
     "web/index.html": "cdcbb5d9f2d455d4335bfd7fdcd30bac065fc0b90843d4fe616ef9726fc7aeb8"
   },
-  "evidenceSha256": {
-    "evidence/awk-reference-vectors.json": "5a4c9335da1d74e5bc961a6a8fc4c126fe5dfc7fe63ba38f919653219644803f",
-    "evidence/awk-reference-validation.json": "bb864368b463b17bcdaa066e42d0d88609182a46cee06d654d42ddd08d303216",
-    "evidence/awk-host-vectors.json": "abf2186379a6e72ad665c475075f33118a1c06cb3fa1162abd193fcfbaaf5f59",
-    "evidence/awk-host-validation.json": "978f9b483fdd6db9d9453c00f9ab0c13667a33a968eb094937a011fea656a968",
-    "evidence/gawk-reference.json": "ae0540ee73d4cbbe3f264854a7f5aa6a38828222c8bf1d8ea2fdd76cc6547622",
-    "evidence/gawk-comparison.json": "ef49b2c9f4949712d85f6f2539ed45f52d57be2024fb5c2f0ecad342c74b3675"
-  },
-  "reference": {
-    "name": "GoAWK",
-    "version": "v1.32.0",
-    "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
-    "options": [
-      "-c",
-      "-N",
-      "raw"
-    ],
-    "officialZipSha256": "2cebd8d64a8eaf84b2787edec8c0274760166e077bc2bdbb69d41537b56cf32c"
-  },
-  "checks": {
-    "requiredVerify": "passed",
-    "jsPublicApiGroups": 25,
-    "wasmGcPublicApiGroups": 25,
-    "liveCoreComparisons": 514,
-    "liveHostComparisons": 37,
-    "differences": 0,
-    "largestHostInputBytes": 4800000,
-    "largestHostOutputBytes": 4800000,
-    "sessionBridge": "passed",
-    "basicAwkCliScenarios": 6,
-    "legacyBrowserAndCli": "passed",
-    "fmtInfoIdempotent": true,
-    "compiledEngineMatches": true,
-    "seededMalformedInputs": 307,
-    "historicalGnuAwk": {
-      "matched": 45,
-      "total": 46,
-      "knownDifference": "compile-time rejection of dead constant division; GoAWK reference agrees with this runtime"
-    }
-  },
-  "benchmark": {
-    "project": "awk",
-    "utc": "2026-09-16T20:41:59.095Z",
-    "runtime": "v24.11.0",
-    "platform": "win32",
-    "cpu": "Intel(R) Core(TM) i7-14700HX",
-    "input_utf8_bytes": 111,
-    "samples": 30,
-    "warmup": 5,
-    "median_ms": 0.24849999999999994,
-    "p95_ms": 0.5185000000000031,
-    "max_ms": 0.7638000000000034,
-    "scope": "JS warm execution of documented example; no cross-project or upstream performance claim"
-  },
-  "remaining": [
-    "RS and getline",
-    "file and pipe redirection; system/close/fflush",
-    "CSV/TSV modes",
-    "complete Unicode regex, byte and locale modes",
-    "precise source diagnostics and complete language edge cases",
-    "full upstream suite, more platforms/versions and comparative performance"
-  ],
-  "localOnly": true,
-  "archivesRefreshed": false
+  "failures": []
 }

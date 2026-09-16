@@ -7,6 +7,8 @@ pub suberror ParseError {
 priv struct Token {
   text : String
   quoted : Bool
+  regexp : Bool
+  adjacent : Bool
 }
 
 ///|
@@ -18,7 +20,9 @@ priv struct Cursor {
 ///|
 fn Cursor::peek(self : Cursor) -> String {
   if self.pos < self.tokens.length() {
-    if self.tokens[self.pos].quoted {
+    if self.tokens[self.pos].regexp {
+      "<regex>"
+    } else if self.tokens[self.pos].quoted {
       "<string>"
     } else {
       self.tokens[self.pos].text
@@ -135,8 +139,10 @@ fn lex(source : String, newlines : Bool) -> Cursor raise ParseError {
   let cs = source.to_array()
   let ts : Array[Token] = []
   let mut i = 0
-  let mut parens = 0
+  let mut last_end = 0
+  let mut expected = true
   let mut brackets = 0
+  let parens : Array[Bool] = []
   while i < cs.length() {
     let c = cs[i]
     if c == ' ' || c == '\t' || c == '\r' {
@@ -144,8 +150,16 @@ fn lex(source : String, newlines : Bool) -> Cursor raise ParseError {
       continue
     }
     if c == '\n' {
-      if newlines && parens == 0 && brackets == 0 {
-        ts.push({ text: "\n", quoted: false, })
+      if newlines && parens.is_empty() && brackets == 0 {
+        if ts.last() is Some(t) &&
+          !t.quoted &&
+          !t.regexp &&
+          [",", "&&", "||", "?", ":"].contains(t.text) {
+          ()
+        } else {
+          ts.push({ text: "\n", quoted: false, regexp: false, adjacent: false, })
+          expected = true
+        }
       }
       i += 1
       continue
@@ -160,97 +174,186 @@ fn lex(source : String, newlines : Bool) -> Cursor raise ParseError {
       }
       continue
     }
-    if digit(c) || (c == '.' && i + 1 < cs.length() && digit(cs[i + 1])) {
-      let end = number_end(cs, i, false)
-      ts.push({
-        text: cs[i:end].to_owned().map(c => c.to_string()).join(""),
-        quoted: false,
-      })
-      i = end
-      continue
-    }
-    if c == '"' || c == '\'' {
-      let quote = c
+    let start = i
+    let adjacent = i == last_end
+    let (text, quoted, regexp) = if c == '"' {
       i += 1
-      let mut s = ""
+      let s = StringBuilder()
       let mut closed = false
       while i < cs.length() {
         let ch = cs[i]
         i += 1
-        if ch == quote {
+        if ch == '"' {
           closed = true
           break
         }
+        if ch == '\n' {
+          raise Invalid("newline in string")
+        }
         if ch == '\\' {
-          if i >= cs.length() {
-            raise Invalid("truncated escape")
-          }
-          s += match cs[i] {
-            'n' => "\n"
-            'r' => "\r"
-            't' => "\t"
-            '\\' => "\\"
-            '"' => "\""
-            '\'' => "'"
-            _ => raise Invalid("unsupported escape")
-          }
-          i += 1
+          let offset = Ref(i)
+          s.write_string(awk_escape(cs, offset))
+          i = offset.val
         } else {
-          s += ch.to_string()
+          s.write_char(ch)
         }
       }
       if !closed {
         raise Invalid("unterminated string")
       }
-      ts.push({ text: s, quoted: true, })
-      continue
-    }
-    if word(c) {
-      let mut s = ""
+      expected = false
+      (s.to_string(), true, false)
+    } else if c == '/' && expected {
+      i += 1
+      let s = StringBuilder()
+      let mut closed = false
+      while i < cs.length() {
+        let ch = cs[i]
+        i += 1
+        if ch == '/' {
+          closed = true
+          break
+        }
+        if ch == '\n' {
+          raise Invalid("newline in regex")
+        }
+        if ch == '\\' {
+          if i >= cs.length() {
+            raise Invalid("unfinished regex escape")
+          }
+          if cs[i] == '/' {
+            s.write_char('/')
+            i += 1
+          } else if cs[i] == '\n' {
+            i += 1
+          } else {
+            s.write_char('\\')
+            s.write_char(cs[i])
+            i += 1
+          }
+        } else {
+          s.write_char(ch)
+        }
+      }
+      if !closed {
+        raise Invalid("unterminated regex")
+      }
+      expected = false
+      (s.to_string(), false, true)
+    } else if digit(c) || (c == '.' && i + 1 < cs.length() && digit(cs[i + 1])) {
+      i = number_end(cs, i, false)
+      expected = false
+      (String::from_array(cs[start:i]), false, false)
+    } else if word(c) {
       while i < cs.length() && word(cs[i]) {
-        s += cs[i].to_string()
         i += 1
       }
-      ts.push({ text: s, quoted: false, })
-      continue
-    }
-    let mut s = c.to_string()
-    if c == '(' {
-      parens += 1
-    }
-    if c == ')' {
-      parens -= 1
-    }
-    if c == '[' {
-      brackets += 1
-    }
-    if c == ']' {
-      brackets -= 1
-    }
-    i += 1
-    if i < cs.length() {
-      let pair = s + cs[i].to_string()
-      if pair == "==" ||
-        pair == "!=" ||
-        pair == ">=" ||
-        pair == "<=" ||
-        pair == "=~" ||
-        pair == "!~" ||
-        pair == "+=" ||
-        pair == "-=" ||
-        pair == "*=" ||
-        pair == "/=" ||
-        pair == "%=" ||
-        pair == "^=" ||
-        pair == "++" ||
-        pair == "--" ||
-        pair == "&&" ||
-        pair == "||" {
-        s = pair
-        i += 1
+      let name = String::from_array(cs[start:i])
+      expected = reserved(name) && !["break", "continue", "next"].contains(name)
+      (name, false, false)
+    } else {
+      i += 1
+      let mut text = c.to_string()
+      if i < cs.length() {
+        let pair = text + cs[i].to_string()
+        if [
+            "==", "!=", ">=", "<=", "!~", "+=", "-=", "*=", "/=", "%=", "^=", "++",
+            "--", "&&", "||", ">>", "**",
+          ].contains(pair) {
+          text = pair
+          i += 1
+          if text == "**" {
+            text = "^"
+            if i < cs.length() && cs[i] == '=' {
+              text = "^="
+              i += 1
+            }
+          }
+        }
       }
+      if text == "(" {
+        parens.push(
+          ts
+          .last()
+          .map(t => ["if", "while", "for"].contains(t.text))
+          .unwrap_or(false),
+        )
+        expected = true
+      } else if text == ")" {
+        expected = parens.pop().unwrap_or(false)
+      } else if text == "[" {
+        brackets += 1
+        expected = true
+      } else if text == "]" {
+        brackets -= 1
+        expected = false
+      } else if text == "++" || text == "--" {
+        ()
+      } else {
+        expected = true
+      }
+      (text, false, false)
     }
-    ts.push({ text: s, quoted: false, })
+    ts.push({ text, quoted, regexp, adjacent, })
+    last_end = i
   }
   { tokens: ts, pos: 0, }
+}
+
+///|
+fn awk_escape(cs : Array[Char], i : Ref[Int]) -> String raise ParseError {
+  if i.val >= cs.length() {
+    raise Invalid("unfinished string escape")
+  }
+  let c = cs[i.val]
+  i.val += 1
+  match c {
+    'n' => "\n"
+    'r' => "\r"
+    't' => "\t"
+    'b' => "\b"
+    'f' => "\u000c"
+    'v' => "\u000b"
+    'a' => "\u0007"
+    '\n' => ""
+    'x' | 'u' => {
+      let maximum = if c == 'u' { 8 } else { 2 }
+      let mut value = 0
+      let mut count = 0
+      while count < maximum &&
+            i.val < cs.length() &&
+            cs[i.val].is_ascii_hexdigit() {
+        let d = cs[i.val]
+        value = value * 16 +
+          (if d <= '9' {
+            d.to_int() - 48
+          } else {
+            d.to_ascii_lowercase().to_int() - 87
+          })
+        i.val += 1
+        count += 1
+      }
+      if count == 0 {
+        return c.to_string()
+      }
+      if value > 1114111 || value < 0 || (value >= 55296 && value <= 57343) {
+        raise Invalid("invalid Unicode escape")
+      }
+      value.unsafe_to_char().to_string()
+    }
+    c if c >= '0' && c <= '7' => {
+      let mut value = c.to_int() - 48
+      let mut count = 1
+      while count < 3 &&
+            i.val < cs.length() &&
+            cs[i.val] >= '0' &&
+            cs[i.val] <= '7' {
+        value = value * 8 + cs[i.val].to_int() - 48
+        i.val += 1
+        count += 1
+      }
+      value.unsafe_to_char().to_string()
+    }
+    _ => c.to_string()
+  }
 }
