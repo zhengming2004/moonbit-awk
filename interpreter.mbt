@@ -37,14 +37,18 @@ fn execute_statement(stmt : Statement, st : State) -> Flow raise {
       if destination is Some((mode, name)) {
         st.open_writer(name, mode)
       }
-      let line = if exprs.is_empty() {
-        st.record
+      let text = if exprs.is_empty() {
+        st.record + st.text(st.variable("ORS"))
       } else {
-        values
-        .map(value => st.text(value, printing=true))
-        .join(st.text(st.variable("OFS")))
+        let fields = values.map(value => st.text(value, printing=true))
+        match st.output_mode {
+          Some(mode) => csv_write(fields, mode.separator) + "\n"
+          None =>
+            fields.join(st.text(st.variable("OFS"))) +
+            st.text(st.variable("ORS"))
+        }
       }
-      emit_redirect(line + st.text(st.variable("ORS")), destination, st)
+      emit_redirect(text, destination, st)
       Normal
     }
     Printf(exprs, redirect) => {
@@ -184,6 +188,8 @@ pub fn run_with_status(
   program : String,
   input : String,
   separator? : String = " ",
+  input_mode? : String = "",
+  output_mode? : String = "",
   step_limit? : Int = 1000000,
   clock_seconds? : Double = 0.0,
 ) -> RunResult raise ParseError {
@@ -195,6 +201,8 @@ pub fn run_with_status(
   let session = new_session(
     program,
     separator~,
+    input_mode~,
+    output_mode~,
     step_limit~,
     clock_seconds~,
     input=Some(request => {
@@ -232,8 +240,10 @@ pub fn run(
   program : String,
   input : String,
   separator? : String = " ",
+  input_mode? : String = "",
+  output_mode? : String = "",
 ) -> String raise ParseError {
-  run_with_status(program, input, separator~).output
+  run_with_status(program, input, separator~, input_mode~, output_mode~).output
 }
 
 ///|

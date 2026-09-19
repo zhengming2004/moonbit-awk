@@ -4,6 +4,7 @@ priv enum Expr {
   RegexLiteral(String)
   Variable(String)
   Field(Expr)
+  NamedField(Expr)
   Element(String, Array[Expr])
   Tuple(Array[Expr])
   Unary(String, Expr)
@@ -128,6 +129,8 @@ fn Cursor::expression(
       None
     }
     Getline(target, source)
+  } else if t.text == "@" {
+    NamedField(self.expression(14, depth + 1))
   } else if t.text == "$" {
     Field(self.expression(14, depth + 1))
   } else if ["+", "-", "!"].contains(t.text) {
@@ -192,6 +195,7 @@ fn Cursor::expression(
         op == "<string>" ||
         op == "(" ||
         op == "$" ||
+        op == "@" ||
         op == "getline" ||
         (identifier(op) && !reserved(op)) ||
         (op.to_array().get(0) is Some(c) && digit(c))

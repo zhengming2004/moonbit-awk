@@ -10,4 +10,4 @@ test "literal separator retains empty columns" {
 }
 ```
 
-0.6 提供文件/管道重定向、重定向 getline、system/close/fflush 与可注入的 io 宿主。Node CLI 接入实际文件和子进程，纯库示例保留内存执行。0.6.1 将命令 Worker 改为按需启动，保留同步文件 IO 的有界背压。完整 Unicode 正则、CSV/TSV 与全部上游兼容性仍未完成。
+0.7 增加 CSV/TSV、表头和命名字段，可向 run/run_with_status/new_session 传 input_mode、output_mode。保留文件/管道与按需命令 Worker；完整 Unicode、字节模式、固定参考 BOM 差异及全部上游兼容性仍未完成。

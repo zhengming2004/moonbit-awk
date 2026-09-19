@@ -10,7 +10,8 @@ priv struct Frame {
 fn special_variable(name : String) -> Bool {
   [
     "FS", "OFS", "RS", "ORS", "NR", "FNR", "NF", "FILENAME", "OFMT", "CONVFMT", "SUBSEP",
-    "RSTART", "RLENGTH", "RT", "ARGC", "ARGV", "ENVIRON",
+    "RSTART", "RLENGTH", "RT", "ARGC", "ARGV", "ENVIRON", "FIELDS", "INPUTMODE",
+    "OUTPUTMODE",
   ].contains(name)
 }
 
@@ -33,7 +34,9 @@ fn mark_kind(
   if program.functions.contains(name) {
     raise Invalid("function name used as variable: " + name)
   }
-  if kind == 2 && special_variable(name) && name != "ARGV" && name != "ENVIRON" {
+  if kind == 2 &&
+    special_variable(name) &&
+    !["ARGV", "ENVIRON", "FIELDS"].contains(name) {
     raise Invalid("special scalar used as array")
   }
   let key = scoped_name(program, scope, name)
@@ -61,7 +64,7 @@ fn validate_expr(
       }
     }
     Variable(name) => mark_kind(program, scope, name, 1)
-    Field(e) | Unary(_, e) | Increment(e, _, _) =>
+    Field(e) | NamedField(e) | Unary(_, e) | Increment(e, _, _) =>
       validate_expr(e, program, scope)
     Element(name, keys) => {
       mark_kind(program, scope, name, 2)

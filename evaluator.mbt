@@ -113,7 +113,8 @@ fn evaluate(expr : Expr, st : State) -> Value raise {
           None => Number(0.0)
           Some(text) => {
             match location {
-              Some(FieldSlot(_)) | None => st.set_record(text)
+              Some(FieldSlot(_)) => st.set_record(text, true_string=true)
+              None => st.set_record(text)
               Some(location) => st.write(location, input_value(text))
             }
             Number(1.0)
@@ -129,6 +130,7 @@ fn evaluate(expr : Expr, st : State) -> Value raise {
       boolean(
         regex_match(st.regex(pattern), st.record.to_array(), 0, st) != None,
       )
+    NamedField(name) => st.named_field(st.text(evaluate(name, st)))
     Variable(_) | Field(_) | Element(_, _) => st.read(slot(expr, st))
     Tuple(_) => raise Invalid("tuple is only supported with in")
     Unary(op, child) => {
@@ -268,12 +270,16 @@ fn builtin(name : String, args : Array[Expr], st : State) -> Value raise {
     } else {
       st.text(st.variable("FS"))
     }
-    let fields = split_fields(
-      text,
-      sep,
-      st,
-      is_regex=args.length() == 3 && args[2] is RegexLiteral(_),
-    )
+    let fields = if args.length() == 2 && st.input_mode is Some(mode) {
+      csv_fields(text, mode, st)
+    } else {
+      split_fields(
+        text,
+        sep,
+        st,
+        is_regex=args.length() == 3 && args[2] is RegexLiteral(_),
+      )
+    }
     let dest = st.array(array)
     st.entries -= dest.length()
     dest.clear()

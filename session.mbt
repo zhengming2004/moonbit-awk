@@ -7,12 +7,15 @@ pub struct Session {
   priv mut status : Int
   priv mut stopped : Bool
   priv mut skip_file : Bool
+  priv mut feed_header_pending : Bool
 }
 
 ///|
 pub fn new_session(
   program : String,
   separator? : String = " ",
+  input_mode? : String = "",
+  output_mode? : String = "",
   variables? : Map[String, String] = Map([]),
   environment? : Map[String, String] = Map([]),
   arguments? : Array[String] = ["moonbit-awk"],
@@ -46,7 +49,14 @@ pub fn new_session(
     },
     arrays: Map([]),
     fields: [],
+    fields_ready: false,
+    reuse_csv_fields: true,
+    saved_fs: separator,
+    input_mode: None,
+    output_mode: None,
+    field_names: None,
     record: "",
+    record_true_string: false,
     output: [],
     output_size: 0,
     steps: 0,
@@ -76,6 +86,9 @@ pub fn new_session(
       had_file: false,
       mode: 0,
       separator: '\n',
+      csv: None,
+      csv_started: false,
+      csv_header_done: false,
     }),
   }
   for name, kind in parsed.kinds {
@@ -85,6 +98,9 @@ pub fn new_session(
   }
   st.arrays["ARGV"] = Map([])
   st.arrays["ENVIRON"] = Map([])
+  st.arrays["FIELDS"] = Map([])
+  st.write(VariableSlot("INPUTMODE"), Text(input_mode))
+  st.write(VariableSlot("OUTPUTMODE"), Text(output_mode))
   for i, value in arguments {
     st.put_element("ARGV", i.to_string(), input_value(value))
   }
@@ -98,6 +114,7 @@ pub fn new_session(
     status: 0,
     stopped: false,
     skip_file: false,
+    feed_header_pending: true,
   }
   for key, value in variables {
     session.assign(key, value)
@@ -179,6 +196,7 @@ pub fn Session::begin_file(
   self.state.vars["FILENAME"] = Text(name)
   self.state.vars["FNR"] = Number(0.0)
   self.skip_file = false
+  self.feed_header_pending = true
 }
 
 ///|
@@ -189,7 +207,26 @@ pub fn Session::feed(self : Session, record : String) -> Unit raise ParseError {
   }
   let st = self.state
   st.tick()
-  st.set_record(record)
+  if st.input_mode is Some(mode) {
+    let (raw, fields) = match csv_record(record, mode, st) {
+      Some(row) => row
+      None => return
+    }
+    if mode.header && self.feed_header_pending {
+      self.feed_header_pending = false
+      st.csv_header(fields)
+      return
+    }
+    self.feed_header_pending = false
+    st.set_record(raw)
+    st.fields.clear()
+    for field in fields {
+      st.fields.push(field)
+    }
+    st.reuse_csv_fields = true
+  } else {
+    st.set_record(record)
+  }
   st.vars["NR"] = Number(st.variable("NR").number() + 1.0)
   st.vars["FNR"] = Number(st.variable("FNR").number() + 1.0)
   self.process_record()

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0 — 2026-09-19
+
+- Added incremental CSV/TSV input/output, lazy quotes, multiline fields, comments and Unicode separators; exposed CLI modes, per-file headers, FIELDS, readonly named fields and two-argument split.
+- Added mode options to memory/Session/JS bridge APIs, manual CSV record/header handling, and output-aware field rebuilding.
+- Added lazy field parsing, relative negative field indexes and preserved assigned record/field string types and CONVFMT formatting.
+- Added 273 native CSV programs: 270 agree, while three pinned GoAWK BOM/raw-token differences remain explicit. Generated 251 native programs into 16 backend groups, plus four CSV contract groups; JS/Wasm-GC each have 75 groups.
+- Nine CLI workloads compare output and timing against native GoAWK, including four baseline 0.6.1 workloads. Full parity remains incomplete.
+
 ## 0.6.1 — 2026-09-19
 
 - Execute MoonBit and bounded synchronous file IO on the main thread; start an asynchronous command IO worker only when a command is used.

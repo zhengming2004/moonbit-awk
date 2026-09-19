@@ -41,6 +41,9 @@ fn State::stream_limit(self : State) -> Unit raise ParseError {
 
 ///|
 fn MainInput::configure(self : MainInput, st : State) -> Unit raise ParseError {
+  self.csv = st.input_mode
+  self.csv_started = false
+  self.csv_header_done = false
   let rs = st.text(st.variable("RS")).to_array()
   self.mode = if rs.is_empty() {
     2
@@ -98,6 +101,9 @@ fn State::read_redirect(
         had_file: true,
         mode: 0,
         separator: '\n',
+        csv: None,
+        csv_started: false,
+        csv_header_done: false,
       }
       stream.configure(self)
       self.readers[name] = stream

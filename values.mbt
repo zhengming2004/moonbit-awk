@@ -61,7 +61,14 @@ priv struct State {
   vars : Map[String, Value]
   arrays : Map[String, Map[String, Value]]
   fields : Array[Value]
+  mut fields_ready : Bool
+  mut reuse_csv_fields : Bool
+  mut saved_fs : String
+  mut input_mode : CSVMode?
+  mut output_mode : CSVMode?
+  mut field_names : Array[String]?
   mut record : String
+  mut record_true_string : Bool
   output : Array[String]
   mut output_size : Int
   mut steps : Int
@@ -93,6 +100,9 @@ fn State::tick(self : State) -> Unit raise ParseError {
 
 ///|
 fn State::variable(self : State, name : String) -> Value raise ParseError {
+  if name == "NF" {
+    self.ensure_fields()
+  }
   let vars = match self.local_frame(name) {
     Some(frame) => frame.vars
     None => self.vars
@@ -225,13 +235,40 @@ fn split_fields(
 }
 
 ///|
-fn State::set_record(self : State, text : String) -> Unit raise ParseError {
+fn State::set_record(
+  self : State,
+  text : String,
+  true_string? : Bool = false,
+) -> Unit raise ParseError {
   if text.length() > 1000000 {
     raise Invalid("record length budget")
   }
   self.record = text
-  let fs = self.text(self.variable("FS"))
-  let raw = split_fields(text, fs, self)
+  self.record_true_string = true_string
+  self.saved_fs = self.text(self.variable("FS"))
+  self.fields_ready = false
+  self.reuse_csv_fields = false
+}
+
+///|
+fn State::ensure_fields(self : State) -> Unit raise ParseError {
+  if self.fields_ready {
+    return
+  }
+  self.fields_ready = true
+  if self.input_mode is Some(mode) {
+    if !self.reuse_csv_fields {
+      let parsed = csv_fields(self.record, mode, self)
+      self.fields.clear()
+      for field in parsed {
+        self.fields.push(field)
+      }
+    }
+    self.vars["NF"] = Number(self.fields.length().to_double())
+    return
+  }
+  let fs = self.saved_fs
+  let raw = split_fields(self.record, fs, self)
   let fields = if self.text(self.variable("RS")).is_empty() &&
     fs.to_array().length() == 1 {
     let result = []
@@ -264,14 +301,22 @@ fn State::rebuild(self : State) -> Unit raise ParseError {
       raise Invalid("record length budget")
     }
   }
-  self.record = self.fields.map(v => self.text(v)).join(ofs)
+  self.record_true_string = true
+  let texts = self.fields.map(v => self.text(v))
+  self.record = match self.output_mode {
+    Some(mode) => csv_write(texts, mode.separator)
+    None => texts.join(ofs)
+  }
+  if self.record.length() > 1000000 {
+    raise Invalid("record length budget")
+  }
   self.vars["NF"] = Number(self.fields.length().to_double())
 }
 
 ///|
 fn field_index(n : Double) -> Int raise ParseError {
-  if n < 0.0 || n > 10000.0 {
-    raise Invalid("field index 0..10000 required")
+  if n < -10000.0 || n > 10000.0 {
+    raise Invalid("field index -10000..10000 required")
   }
   n.to_int()
 }
@@ -289,9 +334,15 @@ fn State::read(self : State, slot : Slot) -> Value raise ParseError {
     VariableSlot(name) => self.variable(name)
     FieldSlot(i) =>
       if i == 0 {
-        input_value(self.record)
+        if self.record_true_string {
+          Text(self.record)
+        } else {
+          input_value(self.record)
+        }
       } else {
-        self.fields.get(i - 1).unwrap_or(Empty)
+        self.ensure_fields()
+        let index = if i < 0 { self.fields.length() + 1 + i } else { i }
+        self.fields.get(index - 1).unwrap_or(Text(""))
       }
     ElementSlot(name, key) => {
       let a = self.array(name)
@@ -322,8 +373,22 @@ fn State::write(
         }) {
         raise Invalid("array used as scalar: " + name)
       }
+      if name == "INPUTMODE" || name == "OUTPUTMODE" {
+        let mode = csv_mode(self.text(value), name == "INPUTMODE")
+        if name == "INPUTMODE" {
+          self.input_mode = mode
+        } else {
+          self.output_mode = mode
+        }
+        self.vars[name] = Text(csv_mode_text(mode))
+        return
+      }
       if name == "NF" {
+        self.ensure_fields()
         let size = field_index(value.number())
+        if size < 0 {
+          raise Invalid("negative NF")
+        }
         while self.fields.length() > size {
           ignore(self.fields.pop())
         }
@@ -333,10 +398,11 @@ fn State::write(
         self.rebuild()
         self.vars["NF"] = value
       } else {
-        if ["ARGV", "ENVIRON"].contains(name) {
+        if ["ARGV", "ENVIRON", "FIELDS"].contains(name) {
           raise Invalid("unsupported special variable " + name)
         }
-        if name == "RS" && self.text(value).to_array().length() > 1 {
+        if (name == "RS" || name == "FS") &&
+          self.text(value).to_array().length() > 1 {
           ignore(self.regex(self.text(value)))
         }
         match (if global { None } else { self.local_frame(name) }) {
@@ -347,12 +413,17 @@ fn State::write(
     }
     FieldSlot(i) =>
       if i == 0 {
-        self.set_record(self.text(value))
+        self.set_record(self.text(value), true_string=true)
       } else {
+        self.ensure_fields()
+        let i = if i < 0 { self.fields.length() + 1 + i } else { i }
+        if i < 1 {
+          return
+        }
         while self.fields.length() < i {
           self.fields.push(Empty)
         }
-        self.fields[i - 1] = value
+        self.fields[i - 1] = Text(self.text(value))
         self.rebuild()
       }
     ElementSlot(name, key) => self.put_element(name, key, value)

@@ -294,6 +294,7 @@ function _M0TPC15bytes9BytesView(param0, param1, param2) {
   this.start = param1;
   this.end = param2;
 }
+const _M0MPB7JSArray4copy = (arr) => arr.slice(0);
 const _M0MPC16double6Double8mod__ffi = (a, b) => (a % b);
 function _M0TPB9ArrayViewGRP211localreview3awk5ValueE(param0, param1, param2) {
   this.buf = param0;
@@ -763,27 +764,77 @@ function _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(param0) {
   this._0 = param0;
 }
 _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
-function _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE3Err(param0) {
+function _M0DTP211localreview3awk12InputRequest4Open(param0) {
   this._0 = param0;
 }
-_M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
-function _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(param0) {
+_M0DTP211localreview3awk12InputRequest4Open.prototype.$tag = 0;
+function _M0DTP211localreview3awk12InputRequest4Read() {}
+_M0DTP211localreview3awk12InputRequest4Read.prototype.$tag = 1;
+const _M0DTP211localreview3awk12InputRequest4Read__ = new _M0DTP211localreview3awk12InputRequest4Read();
+function _M0DTP211localreview3awk12InputRequest5Close() {}
+_M0DTP211localreview3awk12InputRequest5Close.prototype.$tag = 2;
+const _M0DTP211localreview3awk12InputRequest5Close__ = new _M0DTP211localreview3awk12InputRequest5Close();
+function _M0DTPC16result6ResultGOcRP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
 }
-_M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
-function _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err(param0) {
+_M0DTPC16result6ResultGOcRP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGOcRP211localreview3awk10ParseErrorE2Ok(param0) {
   this._0 = param0;
 }
-_M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
-function _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(param0) {
+_M0DTPC16result6ResultGOcRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
+function _M0DTPC16result6ResultGUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
 }
-_M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
-function _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(param0, param1, param2) {
-  this.buf = param0;
-  this.start = param1;
-  this.end = param2;
+_M0DTPC16result6ResultGUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok(param0) {
+  this._0 = param0;
 }
+_M0DTPC16result6ResultGUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
+function _M0DTPC16result6ResultGOUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE3Err(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGOUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGOUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGOUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
+function _M0TP211localreview3awk9MainInput(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10, param11, param12) {
+  this.reader = param0;
+  this.data = param1;
+  this.start = param2;
+  this.eof = param3;
+  this.opened = param4;
+  this.failure = param5;
+  this.index = param6;
+  this.had_file = param7;
+  this.mode = param8;
+  this.separator = param9;
+  this.csv = param10;
+  this.csv_started = param11;
+  this.csv_header_done = param12;
+}
+function _M0DTP211localreview3awk10InputReply5Ready() {}
+_M0DTP211localreview3awk10InputReply5Ready.prototype.$tag = 0;
+const _M0DTP211localreview3awk10InputReply5Ready__ = new _M0DTP211localreview3awk10InputReply5Ready();
+function _M0DTP211localreview3awk10InputReply5Chunk(param0) {
+  this._0 = param0;
+}
+_M0DTP211localreview3awk10InputReply5Chunk.prototype.$tag = 1;
+function _M0DTP211localreview3awk10InputReply3End() {}
+_M0DTP211localreview3awk10InputReply3End.prototype.$tag = 2;
+const _M0DTP211localreview3awk10InputReply3End__ = new _M0DTP211localreview3awk10InputReply3End();
+function _M0DTP211localreview3awk10InputReply6Failed(param0) {
+  this._0 = param0;
+}
+_M0DTP211localreview3awk10InputReply6Failed.prototype.$tag = 3;
+function _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
 function _M0TPB8MutLocalGRPB3MapGiiEE(param0) {
   this.val = param0;
 }
@@ -917,14 +968,6 @@ function _M0TP211localreview3awk5Regex(param0, param1) {
   this.code = param0;
   this.start = param1;
 }
-function _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err(param0) {
-  this._0 = param0;
-}
-_M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
-function _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(param0) {
-  this._0 = param0;
-}
-_M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
 function _M0DTPC16option6OptionGRPC16bigint6BigIntE4None() {}
 _M0DTPC16option6OptionGRPC16bigint6BigIntE4None.prototype.$tag = 0;
 const _M0DTPC16option6OptionGRPC16bigint6BigIntE4None__ = new _M0DTPC16option6OptionGRPC16bigint6BigIntE4None();
@@ -953,6 +996,44 @@ function _M0DTPC16result6ResultGsRP211localreview3awk10ParseErrorE2Ok(param0) {
   this._0 = param0;
 }
 _M0DTPC16result6ResultGsRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
+function _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE3Err(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
+function _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
+function _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(param0, param1, param2) {
+  this.buf = param0;
+  this.start = param1;
+  this.end = param2;
+}
+function _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE3Err(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE2Ok(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
+function _M0TPB8MutLocalGcE(param0) {
+  this.val = param0;
+}
+function _M0TP211localreview3awk7CSVMode(param0, param1, param2, param3) {
+  this.format = param0;
+  this.separator = param1;
+  this.comment = param2;
+  this.header = param3;
+}
 function _M0DTPC16result6ResultGRP211localreview3awk6CursorRP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
 }
@@ -1006,54 +1087,58 @@ function _M0DTP211localreview3awk4Expr5Field(param0) {
   this._0 = param0;
 }
 _M0DTP211localreview3awk4Expr5Field.prototype.$tag = 3;
+function _M0DTP211localreview3awk4Expr10NamedField(param0) {
+  this._0 = param0;
+}
+_M0DTP211localreview3awk4Expr10NamedField.prototype.$tag = 4;
 function _M0DTP211localreview3awk4Expr7Element(param0, param1) {
   this._0 = param0;
   this._1 = param1;
 }
-_M0DTP211localreview3awk4Expr7Element.prototype.$tag = 4;
+_M0DTP211localreview3awk4Expr7Element.prototype.$tag = 5;
 function _M0DTP211localreview3awk4Expr5Tuple(param0) {
   this._0 = param0;
 }
-_M0DTP211localreview3awk4Expr5Tuple.prototype.$tag = 5;
+_M0DTP211localreview3awk4Expr5Tuple.prototype.$tag = 6;
 function _M0DTP211localreview3awk4Expr5Unary(param0, param1) {
   this._0 = param0;
   this._1 = param1;
 }
-_M0DTP211localreview3awk4Expr5Unary.prototype.$tag = 6;
+_M0DTP211localreview3awk4Expr5Unary.prototype.$tag = 7;
 function _M0DTP211localreview3awk4Expr6Binary(param0, param1, param2) {
   this._0 = param0;
   this._1 = param1;
   this._2 = param2;
 }
-_M0DTP211localreview3awk4Expr6Binary.prototype.$tag = 7;
+_M0DTP211localreview3awk4Expr6Binary.prototype.$tag = 8;
 function _M0DTP211localreview3awk4Expr6Assign(param0, param1, param2) {
   this._0 = param0;
   this._1 = param1;
   this._2 = param2;
 }
-_M0DTP211localreview3awk4Expr6Assign.prototype.$tag = 8;
+_M0DTP211localreview3awk4Expr6Assign.prototype.$tag = 9;
 function _M0DTP211localreview3awk4Expr9Increment(param0, param1, param2) {
   this._0 = param0;
   this._1 = param1;
   this._2 = param2;
 }
-_M0DTP211localreview3awk4Expr9Increment.prototype.$tag = 9;
+_M0DTP211localreview3awk4Expr9Increment.prototype.$tag = 10;
 function _M0DTP211localreview3awk4Expr11Conditional(param0, param1, param2) {
   this._0 = param0;
   this._1 = param1;
   this._2 = param2;
 }
-_M0DTP211localreview3awk4Expr11Conditional.prototype.$tag = 10;
+_M0DTP211localreview3awk4Expr11Conditional.prototype.$tag = 11;
 function _M0DTP211localreview3awk4Expr4Call(param0, param1) {
   this._0 = param0;
   this._1 = param1;
 }
-_M0DTP211localreview3awk4Expr4Call.prototype.$tag = 11;
+_M0DTP211localreview3awk4Expr4Call.prototype.$tag = 12;
 function _M0DTP211localreview3awk4Expr7Getline(param0, param1) {
   this._0 = param0;
   this._1 = param1;
 }
-_M0DTP211localreview3awk4Expr7Getline.prototype.$tag = 12;
+_M0DTP211localreview3awk4Expr7Getline.prototype.$tag = 13;
 function _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk4ExprERP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
 }
@@ -1217,6 +1302,13 @@ function _M0TPB9ArrayViewGUsRPB3MapGsRP211localreview3awk5ValueEEE(param0, param
   this.start = param1;
   this.end = param2;
 }
+function _M0DTPC16option6OptionGRPB5ArrayGsEE4None() {}
+_M0DTPC16option6OptionGRPB5ArrayGsEE4None.prototype.$tag = 0;
+const _M0DTPC16option6OptionGRPB5ArrayGsEE4None__ = new _M0DTPC16option6OptionGRPB5ArrayGsEE4None();
+function _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(param0) {
+  this._0 = param0;
+}
+_M0DTPC16option6OptionGRPB5ArrayGsEE4Some.prototype.$tag = 1;
 function _M0TPB9ArrayViewGUsRP211localreview3awk5RegexEE(param0, param1, param2) {
   this.buf = param0;
   this.start = param1;
@@ -1232,50 +1324,46 @@ function _M0TPB9ArrayViewGUssEE(param0, param1, param2) {
   this.start = param1;
   this.end = param2;
 }
-function _M0TP211localreview3awk9MainInput(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9) {
-  this.reader = param0;
-  this.data = param1;
-  this.start = param2;
-  this.eof = param3;
-  this.opened = param4;
-  this.failure = param5;
-  this.index = param6;
-  this.had_file = param7;
-  this.mode = param8;
-  this.separator = param9;
-}
-function _M0TP211localreview3awk5State(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10, param11, param12, param13, param14, param15, param16, param17, param18, param19, param20, param21, param22) {
+function _M0TP211localreview3awk5State(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10, param11, param12, param13, param14, param15, param16, param17, param18, param19, param20, param21, param22, param23, param24, param25, param26, param27, param28, param29) {
   this.vars = param0;
   this.arrays = param1;
   this.fields = param2;
-  this.record = param3;
-  this.output = param4;
-  this.output_size = param5;
-  this.steps = param6;
-  this.step_limit = param7;
-  this.entries = param8;
-  this.eval_depth = param9;
-  this.regexes = param10;
-  this.functions = param11;
-  this.kinds = param12;
-  this.frames = param13;
-  this.random_state = param14;
-  this.random_seed = param15;
-  this.clock_seconds = param16;
-  this.input = param17;
-  this.io = param18;
-  this.readers = param19;
-  this.writers = param20;
-  this.protected_stdin = param21;
-  this.output_sink = param22;
+  this.fields_ready = param3;
+  this.reuse_csv_fields = param4;
+  this.saved_fs = param5;
+  this.input_mode = param6;
+  this.output_mode = param7;
+  this.field_names = param8;
+  this.record = param9;
+  this.record_true_string = param10;
+  this.output = param11;
+  this.output_size = param12;
+  this.steps = param13;
+  this.step_limit = param14;
+  this.entries = param15;
+  this.eval_depth = param16;
+  this.regexes = param17;
+  this.functions = param18;
+  this.kinds = param19;
+  this.frames = param20;
+  this.random_state = param21;
+  this.random_seed = param22;
+  this.clock_seconds = param23;
+  this.input = param24;
+  this.io = param25;
+  this.readers = param26;
+  this.writers = param27;
+  this.protected_stdin = param28;
+  this.output_sink = param29;
 }
-function _M0TP211localreview3awk7Session(param0, param1, param2, param3, param4, param5) {
+function _M0TP211localreview3awk7Session(param0, param1, param2, param3, param4, param5, param6) {
   this.state = param0;
   this.rules = param1;
   this.phase = param2;
   this.status = param3;
   this.stopped = param4;
   this.skip_file = param5;
+  this.feed_header_pending = param6;
 }
 function _M0DTPC16result6ResultGRP211localreview3awk7IOReplyRP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
@@ -1319,16 +1407,6 @@ _M0DTP211localreview3awk9IORequest7Execute.prototype.$tag = 6;
 function $compare_float(a, b) {
   return (a >= b) - (a <= b);
 }
-function _M0DTP211localreview3awk12InputRequest4Open(param0) {
-  this._0 = param0;
-}
-_M0DTP211localreview3awk12InputRequest4Open.prototype.$tag = 0;
-function _M0DTP211localreview3awk12InputRequest4Read() {}
-_M0DTP211localreview3awk12InputRequest4Read.prototype.$tag = 1;
-const _M0DTP211localreview3awk12InputRequest4Read__ = new _M0DTP211localreview3awk12InputRequest4Read();
-function _M0DTP211localreview3awk12InputRequest5Close() {}
-_M0DTP211localreview3awk12InputRequest5Close.prototype.$tag = 2;
-const _M0DTP211localreview3awk12InputRequest5Close__ = new _M0DTP211localreview3awk12InputRequest5Close();
 function _M0DTPC16result6ResultGOsRP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
 }
@@ -1337,20 +1415,6 @@ function _M0DTPC16result6ResultGOsRP211localreview3awk10ParseErrorE2Ok(param0) {
   this._0 = param0;
 }
 _M0DTPC16result6ResultGOsRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
-function _M0DTP211localreview3awk10InputReply5Ready() {}
-_M0DTP211localreview3awk10InputReply5Ready.prototype.$tag = 0;
-const _M0DTP211localreview3awk10InputReply5Ready__ = new _M0DTP211localreview3awk10InputReply5Ready();
-function _M0DTP211localreview3awk10InputReply5Chunk(param0) {
-  this._0 = param0;
-}
-_M0DTP211localreview3awk10InputReply5Chunk.prototype.$tag = 1;
-function _M0DTP211localreview3awk10InputReply3End() {}
-_M0DTP211localreview3awk10InputReply3End.prototype.$tag = 2;
-const _M0DTP211localreview3awk10InputReply3End__ = new _M0DTP211localreview3awk10InputReply3End();
-function _M0DTP211localreview3awk10InputReply6Failed(param0) {
-  this._0 = param0;
-}
-_M0DTP211localreview3awk10InputReply6Failed.prototype.$tag = 3;
 function _M0DTPC16result6ResultGbRP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
 }
@@ -1460,13 +1524,6 @@ function _M0DTPC16result6ResultGRP211localreview3awk9RunResultRP211localreview3a
   this._0 = param0;
 }
 _M0DTPC16result6ResultGRP211localreview3awk9RunResultRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
-function _M0DTPC16option6OptionGRPB5ArrayGsEE4None() {}
-_M0DTPC16option6OptionGRPB5ArrayGsEE4None.prototype.$tag = 0;
-const _M0DTPC16option6OptionGRPB5ArrayGsEE4None__ = new _M0DTPC16option6OptionGRPB5ArrayGsEE4None();
-function _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(param0) {
-  this._0 = param0;
-}
-_M0DTPC16option6OptionGRPB5ArrayGsEE4Some.prototype.$tag = 1;
 function _M0DTPC16option6OptionGOWRP211localreview3awk9IORequestERP211localreview3awk7IOReplyE4None() {}
 _M0DTPC16option6OptionGOWRP211localreview3awk9IORequestERP211localreview3awk7IOReplyE4None.prototype.$tag = 0;
 const _M0DTPC16option6OptionGOWRP211localreview3awk9IORequestERP211localreview3awk7IOReplyE4None__ = new _M0DTPC16option6OptionGOWRP211localreview3awk9IORequestERP211localreview3awk7IOReplyE4None();
@@ -5177,31 +5234,6 @@ function _M0MPB3Map3getGsRP211localreview3awk5RegexE(self, key) {
     }
   }
 }
-function _M0MPB3Map3getGiiE(self, key) {
-  const hash = _M0IPC13int3IntPB4Hash4hash(key);
-  let _tmp = 0;
-  let _tmp$2 = hash & self.capacity_mask;
-  while (true) {
-    const i = _tmp;
-    const idx = _tmp$2;
-    const _bind$2 = self.entries[idx];
-    if (_bind$2 === undefined) {
-      return undefined;
-    } else {
-      const _Some = _bind$2;
-      const _entry = _Some;
-      if (_entry.hash === hash && _entry.key === key) {
-        return _entry.value;
-      }
-      if (i > _entry.psl) {
-        return undefined;
-      }
-      _tmp = i + 1 | 0;
-      _tmp$2 = (idx + 1 | 0) & self.capacity_mask;
-      continue;
-    }
-  }
-}
 function _M0MPB3Map3getGsRP211localreview3awk11FunctionDefE(self, key) {
   const hash = _M0IPC16string6StringPB4Hash4hash(key);
   let _tmp = 0;
@@ -5229,6 +5261,31 @@ function _M0MPB3Map3getGsRP211localreview3awk11FunctionDefE(self, key) {
 }
 function _M0MPB3Map3getGsiE(self, key) {
   const hash = _M0IPC16string6StringPB4Hash4hash(key);
+  let _tmp = 0;
+  let _tmp$2 = hash & self.capacity_mask;
+  while (true) {
+    const i = _tmp;
+    const idx = _tmp$2;
+    const _bind$2 = self.entries[idx];
+    if (_bind$2 === undefined) {
+      return undefined;
+    } else {
+      const _Some = _bind$2;
+      const _entry = _Some;
+      if (_entry.hash === hash && _entry.key === key) {
+        return _entry.value;
+      }
+      if (i > _entry.psl) {
+        return undefined;
+      }
+      _tmp = i + 1 | 0;
+      _tmp$2 = (idx + 1 | 0) & self.capacity_mask;
+      continue;
+    }
+  }
+}
+function _M0MPB3Map3getGiiE(self, key) {
+  const hash = _M0IPC13int3IntPB4Hash4hash(key);
   let _tmp = 0;
   let _tmp$2 = hash & self.capacity_mask;
   while (true) {
@@ -5934,6 +5991,23 @@ function _M0MPC15array5Array3mapGRPB4JsonsE(self, f) {
   }
   return arr;
 }
+function _M0MPC15array5Array3mapGRP211localreview3awk5ValuesE(self, f) {
+  const arr = new Array(self.length);
+  const _bind$2 = self.length;
+  let _tmp = 0;
+  while (true) {
+    const i = _tmp;
+    if (i < _bind$2) {
+      const v = self[i];
+      arr[i] = f(v);
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return arr;
+}
 function _M0MPC15array5Array3mapGRP211localreview3awk4ExprRP211localreview3awk5ValueEHRPC15error5Error(self, f) {
   const arr = new Array(self.length);
   const _bind$2 = self.length;
@@ -5984,23 +6058,6 @@ function _M0MPC15array5Array3mapGRP211localreview3awk5ValuesEHRP211localreview3a
   }
   return new _M0DTPC16result6ResultGRPB5ArrayGsERP211localreview3awk10ParseErrorE2Ok(arr);
 }
-function _M0MPC15array5Array3mapGcRP211localreview3awk5ValueE(self, f) {
-  const arr = new Array(self.length);
-  const _bind$2 = self.length;
-  let _tmp = 0;
-  while (true) {
-    const i = _tmp;
-    if (i < _bind$2) {
-      const v = self[i];
-      arr[i] = f(v);
-      _tmp = i + 1 | 0;
-      continue;
-    } else {
-      break;
-    }
-  }
-  return arr;
-}
 function _M0MPC15array5Array3mapGUOsRPC15debug4ReprERPC15debug4ReprE(self, f) {
   const arr = new Array(self.length);
   const _bind$2 = self.length;
@@ -6019,6 +6076,23 @@ function _M0MPC15array5Array3mapGUOsRPC15debug4ReprERPC15debug4ReprE(self, f) {
   return arr;
 }
 function _M0MPC15array5Array3mapGRPC15debug4ReprRPC15debug7ContentE(self, f) {
+  const arr = new Array(self.length);
+  const _bind$2 = self.length;
+  let _tmp = 0;
+  while (true) {
+    const i = _tmp;
+    if (i < _bind$2) {
+      const v = self[i];
+      arr[i] = f(v);
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return arr;
+}
+function _M0MPC15array5Array3mapGcRP211localreview3awk5ValueE(self, f) {
   const arr = new Array(self.length);
   const _bind$2 = self.length;
   let _tmp = 0;
@@ -6617,6 +6691,9 @@ function _M0MPC15array5Array3popGbE(self) {
     return v;
   }
 }
+function _M0MPC15array5Array4copyGcE(self) {
+  return _M0MPB7JSArray4copy(self);
+}
 function _M0MPC15array5Array2atGRPC16string10StringViewE(self, index) {
   const len = self.length;
   return index >= 0 && index < len ? self[index] : $panic();
@@ -7055,11 +7132,48 @@ function _M0MPC15array5Array3anyGRP211localreview3awk4RuleE(self, f) {
   }
   return false;
 }
+function _M0MPC15array5Array3anyGcE(self, f) {
+  const _bind$2 = self.length;
+  let _tmp = 0;
+  while (true) {
+    const _ = _tmp;
+    if (_ < _bind$2) {
+      const v = self[_];
+      if (f(v)) {
+        return true;
+      }
+      _tmp = _ + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return false;
+}
 function _M0MPC15array5Array5clearGsE(self) {
   _M0MPC15array5Array28unsafe__truncate__to__lengthGsE(self, 0);
 }
 function _M0MPC15array5Array5clearGcE(self) {
   _M0MPC15array5Array28unsafe__truncate__to__lengthGcE(self, 0);
+}
+function _M0MPC15array5Array6filterGcE(self, f) {
+  const arr = [];
+  const _bind$2 = self.length;
+  let _tmp = 0;
+  while (true) {
+    const _ = _tmp;
+    if (_ < _bind$2) {
+      const v = self[_];
+      if (f(v)) {
+        _M0MPC15array5Array4pushGcE(arr, v);
+      }
+      _tmp = _ + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return arr;
 }
 function _M0MPC15array5Array6filterGsE(self, f) {
   const arr = [];
@@ -11478,54 +11592,54 @@ function _M0FPC14math2ln(_tmp) {
 function _M0FPC14math3exp(_tmp) {
   return Math.exp(_tmp);
 }
-function _M0IP211localreview3awk10ParseErrorPC15debug5Debug8to__repr(_x_1004) {
-  let _arg_1006;
+function _M0IP211localreview3awk10ParseErrorPC15debug5Debug8to__repr(_x_1108) {
+  let _arg_1110;
   _L: {
-    let _arg_1005;
+    let _arg_1109;
     _L$2: {
-      if (_x_1004.$tag === 1) {
-        const _Invalid = _x_1004;
-        const _$42$arg_1005 = _Invalid._0;
-        _arg_1005 = _$42$arg_1005;
+      if (_x_1108.$tag === 1) {
+        const _Invalid = _x_1108;
+        const _$42$arg_1109 = _Invalid._0;
+        _arg_1109 = _$42$arg_1109;
         break _L$2;
       } else {
-        const _InputFailure = _x_1004;
-        const _$42$arg_1006 = _InputFailure._0;
-        _arg_1006 = _$42$arg_1006;
+        const _InputFailure = _x_1108;
+        const _$42$arg_1110 = _InputFailure._0;
+        _arg_1110 = _$42$arg_1110;
         break _L;
       }
     }
-    return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1005) }]);
+    return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1109) }]);
   }
-  return _M0MPC15debug4Repr4ctor("InputFailure", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1006) }]);
+  return _M0MPC15debug4Repr4ctor("InputFailure", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1110) }]);
 }
-function _M0IP211localreview3awk10ParseErrorPC15debug5Debug8to__reprGRP211localreview3awk10ParseErrorE(_x_1004) {
-  let _arg_1006;
+function _M0IP211localreview3awk10ParseErrorPC15debug5Debug8to__reprGRP211localreview3awk10ParseErrorE(_x_1108) {
+  let _arg_1110;
   _L: {
-    let _arg_1005;
+    let _arg_1109;
     _L$2: {
-      if (_x_1004.$tag === 1) {
-        const _Invalid = _x_1004;
-        const _$42$arg_1005 = _Invalid._0;
-        _arg_1005 = _$42$arg_1005;
+      if (_x_1108.$tag === 1) {
+        const _Invalid = _x_1108;
+        const _$42$arg_1109 = _Invalid._0;
+        _arg_1109 = _$42$arg_1109;
         break _L$2;
       } else {
-        const _InputFailure = _x_1004;
-        const _$42$arg_1006 = _InputFailure._0;
-        _arg_1006 = _$42$arg_1006;
+        const _InputFailure = _x_1108;
+        const _$42$arg_1110 = _InputFailure._0;
+        _arg_1110 = _$42$arg_1110;
         break _L;
       }
     }
-    return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1005) }]);
+    return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1109) }]);
   }
-  return _M0MPC15debug4Repr4ctor("InputFailure", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1006) }]);
+  return _M0MPC15debug4Repr4ctor("InputFailure", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1110) }]);
 }
-function _M0IP211localreview3awk9RunResultPB6ToJson8to__json(_x_995) {
+function _M0IP211localreview3awk9RunResultPB6ToJson8to__json(_x_1099) {
   const _bind$2 = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind$2, 0, 0), undefined);
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "output", _M0IPC16string6StringPB6ToJson8to__json(_x_995.output));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "exit_status", _M0IPC13int3IntPB6ToJson8to__json(_x_995.exit_status));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "steps", _M0IPC13int3IntPB6ToJson8to__json(_x_995.steps));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "output", _M0IPC16string6StringPB6ToJson8to__json(_x_1099.output));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "exit_status", _M0IPC13int3IntPB6ToJson8to__json(_x_1099.exit_status));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "steps", _M0IPC13int3IntPB6ToJson8to__json(_x_1099.steps));
   return _M0MPC14json4Json6object($36$map);
 }
 function _M0FP211localreview3awk6finite(n) {
@@ -11868,163 +11982,450 @@ function _M0MP211localreview3awk5State4tick(self) {
   self.steps = self.steps + 1 | 0;
   return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
 }
-function _M0MP211localreview3awk5State12local__frame(self, name) {
-  _L: {
-    let frame;
-    _L$2: {
-      const _bind$2 = _M0MPC15array5Array4lastGRP211localreview3awk5FrameE(self.frames);
-      if (_bind$2 === undefined) {
-        break _L;
-      } else {
-        const _Some = _bind$2;
-        const _frame = _Some;
-        frame = _frame;
-        break _L$2;
-      }
-    }
-    if (_M0MPC15array5Array8containsGsE(frame.params, name)) {
-      return frame;
-    } else {
-      break _L;
-    }
-  }
-  return undefined;
-}
-function _M0MP211localreview3awk5State10has__array(self, name) {
-  let frame;
-  _L: {
-    const _bind$2 = _M0MP211localreview3awk5State12local__frame(self, name);
-    if (_bind$2 === undefined) {
-      return _M0MPB3Map8containsGsRPB3MapGsRP211localreview3awk5ValueEE(self.arrays, name);
-    } else {
-      const _Some = _bind$2;
-      const _frame = _Some;
-      frame = _frame;
-      break _L;
-    }
-  }
-  return _M0MPB3Map8containsGsRPB3MapGsRP211localreview3awk5ValueEE(frame.arrays, name);
-}
-function _M0MP211localreview3awk5State8variable(self, name) {
-  let vars;
-  let frame;
-  _L: {
-    _L$2: {
-      const _bind$2 = _M0MP211localreview3awk5State12local__frame(self, name);
-      if (_bind$2 === undefined) {
-        vars = self.vars;
-      } else {
-        const _Some = _bind$2;
-        const _frame = _Some;
-        frame = _frame;
-        break _L$2;
-      }
-      break _L;
-    }
-    vars = frame.vars;
-  }
-  if (_M0MP211localreview3awk5State10has__array(self, name)) {
-    return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`array used as scalar: ${name}`));
-  }
-  let value;
-  _L$2: {
-    const _bind$2 = _M0MPB3Map3getGsRP211localreview3awk5ValueE(vars, name);
-    if (_bind$2 === undefined) {
-      _M0MPB3Map3setGsRP211localreview3awk5ValueE(vars, name, _M0DTP211localreview3awk5Value5Empty__);
-      return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(_M0DTP211localreview3awk5Value5Empty__);
-    } else {
-      const _Some = _bind$2;
-      const _value = _Some;
-      value = _value;
-      break _L$2;
-    }
-  }
-  return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(value);
-}
-function _M0MP211localreview3awk5State5array(self, name) {
-  const frame = _M0MP211localreview3awk5State12local__frame(self, name);
-  let vars;
-  let f;
-  _L: {
-    _L$2: {
-      if (frame === undefined) {
-        vars = self.vars;
-      } else {
-        const _Some = frame;
-        const _f = _Some;
-        f = _f;
-        break _L$2;
-      }
-      break _L;
-    }
-    vars = f.vars;
-  }
-  let arrays;
-  let f$2;
-  _L$2: {
-    _L$3: {
-      if (frame === undefined) {
-        arrays = self.arrays;
-      } else {
-        const _Some = frame;
-        const _f = _Some;
-        f$2 = _f;
-        break _L$3;
-      }
-      break _L$2;
-    }
-    arrays = f$2.arrays;
-  }
-  if (_M0MPB3Map8containsGsRP211localreview3awk5ValueE(vars, name)) {
-    return new _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`scalar used as array: ${name}`));
-  }
-  let a;
-  _L$3: {
-    const _bind$2 = _M0MPB3Map3getGsRPB3MapGsRP211localreview3awk5ValueEE(arrays, name);
-    if (_bind$2 === undefined) {
-      const _bind$3 = [];
-      const a$2 = _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$3, 0, 0), undefined);
-      _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(arrays, name, a$2);
-      let f$3;
-      _L$4: {
-        _L$5: {
-          if (frame === undefined) {
-          } else {
-            const _Some = frame;
-            const _f = _Some;
-            f$3 = _f;
-            break _L$5;
-          }
-          break _L$4;
-        }
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(f$3.owned, a$2);
-      }
-      return new _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(a$2);
-    } else {
-      const _Some = _bind$2;
-      const _a = _Some;
-      a = _a;
-      break _L$3;
-    }
-  }
-  return new _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(a);
-}
-function _M0MP211localreview3awk5State12put__element(self, name, key, value) {
-  const _bind$2 = _M0MP211localreview3awk5State5array(self, name);
-  let a;
+function _M0MP211localreview3awk9MainInput4more(self, st) {
+  const _bind$2 = _M0MP211localreview3awk5State4tick(st);
   if (_bind$2.$tag === 1) {
     const _ok = _bind$2;
-    a = _ok._0;
+    _ok._0;
   } else {
     return _bind$2;
   }
-  if (!_M0MPB3Map8containsGsRP211localreview3awk5ValueE(a, key)) {
-    if (self.entries >= 100000) {
-      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("array entry budget"));
+  let message;
+  _L: {
+    _L$2: {
+      const _bind$3 = self.failure;
+      if (_bind$3 === undefined) {
+      } else {
+        const _Some = _bind$3;
+        const _message = _Some;
+        message = _message;
+        break _L$2;
+      }
+      break _L;
     }
-    self.entries = self.entries + 1 | 0;
+    return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error45localreview_2fawk_2eParseError_2eInputFailure(message));
   }
-  return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(_M0MPB3Map3setGsRP211localreview3awk5ValueE(a, key, value));
+  if (self.start > 0) {
+    self.data = _M0MPC15array9ArrayView9to__ownedGcE(_M0MPC15array5Array12view_2einnerGcE(self.data, self.start, undefined));
+    self.start = 0;
+  }
+  let message$2;
+  _L$2: {
+    let text;
+    _L$3: {
+      const _func = self.reader;
+      const _bind$3 = _func(_M0DTP211localreview3awk12InputRequest4Read__);
+      switch (_bind$3.$tag) {
+        case 1: {
+          const _Chunk = _bind$3;
+          const _text = _Chunk._0;
+          text = _text;
+          break _L$3;
+        }
+        case 2: {
+          self.eof = true;
+          return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+        }
+        case 3: {
+          const _Failed = _bind$3;
+          const _message = _Failed._0;
+          message$2 = _message;
+          break _L$2;
+        }
+        default: {
+          return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("input provider must return Chunk or End for Read"));
+        }
+      }
+    }
+    if (_M0MPC16string6String9is__empty(text) || text.length > 65536) {
+      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("input chunk must contain 1..65536 UTF-16 units"));
+    }
+    const _bind$3 = _M0MPC16string6String9to__array(text);
+    const _bind$4 = _bind$3.length;
+    let _tmp = 0;
+    while (true) {
+      const _ = _tmp;
+      if (_ < _bind$4) {
+        const c = _bind$3[_];
+        _M0MPC15array5Array4pushGcE(self.data, c);
+        _tmp = _ + 1 | 0;
+        continue;
+      } else {
+        break;
+      }
+    }
+    if (self.data.length > 1065536) {
+      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("record length budget"));
+    } else {
+      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+    }
+  }
+  self.failure = message$2;
+  return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error45localreview_2fawk_2eParseError_2eInputFailure(message$2));
+}
+function _M0MP211localreview3awk9MainInput9csv__peek(self, st) {
+  while (true) {
+    if (self.start === self.data.length && !self.eof) {
+      const _bind$2 = _M0MP211localreview3awk9MainInput4more(self, st);
+      if (_bind$2.$tag === 1) {
+        const _ok = _bind$2;
+        _ok._0;
+      } else {
+        return _bind$2;
+      }
+      continue;
+    } else {
+      break;
+    }
+  }
+  return new _M0DTPC16result6ResultGOcRP211localreview3awk10ParseErrorE2Ok(_M0MPC15array5Array3getGcE(self.data, self.start));
+}
+function _M0MP211localreview3awk9MainInput9csv__body(self, st, mode, prefix) {
+  const raw = _M0MPC15array5Array4copyGcE(prefix);
+  const field = _M0MPC15array5Array4copyGcE(prefix);
+  const fields = [];
+  const quoted = new _M0TPB8MutLocalGbE(false);
+  const at_start = new _M0TPB8MutLocalGbE(_M0MPC15array5Array9is__emptyGcE(prefix));
+  const strip_cr = new _M0TPB8MutLocalGbE(false);
+  const units = new _M0TPB8MutLocalGiE(prefix.length);
+  while (true) {
+    let c;
+    _L: {
+      const _bind$2 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+      let _bind$3;
+      if (_bind$2.$tag === 1) {
+        const _ok = _bind$2;
+        _bind$3 = _ok._0;
+      } else {
+        return _bind$2;
+      }
+      if (_bind$3 === -1) {
+        break;
+      } else {
+        const _Some = _bind$3;
+        const _c = _Some;
+        c = _c;
+        break _L;
+      }
+    }
+    const _bind$2 = _M0MP211localreview3awk5State4tick(st);
+    if (_bind$2.$tag === 1) {
+      const _ok = _bind$2;
+      _ok._0;
+    } else {
+      return _bind$2;
+    }
+    self.start = self.start + 1 | 0;
+    units.val = units.val + (c > 65535 ? 2 : 1) | 0;
+    if (units.val > 1000000) {
+      return new _M0DTPC16result6ResultGUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("record length budget"));
+    }
+    if (at_start.val && c === 34) {
+      _M0MPC15array5Array4pushGcE(raw, c);
+      quoted.val = true;
+      at_start.val = false;
+      continue;
+    }
+    if (c === 13) {
+      const _bind$3 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+      let _bind$4;
+      if (_bind$3.$tag === 1) {
+        const _ok = _bind$3;
+        _bind$4 = _ok._0;
+      } else {
+        return _bind$3;
+      }
+      if (_bind$4 === -1) {
+        _M0MPC15array5Array4pushGcE(raw, c);
+        break;
+      }
+    }
+    if (quoted.val && c === 34) {
+      _M0MPC15array5Array4pushGcE(raw, c);
+      const _bind$3 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+      let next;
+      if (_bind$3.$tag === 1) {
+        const _ok = _bind$3;
+        next = _ok._0;
+      } else {
+        return _bind$3;
+      }
+      if (_M0IPC16option6OptionPB2Eq5equalGcE(next, 34)) {
+        self.start = self.start + 1 | 0;
+        _M0MPC15array5Array4pushGcE(raw, 34);
+        _M0MPC15array5Array4pushGcE(field, 34);
+        units.val = units.val + 1 | 0;
+        continue;
+      }
+      _L$2: {
+        _L$3: {
+          if (_M0IPC16option6OptionPB2Eq5equalGcE(next, mode.separator)) {
+            break _L$3;
+          } else {
+            if (_M0IPC16option6OptionPB2Eq5equalGcE(next, 10)) {
+              break _L$3;
+            } else {
+              if (next === -1) {
+                break _L$3;
+              } else {
+                if (_M0IPC16option6OptionPB2Eq5equalGcE(next, 13)) {
+                  self.start = self.start + 1 | 0;
+                  const _bind$4 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+                  let after;
+                  if (_bind$4.$tag === 1) {
+                    const _ok = _bind$4;
+                    after = _ok._0;
+                  } else {
+                    return _bind$4;
+                  }
+                  _L$4: {
+                    _L$5: {
+                      if (_M0IPC16option6OptionPB2Eq5equalGcE(after, 10)) {
+                        break _L$5;
+                      } else {
+                        if (after === -1) {
+                          break _L$5;
+                        }
+                      }
+                      break _L$4;
+                    }
+                    if (after === -1) {
+                      _M0MPC15array5Array4pushGcE(raw, 13);
+                    }
+                    break;
+                  }
+                  _M0MPC15array5Array4pushGcE(raw, 13);
+                  _M0MPC15array5Array4pushGcE(field, 34);
+                  _M0MPC15array5Array4pushGcE(field, 13);
+                  units.val = units.val + 1 | 0;
+                } else {
+                  _M0MPC15array5Array4pushGcE(field, 34);
+                }
+              }
+            }
+          }
+          break _L$2;
+        }
+        quoted.val = false;
+      }
+      continue;
+    }
+    let _tmp;
+    if (c === 10) {
+      _tmp = true;
+    } else {
+      let _tmp$2;
+      if (c === 13) {
+        const _bind$3 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+        let _tmp$3;
+        if (_bind$3.$tag === 1) {
+          const _ok = _bind$3;
+          _tmp$3 = _ok._0;
+        } else {
+          return _bind$3;
+        }
+        _tmp$2 = _M0IPC16option6OptionPB2Eq5equalGcE(_tmp$3, 10);
+      } else {
+        _tmp$2 = false;
+      }
+      _tmp = _tmp$2;
+    }
+    if (_tmp) {
+      if (c === 13) {
+        self.start = self.start + 1 | 0;
+      }
+      if (!quoted.val) {
+        break;
+      }
+      if (c === 13) {
+        _M0MPC15array5Array4pushGcE(raw, 13);
+        strip_cr.val = true;
+      }
+      _M0MPC15array5Array4pushGcE(raw, 10);
+      _M0MPC15array5Array4pushGcE(field, 10);
+      at_start.val = false;
+      continue;
+    }
+    _M0MPC15array5Array4pushGcE(raw, c);
+    if (!quoted.val && c === mode.separator) {
+      _M0MPC15array5Array4pushGRPC14json10WriteFrameE(fields, _M0FP211localreview3awk12input__value(_M0MPC16string6String11from__array(new _M0TPB9ArrayViewGcE(field, 0, field.length))));
+      if (fields.length >= 10000) {
+        return new _M0DTPC16result6ResultGUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("field count budget"));
+      }
+      _M0MPC15array5Array5clearGcE(field);
+      at_start.val = true;
+    } else {
+      _M0MPC15array5Array4pushGcE(field, c);
+      at_start.val = false;
+    }
+    continue;
+  }
+  _M0MPC15array5Array4pushGRPC14json10WriteFrameE(fields, _M0FP211localreview3awk12input__value(_M0MPC16string6String11from__array(new _M0TPB9ArrayViewGcE(field, 0, field.length))));
+  let text;
+  if (strip_cr.val) {
+    const _bind$2 = _M0MPC15array5Array6filterGcE(raw, (c) => c !== 13);
+    text = _M0MPC16string6String11from__array(new _M0TPB9ArrayViewGcE(_bind$2, 0, _bind$2.length));
+  } else {
+    text = _M0MPC16string6String11from__array(new _M0TPB9ArrayViewGcE(raw, 0, raw.length));
+  }
+  return new _M0DTPC16result6ResultGUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok({ _0: text, _1: fields });
+}
+function _M0MP211localreview3awk9MainInput8csv__row(self, st, mode) {
+  if (!self.csv_started) {
+    const _bind$2 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+    let _tmp;
+    if (_bind$2.$tag === 1) {
+      const _ok = _bind$2;
+      _tmp = _ok._0;
+    } else {
+      return _bind$2;
+    }
+    if (_M0IPC16option6OptionPB2Eq5equalGcE(_tmp, 65279)) {
+      self.start = self.start + 1 | 0;
+    }
+    self.csv_started = true;
+  }
+  while (true) {
+    let c;
+    const _bind$2 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+    let _bind$3;
+    if (_bind$2.$tag === 1) {
+      const _ok = _bind$2;
+      _bind$3 = _ok._0;
+    } else {
+      return _bind$2;
+    }
+    if (_bind$3 === -1) {
+      return new _M0DTPC16result6ResultGOUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok(undefined);
+    } else {
+      const _Some = _bind$3;
+      const _c = _Some;
+      c = _c;
+    }
+    if (c === mode.comment && mode.comment !== 0) {
+      while (true) {
+        let c$2;
+        _L: {
+          const _bind$4 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+          let _bind$5;
+          if (_bind$4.$tag === 1) {
+            const _ok = _bind$4;
+            _bind$5 = _ok._0;
+          } else {
+            return _bind$4;
+          }
+          if (_bind$5 === -1) {
+            break;
+          } else {
+            const _Some = _bind$5;
+            const _c = _Some;
+            c$2 = _c;
+            break _L;
+          }
+        }
+        self.start = self.start + 1 | 0;
+        const _bind$4 = _M0MP211localreview3awk5State4tick(st);
+        if (_bind$4.$tag === 1) {
+          const _ok = _bind$4;
+          _ok._0;
+        } else {
+          return _bind$4;
+        }
+        if (c$2 === 10) {
+          break;
+        }
+        continue;
+      }
+    } else {
+      if (c === 10) {
+        self.start = self.start + 1 | 0;
+      } else {
+        if (c === 13) {
+          self.start = self.start + 1 | 0;
+          const _bind$4 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+          let _tmp;
+          if (_bind$4.$tag === 1) {
+            const _ok = _bind$4;
+            _tmp = _ok._0;
+          } else {
+            return _bind$4;
+          }
+          if (_M0IPC16option6OptionPB2Eq5equalGcE(_tmp, 10)) {
+            self.start = self.start + 1 | 0;
+          } else {
+            const _bind$5 = _M0MP211localreview3awk9MainInput9csv__peek(self, st);
+            let _bind$6;
+            if (_bind$5.$tag === 1) {
+              const _ok = _bind$5;
+              _bind$6 = _ok._0;
+            } else {
+              return _bind$5;
+            }
+            if (_bind$6 === -1) {
+              return new _M0DTPC16result6ResultGOUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok(undefined);
+            } else {
+              const _bind$7 = _M0MP211localreview3awk9MainInput9csv__body(self, st, mode, [13]);
+              let _tmp$2;
+              if (_bind$7.$tag === 1) {
+                const _ok = _bind$7;
+                _tmp$2 = _ok._0;
+              } else {
+                return _bind$7;
+              }
+              return new _M0DTPC16result6ResultGOUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok(_tmp$2);
+            }
+          }
+        } else {
+          break;
+        }
+      }
+    }
+    continue;
+  }
+  const _bind$2 = _M0MP211localreview3awk9MainInput9csv__body(self, st, mode, []);
+  let _tmp;
+  if (_bind$2.$tag === 1) {
+    const _ok = _bind$2;
+    _tmp = _ok._0;
+  } else {
+    return _bind$2;
+  }
+  return new _M0DTPC16result6ResultGOUsRPB5ArrayGRP211localreview3awk5ValueEERP211localreview3awk10ParseErrorE2Ok(_tmp);
+}
+function _M0FP211localreview3awk11csv__record(text, mode, st) {
+  const source = new _M0TP211localreview3awk9MainInput((_discard_) => _M0DTP211localreview3awk10InputReply3End__, _M0MPC16string6String9to__array(text), 0, true, false, undefined, 0, true, 4, 10, mode, false, true);
+  return _M0MP211localreview3awk9MainInput8csv__row(source, st, mode);
+}
+function _M0FP211localreview3awk11csv__fields(text, mode, st) {
+  let fields;
+  _L: {
+    const _bind$2 = _M0FP211localreview3awk11csv__record(text, mode, st);
+    let _bind$3;
+    if (_bind$2.$tag === 1) {
+      const _ok = _bind$2;
+      _bind$3 = _ok._0;
+    } else {
+      return _bind$2;
+    }
+    if (_bind$3 === undefined) {
+      return new _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok([]);
+    } else {
+      const _Some = _bind$3;
+      const _x = _Some;
+      const _fields = _x._1;
+      fields = _fields;
+      break _L;
+    }
+  }
+  return new _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(fields);
+}
+function _M0FP211localreview3awk16drop__record__cr(text) {
+  const _bind$2 = "\r";
+  if (_M0MPC16string6String11has__suffix(text, new _M0TPC16string10StringView(_bind$2, 0, _bind$2.length))) {
+    return _M0MPC16string10StringView9to__owned(_M0MPC16string6String11sub_2einner(text, 0, text.length - 1 | 0));
+  } else {
+    return text;
+  }
 }
 function _M0FP211localreview3awk14class__matches(set, c) {
   const codes = [c];
@@ -13553,14 +13954,6 @@ function _M0FP211localreview3awk21split__fields_2einner(text, separator, st, is_
   }
   return new _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(_tmp);
 }
-function _M0FP211localreview3awk16drop__record__cr(text) {
-  const _bind$2 = "\r";
-  if (_M0MPC16string6String11has__suffix(text, new _M0TPC16string10StringView(_bind$2, 0, _bind$2.length))) {
-    return _M0MPC16string10StringView9to__owned(_M0MPC16string6String11sub_2einner(text, 0, text.length - 1 | 0));
-  } else {
-    return text;
-  }
-}
 function _M0FP211localreview3awk14decimal__power(n) {
   return _M0MPC16bigint6BigInt3pow(_M0MPC16bigint6BigInt9from__int(10), _M0MPC16bigint6BigInt9from__int(n), _M0DTPC16option6OptionGRPC16bigint6BigIntE4None__);
 }
@@ -14015,86 +14408,193 @@ function _M0FP211localreview3awk22format__values_2einner(format, values, st, con
   }
   return new _M0DTPC16result6ResultGsRP211localreview3awk10ParseErrorE2Ok(_M0MPB13StringBuilder10to__string(out));
 }
-function _M0MP211localreview3awk5State11set__record(self, text) {
-  if (text.length > 1000000) {
-    return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("record length budget"));
+function _M0MP211localreview3awk5State12local__frame(self, name) {
+  _L: {
+    let frame;
+    _L$2: {
+      const _bind$2 = _M0MPC15array5Array4lastGRP211localreview3awk5FrameE(self.frames);
+      if (_bind$2 === undefined) {
+        break _L;
+      } else {
+        const _Some = _bind$2;
+        const _frame = _Some;
+        frame = _frame;
+        break _L$2;
+      }
+    }
+    if (_M0MPC15array5Array8containsGsE(frame.params, name)) {
+      return frame;
+    } else {
+      break _L;
+    }
   }
-  self.record = text;
-  const _bind$2 = _M0MP211localreview3awk5State8variable(self, "FS");
-  let _tmp;
+  return undefined;
+}
+function _M0MP211localreview3awk5State10has__array(self, name) {
+  let frame;
+  _L: {
+    const _bind$2 = _M0MP211localreview3awk5State12local__frame(self, name);
+    if (_bind$2 === undefined) {
+      return _M0MPB3Map8containsGsRPB3MapGsRP211localreview3awk5ValueEE(self.arrays, name);
+    } else {
+      const _Some = _bind$2;
+      const _frame = _Some;
+      frame = _frame;
+      break _L;
+    }
+  }
+  return _M0MPB3Map8containsGsRPB3MapGsRP211localreview3awk5ValueEE(frame.arrays, name);
+}
+function _M0MP211localreview3awk5State8variable(self, name) {
+  if (name === "NF") {
+    const _bind$2 = _M0MP211localreview3awk5State14ensure__fields(self);
+    if (_bind$2.$tag === 1) {
+      const _ok = _bind$2;
+      _ok._0;
+    } else {
+      return _bind$2;
+    }
+  }
+  let vars;
+  let frame;
+  _L: {
+    _L$2: {
+      const _bind$2 = _M0MP211localreview3awk5State12local__frame(self, name);
+      if (_bind$2 === undefined) {
+        vars = self.vars;
+      } else {
+        const _Some = _bind$2;
+        const _frame = _Some;
+        frame = _frame;
+        break _L$2;
+      }
+      break _L;
+    }
+    vars = frame.vars;
+  }
+  if (_M0MP211localreview3awk5State10has__array(self, name)) {
+    return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`array used as scalar: ${name}`));
+  }
+  let value;
+  _L$2: {
+    const _bind$2 = _M0MPB3Map3getGsRP211localreview3awk5ValueE(vars, name);
+    if (_bind$2 === undefined) {
+      _M0MPB3Map3setGsRP211localreview3awk5ValueE(vars, name, _M0DTP211localreview3awk5Value5Empty__);
+      return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(_M0DTP211localreview3awk5Value5Empty__);
+    } else {
+      const _Some = _bind$2;
+      const _value = _Some;
+      value = _value;
+      break _L$2;
+    }
+  }
+  return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(value);
+}
+function _M0MP211localreview3awk5State14ensure__fields(self) {
+  if (self.fields_ready) {
+    return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+  }
+  self.fields_ready = true;
+  let mode;
+  _L: {
+    _L$2: {
+      const _bind$2 = self.input_mode;
+      if (_bind$2 === undefined) {
+      } else {
+        const _Some = _bind$2;
+        const _mode = _Some;
+        mode = _mode;
+        break _L$2;
+      }
+      break _L;
+    }
+    if (!self.reuse_csv_fields) {
+      const _bind$2 = _M0FP211localreview3awk11csv__fields(self.record, mode, self);
+      let parsed;
+      if (_bind$2.$tag === 1) {
+        const _ok = _bind$2;
+        parsed = _ok._0;
+      } else {
+        return _bind$2;
+      }
+      _M0MPC15array5Array5clearGsE(self.fields);
+      const _bind$3 = parsed.length;
+      let _tmp = 0;
+      while (true) {
+        const _ = _tmp;
+        if (_ < _bind$3) {
+          const field = parsed[_];
+          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(self.fields, field);
+          _tmp = _ + 1 | 0;
+          continue;
+        } else {
+          break;
+        }
+      }
+    }
+    _M0MPB3Map3setGsRP211localreview3awk5ValueE(self.vars, "NF", new _M0DTP211localreview3awk5Value6Number(self.fields.length + 0));
+    return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+  }
+  const fs = self.saved_fs;
+  const _bind$2 = _M0FP211localreview3awk21split__fields_2einner(self.record, fs, self, false);
+  let raw;
   if (_bind$2.$tag === 1) {
     const _ok = _bind$2;
-    _tmp = _ok._0;
+    raw = _ok._0;
   } else {
     return _bind$2;
   }
-  const _bind$3 = _M0MP211localreview3awk5State12text_2einner(self, _tmp, false);
-  let fs;
+  let fields;
+  let _tmp;
+  const _bind$3 = _M0MP211localreview3awk5State8variable(self, "RS");
+  let _tmp$2;
   if (_bind$3.$tag === 1) {
     const _ok = _bind$3;
-    fs = _ok._0;
+    _tmp$2 = _ok._0;
   } else {
     return _bind$3;
   }
-  const _bind$4 = _M0FP211localreview3awk21split__fields_2einner(text, fs, self, false);
-  let raw;
+  const _bind$4 = _M0MP211localreview3awk5State12text_2einner(self, _tmp$2, false);
+  let _tmp$3;
   if (_bind$4.$tag === 1) {
     const _ok = _bind$4;
-    raw = _ok._0;
+    _tmp$3 = _ok._0;
   } else {
     return _bind$4;
   }
-  let fields;
-  let _tmp$2;
-  const _bind$5 = _M0MP211localreview3awk5State8variable(self, "RS");
-  let _tmp$3;
-  if (_bind$5.$tag === 1) {
-    const _ok = _bind$5;
-    _tmp$3 = _ok._0;
+  if (_M0MPC16string6String9is__empty(_tmp$3)) {
+    _tmp = _M0MPC16string6String9to__array(fs).length === 1;
   } else {
-    return _bind$5;
+    _tmp = false;
   }
-  const _bind$6 = _M0MP211localreview3awk5State12text_2einner(self, _tmp$3, false);
-  let _tmp$4;
-  if (_bind$6.$tag === 1) {
-    const _ok = _bind$6;
-    _tmp$4 = _ok._0;
-  } else {
-    return _bind$6;
-  }
-  if (_M0MPC16string6String9is__empty(_tmp$4)) {
-    _tmp$2 = _M0MPC16string6String9to__array(fs).length === 1;
-  } else {
-    _tmp$2 = false;
-  }
-  if (_tmp$2) {
+  if (_tmp) {
     const result = [];
-    const _bind$7 = raw.length;
-    let _tmp$5 = 0;
+    const _bind$5 = raw.length;
+    let _tmp$4 = 0;
     while (true) {
-      const _ = _tmp$5;
-      if (_ < _bind$7) {
+      const _ = _tmp$4;
+      if (_ < _bind$5) {
         const value = raw[_];
-        const _tmp$6 = _M0MP211localreview3awk5Value4text(value);
-        const _bind$8 = "\n";
-        const _it = _M0MPC16string6String5split(_tmp$6, new _M0TPC16string10StringView(_bind$8, 0, _bind$8.length));
+        const _tmp$5 = _M0MP211localreview3awk5Value4text(value);
+        const _bind$6 = "\n";
+        const _it = _M0MPC16string6String5split(_tmp$5, new _M0TPC16string10StringView(_bind$6, 0, _bind$6.length));
         while (true) {
           let part;
-          _L: {
-            const _bind$9 = _M0MPB4Iter4nextGUsRPB4JsonEE(_it);
-            if (_bind$9 === undefined) {
+          _L$2: {
+            const _bind$7 = _M0MPB4Iter4nextGUsRPB4JsonEE(_it);
+            if (_bind$7 === undefined) {
               break;
             } else {
-              const _Some = _bind$9;
+              const _Some = _bind$7;
               const _part = _Some;
               part = _part;
-              break _L;
+              break _L$2;
             }
           }
           _M0MPC15array5Array4pushGRPC14json10WriteFrameE(result, _M0FP211localreview3awk12input__value(_M0FP211localreview3awk16drop__record__cr(_M0MPC16string10StringView9to__owned(part))));
           continue;
         }
-        _tmp$5 = _ + 1 | 0;
+        _tmp$4 = _ + 1 | 0;
         continue;
       } else {
         break;
@@ -14108,20 +14608,203 @@ function _M0MP211localreview3awk5State11set__record(self, text) {
     return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("field count budget"));
   }
   _M0MPC15array5Array5clearGsE(self.fields);
-  const _bind$7 = fields.length;
-  let _tmp$5 = 0;
+  const _bind$5 = fields.length;
+  let _tmp$4 = 0;
   while (true) {
-    const _ = _tmp$5;
-    if (_ < _bind$7) {
+    const _ = _tmp$4;
+    if (_ < _bind$5) {
       const field = fields[_];
       _M0MPC15array5Array4pushGRPC14json10WriteFrameE(self.fields, field);
-      _tmp$5 = _ + 1 | 0;
+      _tmp$4 = _ + 1 | 0;
       continue;
     } else {
       break;
     }
   }
   return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(_M0MPB3Map3setGsRP211localreview3awk5ValueE(self.vars, "NF", new _M0DTP211localreview3awk5Value6Number(self.fields.length + 0)));
+}
+function _M0MP211localreview3awk5State5array(self, name) {
+  const frame = _M0MP211localreview3awk5State12local__frame(self, name);
+  let vars;
+  let f;
+  _L: {
+    _L$2: {
+      if (frame === undefined) {
+        vars = self.vars;
+      } else {
+        const _Some = frame;
+        const _f = _Some;
+        f = _f;
+        break _L$2;
+      }
+      break _L;
+    }
+    vars = f.vars;
+  }
+  let arrays;
+  let f$2;
+  _L$2: {
+    _L$3: {
+      if (frame === undefined) {
+        arrays = self.arrays;
+      } else {
+        const _Some = frame;
+        const _f = _Some;
+        f$2 = _f;
+        break _L$3;
+      }
+      break _L$2;
+    }
+    arrays = f$2.arrays;
+  }
+  if (_M0MPB3Map8containsGsRP211localreview3awk5ValueE(vars, name)) {
+    return new _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`scalar used as array: ${name}`));
+  }
+  let a;
+  _L$3: {
+    const _bind$2 = _M0MPB3Map3getGsRPB3MapGsRP211localreview3awk5ValueEE(arrays, name);
+    if (_bind$2 === undefined) {
+      const _bind$3 = [];
+      const a$2 = _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$3, 0, 0), undefined);
+      _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(arrays, name, a$2);
+      let f$3;
+      _L$4: {
+        _L$5: {
+          if (frame === undefined) {
+          } else {
+            const _Some = frame;
+            const _f = _Some;
+            f$3 = _f;
+            break _L$5;
+          }
+          break _L$4;
+        }
+        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(f$3.owned, a$2);
+      }
+      return new _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(a$2);
+    } else {
+      const _Some = _bind$2;
+      const _a = _Some;
+      a = _a;
+      break _L$3;
+    }
+  }
+  return new _M0DTPC16result6ResultGRPB3MapGsRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok(a);
+}
+function _M0MP211localreview3awk5State12put__element(self, name, key, value) {
+  const _bind$2 = _M0MP211localreview3awk5State5array(self, name);
+  let a;
+  if (_bind$2.$tag === 1) {
+    const _ok = _bind$2;
+    a = _ok._0;
+  } else {
+    return _bind$2;
+  }
+  if (!_M0MPB3Map8containsGsRP211localreview3awk5ValueE(a, key)) {
+    if (self.entries >= 100000) {
+      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("array entry budget"));
+    }
+    self.entries = self.entries + 1 | 0;
+  }
+  return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(_M0MPB3Map3setGsRP211localreview3awk5ValueE(a, key, value));
+}
+function _M0MP211localreview3awk5State19set__record_2einner(self, text, true_string) {
+  if (text.length > 1000000) {
+    return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("record length budget"));
+  }
+  self.record = text;
+  self.record_true_string = true_string;
+  const _bind$2 = _M0MP211localreview3awk5State8variable(self, "FS");
+  let _tmp;
+  if (_bind$2.$tag === 1) {
+    const _ok = _bind$2;
+    _tmp = _ok._0;
+  } else {
+    return _bind$2;
+  }
+  const _bind$3 = _M0MP211localreview3awk5State12text_2einner(self, _tmp, false);
+  let _tmp$2;
+  if (_bind$3.$tag === 1) {
+    const _ok = _bind$3;
+    _tmp$2 = _ok._0;
+  } else {
+    return _bind$3;
+  }
+  self.saved_fs = _tmp$2;
+  self.fields_ready = false;
+  self.reuse_csv_fields = false;
+  return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+}
+function _M0FP211localreview3awk10csv__write(fields, separator) {
+  const result = _M0MPB13StringBuilder21StringBuilder_2einner(0);
+  const _bind$2 = fields.length;
+  let _tmp = 0;
+  while (true) {
+    const i = _tmp;
+    if (i < _bind$2) {
+      const field = fields[i];
+      if (i > 0) {
+        _M0IPB13StringBuilderPB6Logger11write__char(result, separator);
+      }
+      const chars = _M0MPC16string6String9to__array(field);
+      let quote;
+      if (field === "\\.") {
+        quote = true;
+      } else {
+        let _tmp$2;
+        if (_M0MPC15array5Array3anyGcE(chars, (c) => c === separator || (c === 34 || (c === 13 || c === 10)))) {
+          _tmp$2 = true;
+        } else {
+          let _tmp$3;
+          let c;
+          _L: {
+            _L$2: {
+              const _bind$3 = _M0MPC15array5Array3getGcE(chars, 0);
+              if (_bind$3 === -1) {
+                _tmp$3 = false;
+              } else {
+                const _Some = _bind$3;
+                const _c = _Some;
+                c = _c;
+                break _L$2;
+              }
+              break _L;
+            }
+            _tmp$3 = _M0MPC14char4Char14is__whitespace(c);
+          }
+          _tmp$2 = _tmp$3;
+        }
+        quote = _tmp$2;
+      }
+      if (quote) {
+        _M0IPB13StringBuilderPB6Logger11write__char(result, 34);
+      }
+      const _bind$3 = chars.length;
+      let _tmp$2 = 0;
+      while (true) {
+        const _ = _tmp$2;
+        if (_ < _bind$3) {
+          const c = chars[_];
+          _M0IPB13StringBuilderPB6Logger11write__char(result, c);
+          if (quote && c === 34) {
+            _M0IPB13StringBuilderPB6Logger11write__char(result, 34);
+          }
+          _tmp$2 = _ + 1 | 0;
+          continue;
+        } else {
+          break;
+        }
+      }
+      if (quote) {
+        _M0IPB13StringBuilderPB6Logger11write__char(result, 34);
+      }
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return _M0MPB13StringBuilder10to__string(result);
 }
 function _M0MP211localreview3awk5State7rebuild(self) {
   const _bind$2 = _M0MP211localreview3awk5State8variable(self, "OFS");
@@ -14167,20 +14850,41 @@ function _M0MP211localreview3awk5State7rebuild(self) {
       break;
     }
   }
+  self.record_true_string = true;
   const _bind$6 = _M0MPC15array5Array3mapGRP211localreview3awk5ValuesEHRP211localreview3awk10ParseError(self.fields, (v) => _M0MP211localreview3awk5State12text_2einner(self, v, false));
-  let _tmp$3;
+  let texts;
   if (_bind$6.$tag === 1) {
     const _ok = _bind$6;
-    _tmp$3 = _ok._0;
+    texts = _ok._0;
   } else {
     return _bind$6;
   }
-  self.record = _M0MPC15array5Array4joinGsE(_tmp$3, new _M0TPC16string10StringView(ofs, 0, ofs.length));
+  let _tmp$3;
+  let mode;
+  _L: {
+    _L$2: {
+      const _bind$7 = self.output_mode;
+      if (_bind$7 === undefined) {
+        _tmp$3 = _M0MPC15array5Array4joinGsE(texts, new _M0TPC16string10StringView(ofs, 0, ofs.length));
+      } else {
+        const _Some = _bind$7;
+        const _mode = _Some;
+        mode = _mode;
+        break _L$2;
+      }
+      break _L;
+    }
+    _tmp$3 = _M0FP211localreview3awk10csv__write(texts, mode.separator);
+  }
+  self.record = _tmp$3;
+  if (self.record.length > 1000000) {
+    return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("record length budget"));
+  }
   return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(_M0MPB3Map3setGsRP211localreview3awk5ValueE(self.vars, "NF", new _M0DTP211localreview3awk5Value6Number(self.fields.length + 0)));
 }
 function _M0FP211localreview3awk12field__index(n) {
-  if (n < 0 || n > 10000) {
-    return new _M0DTPC16result6ResultGiRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("field index 0..10000 required"));
+  if (n < -10000 || n > 10000) {
+    return new _M0DTPC16result6ResultGiRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("field index -10000..10000 required"));
   }
   return new _M0DTPC16result6ResultGiRP211localreview3awk10ParseErrorE2Ok(_M0MPC16double6Double7to__int(n));
 }
@@ -14217,7 +14921,19 @@ function _M0MP211localreview3awk5State4read(self, slot) {
       }
       return _M0MP211localreview3awk5State8variable(self, name$2);
     }
-    return i === 0 ? new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(_M0FP211localreview3awk12input__value(self.record)) : new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(_M0MPC16option6Option10unwrap__orGRP211localreview3awk5ValueE(_M0MPC15array5Array3getGRP211localreview3awk5ValueE(self.fields, i - 1 | 0), _M0DTP211localreview3awk5Value5Empty__));
+    if (i === 0) {
+      return self.record_true_string ? new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(new _M0DTP211localreview3awk5Value4Text(self.record)) : new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(_M0FP211localreview3awk12input__value(self.record));
+    } else {
+      const _bind$2 = _M0MP211localreview3awk5State14ensure__fields(self);
+      if (_bind$2.$tag === 1) {
+        const _ok = _bind$2;
+        _ok._0;
+      } else {
+        return _bind$2;
+      }
+      const index = i < 0 ? (self.fields.length + 1 | 0) + i | 0 : i;
+      return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(_M0MPC16option6Option10unwrap__orGRP211localreview3awk5ValueE(_M0MPC15array5Array3getGRP211localreview3awk5ValueE(self.fields, index - 1 | 0), new _M0DTP211localreview3awk5Value4Text("")));
+    }
   }
   const _bind$2 = _M0MP211localreview3awk5State5array(self, name);
   let a;
@@ -14247,6 +14963,137 @@ function _M0MP211localreview3awk5State4read(self, slot) {
     }
   }
   return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(v);
+}
+function _M0FP211localreview3awk9csv__mode(text, input) {
+  const chars = _M0MPC16string6String9to__array(text);
+  const words = [];
+  const first = new _M0TPB8MutLocalGiE(0);
+  const _bind$2 = 0;
+  const _bind$3 = chars.length;
+  let _tmp = _bind$2;
+  while (true) {
+    const i = _tmp;
+    if (i <= _bind$3) {
+      if (i === chars.length || _M0MPC14char4Char14is__whitespace(_M0MPC15array5Array2atGcE(chars, i))) {
+        if (first.val < i) {
+          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(words, _M0MPC16string6String11from__array(_M0MPC15array5Array12view_2einnerGcE(chars, first.val, i)));
+        }
+        first.val = i + 1 | 0;
+      }
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  if (_M0MPC15array5Array9is__emptyGRPB4JsonE(words)) {
+    return new _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE2Ok(undefined);
+  }
+  const format = _M0MPC15array5Array2atGRPC16string10StringViewE(words, 0);
+  let _tmp$2;
+  switch (format) {
+    case "csv": {
+      _tmp$2 = 44;
+      break;
+    }
+    case "tsv": {
+      _tmp$2 = 9;
+      break;
+    }
+    default: {
+      return new _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid CSV/TSV mode"));
+    }
+  }
+  const separator = new _M0TPB8MutLocalGcE(_tmp$2);
+  const comment = new _M0TPB8MutLocalGcE(0);
+  const header = new _M0TPB8MutLocalGbE(false);
+  const _bind$4 = _M0MPC15array5Array12view_2einnerGRP211localreview3awk5ValueE(words, 1, undefined);
+  const _bind$5 = _bind$4.end - _bind$4.start | 0;
+  let _tmp$3 = 0;
+  while (true) {
+    const _ = _tmp$3;
+    if (_ < _bind$5) {
+      const word = _bind$4.buf[_bind$4.start + _ | 0];
+      const _bind$6 = "=";
+      const parts = _M0MPB4Iter9to__arrayGRPC16string10StringViewE(_M0MPC16string6String5split(word, new _M0TPC16string10StringView(_bind$6, 0, _bind$6.length)));
+      const key = _M0MPC16string10StringView9to__owned(_M0MPC15array5Array2atGRPC16string10StringViewE(parts, 0));
+      const value = parts.length > 1 ? _M0MPC16string10StringView9to__owned(_M0MPC16string6String11sub_2einner(word, key.length + 1 | 0, undefined)) : "";
+      if (key === "separator" || input && key === "comment") {
+        const value$2 = _M0MPC16string6String9to__array(value);
+        if (value$2.length !== 1) {
+          return new _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("CSV delimiter must be one character"));
+        }
+        const c = _M0MPC15array5Array2atGcE(value$2, 0);
+        if (_M0MPC15array5Array8containsGcE([0, 13, 10, 34, 65533], c)) {
+          return new _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid CSV delimiter"));
+        }
+        if (key === "separator") {
+          separator.val = c;
+        } else {
+          comment.val = c;
+        }
+      } else {
+        if (input && key === "header") {
+          let _tmp$4;
+          switch (value) {
+            case "": {
+              _tmp$4 = true;
+              break;
+            }
+            case "true": {
+              _tmp$4 = true;
+              break;
+            }
+            case "false": {
+              _tmp$4 = false;
+              break;
+            }
+            default: {
+              return new _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid CSV header option"));
+            }
+          }
+          header.val = _tmp$4;
+        } else {
+          return new _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid CSV/TSV option"));
+        }
+      }
+      _tmp$3 = _ + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  if (separator.val === comment.val) {
+    return new _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("CSV separator equals comment delimiter"));
+  }
+  return new _M0DTPC16result6ResultGORP211localreview3awk7CSVModeRP211localreview3awk10ParseErrorE2Ok(new _M0TP211localreview3awk7CSVMode(format, separator.val, comment.val, header.val));
+}
+function _M0FP211localreview3awk15csv__mode__text(mode) {
+  let mode$2;
+  _L: {
+    if (mode === undefined) {
+      return "";
+    } else {
+      const _Some = mode;
+      const _mode = _Some;
+      mode$2 = _mode;
+      break _L;
+    }
+  }
+  const out = _M0MPB13StringBuilder21StringBuilder_2einner(0);
+  _M0IPB13StringBuilderPB6Logger13write__string(out, mode$2.format);
+  if (mode$2.separator !== (mode$2.format === "csv" ? 44 : 9)) {
+    _M0IPB13StringBuilderPB6Logger13write__string(out, " separator=");
+    _M0IPB13StringBuilderPB6Logger11write__char(out, mode$2.separator);
+  }
+  if (mode$2.comment !== 0) {
+    _M0IPB13StringBuilderPB6Logger13write__string(out, " comment=");
+    _M0IPB13StringBuilderPB6Logger11write__char(out, mode$2.comment);
+  }
+  if (mode$2.header) {
+    _M0IPB13StringBuilderPB6Logger13write__string(out, " header");
+  }
+  return _M0MPB13StringBuilder10to__string(out);
 }
 function _M0MP211localreview3awk5State13write_2einner(self, slot, value, global) {
   let name;
@@ -14282,14 +15129,49 @@ function _M0MP211localreview3awk5State13write_2einner(self, slot, value, global)
       if (global ? _M0MPB3Map8containsGsRPB3MapGsRP211localreview3awk5ValueEE(self.arrays, name$2) : _M0MP211localreview3awk5State10has__array(self, name$2)) {
         return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`array used as scalar: ${name$2}`));
       }
-      if (name$2 === "NF") {
-        const _bind$2 = _M0FP211localreview3awk12field__index(_M0MP211localreview3awk5Value6number(value));
-        let size;
+      if (name$2 === "INPUTMODE" || name$2 === "OUTPUTMODE") {
+        const _bind$2 = _M0MP211localreview3awk5State12text_2einner(self, value, false);
+        let _tmp;
         if (_bind$2.$tag === 1) {
           const _ok = _bind$2;
-          size = _ok._0;
+          _tmp = _ok._0;
         } else {
           return _bind$2;
+        }
+        const _bind$3 = _M0FP211localreview3awk9csv__mode(_tmp, name$2 === "INPUTMODE");
+        let mode;
+        if (_bind$3.$tag === 1) {
+          const _ok = _bind$3;
+          mode = _ok._0;
+        } else {
+          return _bind$3;
+        }
+        if (name$2 === "INPUTMODE") {
+          self.input_mode = mode;
+        } else {
+          self.output_mode = mode;
+        }
+        _M0MPB3Map3setGsRP211localreview3awk5ValueE(self.vars, name$2, new _M0DTP211localreview3awk5Value4Text(_M0FP211localreview3awk15csv__mode__text(mode)));
+        return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+      }
+      if (name$2 === "NF") {
+        const _bind$2 = _M0MP211localreview3awk5State14ensure__fields(self);
+        if (_bind$2.$tag === 1) {
+          const _ok = _bind$2;
+          _ok._0;
+        } else {
+          return _bind$2;
+        }
+        const _bind$3 = _M0FP211localreview3awk12field__index(_M0MP211localreview3awk5Value6number(value));
+        let size;
+        if (_bind$3.$tag === 1) {
+          const _ok = _bind$3;
+          size = _ok._0;
+        } else {
+          return _bind$3;
+        }
+        if (size < 0) {
+          return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("negative NF"));
         }
         while (true) {
           if (self.fields.length > size) {
@@ -14307,20 +15189,20 @@ function _M0MP211localreview3awk5State13write_2einner(self, slot, value, global)
             break;
           }
         }
-        const _bind$3 = _M0MP211localreview3awk5State7rebuild(self);
-        if (_bind$3.$tag === 1) {
-          const _ok = _bind$3;
+        const _bind$4 = _M0MP211localreview3awk5State7rebuild(self);
+        if (_bind$4.$tag === 1) {
+          const _ok = _bind$4;
           _ok._0;
         } else {
-          return _bind$3;
+          return _bind$4;
         }
         return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(_M0MPB3Map3setGsRP211localreview3awk5ValueE(self.vars, "NF", value));
       } else {
-        if (_M0MPC15array5Array8containsGsE(["ARGV", "ENVIRON"], name$2)) {
+        if (_M0MPC15array5Array8containsGsE(["ARGV", "ENVIRON", "FIELDS"], name$2)) {
           return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`unsupported special variable ${name$2}`));
         }
         let _tmp;
-        if (name$2 === "RS") {
+        if (name$2 === "RS" || name$2 === "FS") {
           const _bind$2 = _M0MP211localreview3awk5State12text_2einner(self, value, false);
           let _tmp$2;
           if (_bind$2.$tag === 1) {
@@ -14374,17 +15256,38 @@ function _M0MP211localreview3awk5State13write_2einner(self, slot, value, global)
       } else {
         return _bind$2;
       }
-      return _M0MP211localreview3awk5State11set__record(self, _tmp);
+      return _M0MP211localreview3awk5State19set__record_2einner(self, _tmp, true);
     } else {
+      const _bind$2 = _M0MP211localreview3awk5State14ensure__fields(self);
+      if (_bind$2.$tag === 1) {
+        const _ok = _bind$2;
+        _ok._0;
+      } else {
+        return _bind$2;
+      }
+      const i$2 = i < 0 ? (self.fields.length + 1 | 0) + i | 0 : i;
+      if (i$2 < 1) {
+        return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+      }
       while (true) {
-        if (self.fields.length < i) {
+        if (self.fields.length < i$2) {
           _M0MPC15array5Array4pushGRPC14json10WriteFrameE(self.fields, _M0DTP211localreview3awk5Value5Empty__);
           continue;
         } else {
           break;
         }
       }
-      _M0MPC15array5Array3setGRP211localreview3awk5ValueE(self.fields, i - 1 | 0, value);
+      const _tmp = self.fields;
+      const _tmp$2 = i$2 - 1 | 0;
+      const _bind$3 = _M0MP211localreview3awk5State12text_2einner(self, value, false);
+      let _tmp$3;
+      if (_bind$3.$tag === 1) {
+        const _ok = _bind$3;
+        _tmp$3 = _ok._0;
+      } else {
+        return _bind$3;
+      }
+      _M0MPC15array5Array3setGRP211localreview3awk5ValueE(_tmp, _tmp$2, new _M0DTP211localreview3awk5Value4Text(_tmp$3));
       return _M0MP211localreview3awk5State7rebuild(self);
     }
   }
@@ -14779,7 +15682,7 @@ function _M0FP211localreview3awk3lex(source, newlines) {
   return new _M0DTPC16result6ResultGRP211localreview3awk6CursorRP211localreview3awk10ParseErrorE2Ok(new _M0TP211localreview3awk6Cursor(ts, 0));
 }
 function _M0FP211localreview3awk17special__variable(name) {
-  return _M0MPC15array5Array8containsGsE(["FS", "OFS", "RS", "ORS", "NR", "FNR", "NF", "FILENAME", "OFMT", "CONVFMT", "SUBSEP", "RSTART", "RLENGTH", "RT", "ARGC", "ARGV", "ENVIRON"], name);
+  return _M0MPC15array5Array8containsGsE(["FS", "OFS", "RS", "ORS", "NR", "FNR", "NF", "FILENAME", "OFMT", "CONVFMT", "SUBSEP", "RSTART", "RLENGTH", "RT", "ARGC", "ARGV", "ENVIRON", "FIELDS", "INPUTMODE", "OUTPUTMODE"], name);
 }
 function _M0FP211localreview3awk17validate__control(stmt, loops, phase) {
   let _tmp = stmt;
@@ -14928,7 +15831,7 @@ function _M0FP211localreview3awk6lvalue(e) {
     case 3: {
       return true;
     }
-    case 4: {
+    case 5: {
       return true;
     }
     default: {
@@ -14962,7 +15865,7 @@ function _M0FP211localreview3awk10mark__kind(program, scope, name, kind) {
   if (_M0MPB3Map8containsGsRP211localreview3awk11FunctionDefE(program.functions, name)) {
     return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`function name used as variable: ${name}`));
   }
-  if (kind === 2 && (_M0FP211localreview3awk17special__variable(name) && (_M0IP016_24default__implPB2Eq10not__equalGsE(name, "ARGV") && _M0IP016_24default__implPB2Eq10not__equalGsE(name, "ENVIRON")))) {
+  if (kind === 2 && (_M0FP211localreview3awk17special__variable(name) && !_M0MPC15array5Array8containsGsE(["ARGV", "ENVIRON", "FIELDS"], name))) {
     return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("special scalar used as array"));
   }
   const key = _M0FP211localreview3awk12scoped__name(program, scope, name);
@@ -15010,7 +15913,7 @@ function _M0FP211localreview3awk14validate__expr(e, program, scope) {
                       case 1: {
                         return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
                       }
-                      case 12: {
+                      case 13: {
                         const _Getline = e$2;
                         const _target = _Getline._0;
                         const _source = _Getline._1;
@@ -15030,19 +15933,25 @@ function _M0FP211localreview3awk14validate__expr(e, program, scope) {
                         e$3 = _e;
                         break _L$7;
                       }
-                      case 6: {
-                        const _Unary = e$2;
-                        const _e$2 = _Unary._1;
+                      case 4: {
+                        const _NamedField = e$2;
+                        const _e$2 = _NamedField._0;
                         e$3 = _e$2;
                         break _L$7;
                       }
-                      case 9: {
-                        const _Increment = e$2;
-                        const _e$3 = _Increment._0;
+                      case 7: {
+                        const _Unary = e$2;
+                        const _e$3 = _Unary._1;
                         e$3 = _e$3;
                         break _L$7;
                       }
-                      case 4: {
+                      case 10: {
+                        const _Increment = e$2;
+                        const _e$4 = _Increment._0;
+                        e$3 = _e$4;
+                        break _L$7;
+                      }
+                      case 5: {
                         const _Element = e$2;
                         const _name$2 = _Element._0;
                         const _keys = _Element._1;
@@ -15050,10 +15959,10 @@ function _M0FP211localreview3awk14validate__expr(e, program, scope) {
                         keys = _keys;
                         break _L$6;
                       }
-                      case 5: {
+                      case 6: {
                         return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("tuple only allowed with in"));
                       }
-                      case 7: {
+                      case 8: {
                         const _Binary = e$2;
                         const _x = _Binary._0;
                         if (_x === "in") {
@@ -15076,7 +15985,7 @@ function _M0FP211localreview3awk14validate__expr(e, program, scope) {
                           break _L$4;
                         }
                       }
-                      case 8: {
+                      case 9: {
                         const _Assign = e$2;
                         const _a = _Assign._1;
                         const _b = _Assign._2;
@@ -15084,7 +15993,7 @@ function _M0FP211localreview3awk14validate__expr(e, program, scope) {
                         b$2 = _b;
                         break _L$4;
                       }
-                      case 10: {
+                      case 11: {
                         const _Conditional = e$2;
                         const _c = _Conditional._0;
                         const _a$2 = _Conditional._1;
@@ -15181,7 +16090,7 @@ function _M0FP211localreview3awk14validate__expr(e, program, scope) {
           }
           let keys;
           _L$6: {
-            if (left.$tag === 5) {
+            if (left.$tag === 6) {
               const _Tuple = left;
               const _keys = _Tuple._0;
               keys = _keys;
@@ -16095,7 +17004,7 @@ function _M0MP211localreview3awk6Cursor18expression_2einner(self, min, depth, pr
           }
           _tmp = new _M0DTP211localreview3awk4Expr7Getline(target, source);
         } else {
-          if (t.text === "$") {
+          if (t.text === "@") {
             const _bind$3 = _M0MP211localreview3awk6Cursor18expression_2einner(self, 14, depth + 1 | 0, false);
             let _tmp$2;
             if (_bind$3.$tag === 1) {
@@ -16104,10 +17013,10 @@ function _M0MP211localreview3awk6Cursor18expression_2einner(self, min, depth, pr
             } else {
               return _bind$3;
             }
-            _tmp = new _M0DTP211localreview3awk4Expr5Field(_tmp$2);
+            _tmp = new _M0DTP211localreview3awk4Expr10NamedField(_tmp$2);
           } else {
-            if (_M0MPC15array5Array8containsGsE(["+", "-", "!"], t.text)) {
-              const _bind$3 = _M0MP211localreview3awk6Cursor18expression_2einner(self, 11, depth + 1 | 0, false);
+            if (t.text === "$") {
+              const _bind$3 = _M0MP211localreview3awk6Cursor18expression_2einner(self, 14, depth + 1 | 0, false);
               let _tmp$2;
               if (_bind$3.$tag === 1) {
                 const _ok = _bind$3;
@@ -16115,95 +17024,107 @@ function _M0MP211localreview3awk6Cursor18expression_2einner(self, min, depth, pr
               } else {
                 return _bind$3;
               }
-              _tmp = new _M0DTP211localreview3awk4Expr5Unary(t.text, _tmp$2);
+              _tmp = new _M0DTP211localreview3awk4Expr5Field(_tmp$2);
             } else {
-              if (t.text === "++" || t.text === "--") {
-                const _bind$3 = _M0MP211localreview3awk6Cursor18expression_2einner(self, 13, depth + 1 | 0, false);
-                let target;
+              if (_M0MPC15array5Array8containsGsE(["+", "-", "!"], t.text)) {
+                const _bind$3 = _M0MP211localreview3awk6Cursor18expression_2einner(self, 11, depth + 1 | 0, false);
+                let _tmp$2;
                 if (_bind$3.$tag === 1) {
                   const _ok = _bind$3;
-                  target = _ok._0;
+                  _tmp$2 = _ok._0;
                 } else {
                   return _bind$3;
                 }
-                if (!_M0FP211localreview3awk6lvalue(target)) {
-                  return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("increment target"));
-                }
-                _tmp = new _M0DTP211localreview3awk4Expr9Increment(target, t.text === "++" ? 1 : -1, true);
+                _tmp = new _M0DTP211localreview3awk4Expr5Unary(t.text, _tmp$2);
               } else {
-                if (_M0FP211localreview3awk10identifier(t.text) && !_M0FP211localreview3awk8reserved(t.text)) {
-                  if (_M0FP211localreview3awk13builtin__name(t.text) && (_M0IP016_24default__implPB2Eq10not__equalGsE(_M0MP211localreview3awk6Cursor4peek(self), "(") && (_M0IP016_24default__implPB2Eq10not__equalGsE(t.text, "length") || _M0MP211localreview3awk6Cursor4peek(self) === "["))) {
-                    return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("builtin requires parentheses"));
-                  }
-                  if (_M0MP211localreview3awk6Cursor3eat(self, "[")) {
-                    const _bind$3 = _M0MP211localreview3awk6Cursor9arguments(self, "]", depth + 1 | 0);
-                    let keys;
-                    if (_bind$3.$tag === 1) {
-                      const _ok = _bind$3;
-                      keys = _ok._0;
-                    } else {
-                      return _bind$3;
-                    }
-                    if (_M0MPC15array5Array9is__emptyGRPB4JsonE(keys)) {
-                      return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("empty array subscript"));
-                    }
-                    _tmp = new _M0DTP211localreview3awk4Expr7Element(t.text, keys);
+                if (t.text === "++" || t.text === "--") {
+                  const _bind$3 = _M0MP211localreview3awk6Cursor18expression_2einner(self, 13, depth + 1 | 0, false);
+                  let target;
+                  if (_bind$3.$tag === 1) {
+                    const _ok = _bind$3;
+                    target = _ok._0;
                   } else {
-                    if (_M0MP211localreview3awk6Cursor4peek(self) === "(" && (_M0MPC15array5Array2atGRPC16string10StringViewE(self.tokens, self.pos).adjacent || _M0FP211localreview3awk13builtin__name(t.text))) {
-                      self.pos = self.pos + 1 | 0;
-                      const _bind$3 = _M0MP211localreview3awk6Cursor9arguments(self, ")", depth + 1 | 0);
-                      let _tmp$2;
+                    return _bind$3;
+                  }
+                  if (!_M0FP211localreview3awk6lvalue(target)) {
+                    return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("increment target"));
+                  }
+                  _tmp = new _M0DTP211localreview3awk4Expr9Increment(target, t.text === "++" ? 1 : -1, true);
+                } else {
+                  if (_M0FP211localreview3awk10identifier(t.text) && !_M0FP211localreview3awk8reserved(t.text)) {
+                    if (_M0FP211localreview3awk13builtin__name(t.text) && (_M0IP016_24default__implPB2Eq10not__equalGsE(_M0MP211localreview3awk6Cursor4peek(self), "(") && (_M0IP016_24default__implPB2Eq10not__equalGsE(t.text, "length") || _M0MP211localreview3awk6Cursor4peek(self) === "["))) {
+                      return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("builtin requires parentheses"));
+                    }
+                    if (_M0MP211localreview3awk6Cursor3eat(self, "[")) {
+                      const _bind$3 = _M0MP211localreview3awk6Cursor9arguments(self, "]", depth + 1 | 0);
+                      let keys;
                       if (_bind$3.$tag === 1) {
                         const _ok = _bind$3;
-                        _tmp$2 = _ok._0;
+                        keys = _ok._0;
                       } else {
                         return _bind$3;
                       }
-                      _tmp = new _M0DTP211localreview3awk4Expr4Call(t.text, _tmp$2);
-                    } else {
-                      _tmp = t.text === "length" ? new _M0DTP211localreview3awk4Expr4Call("length", []) : new _M0DTP211localreview3awk4Expr8Variable(t.text);
-                    }
-                  }
-                } else {
-                  const cs = _M0MPC16string6String9to__array(t.text);
-                  if (_M0MPC15array5Array9is__emptyGcE(cs) || _M0FP211localreview3awk11number__end(cs, 0, false) !== cs.length) {
-                    return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`unexpected token ${t.text}`));
-                  }
-                  let _tmp$2;
-                  let _try_err;
-                  _L: {
-                    _L$2: {
-                      const _bind$3 = t.text;
-                      const _bind$4 = _M0FPC28internal7strconv13parse__double(new _M0TPC16string10StringView(_bind$3, 0, _bind$3.length));
-                      if (_bind$4.$tag === 1) {
-                        const _ok = _bind$4;
-                        _tmp$2 = _ok._0;
-                      } else {
-                        const _err = _bind$4;
-                        _try_err = _err._0;
-                        break _L$2;
+                      if (_M0MPC15array5Array9is__emptyGRPB4JsonE(keys)) {
+                        return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("empty array subscript"));
                       }
-                      break _L;
+                      _tmp = new _M0DTP211localreview3awk4Expr7Element(t.text, keys);
+                    } else {
+                      if (_M0MP211localreview3awk6Cursor4peek(self) === "(" && (_M0MPC15array5Array2atGRPC16string10StringViewE(self.tokens, self.pos).adjacent || _M0FP211localreview3awk13builtin__name(t.text))) {
+                        self.pos = self.pos + 1 | 0;
+                        const _bind$3 = _M0MP211localreview3awk6Cursor9arguments(self, ")", depth + 1 | 0);
+                        let _tmp$2;
+                        if (_bind$3.$tag === 1) {
+                          const _ok = _bind$3;
+                          _tmp$2 = _ok._0;
+                        } else {
+                          return _bind$3;
+                        }
+                        _tmp = new _M0DTP211localreview3awk4Expr4Call(t.text, _tmp$2);
+                      } else {
+                        _tmp = t.text === "length" ? new _M0DTP211localreview3awk4Expr4Call("length", []) : new _M0DTP211localreview3awk4Expr8Variable(t.text);
+                      }
                     }
-                    _L$3: {
-                      _L$4: {
-                        if (_try_err.$tag === 2) {
-                          const _Failure = _try_err;
-                          const _x = _Failure._0;
-                          if (_x === "value out of range") {
-                            _tmp$2 = 1 / 0;
+                  } else {
+                    const cs = _M0MPC16string6String9to__array(t.text);
+                    if (_M0MPC15array5Array9is__emptyGcE(cs) || _M0FP211localreview3awk11number__end(cs, 0, false) !== cs.length) {
+                      return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid(`unexpected token ${t.text}`));
+                    }
+                    let _tmp$2;
+                    let _try_err;
+                    _L: {
+                      _L$2: {
+                        const _bind$3 = t.text;
+                        const _bind$4 = _M0FPC28internal7strconv13parse__double(new _M0TPC16string10StringView(_bind$3, 0, _bind$3.length));
+                        if (_bind$4.$tag === 1) {
+                          const _ok = _bind$4;
+                          _tmp$2 = _ok._0;
+                        } else {
+                          const _err = _bind$4;
+                          _try_err = _err._0;
+                          break _L$2;
+                        }
+                        break _L;
+                      }
+                      _L$3: {
+                        _L$4: {
+                          if (_try_err.$tag === 2) {
+                            const _Failure = _try_err;
+                            const _x = _Failure._0;
+                            if (_x === "value out of range") {
+                              _tmp$2 = 1 / 0;
+                            } else {
+                              break _L$4;
+                            }
                           } else {
                             break _L$4;
                           }
-                        } else {
-                          break _L$4;
+                          break _L$3;
                         }
-                        break _L$3;
+                        return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid number"));
                       }
-                      return new _M0DTPC16result6ResultGRP211localreview3awk4ExprRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid number"));
                     }
+                    _tmp = new _M0DTP211localreview3awk4Expr7Literal(_M0FP211localreview3awk6finite(_tmp$2));
                   }
-                  _tmp = new _M0DTP211localreview3awk4Expr7Literal(_M0FP211localreview3awk6finite(_tmp$2));
                 }
               }
             }
@@ -16252,35 +17173,39 @@ function _M0MP211localreview3awk6Cursor18expression_2einner(self, min, depth, pr
               if (op === "$") {
                 break _L$2;
               } else {
-                if (op === "getline") {
+                if (op === "@") {
                   break _L$2;
                 } else {
-                  _L$3: {
-                    if (_M0FP211localreview3awk10identifier(op)) {
-                      if (!_M0FP211localreview3awk8reserved(op)) {
-                        break _L$2;
+                  if (op === "getline") {
+                    break _L$2;
+                  } else {
+                    _L$3: {
+                      if (_M0FP211localreview3awk10identifier(op)) {
+                        if (!_M0FP211localreview3awk8reserved(op)) {
+                          break _L$2;
+                        } else {
+                          break _L$3;
+                        }
                       } else {
                         break _L$3;
                       }
-                    } else {
-                      break _L$3;
                     }
-                  }
-                  let c;
-                  _L$4: {
-                    _L$5: {
-                      const _bind$3 = _M0MPC15array5Array3getGcE(_M0MPC16string6String9to__array(op), 0);
-                      if (_bind$3 === -1) {
-                      } else {
-                        const _Some = _bind$3;
-                        const _c = _Some;
-                        c = _c;
-                        break _L$5;
+                    let c;
+                    _L$4: {
+                      _L$5: {
+                        const _bind$3 = _M0MPC15array5Array3getGcE(_M0MPC16string6String9to__array(op), 0);
+                        if (_bind$3 === -1) {
+                        } else {
+                          const _Some = _bind$3;
+                          const _c = _Some;
+                          c = _c;
+                          break _L$5;
+                        }
+                        break _L$4;
                       }
-                      break _L$4;
-                    }
-                    if (_M0FP211localreview3awk5digit(c)) {
-                      break _L$2;
+                      if (_M0FP211localreview3awk5digit(c)) {
+                        break _L$2;
+                      }
                     }
                   }
                 }
@@ -16596,7 +17521,7 @@ function _M0MP211localreview3awk6Cursor9statement(self, depth) {
         } else {
           const _Some = first;
           const _x = _Some;
-          if (_x.$tag === 7) {
+          if (_x.$tag === 8) {
             const _Binary = _x;
             const _x$2 = _Binary._0;
             if (_x$2 === "in") {
@@ -16717,7 +17642,7 @@ function _M0MP211localreview3awk6Cursor9statement(self, depth) {
             } else {
               return _bind$2;
             }
-            if (_bind$3.$tag === 5) {
+            if (_bind$3.$tag === 6) {
               const _Tuple = _bind$3;
               const _xs = _Tuple._0;
               xs = _xs;
@@ -17103,7 +18028,7 @@ function _M0MP211localreview3awk5State16assign__argument(self, name, text) {
 function _M0MP211localreview3awk7Session6assign(self, name, text) {
   return _M0MP211localreview3awk5State16assign__argument(self.state, name, text);
 }
-function _M0FP211localreview3awk20new__session_2einner(program, separator, variables, environment, arguments_, step_limit, clock_seconds, io, input, output_sink) {
+function _M0FP211localreview3awk20new__session_2einner(program, separator, input_mode, output_mode, variables, environment, arguments_, step_limit, clock_seconds, io, input, output_sink) {
   if (step_limit < 1 || step_limit > 1000000000) {
     return new _M0DTPC16result6ResultGRP211localreview3awk7SessionRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("step limit 1..1000000000 required"));
   }
@@ -17120,36 +18045,42 @@ function _M0FP211localreview3awk20new__session_2einner(program, separator, varia
   const _bind$5 = [];
   const _bind$6 = _M0MPB3Map3MapGsRPB3MapGsRP211localreview3awk5ValueEE(new _M0TPB9ArrayViewGUsRPB3MapGsRP211localreview3awk5ValueEEE(_bind$5, 0, 0), undefined);
   const _bind$7 = [];
-  const _bind$8 = "";
-  const _bind$9 = [];
-  const _bind$10 = 0;
-  const _bind$11 = 0;
-  const _bind$12 = 0;
-  const _bind$13 = 0;
-  const _bind$14 = [];
-  const _bind$15 = _M0MPB3Map3MapGsRP211localreview3awk5RegexE(new _M0TPB9ArrayViewGUsRP211localreview3awk5RegexEE(_bind$14, 0, 0), undefined);
-  const _bind$16 = parsed.functions;
-  const _bind$17 = parsed.kinds;
-  const _bind$18 = [];
-  const _bind$19 = 1n;
-  const _bind$20 = 1;
-  const _bind$21 = [];
-  const _bind$22 = _M0MPB3Map3MapGsRP211localreview3awk9MainInputE(new _M0TPB9ArrayViewGUsRP211localreview3awk9MainInputEE(_bind$21, 0, 0), undefined);
-  const _bind$23 = [];
-  const _bind$24 = _M0MPB3Map3MapGssE(new _M0TPB9ArrayViewGUssEE(_bind$23, 0, 0), undefined);
-  const _bind$25 = false;
-  const _bind$26 = _M0MPC16option6Option3mapGWRP211localreview3awk12InputRequestERP211localreview3awk10InputReplyRP211localreview3awk9MainInputE(input, (reader) => new _M0TP211localreview3awk9MainInput(reader, [], 0, false, false, undefined, 1, false, 0, 10));
-  const st = new _M0TP211localreview3awk5State(_bind$4, _bind$6, _bind$7, _bind$8, _bind$9, _bind$10, _bind$11, step_limit, _bind$12, _bind$13, _bind$15, _bind$16, _bind$17, _bind$18, _bind$19, _bind$20, clock_seconds, _bind$26, io, _bind$22, _bind$24, _bind$25, output_sink);
+  const _bind$8 = false;
+  const _bind$9 = true;
+  const _bind$10 = undefined;
+  const _bind$11 = undefined;
+  const _bind$12 = _M0DTPC16option6OptionGRPB5ArrayGsEE4None__;
+  const _bind$13 = "";
+  const _bind$14 = false;
+  const _bind$15 = [];
+  const _bind$16 = 0;
+  const _bind$17 = 0;
+  const _bind$18 = 0;
+  const _bind$19 = 0;
+  const _bind$20 = [];
+  const _bind$21 = _M0MPB3Map3MapGsRP211localreview3awk5RegexE(new _M0TPB9ArrayViewGUsRP211localreview3awk5RegexEE(_bind$20, 0, 0), undefined);
+  const _bind$22 = parsed.functions;
+  const _bind$23 = parsed.kinds;
+  const _bind$24 = [];
+  const _bind$25 = 1n;
+  const _bind$26 = 1;
+  const _bind$27 = [];
+  const _bind$28 = _M0MPB3Map3MapGsRP211localreview3awk9MainInputE(new _M0TPB9ArrayViewGUsRP211localreview3awk9MainInputEE(_bind$27, 0, 0), undefined);
+  const _bind$29 = [];
+  const _bind$30 = _M0MPB3Map3MapGssE(new _M0TPB9ArrayViewGUssEE(_bind$29, 0, 0), undefined);
+  const _bind$31 = false;
+  const _bind$32 = _M0MPC16option6Option3mapGWRP211localreview3awk12InputRequestERP211localreview3awk10InputReplyRP211localreview3awk9MainInputE(input, (reader) => new _M0TP211localreview3awk9MainInput(reader, [], 0, false, false, undefined, 1, false, 0, 10, undefined, false, false));
+  const st = new _M0TP211localreview3awk5State(_bind$4, _bind$6, _bind$7, _bind$8, _bind$9, separator, _bind$10, _bind$11, _bind$12, _bind$13, _bind$14, _bind$15, _bind$16, _bind$17, step_limit, _bind$18, _bind$19, _bind$21, _bind$22, _bind$23, _bind$24, _bind$25, _bind$26, clock_seconds, _bind$32, io, _bind$28, _bind$30, _bind$31, output_sink);
   const _it = _M0MPB3Map5iter2GsiE(parsed.kinds);
   while (true) {
     let name;
     let kind;
     _L: {
-      const _bind$27 = _M0MPB5Iter24nextGsiE(_it);
-      if (_bind$27 === undefined) {
+      const _bind$33 = _M0MPB5Iter24nextGsiE(_it);
+      if (_bind$33 === undefined) {
         break;
       } else {
-        const _Some = _bind$27;
+        const _Some = _bind$33;
         const _x = _Some;
         const _name = _x._0;
         const _kind = _x._1;
@@ -17160,38 +18091,55 @@ function _M0FP211localreview3awk20new__session_2einner(program, separator, varia
     }
     let _tmp;
     if (kind === 2) {
-      const _bind$27 = "::";
-      _tmp = !_M0MPC16string6String8contains(name, new _M0TPC16string10StringView(_bind$27, 0, _bind$27.length));
+      const _bind$33 = "::";
+      _tmp = !_M0MPC16string6String8contains(name, new _M0TPC16string10StringView(_bind$33, 0, _bind$33.length));
     } else {
       _tmp = false;
     }
     if (_tmp) {
       const _tmp$2 = st.arrays;
-      const _bind$27 = [];
-      _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(_tmp$2, name, _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$27, 0, 0), undefined));
+      const _bind$33 = [];
+      _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(_tmp$2, name, _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$33, 0, 0), undefined));
     }
     continue;
   }
   const _tmp = st.arrays;
-  const _bind$27 = [];
-  _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(_tmp, "ARGV", _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$27, 0, 0), undefined));
+  const _bind$33 = [];
+  _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(_tmp, "ARGV", _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$33, 0, 0), undefined));
   const _tmp$2 = st.arrays;
-  const _bind$28 = [];
-  _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(_tmp$2, "ENVIRON", _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$28, 0, 0), undefined));
-  const _bind$29 = arguments_.length;
-  let _tmp$3 = 0;
+  const _bind$34 = [];
+  _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(_tmp$2, "ENVIRON", _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$34, 0, 0), undefined));
+  const _tmp$3 = st.arrays;
+  const _bind$35 = [];
+  _M0MPB3Map3setGsRPB3MapGsRP211localreview3awk5ValueEE(_tmp$3, "FIELDS", _M0MPB3Map3MapGsRP211localreview3awk5ValueE(new _M0TPB9ArrayViewGUsRP211localreview3awk5ValueEE(_bind$35, 0, 0), undefined));
+  const _bind$36 = _M0MP211localreview3awk5State13write_2einner(st, new _M0DTP211localreview3awk4Slot12VariableSlot("INPUTMODE"), new _M0DTP211localreview3awk5Value4Text(input_mode), false);
+  if (_bind$36.$tag === 1) {
+    const _ok = _bind$36;
+    _ok._0;
+  } else {
+    return _bind$36;
+  }
+  const _bind$37 = _M0MP211localreview3awk5State13write_2einner(st, new _M0DTP211localreview3awk4Slot12VariableSlot("OUTPUTMODE"), new _M0DTP211localreview3awk5Value4Text(output_mode), false);
+  if (_bind$37.$tag === 1) {
+    const _ok = _bind$37;
+    _ok._0;
+  } else {
+    return _bind$37;
+  }
+  const _bind$38 = arguments_.length;
+  let _tmp$4 = 0;
   while (true) {
-    const i = _tmp$3;
-    if (i < _bind$29) {
+    const i = _tmp$4;
+    if (i < _bind$38) {
       const value = arguments_[i];
-      const _bind$30 = _M0MP211localreview3awk5State12put__element(st, "ARGV", _M0MPC13int3Int18to__string_2einner(i, 10), _M0FP211localreview3awk12input__value(value));
-      if (_bind$30.$tag === 1) {
-        const _ok = _bind$30;
+      const _bind$39 = _M0MP211localreview3awk5State12put__element(st, "ARGV", _M0MPC13int3Int18to__string_2einner(i, 10), _M0FP211localreview3awk12input__value(value));
+      if (_bind$39.$tag === 1) {
+        const _ok = _bind$39;
         _ok._0;
       } else {
-        return _bind$30;
+        return _bind$39;
       }
-      _tmp$3 = i + 1 | 0;
+      _tmp$4 = i + 1 | 0;
       continue;
     } else {
       break;
@@ -17202,11 +18150,11 @@ function _M0FP211localreview3awk20new__session_2einner(program, separator, varia
     let key;
     let value;
     _L: {
-      const _bind$30 = _M0MPB5Iter24nextGsRPB4JsonE(_it$2);
-      if (_bind$30 === undefined) {
+      const _bind$39 = _M0MPB5Iter24nextGsRPB4JsonE(_it$2);
+      if (_bind$39 === undefined) {
         break;
       } else {
-        const _Some = _bind$30;
+        const _Some = _bind$39;
         const _x = _Some;
         const _key = _x._0;
         const _value = _x._1;
@@ -17215,26 +18163,26 @@ function _M0FP211localreview3awk20new__session_2einner(program, separator, varia
         break _L;
       }
     }
-    const _bind$30 = _M0MP211localreview3awk5State12put__element(st, "ENVIRON", key, _M0FP211localreview3awk12input__value(value));
-    if (_bind$30.$tag === 1) {
-      const _ok = _bind$30;
+    const _bind$39 = _M0MP211localreview3awk5State12put__element(st, "ENVIRON", key, _M0FP211localreview3awk12input__value(value));
+    if (_bind$39.$tag === 1) {
+      const _ok = _bind$39;
       _ok._0;
     } else {
-      return _bind$30;
+      return _bind$39;
     }
     continue;
   }
-  const session = new _M0TP211localreview3awk7Session(st, parsed.rules, 0, 0, false, false);
+  const session = new _M0TP211localreview3awk7Session(st, parsed.rules, 0, 0, false, false, true);
   const _it$3 = _M0MPB3Map5iter2GsRPB4JsonE(variables);
   while (true) {
     let key;
     let value;
     _L: {
-      const _bind$30 = _M0MPB5Iter24nextGsRPB4JsonE(_it$3);
-      if (_bind$30 === undefined) {
+      const _bind$39 = _M0MPB5Iter24nextGsRPB4JsonE(_it$3);
+      if (_bind$39 === undefined) {
         break;
       } else {
-        const _Some = _bind$30;
+        const _Some = _bind$39;
         const _x = _Some;
         const _key = _x._0;
         const _value = _x._1;
@@ -17243,24 +18191,38 @@ function _M0FP211localreview3awk20new__session_2einner(program, separator, varia
         break _L;
       }
     }
-    const _bind$30 = _M0MP211localreview3awk7Session6assign(session, key, value);
-    if (_bind$30.$tag === 1) {
-      const _ok = _bind$30;
+    const _bind$39 = _M0MP211localreview3awk7Session6assign(session, key, value);
+    if (_bind$39.$tag === 1) {
+      const _ok = _bind$39;
       _ok._0;
     } else {
-      return _bind$30;
+      return _bind$39;
     }
     continue;
   }
   return new _M0DTPC16result6ResultGRP211localreview3awk7SessionRP211localreview3awk10ParseErrorE2Ok(session);
 }
-function _M0FP211localreview3awk12new__session(program, separator$46$opt, variables$46$opt, environment$46$opt, arguments$46$opt, step_limit$46$opt, clock_seconds$46$opt, io$46$opt, input$46$opt, output_sink$46$opt) {
+function _M0FP211localreview3awk12new__session(program, separator$46$opt, input_mode$46$opt, output_mode$46$opt, variables$46$opt, environment$46$opt, arguments$46$opt, step_limit$46$opt, clock_seconds$46$opt, io$46$opt, input$46$opt, output_sink$46$opt) {
   let separator;
   if (separator$46$opt === undefined) {
     separator = " ";
   } else {
     const _Some = separator$46$opt;
     separator = _Some;
+  }
+  let input_mode;
+  if (input_mode$46$opt === undefined) {
+    input_mode = "";
+  } else {
+    const _Some = input_mode$46$opt;
+    input_mode = _Some;
+  }
+  let output_mode;
+  if (output_mode$46$opt === undefined) {
+    output_mode = "";
+  } else {
+    const _Some = output_mode$46$opt;
+    output_mode = _Some;
   }
   let variables;
   if (variables$46$opt === undefined) {
@@ -17320,7 +18282,7 @@ function _M0FP211localreview3awk12new__session(program, separator$46$opt, variab
   } else {
     output_sink = undefined;
   }
-  return _M0FP211localreview3awk20new__session_2einner(program, separator, variables, environment, arguments_, step_limit, clock_seconds, io, input, output_sink);
+  return _M0FP211localreview3awk20new__session_2einner(program, separator, input_mode, output_mode, variables, environment, arguments_, step_limit, clock_seconds, io, input, output_sink);
 }
 function _M0FP211localreview3awk17replacement__text(replacement, matched) {
   const out = _M0MPB13StringBuilder21StringBuilder_2einner(0);
@@ -17643,7 +18605,38 @@ function _M0FP211localreview3awk9calculate(op, a, b, st) {
   }
   return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(_M0FP211localreview3awk6finite(_tmp));
 }
+function _M0MP211localreview3awk5State12named__field(self, name) {
+  let names;
+  const _bind$2 = self.field_names;
+  if (_bind$2.$tag === 0) {
+    return new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("named fields require a CSV header"));
+  } else {
+    const _Some = _bind$2;
+    const _names = _Some._0;
+    names = _names;
+  }
+  const index = new _M0TPB8MutLocalGiE(0);
+  const _bind$3 = names.length;
+  let _tmp = 0;
+  while (true) {
+    const i = _tmp;
+    if (i < _bind$3) {
+      const field = names[i];
+      if (field === name) {
+        index.val = i + 1 | 0;
+      }
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return index.val === 0 ? new _M0DTPC16result6ResultGRP211localreview3awk5ValueRP211localreview3awk10ParseErrorE2Ok(new _M0DTP211localreview3awk5Value4Text("")) : _M0MP211localreview3awk5State4read(self, new _M0DTP211localreview3awk4Slot9FieldSlot(index.val));
+}
 function _M0MP211localreview3awk9MainInput9configure(self, st) {
+  self.csv = st.input_mode;
+  self.csv_started = false;
+  self.csv_header_done = false;
   const _bind$2 = _M0MP211localreview3awk5State8variable(st, "RS");
   let _tmp;
   if (_bind$2.$tag === 1) {
@@ -17667,88 +18660,99 @@ function _M0MP211localreview3awk9MainInput9configure(self, st) {
   }
   return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
 }
-function _M0MP211localreview3awk9MainInput4more(self, st) {
-  const _bind$2 = _M0MP211localreview3awk5State4tick(st);
-  if (_bind$2.$tag === 1) {
-    const _ok = _bind$2;
-    _ok._0;
-  } else {
-    return _bind$2;
+function _M0MP211localreview3awk5State11csv__header(self, fields) {
+  self.field_names = new _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(_M0MPC15array5Array3mapGRP211localreview3awk5ValuesE(fields, (v) => _M0MP211localreview3awk5Value4text(v)));
+  const dest = _M0MPB3Map2atGsRPB3MapGsRP211localreview3awk5ValueEE(self.arrays, "FIELDS");
+  self.entries = self.entries - _M0MPB3Map6lengthGsRP211localreview3awk5ValueE(dest) | 0;
+  _M0MPB3Map5clearGsRP211localreview3awk9MainInputE(dest);
+  const _bind$2 = fields.length;
+  let _tmp = 0;
+  while (true) {
+    const i = _tmp;
+    if (i < _bind$2) {
+      const value = fields[i];
+      const _bind$3 = _M0MP211localreview3awk5State12put__element(self, "FIELDS", _M0MPC13int3Int18to__string_2einner(i + 1 | 0, 10), new _M0DTP211localreview3awk5Value4Text(_M0MP211localreview3awk5Value4text(value)));
+      if (_bind$3.$tag === 1) {
+        const _ok = _bind$3;
+        _ok._0;
+      } else {
+        return _bind$3;
+      }
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
   }
-  let message;
+  return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+}
+function _M0MP211localreview3awk9MainInput6record(self, st) {
+  let mode;
   _L: {
     _L$2: {
-      const _bind$3 = self.failure;
-      if (_bind$3 === undefined) {
+      const _bind$2 = self.csv;
+      if (_bind$2 === undefined) {
       } else {
-        const _Some = _bind$3;
-        const _message = _Some;
-        message = _message;
+        const _Some = _bind$2;
+        const _mode = _Some;
+        mode = _mode;
         break _L$2;
       }
       break _L;
     }
-    return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error45localreview_2fawk_2eParseError_2eInputFailure(message));
-  }
-  if (self.start > 0) {
-    self.data = _M0MPC15array9ArrayView9to__ownedGcE(_M0MPC15array5Array12view_2einnerGcE(self.data, self.start, undefined));
-    self.start = 0;
-  }
-  let message$2;
-  _L$2: {
-    let text;
-    _L$3: {
-      const _func = self.reader;
-      const _bind$3 = _func(_M0DTP211localreview3awk12InputRequest4Read__);
-      switch (_bind$3.$tag) {
-        case 1: {
-          const _Chunk = _bind$3;
-          const _text = _Chunk._0;
+    while (true) {
+      let text;
+      let fields;
+      _L$3: {
+        const _bind$2 = _M0MP211localreview3awk9MainInput8csv__row(self, st, mode);
+        let _bind$3;
+        if (_bind$2.$tag === 1) {
+          const _ok = _bind$2;
+          _bind$3 = _ok._0;
+        } else {
+          return _bind$2;
+        }
+        if (_bind$3 === undefined) {
+          break;
+        } else {
+          const _Some = _bind$3;
+          const _x = _Some;
+          const _text = _x._0;
+          const _fields = _x._1;
           text = _text;
+          fields = _fields;
           break _L$3;
         }
-        case 2: {
-          self.eof = true;
-          return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
-        }
-        case 3: {
-          const _Failed = _bind$3;
-          const _message = _Failed._0;
-          message$2 = _message;
-          break _L$2;
-        }
-        default: {
-          return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("input provider must return Chunk or End for Read"));
-        }
       }
-    }
-    if (_M0MPC16string6String9is__empty(text) || text.length > 65536) {
-      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("input chunk must contain 1..65536 UTF-16 units"));
-    }
-    const _bind$3 = _M0MPC16string6String9to__array(text);
-    const _bind$4 = _bind$3.length;
-    let _tmp = 0;
-    while (true) {
-      const _ = _tmp;
-      if (_ < _bind$4) {
-        const c = _bind$3[_];
-        _M0MPC15array5Array4pushGcE(self.data, c);
-        _tmp = _ + 1 | 0;
+      if (mode.header && !self.csv_header_done) {
+        self.csv_header_done = true;
+        const _bind$2 = _M0MP211localreview3awk5State11csv__header(st, fields);
+        if (_bind$2.$tag === 1) {
+          const _ok = _bind$2;
+          _ok._0;
+        } else {
+          return _bind$2;
+        }
         continue;
-      } else {
-        break;
       }
+      _M0MPC15array5Array5clearGsE(st.fields);
+      const _bind$2 = fields.length;
+      let _tmp = 0;
+      while (true) {
+        const _ = _tmp;
+        if (_ < _bind$2) {
+          const field = fields[_];
+          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(st.fields, field);
+          _tmp = _ + 1 | 0;
+          continue;
+        } else {
+          break;
+        }
+      }
+      return new _M0DTPC16result6ResultGOsRP211localreview3awk10ParseErrorE2Ok(text);
     }
-    if (self.data.length > 1065536) {
-      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("record length budget"));
-    } else {
-      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
-    }
+    return new _M0DTPC16result6ResultGOsRP211localreview3awk10ParseErrorE2Ok(undefined);
   }
-  self.failure = message$2;
-  return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error45localreview_2fawk_2eParseError_2eInputFailure(message$2));
-}
-function _M0MP211localreview3awk9MainInput6record(self, st) {
   const scanned = new _M0TPB8MutLocalGiE(self.start);
   while (true) {
     const _bind$2 = _M0MP211localreview3awk5State4tick(st);
@@ -17813,7 +18817,7 @@ function _M0MP211localreview3awk9MainInput6record(self, st) {
         while (true) {
           const i = _tmp;
           if (i < self.data.length) {
-            _L: {
+            _L$2: {
               const _bind$3 = _M0MP211localreview3awk5State4tick(st);
               if (_bind$3.$tag === 1) {
                 const _ok = _bind$3;
@@ -17822,7 +18826,7 @@ function _M0MP211localreview3awk9MainInput6record(self, st) {
                 return _bind$3;
               }
               if (_M0MPC15array5Array2atGcE(self.data, i) !== 10) {
-                break _L;
+                break _L$2;
               }
               let _tmp$2;
               if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(self.data, i + 1 | 0), 10)) {
@@ -17831,7 +18835,7 @@ function _M0MP211localreview3awk9MainInput6record(self, st) {
                 if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(self.data, i + 1 | 0), 13) && _M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(self.data, i + 2 | 0), 10)) {
                   _tmp$2 = i + 3 | 0;
                 } else {
-                  break _L;
+                  break _L$2;
                 }
               }
               const end = new _M0TPB8MutLocalGiE(_tmp$2);
@@ -17930,8 +18934,8 @@ function _M0MP211localreview3awk9MainInput6record(self, st) {
         }
         let a;
         let b;
-        _L: {
-          _L$2: {
+        _L$2: {
+          _L$3: {
             if (found === undefined) {
             } else {
               const _Some = found;
@@ -17940,9 +18944,9 @@ function _M0MP211localreview3awk9MainInput6record(self, st) {
               const _b = _x._1;
               a = _a;
               b = _b;
-              break _L$2;
+              break _L$3;
             }
-            break _L;
+            break _L$2;
           }
           if (a !== b) {
             _M0MPB3Map3setGsRP211localreview3awk5ValueE(st.vars, "RT", new _M0DTP211localreview3awk5Value4Text(_M0MPC16string6String11from__array(_M0MPC15array5Array12view_2einnerGcE(chars, a, b))));
@@ -18086,7 +19090,7 @@ function _M0MP211localreview3awk5State14read__redirect(self, name, pipe) {
         }
       }
       return _M0DTP211localreview3awk10InputReply5Ready__;
-    }, [], 0, false, true, undefined, 0, true, 0, 10);
+    }, [], 0, false, true, undefined, 0, true, 0, 10, undefined, false, false);
     const _bind$4 = _M0MP211localreview3awk9MainInput9configure(stream$2, self);
     if (_bind$4.$tag === 1) {
       const _ok = _bind$4;
@@ -18691,20 +19695,18 @@ function _M0FP211localreview3awk18execute__statement(stmt, st) {
                           return _bind$5;
                         }
                       }
-                      let line;
+                      let text;
                       if (_M0MPC15array5Array9is__emptyGRPB4JsonE(exprs$2)) {
-                        line = st$2.record;
-                      } else {
-                        const _bind$5 = _M0MPC15array5Array3mapGRP211localreview3awk5ValuesEHRP211localreview3awk10ParseError(values, (value$3) => _M0MP211localreview3awk5State12text_2einner(st$2, value$3, true));
-                        let _tmp$3;
+                        const _tmp$3 = st$2.record;
+                        const _bind$5 = _M0MP211localreview3awk5State8variable(st$2, "ORS");
+                        let _tmp$4;
                         if (_bind$5.$tag === 1) {
                           const _ok = _bind$5;
-                          _tmp$3 = _ok._0;
+                          _tmp$4 = _ok._0;
                         } else {
                           return _bind$5;
                         }
-                        const _tmp$4 = _tmp$3;
-                        const _bind$6 = _M0MP211localreview3awk5State8variable(st$2, "OFS");
+                        const _bind$6 = _M0MP211localreview3awk5State12text_2einner(st$2, _tmp$4, false);
                         let _tmp$5;
                         if (_bind$6.$tag === 1) {
                           const _ok = _bind$6;
@@ -18712,38 +19714,72 @@ function _M0FP211localreview3awk18execute__statement(stmt, st) {
                         } else {
                           return _bind$6;
                         }
-                        const _bind$7 = _M0MP211localreview3awk5State12text_2einner(st$2, _tmp$5, false);
-                        let _bind$8;
-                        if (_bind$7.$tag === 1) {
-                          const _ok = _bind$7;
-                          _bind$8 = _ok._0;
+                        text = `${_tmp$3}${_tmp$5}`;
+                      } else {
+                        const _bind$5 = _M0MPC15array5Array3mapGRP211localreview3awk5ValuesEHRP211localreview3awk10ParseError(values, (value$3) => _M0MP211localreview3awk5State12text_2einner(st$2, value$3, true));
+                        let fields;
+                        if (_bind$5.$tag === 1) {
+                          const _ok = _bind$5;
+                          fields = _ok._0;
                         } else {
-                          return _bind$7;
+                          return _bind$5;
                         }
-                        line = _M0MPC15array5Array4joinGsE(_tmp$4, new _M0TPC16string10StringView(_bind$8, 0, _bind$8.length));
+                        let mode$2;
+                        _L$13: {
+                          _L$14: {
+                            const _bind$6 = st$2.output_mode;
+                            if (_bind$6 === undefined) {
+                              const _bind$7 = _M0MP211localreview3awk5State8variable(st$2, "OFS");
+                              let _tmp$3;
+                              if (_bind$7.$tag === 1) {
+                                const _ok = _bind$7;
+                                _tmp$3 = _ok._0;
+                              } else {
+                                return _bind$7;
+                              }
+                              const _bind$8 = _M0MP211localreview3awk5State12text_2einner(st$2, _tmp$3, false);
+                              let _bind$9;
+                              if (_bind$8.$tag === 1) {
+                                const _ok = _bind$8;
+                                _bind$9 = _ok._0;
+                              } else {
+                                return _bind$8;
+                              }
+                              const _tmp$4 = _M0MPC15array5Array4joinGsE(fields, new _M0TPC16string10StringView(_bind$9, 0, _bind$9.length));
+                              const _bind$10 = _M0MP211localreview3awk5State8variable(st$2, "ORS");
+                              let _tmp$5;
+                              if (_bind$10.$tag === 1) {
+                                const _ok = _bind$10;
+                                _tmp$5 = _ok._0;
+                              } else {
+                                return _bind$10;
+                              }
+                              const _bind$11 = _M0MP211localreview3awk5State12text_2einner(st$2, _tmp$5, false);
+                              let _tmp$6;
+                              if (_bind$11.$tag === 1) {
+                                const _ok = _bind$11;
+                                _tmp$6 = _ok._0;
+                              } else {
+                                return _bind$11;
+                              }
+                              text = `${_tmp$4}${_tmp$6}`;
+                            } else {
+                              const _Some = _bind$6;
+                              const _mode = _Some;
+                              mode$2 = _mode;
+                              break _L$14;
+                            }
+                            break _L$13;
+                          }
+                          text = `${_M0FP211localreview3awk10csv__write(fields, mode$2.separator)}\n`;
+                        }
                       }
-                      const _bind$5 = _M0MP211localreview3awk5State8variable(st$2, "ORS");
-                      let _tmp$3;
+                      const _bind$5 = _M0FP211localreview3awk14emit__redirect(text, destination, st$2);
                       if (_bind$5.$tag === 1) {
                         const _ok = _bind$5;
-                        _tmp$3 = _ok._0;
-                      } else {
-                        return _bind$5;
-                      }
-                      const _bind$6 = _M0MP211localreview3awk5State12text_2einner(st$2, _tmp$3, false);
-                      let _tmp$4;
-                      if (_bind$6.$tag === 1) {
-                        const _ok = _bind$6;
-                        _tmp$4 = _ok._0;
-                      } else {
-                        return _bind$6;
-                      }
-                      const _bind$7 = _M0FP211localreview3awk14emit__redirect(`${line}${_tmp$4}`, destination, st$2);
-                      if (_bind$7.$tag === 1) {
-                        const _ok = _bind$7;
                         _ok._0;
                       } else {
-                        return _bind$7;
+                        return _bind$5;
                       }
                       return new _M0DTPC16result6ResultGRP211localreview3awk4FlowRPC15error5ErrorE2Ok(_M0DTP211localreview3awk4Flow6Normal__);
                     }
@@ -19302,351 +20338,389 @@ function _M0FP211localreview3awk8evaluate(expr, st) {
                                           _L$21: {
                                             _L$22: {
                                               _L$23: {
-                                                let pattern;
+                                                let name$3;
                                                 _L$24: {
                                                   _L$25: {
-                                                    let target$3;
-                                                    let source;
+                                                    let pattern;
                                                     _L$26: {
                                                       _L$27: {
-                                                        switch (expr.$tag) {
-                                                          case 12: {
-                                                            const _Getline = expr;
-                                                            const _target = _Getline._0;
-                                                            const _source = _Getline._1;
-                                                            target$3 = _target;
-                                                            source = _source;
-                                                            break _L$27;
-                                                          }
-                                                          case 0: {
-                                                            const _Literal = expr;
-                                                            const _v = _Literal._0;
-                                                            _defer_result = _v;
-                                                            break;
-                                                          }
-                                                          case 1: {
-                                                            const _RegexLiteral = expr;
-                                                            const _pattern = _RegexLiteral._0;
-                                                            pattern = _pattern;
-                                                            break _L$25;
-                                                          }
-                                                          case 2: {
-                                                            break _L$23;
-                                                          }
-                                                          case 3: {
-                                                            break _L$23;
-                                                          }
-                                                          case 4: {
-                                                            break _L$23;
-                                                          }
-                                                          case 5: {
-                                                            _err = new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("tuple is only supported with in");
-                                                            break _L;
-                                                          }
-                                                          case 6: {
-                                                            const _Unary = expr;
-                                                            const _op = _Unary._0;
-                                                            const _child = _Unary._1;
-                                                            op$4 = _op;
-                                                            child = _child;
-                                                            break _L$21;
-                                                          }
-                                                          case 8: {
-                                                            const _Assign = expr;
-                                                            const _op$2 = _Assign._0;
-                                                            const _target$2 = _Assign._1;
-                                                            const _expr = _Assign._2;
-                                                            target$2 = _target$2;
-                                                            op$3 = _op$2;
-                                                            expr$2 = _expr;
-                                                            break _L$19;
-                                                          }
-                                                          case 9: {
-                                                            const _Increment = expr;
-                                                            const _target$3 = _Increment._0;
-                                                            const _delta = _Increment._1;
-                                                            const _prefix = _Increment._2;
-                                                            delta = _delta;
-                                                            target = _target$3;
-                                                            prefix = _prefix;
-                                                            break _L$17;
-                                                          }
-                                                          case 10: {
-                                                            const _Conditional = expr;
-                                                            const _condition = _Conditional._0;
-                                                            const _yes = _Conditional._1;
-                                                            const _no = _Conditional._2;
-                                                            yes = _yes;
-                                                            condition = _condition;
-                                                            no = _no;
-                                                            break _L$15;
-                                                          }
-                                                          case 7: {
-                                                            const _Binary = expr;
-                                                            const _x = _Binary._0;
-                                                            switch (_x) {
-                                                              case "&&": {
-                                                                const _left = _Binary._1;
-                                                                const _right = _Binary._2;
-                                                                left$5 = _left;
-                                                                right$4 = _right;
-                                                                break _L$13;
+                                                        let target$3;
+                                                        let source;
+                                                        _L$28: {
+                                                          _L$29: {
+                                                            switch (expr.$tag) {
+                                                              case 13: {
+                                                                const _Getline = expr;
+                                                                const _target = _Getline._0;
+                                                                const _source = _Getline._1;
+                                                                target$3 = _target;
+                                                                source = _source;
+                                                                break _L$29;
                                                               }
-                                                              case "||": {
-                                                                const _left$2 = _Binary._1;
-                                                                const _right$2 = _Binary._2;
-                                                                left$4 = _left$2;
-                                                                right$3 = _right$2;
-                                                                break _L$11;
+                                                              case 0: {
+                                                                const _Literal = expr;
+                                                                const _v = _Literal._0;
+                                                                _defer_result = _v;
+                                                                break;
                                                               }
-                                                              case "in": {
-                                                                const _left$3 = _Binary._1;
-                                                                const _x$2 = _Binary._2;
-                                                                if (_x$2.$tag === 2) {
-                                                                  const _Variable = _x$2;
-                                                                  const _name = _Variable._0;
-                                                                  left$3 = _left$3;
-                                                                  name$2 = _name;
-                                                                  break _L$9;
-                                                                } else {
-                                                                  _err = new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("in requires an array name");
-                                                                  break _L;
+                                                              case 1: {
+                                                                const _RegexLiteral = expr;
+                                                                const _pattern = _RegexLiteral._0;
+                                                                pattern = _pattern;
+                                                                break _L$27;
+                                                              }
+                                                              case 4: {
+                                                                const _NamedField = expr;
+                                                                const _name = _NamedField._0;
+                                                                name$3 = _name;
+                                                                break _L$25;
+                                                              }
+                                                              case 2: {
+                                                                break _L$23;
+                                                              }
+                                                              case 3: {
+                                                                break _L$23;
+                                                              }
+                                                              case 5: {
+                                                                break _L$23;
+                                                              }
+                                                              case 6: {
+                                                                _err = new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("tuple is only supported with in");
+                                                                break _L;
+                                                              }
+                                                              case 7: {
+                                                                const _Unary = expr;
+                                                                const _op = _Unary._0;
+                                                                const _child = _Unary._1;
+                                                                op$4 = _op;
+                                                                child = _child;
+                                                                break _L$21;
+                                                              }
+                                                              case 9: {
+                                                                const _Assign = expr;
+                                                                const _op$2 = _Assign._0;
+                                                                const _target$2 = _Assign._1;
+                                                                const _expr = _Assign._2;
+                                                                target$2 = _target$2;
+                                                                op$3 = _op$2;
+                                                                expr$2 = _expr;
+                                                                break _L$19;
+                                                              }
+                                                              case 10: {
+                                                                const _Increment = expr;
+                                                                const _target$3 = _Increment._0;
+                                                                const _delta = _Increment._1;
+                                                                const _prefix = _Increment._2;
+                                                                delta = _delta;
+                                                                target = _target$3;
+                                                                prefix = _prefix;
+                                                                break _L$17;
+                                                              }
+                                                              case 11: {
+                                                                const _Conditional = expr;
+                                                                const _condition = _Conditional._0;
+                                                                const _yes = _Conditional._1;
+                                                                const _no = _Conditional._2;
+                                                                yes = _yes;
+                                                                condition = _condition;
+                                                                no = _no;
+                                                                break _L$15;
+                                                              }
+                                                              case 8: {
+                                                                const _Binary = expr;
+                                                                const _x = _Binary._0;
+                                                                switch (_x) {
+                                                                  case "&&": {
+                                                                    const _left = _Binary._1;
+                                                                    const _right = _Binary._2;
+                                                                    left$5 = _left;
+                                                                    right$4 = _right;
+                                                                    break _L$13;
+                                                                  }
+                                                                  case "||": {
+                                                                    const _left$2 = _Binary._1;
+                                                                    const _right$2 = _Binary._2;
+                                                                    left$4 = _left$2;
+                                                                    right$3 = _right$2;
+                                                                    break _L$11;
+                                                                  }
+                                                                  case "in": {
+                                                                    const _left$3 = _Binary._1;
+                                                                    const _x$2 = _Binary._2;
+                                                                    if (_x$2.$tag === 2) {
+                                                                      const _Variable = _x$2;
+                                                                      const _name$2 = _Variable._0;
+                                                                      left$3 = _left$3;
+                                                                      name$2 = _name$2;
+                                                                      break _L$9;
+                                                                    } else {
+                                                                      _err = new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("in requires an array name");
+                                                                      break _L;
+                                                                    }
+                                                                  }
+                                                                  case "~": {
+                                                                    const _left$4 = _Binary._1;
+                                                                    const _right$3 = _Binary._2;
+                                                                    left$2 = _left$4;
+                                                                    op$2 = _x;
+                                                                    right$2 = _right$3;
+                                                                    break _L$7;
+                                                                  }
+                                                                  case "!~": {
+                                                                    const _left$5 = _Binary._1;
+                                                                    const _right$4 = _Binary._2;
+                                                                    left$2 = _left$5;
+                                                                    op$2 = _x;
+                                                                    right$2 = _right$4;
+                                                                    break _L$7;
+                                                                  }
+                                                                  default: {
+                                                                    const _left$6 = _Binary._1;
+                                                                    const _right$5 = _Binary._2;
+                                                                    left = _left$6;
+                                                                    op = _x;
+                                                                    right = _right$5;
+                                                                    break _L$5;
+                                                                  }
                                                                 }
-                                                              }
-                                                              case "~": {
-                                                                const _left$4 = _Binary._1;
-                                                                const _right$3 = _Binary._2;
-                                                                left$2 = _left$4;
-                                                                op$2 = _x;
-                                                                right$2 = _right$3;
-                                                                break _L$7;
-                                                              }
-                                                              case "!~": {
-                                                                const _left$5 = _Binary._1;
-                                                                const _right$4 = _Binary._2;
-                                                                left$2 = _left$5;
-                                                                op$2 = _x;
-                                                                right$2 = _right$4;
-                                                                break _L$7;
                                                               }
                                                               default: {
-                                                                const _left$6 = _Binary._1;
-                                                                const _right$5 = _Binary._2;
-                                                                left = _left$6;
-                                                                op = _x;
-                                                                right = _right$5;
-                                                                break _L$5;
+                                                                const _Call = expr;
+                                                                const _name$2 = _Call._0;
+                                                                const _args = _Call._1;
+                                                                name = _name$2;
+                                                                args = _args;
+                                                                break _L$3;
                                                               }
                                                             }
+                                                            break _L$28;
                                                           }
-                                                          default: {
-                                                            const _Call = expr;
-                                                            const _name = _Call._0;
-                                                            const _args = _Call._1;
-                                                            name = _name;
-                                                            args = _args;
-                                                            break _L$3;
-                                                          }
-                                                        }
-                                                        break _L$26;
-                                                      }
-                                                      let location;
-                                                      let e;
-                                                      _L$28: {
-                                                        _L$29: {
-                                                          let index;
+                                                          let location;
+                                                          let e;
                                                           _L$30: {
                                                             _L$31: {
-                                                              if (target$3 === undefined) {
-                                                                location = undefined;
-                                                              } else {
-                                                                const _Some = target$3;
-                                                                const _x = _Some;
-                                                                if (_x.$tag === 3) {
-                                                                  const _Field = _x;
-                                                                  const _index = _Field._0;
-                                                                  index = _index;
-                                                                  break _L$31;
-                                                                } else {
-                                                                  e = _x;
-                                                                  break _L$29;
+                                                              let index;
+                                                              _L$32: {
+                                                                _L$33: {
+                                                                  if (target$3 === undefined) {
+                                                                    location = undefined;
+                                                                  } else {
+                                                                    const _Some = target$3;
+                                                                    const _x = _Some;
+                                                                    if (_x.$tag === 3) {
+                                                                      const _Field = _x;
+                                                                      const _index = _Field._0;
+                                                                      index = _index;
+                                                                      break _L$33;
+                                                                    } else {
+                                                                      e = _x;
+                                                                      break _L$31;
+                                                                    }
+                                                                  }
+                                                                  break _L$32;
                                                                 }
+                                                                const _bind$3 = _M0FP211localreview3awk8evaluate(index, st);
+                                                                if (_bind$3.$tag === 1) {
+                                                                  const _ok = _bind$3;
+                                                                  _ok._0;
+                                                                } else {
+                                                                  const _err$2 = _bind$3;
+                                                                  _err = _err$2._0;
+                                                                  break _L;
+                                                                }
+                                                                location = new _M0DTP211localreview3awk4Slot9FieldSlot(0);
                                                               }
                                                               break _L$30;
                                                             }
-                                                            const _bind$3 = _M0FP211localreview3awk8evaluate(index, st);
+                                                            const _bind$3 = _M0FP211localreview3awk4slot(e, st);
                                                             if (_bind$3.$tag === 1) {
                                                               const _ok = _bind$3;
-                                                              _ok._0;
+                                                              location = _ok._0;
                                                             } else {
                                                               const _err$2 = _bind$3;
                                                               _err = _err$2._0;
                                                               break _L;
                                                             }
-                                                            location = new _M0DTP211localreview3awk4Slot9FieldSlot(0);
                                                           }
-                                                          break _L$28;
-                                                        }
-                                                        const _bind$3 = _M0FP211localreview3awk4slot(e, st);
-                                                        if (_bind$3.$tag === 1) {
-                                                          const _ok = _bind$3;
-                                                          location = _ok._0;
-                                                        } else {
-                                                          const _err$2 = _bind$3;
-                                                          _err = _err$2._0;
-                                                          break _L;
-                                                        }
-                                                      }
-                                                      const _bind$3 = _M0MPC16option6Option3mapGUbRP211localreview3awk4ExprEUbsEEHRPC15error5Error(source, (pair) => {
-                                                        let pipe;
-                                                        let expr$3;
-                                                        _L$29: {
-                                                          const _pipe = pair._0;
-                                                          const _expr = pair._1;
-                                                          pipe = _pipe;
-                                                          expr$3 = _expr;
-                                                          break _L$29;
-                                                        }
-                                                        const _bind$4 = _M0FP211localreview3awk8evaluate(expr$3, st);
-                                                        let _tmp;
-                                                        if (_bind$4.$tag === 1) {
-                                                          const _ok = _bind$4;
-                                                          _tmp = _ok._0;
-                                                        } else {
-                                                          return _bind$4;
-                                                        }
-                                                        const _bind$5 = _M0MP211localreview3awk5State12text_2einner(st, _tmp, false);
-                                                        let _tmp$2;
-                                                        if (_bind$5.$tag === 1) {
-                                                          const _ok = _bind$5;
-                                                          _tmp$2 = _ok._0;
-                                                        } else {
-                                                          return _bind$5;
-                                                        }
-                                                        return new _M0DTPC16result6ResultGUbsERPC15error5ErrorE2Ok({ _0: pipe, _1: _tmp$2 });
-                                                      });
-                                                      let source$2;
-                                                      if (_bind$3.$tag === 1) {
-                                                        const _ok = _bind$3;
-                                                        source$2 = _ok._0;
-                                                      } else {
-                                                        const _err$2 = _bind$3;
-                                                        _err = _err$2._0;
-                                                        break _L;
-                                                      }
-                                                      let _try_err;
-                                                      _L$29: {
-                                                        _L$30: {
-                                                          let record;
-                                                          let pipe;
-                                                          let name$3;
+                                                          const _bind$3 = _M0MPC16option6Option3mapGUbRP211localreview3awk4ExprEUbsEEHRPC15error5Error(source, (pair) => {
+                                                            let pipe;
+                                                            let expr$3;
+                                                            _L$31: {
+                                                              const _pipe = pair._0;
+                                                              const _expr = pair._1;
+                                                              pipe = _pipe;
+                                                              expr$3 = _expr;
+                                                              break _L$31;
+                                                            }
+                                                            const _bind$4 = _M0FP211localreview3awk8evaluate(expr$3, st);
+                                                            let _tmp;
+                                                            if (_bind$4.$tag === 1) {
+                                                              const _ok = _bind$4;
+                                                              _tmp = _ok._0;
+                                                            } else {
+                                                              return _bind$4;
+                                                            }
+                                                            const _bind$5 = _M0MP211localreview3awk5State12text_2einner(st, _tmp, false);
+                                                            let _tmp$2;
+                                                            if (_bind$5.$tag === 1) {
+                                                              const _ok = _bind$5;
+                                                              _tmp$2 = _ok._0;
+                                                            } else {
+                                                              return _bind$5;
+                                                            }
+                                                            return new _M0DTPC16result6ResultGUbsERPC15error5ErrorE2Ok({ _0: pipe, _1: _tmp$2 });
+                                                          });
+                                                          let source$2;
+                                                          if (_bind$3.$tag === 1) {
+                                                            const _ok = _bind$3;
+                                                            source$2 = _ok._0;
+                                                          } else {
+                                                            const _err$2 = _bind$3;
+                                                            _err = _err$2._0;
+                                                            break _L;
+                                                          }
+                                                          let _try_err;
                                                           _L$31: {
                                                             _L$32: {
-                                                              if (source$2 === undefined) {
-                                                                const _bind$4 = _M0MP211localreview3awk5State11take__input(st);
+                                                              let record;
+                                                              let pipe;
+                                                              let name$4;
+                                                              _L$33: {
+                                                                _L$34: {
+                                                                  if (source$2 === undefined) {
+                                                                    const _bind$4 = _M0MP211localreview3awk5State11take__input(st);
+                                                                    if (_bind$4.$tag === 1) {
+                                                                      const _ok = _bind$4;
+                                                                      record = _ok._0;
+                                                                    } else {
+                                                                      const _err$2 = _bind$4;
+                                                                      _try_err = _err$2._0;
+                                                                      break _L$32;
+                                                                    }
+                                                                  } else {
+                                                                    const _Some = source$2;
+                                                                    const _x = _Some;
+                                                                    const _pipe = _x._0;
+                                                                    const _name = _x._1;
+                                                                    pipe = _pipe;
+                                                                    name$4 = _name;
+                                                                    break _L$34;
+                                                                  }
+                                                                  break _L$33;
+                                                                }
+                                                                const _bind$4 = _M0MP211localreview3awk5State14read__redirect(st, name$4, pipe);
                                                                 if (_bind$4.$tag === 1) {
                                                                   const _ok = _bind$4;
                                                                   record = _ok._0;
                                                                 } else {
                                                                   const _err$2 = _bind$4;
                                                                   _try_err = _err$2._0;
-                                                                  break _L$30;
+                                                                  break _L$32;
                                                                 }
-                                                              } else {
-                                                                const _Some = source$2;
-                                                                const _x = _Some;
-                                                                const _pipe = _x._0;
-                                                                const _name = _x._1;
-                                                                pipe = _pipe;
-                                                                name$3 = _name;
-                                                                break _L$32;
+                                                              }
+                                                              let text;
+                                                              _L$34: {
+                                                                _L$35: {
+                                                                  if (record === undefined) {
+                                                                    _defer_result = new _M0DTP211localreview3awk5Value6Number(0);
+                                                                  } else {
+                                                                    const _Some = record;
+                                                                    const _text = _Some;
+                                                                    text = _text;
+                                                                    break _L$35;
+                                                                  }
+                                                                  break _L$34;
+                                                                }
+                                                                let location$2;
+                                                                _L$36: {
+                                                                  _L$37: {
+                                                                    if (location === undefined) {
+                                                                      const _bind$4 = _M0MP211localreview3awk5State19set__record_2einner(st, text, false);
+                                                                      if (_bind$4.$tag === 1) {
+                                                                        const _ok = _bind$4;
+                                                                        _ok._0;
+                                                                      } else {
+                                                                        const _err$2 = _bind$4;
+                                                                        _try_err = _err$2._0;
+                                                                        break _L$32;
+                                                                      }
+                                                                    } else {
+                                                                      const _Some = location;
+                                                                      const _x = _Some;
+                                                                      if (_x.$tag === 1) {
+                                                                        const _bind$4 = _M0MP211localreview3awk5State19set__record_2einner(st, text, true);
+                                                                        if (_bind$4.$tag === 1) {
+                                                                          const _ok = _bind$4;
+                                                                          _ok._0;
+                                                                        } else {
+                                                                          const _err$2 = _bind$4;
+                                                                          _try_err = _err$2._0;
+                                                                          break _L$32;
+                                                                        }
+                                                                      } else {
+                                                                        location$2 = _x;
+                                                                        break _L$37;
+                                                                      }
+                                                                    }
+                                                                    break _L$36;
+                                                                  }
+                                                                  const _bind$4 = _M0MP211localreview3awk5State13write_2einner(st, location$2, _M0FP211localreview3awk12input__value(text), false);
+                                                                  if (_bind$4.$tag === 1) {
+                                                                    const _ok = _bind$4;
+                                                                    _ok._0;
+                                                                  } else {
+                                                                    const _err$2 = _bind$4;
+                                                                    _try_err = _err$2._0;
+                                                                    break _L$32;
+                                                                  }
+                                                                }
+                                                                _defer_result = new _M0DTP211localreview3awk5Value6Number(1);
                                                               }
                                                               break _L$31;
                                                             }
-                                                            const _bind$4 = _M0MP211localreview3awk5State14read__redirect(st, name$3, pipe);
-                                                            if (_bind$4.$tag === 1) {
-                                                              const _ok = _bind$4;
-                                                              record = _ok._0;
-                                                            } else {
-                                                              const _err$2 = _bind$4;
-                                                              _try_err = _err$2._0;
-                                                              break _L$30;
-                                                            }
-                                                          }
-                                                          let text;
-                                                          _L$32: {
+                                                            let e$2;
                                                             _L$33: {
-                                                              if (record === undefined) {
-                                                                _defer_result = new _M0DTP211localreview3awk5Value6Number(0);
-                                                              } else {
-                                                                const _Some = record;
-                                                                const _text = _Some;
-                                                                text = _text;
+                                                              _L$34: {
+                                                                if (_try_err.$tag === 0) {
+                                                                  _defer_result = new _M0DTP211localreview3awk5Value6Number(-1);
+                                                                } else {
+                                                                  e$2 = _try_err;
+                                                                  break _L$34;
+                                                                }
                                                                 break _L$33;
                                                               }
-                                                              break _L$32;
+                                                              _err = e$2;
+                                                              break _L;
                                                             }
-                                                            let location$2;
-                                                            _L$34: {
-                                                              _L$35: {
-                                                                _L$36: {
-                                                                  if (location === undefined) {
-                                                                    break _L$36;
-                                                                  } else {
-                                                                    const _Some = location;
-                                                                    const _x = _Some;
-                                                                    if (_x.$tag === 1) {
-                                                                      break _L$36;
-                                                                    } else {
-                                                                      location$2 = _x;
-                                                                      break _L$35;
-                                                                    }
-                                                                  }
-                                                                }
-                                                                const _bind$4 = _M0MP211localreview3awk5State11set__record(st, text);
-                                                                if (_bind$4.$tag === 1) {
-                                                                  const _ok = _bind$4;
-                                                                  _ok._0;
-                                                                } else {
-                                                                  const _err$2 = _bind$4;
-                                                                  _try_err = _err$2._0;
-                                                                  break _L$30;
-                                                                }
-                                                                break _L$34;
-                                                              }
-                                                              const _bind$4 = _M0MP211localreview3awk5State13write_2einner(st, location$2, _M0FP211localreview3awk12input__value(text), false);
-                                                              if (_bind$4.$tag === 1) {
-                                                                const _ok = _bind$4;
-                                                                _ok._0;
-                                                              } else {
-                                                                const _err$2 = _bind$4;
-                                                                _try_err = _err$2._0;
-                                                                break _L$30;
-                                                              }
-                                                            }
-                                                            _defer_result = new _M0DTP211localreview3awk5Value6Number(1);
                                                           }
-                                                          break _L$29;
                                                         }
-                                                        let e$2;
-                                                        _L$31: {
-                                                          _L$32: {
-                                                            if (_try_err.$tag === 0) {
-                                                              _defer_result = new _M0DTP211localreview3awk5Value6Number(-1);
-                                                            } else {
-                                                              e$2 = _try_err;
-                                                              break _L$32;
-                                                            }
-                                                            break _L$31;
-                                                          }
-                                                          _err = e$2;
-                                                          break _L;
-                                                        }
+                                                        break _L$26;
                                                       }
+                                                      const _bind$3 = _M0MP211localreview3awk5State5regex(st, pattern);
+                                                      let _tmp;
+                                                      if (_bind$3.$tag === 1) {
+                                                        const _ok = _bind$3;
+                                                        _tmp = _ok._0;
+                                                      } else {
+                                                        const _err$2 = _bind$3;
+                                                        _err = _err$2._0;
+                                                        break _L;
+                                                      }
+                                                      const _bind$4 = _M0FP211localreview3awk20regex__match_2einner(_tmp, _M0MPC16string6String9to__array(st.record), 0, st, 0);
+                                                      let _tmp$2;
+                                                      if (_bind$4.$tag === 1) {
+                                                        const _ok = _bind$4;
+                                                        _tmp$2 = _ok._0;
+                                                      } else {
+                                                        const _err$2 = _bind$4;
+                                                        _err = _err$2._0;
+                                                        break _L;
+                                                      }
+                                                      _defer_result = _M0FP211localreview3awk7boolean(_M0IP016_24default__implPB2Eq10not__equalGOUiiEE(_tmp$2, undefined));
                                                     }
                                                     break _L$24;
                                                   }
-                                                  const _bind$3 = _M0MP211localreview3awk5State5regex(st, pattern);
+                                                  const _bind$3 = _M0FP211localreview3awk8evaluate(name$3, st);
                                                   let _tmp;
                                                   if (_bind$3.$tag === 1) {
                                                     const _ok = _bind$3;
@@ -19656,7 +20730,7 @@ function _M0FP211localreview3awk8evaluate(expr, st) {
                                                     _err = _err$2._0;
                                                     break _L;
                                                   }
-                                                  const _bind$4 = _M0FP211localreview3awk20regex__match_2einner(_tmp, _M0MPC16string6String9to__array(st.record), 0, st, 0);
+                                                  const _bind$4 = _M0MP211localreview3awk5State12text_2einner(st, _tmp, false);
                                                   let _tmp$2;
                                                   if (_bind$4.$tag === 1) {
                                                     const _ok = _bind$4;
@@ -19666,7 +20740,15 @@ function _M0FP211localreview3awk8evaluate(expr, st) {
                                                     _err = _err$2._0;
                                                     break _L;
                                                   }
-                                                  _defer_result = _M0FP211localreview3awk7boolean(_M0IP016_24default__implPB2Eq10not__equalGOUiiEE(_tmp$2, undefined));
+                                                  const _bind$5 = _M0MP211localreview3awk5State12named__field(st, _tmp$2);
+                                                  if (_bind$5.$tag === 1) {
+                                                    const _ok = _bind$5;
+                                                    _defer_result = _ok._0;
+                                                  } else {
+                                                    const _err$2 = _bind$5;
+                                                    _err = _err$2._0;
+                                                    break _L;
+                                                  }
                                                 }
                                                 break _L$22;
                                               }
@@ -19899,7 +20981,7 @@ function _M0FP211localreview3awk8evaluate(expr, st) {
                   let keys;
                   _L$10: {
                     _L$11: {
-                      if (left$3.$tag === 5) {
+                      if (left$3.$tag === 6) {
                         const _Tuple = left$3;
                         const _keys = _Tuple._0;
                         keys = _keys;
@@ -20341,51 +21423,79 @@ function _M0FP211localreview3awk7builtin(name, args, st) {
         return _bind$6;
       }
     }
-    let _tmp$2;
-    if (args.length === 3) {
-      const _bind$5 = _M0MPC15array5Array2atGRPC16string10StringViewE(args, 2);
-      let _tmp$3;
-      if (_bind$5.$tag === 1) {
-        _tmp$3 = true;
-      } else {
-        _tmp$3 = false;
-      }
-      _tmp$2 = _tmp$3;
-    } else {
-      _tmp$2 = false;
-    }
-    const _bind$5 = _M0FP211localreview3awk21split__fields_2einner(text, sep, st, _tmp$2);
     let fields;
+    _L: {
+      _L$2: {
+        if (args.length === 2) {
+          let mode;
+          _L$3: {
+            const _bind$5 = st.input_mode;
+            if (_bind$5 === undefined) {
+              break _L$2;
+            } else {
+              const _Some = _bind$5;
+              const _mode = _Some;
+              mode = _mode;
+              break _L$3;
+            }
+          }
+          const _bind$5 = _M0FP211localreview3awk11csv__fields(text, mode, st);
+          if (_bind$5.$tag === 1) {
+            const _ok = _bind$5;
+            fields = _ok._0;
+          } else {
+            return _bind$5;
+          }
+        } else {
+          break _L$2;
+        }
+        break _L;
+      }
+      let _tmp$2;
+      if (args.length === 3) {
+        const _bind$5 = _M0MPC15array5Array2atGRPC16string10StringViewE(args, 2);
+        let _tmp$3;
+        if (_bind$5.$tag === 1) {
+          _tmp$3 = true;
+        } else {
+          _tmp$3 = false;
+        }
+        _tmp$2 = _tmp$3;
+      } else {
+        _tmp$2 = false;
+      }
+      const _bind$5 = _M0FP211localreview3awk21split__fields_2einner(text, sep, st, _tmp$2);
+      if (_bind$5.$tag === 1) {
+        const _ok = _bind$5;
+        fields = _ok._0;
+      } else {
+        return _bind$5;
+      }
+    }
+    const _bind$5 = _M0MP211localreview3awk5State5array(st, array);
+    let dest;
     if (_bind$5.$tag === 1) {
       const _ok = _bind$5;
-      fields = _ok._0;
+      dest = _ok._0;
     } else {
       return _bind$5;
     }
-    const _bind$6 = _M0MP211localreview3awk5State5array(st, array);
-    let dest;
-    if (_bind$6.$tag === 1) {
-      const _ok = _bind$6;
-      dest = _ok._0;
-    } else {
-      return _bind$6;
-    }
     st.entries = st.entries - _M0MPB3Map6lengthGsRP211localreview3awk5ValueE(dest) | 0;
     _M0MPB3Map5clearGsRP211localreview3awk9MainInputE(dest);
-    const _bind$7 = fields.length;
-    let _tmp$3 = 0;
+    const _bind$6 = fields.length;
+    let _tmp$2 = 0;
     while (true) {
-      const i = _tmp$3;
-      if (i < _bind$7) {
+      const i = _tmp$2;
+      if (i < _bind$6) {
         const field = fields[i];
-        const _bind$8 = _M0MP211localreview3awk5State12put__element(st, array, _M0MPC13int3Int18to__string_2einner(i + 1 | 0, 10), field);
-        if (_bind$8.$tag === 1) {
-          const _ok = _bind$8;
+        const _bind$7 = _M0MP211localreview3awk5State12put__element(st, array, _M0MPC13int3Int18to__string_2einner(i + 1 | 0, 10), field);
+        if (_bind$7.$tag === 1) {
+          const _ok = _bind$7;
           _ok._0;
         } else {
-          return _bind$8;
+          return _bind$7;
         }
-        _tmp$3 = i + 1 | 0;
+        _tmp$2 = i + 1 | 0;
         continue;
       } else {
         break;
@@ -20802,7 +21912,7 @@ function _M0FP211localreview3awk4slot(expr, st) {
             index = _index;
             break _L$2;
           }
-          case 4: {
+          case 5: {
             const _Element = expr;
             const _name$2 = _Element._0;
             const _keys = _Element._1;
@@ -21138,6 +22248,7 @@ function _M0MP211localreview3awk7Session11begin__file(self, name) {
   _M0MPB3Map3setGsRP211localreview3awk5ValueE(self.state.vars, "FILENAME", new _M0DTP211localreview3awk5Value4Text(name));
   _M0MPB3Map3setGsRP211localreview3awk5ValueE(self.state.vars, "FNR", new _M0DTP211localreview3awk5Value6Number(0));
   self.skip_file = false;
+  self.feed_header_pending = true;
   return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
 }
 function _M0FP211localreview3awk21execute__record__rule(rule, st) {
@@ -21329,31 +22440,104 @@ function _M0MP211localreview3awk7Session4feed(self, record) {
   } else {
     return _bind$2;
   }
-  const _bind$3 = _M0MP211localreview3awk5State11set__record(st, record);
+  let mode;
+  _L: {
+    _L$2: {
+      const _bind$3 = st.input_mode;
+      if (_bind$3 === undefined) {
+        const _bind$4 = _M0MP211localreview3awk5State19set__record_2einner(st, record, false);
+        if (_bind$4.$tag === 1) {
+          const _ok = _bind$4;
+          _ok._0;
+        } else {
+          return _bind$4;
+        }
+      } else {
+        const _Some = _bind$3;
+        const _mode = _Some;
+        mode = _mode;
+        break _L$2;
+      }
+      break _L;
+    }
+    let raw;
+    let fields;
+    _L$3: {
+      let _bind$3;
+      const _bind$4 = _M0FP211localreview3awk11csv__record(record, mode, st);
+      let _bind$5;
+      if (_bind$4.$tag === 1) {
+        const _ok = _bind$4;
+        _bind$5 = _ok._0;
+      } else {
+        return _bind$4;
+      }
+      if (_bind$5 === undefined) {
+        return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+      } else {
+        const _Some = _bind$5;
+        const _row = _Some;
+        _bind$3 = _row;
+      }
+      const _raw = _bind$3._0;
+      const _fields = _bind$3._1;
+      raw = _raw;
+      fields = _fields;
+      break _L$3;
+    }
+    if (mode.header && self.feed_header_pending) {
+      self.feed_header_pending = false;
+      const _bind$3 = _M0MP211localreview3awk5State11csv__header(st, fields);
+      if (_bind$3.$tag === 1) {
+        const _ok = _bind$3;
+        _ok._0;
+      } else {
+        return _bind$3;
+      }
+      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+    }
+    self.feed_header_pending = false;
+    const _bind$3 = _M0MP211localreview3awk5State19set__record_2einner(st, raw, false);
+    if (_bind$3.$tag === 1) {
+      const _ok = _bind$3;
+      _ok._0;
+    } else {
+      return _bind$3;
+    }
+    _M0MPC15array5Array5clearGsE(st.fields);
+    const _bind$4 = fields.length;
+    let _tmp = 0;
+    while (true) {
+      const _ = _tmp;
+      if (_ < _bind$4) {
+        const field = fields[_];
+        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(st.fields, field);
+        _tmp = _ + 1 | 0;
+        continue;
+      } else {
+        break;
+      }
+    }
+    st.reuse_csv_fields = true;
+  }
+  const _tmp = st.vars;
+  const _bind$3 = _M0MP211localreview3awk5State8variable(st, "NR");
+  let _tmp$2;
   if (_bind$3.$tag === 1) {
     const _ok = _bind$3;
-    _ok._0;
+    _tmp$2 = _ok._0;
   } else {
     return _bind$3;
   }
-  const _tmp = st.vars;
-  const _bind$4 = _M0MP211localreview3awk5State8variable(st, "NR");
-  let _tmp$2;
-  if (_bind$4.$tag === 1) {
-    const _ok = _bind$4;
-    _tmp$2 = _ok._0;
-  } else {
-    return _bind$4;
-  }
   _M0MPB3Map3setGsRP211localreview3awk5ValueE(_tmp, "NR", new _M0DTP211localreview3awk5Value6Number(_M0MP211localreview3awk5Value6number(_tmp$2) + 1));
   const _tmp$3 = st.vars;
-  const _bind$5 = _M0MP211localreview3awk5State8variable(st, "FNR");
+  const _bind$4 = _M0MP211localreview3awk5State8variable(st, "FNR");
   let _tmp$4;
-  if (_bind$5.$tag === 1) {
-    const _ok = _bind$5;
+  if (_bind$4.$tag === 1) {
+    const _ok = _bind$4;
     _tmp$4 = _ok._0;
   } else {
-    return _bind$5;
+    return _bind$4;
   }
   _M0MPB3Map3setGsRP211localreview3awk5ValueE(_tmp$3, "FNR", new _M0DTP211localreview3awk5Value6Number(_M0MP211localreview3awk5Value6number(_tmp$4) + 1));
   return _M0MP211localreview3awk7Session15process__record(self);
@@ -21575,13 +22759,14 @@ function _M0MP211localreview3awk7Session7advance(self) {
       break _L;
     }
   }
-  const _bind$2 = _M0MP211localreview3awk5State11set__record(self.state, text);
+  const _bind$2 = _M0MP211localreview3awk5State19set__record_2einner(self.state, text, false);
   if (_bind$2.$tag === 1) {
     const _ok = _bind$2;
     _ok._0;
   } else {
     return _bind$2;
   }
+  self.state.reuse_csv_fields = true;
   const _bind$3 = _M0MP211localreview3awk7Session15process__record(self);
   if (_bind$3.$tag === 1) {
     const _ok = _bind$3;
@@ -21606,13 +22791,13 @@ function _M0MP211localreview3awk7Session12close__input(self) {
   }
   _M0MP211localreview3awk9MainInput5close(source);
 }
-function _M0FP211localreview3awk25run__with__status_2einner(program, input, separator, step_limit, clock_seconds) {
+function _M0FP211localreview3awk25run__with__status_2einner(program, input, separator, input_mode, output_mode, step_limit, clock_seconds) {
   if (input.length > 1000000) {
     return new _M0DTPC16result6ResultGRP211localreview3awk9RunResultRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("input limit"));
   }
   const chars = _M0MPC16string6String9to__array(input);
   const position = _M0MPC13ref3Ref3RefGiE(0);
-  const _bind$2 = _M0FP211localreview3awk12new__session(program, separator, undefined, undefined, _M0DTPC16option6OptionGRPB5ArrayGsEE4None__, step_limit, new _M0DTPC16option6OptionGdE4Some(clock_seconds), _M0DTPC16option6OptionGOWRP211localreview3awk9IORequestERP211localreview3awk7IOReplyE4None__, new _M0DTPC16option6OptionGOWRP211localreview3awk12InputRequestERP211localreview3awk10InputReplyE4Some((request) => {
+  const _bind$2 = _M0FP211localreview3awk12new__session(program, separator, input_mode, output_mode, undefined, undefined, _M0DTPC16option6OptionGRPB5ArrayGsEE4None__, step_limit, new _M0DTPC16option6OptionGdE4Some(clock_seconds), _M0DTPC16option6OptionGOWRP211localreview3awk9IORequestERP211localreview3awk7IOReplyE4None__, new _M0DTPC16option6OptionGOWRP211localreview3awk12InputRequestERP211localreview3awk10InputReplyE4Some((request) => {
     _L: {
       switch (request.$tag) {
         case 0: {
@@ -21691,8 +22876,8 @@ function _M0FP211localreview3awk25run__with__status_2einner(program, input, sepa
   _defer();
   return new _M0DTPC16result6ResultGRP211localreview3awk9RunResultRP211localreview3awk10ParseErrorE3Err(_err);
 }
-function _M0FP211localreview3awk11run_2einner(program, input, separator) {
-  const _bind$2 = _M0FP211localreview3awk25run__with__status_2einner(program, input, separator, 1000000, 0);
+function _M0FP211localreview3awk11run_2einner(program, input, separator, input_mode, output_mode) {
+  const _bind$2 = _M0FP211localreview3awk25run__with__status_2einner(program, input, separator, input_mode, output_mode, 1000000, 0);
   let _tmp;
   if (_bind$2.$tag === 1) {
     const _ok = _bind$2;
@@ -21908,7 +23093,7 @@ function _M0FP411localreview3awk3cmd3web13session__json(input) {
           break _L;
         }
       }
-      const _bind$3 = _M0FP211localreview3awk12new__session(_M0FP411localreview3awk3cmd3web21string__field_2einner(request, "program", ""), _M0FP411localreview3awk3cmd3web21string__field_2einner(request, "separator", " "), _M0FP411localreview3awk3cmd3web11string__map(request, "variables"), _M0FP411localreview3awk3cmd3web11string__map(request, "environment"), new _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(arguments_), limit, new _M0DTPC16option6OptionGdE4Some(_M0FP411localreview3awk3cmd3web16current__seconds()), _M0DTPC16option6OptionGOWRP211localreview3awk9IORequestERP211localreview3awk7IOReplyE4None__, _M0DTPC16option6OptionGOWRP211localreview3awk12InputRequestERP211localreview3awk10InputReplyE4None__, _M0DTPC16option6OptionGOWsEOsE4None__);
+      const _bind$3 = _M0FP211localreview3awk12new__session(_M0FP411localreview3awk3cmd3web21string__field_2einner(request, "program", ""), _M0FP411localreview3awk3cmd3web21string__field_2einner(request, "separator", " "), _M0FP411localreview3awk3cmd3web21string__field_2einner(request, "inputMode", ""), _M0FP411localreview3awk3cmd3web21string__field_2einner(request, "outputMode", ""), _M0FP411localreview3awk3cmd3web11string__map(request, "variables"), _M0FP411localreview3awk3cmd3web11string__map(request, "environment"), new _M0DTPC16option6OptionGRPB5ArrayGsEE4Some(arguments_), limit, new _M0DTPC16option6OptionGdE4Some(_M0FP411localreview3awk3cmd3web16current__seconds()), _M0DTPC16option6OptionGOWRP211localreview3awk9IORequestERP211localreview3awk7IOReplyE4None__, _M0DTPC16option6OptionGOWRP211localreview3awk12InputRequestERP211localreview3awk10InputReplyE4None__, _M0DTPC16option6OptionGOWsEOsE4None__);
       let session;
       if (_bind$3.$tag === 1) {
         const _ok = _bind$3;
@@ -22201,7 +23386,7 @@ function _M0FP411localreview3awk3cmd3web3run(input) {
     if (parts.length !== 2) {
       return "ERROR: use program then newline --- newline data";
     }
-    const _bind$3 = _M0FP211localreview3awk11run_2einner(_M0MPC16string10StringView9to__owned(_M0MPC15array5Array2atGRPC16string10StringViewE(parts, 0)), _M0MPC16string10StringView9to__owned(_M0MPC15array5Array2atGRPC16string10StringViewE(parts, 1)), " ");
+    const _bind$3 = _M0FP211localreview3awk11run_2einner(_M0MPC16string10StringView9to__owned(_M0MPC15array5Array2atGRPC16string10StringViewE(parts, 0)), _M0MPC16string10StringView9to__owned(_M0MPC15array5Array2atGRPC16string10StringViewE(parts, 1)), " ", "", "");
     if (_bind$3.$tag === 1) {
       const _ok = _bind$3;
       return _ok._0;
@@ -22217,7 +23402,7 @@ function _M0FP411localreview3awk3cmd3web3run(input) {
 function _M0FP411localreview3awk3cmd3web7execute(program, input, separator) {
   let _try_err;
   _L: {
-    const _bind$2 = _M0FP211localreview3awk25run__with__status_2einner(program, input, separator, 1000000, 0);
+    const _bind$2 = _M0FP211localreview3awk25run__with__status_2einner(program, input, separator, "", "", 1000000, 0);
     let _tmp;
     if (_bind$2.$tag === 1) {
       const _ok = _bind$2;
@@ -22474,7 +23659,7 @@ function _M0FP411localreview3awk3cmd3web15host__run__json(input, io) {
         break _L;
       }
     }
-    const _bind$3 = _M0FP211localreview3awk20new__session_2einner(_M0FP411localreview3awk3cmd3web21string__field_2einner(request, "program", ""), _M0FP411localreview3awk3cmd3web21string__field_2einner(request, "separator", " "), _M0FP411localreview3awk3cmd3web11string__map(request, "variables"), _M0FP411localreview3awk3cmd3web11string__map(request, "environment"), arguments_, limit, _M0FP411localreview3awk3cmd3web16current__seconds(), (request$2) => _M0FP411localreview3awk3cmd3web10bridge__io(io, request$2), (request$2) => {
+    const _bind$3 = _M0FP211localreview3awk20new__session_2einner(_M0FP411localreview3awk3cmd3web21string__field_2einner(request, "program", ""), _M0FP411localreview3awk3cmd3web21string__field_2einner(request, "separator", " "), _M0FP411localreview3awk3cmd3web21string__field_2einner(request, "inputMode", ""), _M0FP411localreview3awk3cmd3web21string__field_2einner(request, "outputMode", ""), _M0FP411localreview3awk3cmd3web11string__map(request, "variables"), _M0FP411localreview3awk3cmd3web11string__map(request, "environment"), arguments_, limit, _M0FP411localreview3awk3cmd3web16current__seconds(), (request$2) => _M0FP411localreview3awk3cmd3web10bridge__io(io, request$2), (request$2) => {
       let response;
       let name;
       _L$4: {

@@ -1,5 +1,5 @@
 {
-  "utc": "2026-09-19T03:17:21.988Z",
+  "utc": "2026-09-19T03:17:36.565Z",
   "mode": "live GoAWK",
   "version": "v1.32.0",
   "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
@@ -9,8 +9,9 @@
     "versionOutput": "GNU bash, version 5.2.26(1)-release (x86_64-pc-msys)\nCopyright (C) 2022 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\nThis is free software; you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
     "versionStatus": 0
   },
-  "total": 80,
-  "passed": 80,
+  "total": 273,
+  "matched": 270,
+  "known": 3,
   "failed": 0,
   "sourceSha256": {
     ".gitattributes": "968aed8752f58f3554e38c1db0b611ba4663668909552d8d17c2874ff5966312",
@@ -102,5 +103,61 @@
     "web/engine.mjs": "65186a2d7dfc07b9ca678571de19efe0db8436ec32c4c6a7221ac179b50bfcc3",
     "web/index.html": "cdcbb5d9f2d455d4335bfd7fdcd30bac065fc0b90843d4fe616ef9726fc7aeb8"
   },
+  "knownDifferences": [
+    {
+      "id": "csv-225",
+      "reason": "GoAWK 1.32 BOM raw-token/chunk behavior",
+      "actual": {
+        "output": "1 2 a b [a,b]\n",
+        "status": 0,
+        "hasError": false,
+        "files": {},
+        "error": ""
+      },
+      "reference": {
+        "output": "1 2 a b [a,b\n\u0000\u0000\u0000]\n",
+        "status": 0,
+        "hasError": false,
+        "files": {},
+        "error": ""
+      }
+    },
+    {
+      "id": "csv-226",
+      "reason": "GoAWK 1.32 BOM raw-token/chunk behavior",
+      "actual": {
+        "output": "1 2 a b [a,b]\n2 2 1 2 [1,2]\n",
+        "status": 0,
+        "hasError": false,
+        "files": {},
+        "error": ""
+      },
+      "reference": {
+        "output": "1 2 a b [a,b\n1,2]\n2 2 1 2 [1,2]\n",
+        "status": 0,
+        "hasError": false,
+        "files": {},
+        "error": ""
+      }
+    },
+    {
+      "id": "csv-227",
+      "reason": "GoAWK 1.32 BOM raw-token/chunk behavior",
+      "actual": {
+        "output": "1 2 a b [a,b]\n",
+        "status": 0,
+        "hasError": false,
+        "files": {},
+        "error": ""
+      },
+      "reference": {
+        "output": "1 2 ﻿a b [﻿a,b]\n",
+        "status": 0,
+        "hasError": false,
+        "files": {},
+        "error": ""
+      }
+    }
+  ],
   "failures": []
 }

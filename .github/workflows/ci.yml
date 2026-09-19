@@ -28,6 +28,7 @@ jobs:
       - run: node tools/test-awk-cli.mjs
       - run: node tools/generate-record-tests.mjs --check
       - run: node tools/generate-io-tests.mjs --check
+      - run: node tools/generate-csv-tests.mjs --check
       - run: node tools/test-pull-host.mjs
       - run: node tools/test-bridge-host.mjs
       - run: node tools/test-record-reference.mjs --golden
@@ -35,6 +36,7 @@ jobs:
       - run: node tools/test-reference.mjs --golden
       - run: node tools/test-host-reference.mjs --golden
       - run: node tools/test-io-reference.mjs --golden
+      - run: node tools/test-csv-reference.mjs --golden
       - run: node tools/test-gawk.mjs
       - run: node tools/robustness.mjs
       - run: node tools/benchmark.mjs

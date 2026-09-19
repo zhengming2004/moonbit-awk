@@ -92,6 +92,8 @@ pub fn session_json(input : String) -> String {
       let session = @lib.new_session(
         string_field(request, "program"),
         separator=string_field(request, "separator", default=" "),
+        input_mode=string_field(request, "inputMode"),
+        output_mode=string_field(request, "outputMode"),
         variables=string_map(request, "variables"),
         environment=string_map(request, "environment"),
         arguments~,

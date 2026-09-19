@@ -27,6 +27,9 @@ priv struct MainInput {
   mut had_file : Bool
   mut mode : Int
   mut separator : Char
+  mut csv : CSVMode?
+  mut csv_started : Bool
+  mut csv_header_done : Bool
 }
 
 ///|
@@ -139,6 +142,21 @@ fn drop_record_cr(text : String) -> String {
 
 ///|
 fn MainInput::record(self : MainInput, st : State) -> String? raise ParseError {
+  if self.csv is Some(mode) {
+    while self.csv_row(st, mode) is Some((text, fields)) {
+      if mode.header && !self.csv_header_done {
+        self.csv_header_done = true
+        st.csv_header(fields)
+        continue
+      }
+      st.fields.clear()
+      for field in fields {
+        st.fields.push(field)
+      }
+      return Some(text)
+    }
+    return None
+  }
   let mut scanned = self.start
   while true {
     st.tick()
@@ -299,6 +317,7 @@ pub fn Session::advance(self : Session) -> Bool raise ParseError {
     None => false
     Some(text) => {
       self.state.set_record(text)
+      self.state.reuse_csv_fields = true
       self.process_record()
       true
     }
