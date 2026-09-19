@@ -3136,7 +3136,7 @@
       "error": ""
     },
     {
-      "output": "pear 6.5\napple 3\n",
+      "output": "apple 3\npear 6.5\n",
       "exit_status": 0,
       "error": ""
     },

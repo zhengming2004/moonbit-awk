@@ -42,6 +42,18 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'Unicode regex replay failed'}
   node tools/test-regex-host.mjs --golden
   if ($LASTEXITCODE -ne 0) {throw 'Unicode host replay failed'}
+  python tools/generate-string-unicode.py --check
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode string data check failed'}
+  node tools/generate-string-scalar-tests.mjs --check
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode scalar test check failed'}
+  node tools/generate-string-context-tests.mjs --check
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode string context generation failed'}
+  node tools/test-string-scalars.mjs --golden
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode scalar replay failed'}
+  node tools/test-string-reference.mjs --golden
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode string replay failed'}
+  node tools/test-string-host.mjs --golden
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode string host replay failed'}
   node tools/generate-record-tests.mjs --check
   if ($LASTEXITCODE -ne 0) {throw 'record generation check failed'}
   node tools/generate-csv-tests.mjs --check

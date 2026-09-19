@@ -1,0 +1,116 @@
+{
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "requests": [
+    {
+      "id": "carry-65530",
+      "program": "{print NR,length($0),tolower($0),toupper($0)}",
+      "inputBytes": 65560,
+      "inputSha256": "8abd55fccb65f91eb0775e126b2ee76e278f311e73dbf5fe091deba09e43194c"
+    },
+    {
+      "id": "carry-65531",
+      "program": "{print NR,length($0),tolower($0),toupper($0)}",
+      "inputBytes": 65561,
+      "inputSha256": "3d18c215b5e6b7dd579829a4d6fc2f0e0f19b9a58e1ba3b7bd52e373b06b4041"
+    },
+    {
+      "id": "carry-65532",
+      "program": "{print NR,length($0),tolower($0),toupper($0)}",
+      "inputBytes": 65562,
+      "inputSha256": "dcb88dd9db8d549a2a17cd79b78a06c7847eb27f5920c3cf70548a8acff69c6f"
+    },
+    {
+      "id": "carry-65533",
+      "program": "{print NR,length($0),tolower($0),toupper($0)}",
+      "inputBytes": 65563,
+      "inputSha256": "9be676b094a58ae4ce36d3954f9462798d440382e75b6e45a361e0d9e664e576"
+    },
+    {
+      "id": "carry-65534",
+      "program": "{print NR,length($0),tolower($0),toupper($0)}",
+      "inputBytes": 65564,
+      "inputSha256": "546c00402a40c864c87c34b5e52064db3065ee3a4e704c621a542692787ebdf4"
+    },
+    {
+      "id": "carry-65535",
+      "program": "{print NR,length($0),tolower($0),toupper($0)}",
+      "inputBytes": 65565,
+      "inputSha256": "1c7123071e57f10c4911f4eb9cdf5a0ccc778b8e68757f42391f4b5ebf1f8f81"
+    },
+    {
+      "id": "carry-65536",
+      "program": "{print NR,length($0),tolower($0),toupper($0)}",
+      "inputBytes": 65566,
+      "inputSha256": "75781ae39b7b4f20672f168b104fb785161e09202e549c70f2e8a780e37441fc"
+    },
+    {
+      "id": "many-records",
+      "program": "{$1=tolower($1);$2=toupper($2);print NR,NF,$0,tolower($0),toupper($0)}",
+      "inputBytes": 1240000,
+      "inputSha256": "5d003acf463fcf2e19cefe24d8324956dee9a07d8120624b2d5eaaade95780c8"
+    },
+    {
+      "id": "large-ascii-record",
+      "program": "{a=tolower($0);b=toupper(a);print length(a),length(b),(a==$0),(b==$0),substr(a,999996),substr(b,999996)}",
+      "inputBytes": 1000000,
+      "inputSha256": "0b1a512b35f0f1883411bf863b6e8b2a83eb60a2ac07524623bdfd3b437b0a38"
+    }
+  ],
+  "references": [
+    {
+      "bytes": 131127,
+      "sha256": "22e9647b33e6b8d3433ada3a266210c808374db07d4d1a0a9bc2ae75f5c4e3f4",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "bytes": 131129,
+      "sha256": "e211eaa8dde9143c7fdd61781a48dd185451b50311adc89571b178cc50b5f34a",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "bytes": 131131,
+      "sha256": "f88ebe9e292915668127b38d338d0e8d5c25f9bfa48e0136700ab1a21b72892d",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "bytes": 131133,
+      "sha256": "4f87acb217c44c124023004c25dce9ad9190c7ff890b21cda7877cb7cb7c309f",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "bytes": 131135,
+      "sha256": "098d425a5edfaa0eb9851275ef69599d7fe0678b52a842d0e387e8bb4ec35c70",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "bytes": 131137,
+      "sha256": "7ed30da6c8f41908d8c6f3dbe5cf16b1f6e0d8f77b3871bba1c1c129a705e0f0",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "bytes": 131139,
+      "sha256": "63bc184db9b35503ebc7d9f2f71458cc5c617c73c5bd82a62b68e070d0672b31",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "bytes": 3828894,
+      "sha256": "9fa0da5849b34b969e2345d540e191cadd44bf629e0ed44eea99692e9000c245",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "bytes": 28,
+      "sha256": "ffd12ebb698bcecf79b11df4106ac1dd9dd5771998db4d3e5a2ec11ba7b5858d",
+      "status": 0,
+      "error": ""
+    }
+  ]
+}

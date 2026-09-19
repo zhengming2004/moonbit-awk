@@ -1,0 +1,704 @@
+{
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "cases": [
+    {
+      "id": "string-0",
+      "program": "BEGIN{s=\"\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-1",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-2",
+      "program": "BEGIN{s=\"Hello WORLD 123\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-3",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"Hello WORLD 123\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-4",
+      "program": "BEGIN{s=\"ßẞ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-5",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"ßẞ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-6",
+      "program": "BEGIN{s=\"İı\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-7",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"İı\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-8",
+      "program": "BEGIN{s=\"ΣΟΣςσ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-9",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"ΣΟΣςσ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-10",
+      "program": "BEGIN{s=\"µΜμKKkſSs\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-11",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"µΜμKKkſSs\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-12",
+      "program": "BEGIN{s=\"ǄǅǆǇǈǉǊǋǌ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-13",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"ǄǅǆǇǈǉǊǋǌ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-14",
+      "program": "BEGIN{s=\"ᾀᾈᾳᾼ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-15",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"ᾀᾈᾳᾼ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-16",
+      "program": "BEGIN{s=\"ﬀﬁﬃﬄﬅﬆ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-17",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"ﬀﬁﬃﬄﬅﬆ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-18",
+      "program": "BEGIN{s=\"áÁǰΐ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-19",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"áÁǰΐ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-20",
+      "program": "BEGIN{s=\"𐐀𐐨𐒰𐓘\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-21",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"𐐀𐐨𐒰𐓘\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-22",
+      "program": "BEGIN{s=\"ᎠꭰᎡꭱ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-23",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"ᎠꭰᎡꭱ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-24",
+      "program": "BEGIN{s=\"ქართულიᲥ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-25",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"ქართულიᲥ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-26",
+      "program": "BEGIN{s=\"ⲀⲁԀԁ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-27",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"ⲀⲁԀԁ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-28",
+      "program": "BEGIN{s=\"中文日本語😀\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-29",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"中文日本語😀\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-30",
+      "program": "BEGIN{s=\"\\tİ\\nΣΟΣ\\rß\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-31",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"\\tİ\\nΣΟΣ\\rß\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-32",
+      "program": "BEGIN{s=\"Ɤɤ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-33",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"Ɤɤ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-34",
+      "program": "BEGIN{s=\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣ\";a=tolower(s);b=toupper(s);print length(s),length(a),length(b),a,b;print tolower(a),toupper(b),toupper(a),tolower(b),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-35",
+      "program": "function f(x){return toupper(tolower(x))}BEGIN{x=\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣ\";a[x]=tolower(x);print f(x),a[x],x,(tolower(x)==x),(toupper(x)==x)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-36",
+      "program": "BEGIN{for(i=0;i<32;i++){s=sprintf(\"A%cΣ\",i);print length(s),tolower(s),toupper(s)}}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-37",
+      "program": "BEGIN{print tolower(1/3),toupper(1/3);CONVFMT=\"%.3f\";OFMT=\"%.2f\";print tolower(1/3),toupper(1/3)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-38",
+      "program": "BEGIN{print \"[\"tolower(x)\"]\",\"[\"toupper(x)\"]\";x=12;print tolower(x),toupper(x),x}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-39",
+      "program": "BEGIN{x=tolower(\"001\");y=toupper(\"001\");print (x==1),(y==1),(x==\"001\"),(y==\"001\"),x+1,y+1}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-40",
+      "program": "BEGIN{x=2;print tolower(x++),toupper(x++),x}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-41",
+      "program": "BEGIN{ENVIRON[\"LANG\"]=\"tr_TR.UTF-8\";print tolower(\"İI\"),toupper(\"ıi\");print (\"İ\"~/(?i)i/),(tolower(\"İ\")~/(?i)i/)}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-42",
+      "program": "BEGIN{x=\"Σßİ𐐨\";print sprintf(\"[%8s][%.3s]\",tolower(x),toupper(x));print substr(toupper(x),2,2),index(tolower(x),\"i\")}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-43",
+      "program": "BEGIN{s=\"AΣBİC𐐀\";n=split(tolower(s),a,\"\");print n;for(i=1;i<=n;i++)printf \"[%s]\",a[i];print \"\"}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-44",
+      "program": "BEGIN{s=\"ΣΣ𐐀\";print match(tolower(s),/σ+/),RLENGTH;print gsub(/σ/,\"X\",s),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-45",
+      "program": "function f(x){return tolower(x)} function g(x){return toupper(x)} BEGIN{s=\"ßΣİ𐐨\";print f(g(s)),g(f(s)),s}",
+      "input": "",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-46",
+      "program": "{a=tolower($1);b=toupper($2);print NR,NF,a,b,(a==10),(b==1);$1=a;$2=b;print NF,$0}",
+      "input": "ΣΟΣ İı ßẞ 𐐀𐐨\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-47",
+      "program": "{s=tolower($0);print length(s),toupper(s),$0}",
+      "input": "ΣΟΣ İı ßẞ 𐐀𐐨\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-48",
+      "program": "{a=tolower($1);b=toupper($2);print NR,NF,a,b,(a==10),(b==1);$1=a;$2=b;print NF,$0}",
+      "input": "010 001 1e2\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-49",
+      "program": "{s=tolower($0);print length(s),toupper(s),$0}",
+      "input": "010 001 1e2\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-50",
+      "program": "{a=tolower($1);b=toupper($2);print NR,NF,a,b,(a==10),(b==1);$1=a;$2=b;print NF,$0}",
+      "input": "Á é Ελληνικά\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-51",
+      "program": "{s=tolower($0);print length(s),toupper(s),$0}",
+      "input": "Á é Ελληνικά\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-52",
+      "program": "{a=tolower($1);b=toupper($2);print NR,NF,a,b,(a==10),(b==1);$1=a;$2=b;print NF,$0}",
+      "input": "\u0000A\tΣ\r\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-53",
+      "program": "{s=tolower($0);print length(s),toupper(s),$0}",
+      "input": "\u0000A\tΣ\r\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "string-54",
+      "program": "BEGIN{print tolower()}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "string-55",
+      "program": "BEGIN{print toupper(1,2)}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "string-56",
+      "program": "BEGIN{a[1]=1;print tolower(a)}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "string-57",
+      "program": "BEGIN{a[1]=1;print toupper(a)}",
+      "input": "",
+      "separator": " ",
+      "error": true
+    }
+  ],
+  "references": [
+    {
+      "output": "0 0 0  \n    \n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "   1 1\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "15 15 15 hello world 123 HELLO WORLD 123\nhello world 123 HELLO WORLD 123 HELLO WORLD 123 hello world 123 Hello WORLD 123\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "HELLO WORLD 123 hello world 123 Hello WORLD 123 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 2 2 ßß ßẞ\nßß ßẞ ßß ßß ßẞ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ßß ßß ßẞ 0 1\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 2 2 iı İI\niı İI II ii İı\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "II iı İı 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "5 5 5 σοσςσ ΣΟΣΣΣ\nσοσςσ ΣΟΣΣΣ ΣΟΣΣΣ σοσσσ ΣΟΣςσ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ΣΟΣΣΣ σοσςσ ΣΟΣςσ 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "9 9 9 µμμkkkſss ΜΜΜKKKSSS\nµμμkkkſss ΜΜΜKKKSSS ΜΜΜKKKSSS μμμkkksss µΜμKKkſSs\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ΜΜΜKKKSSS µμμkkkſss µΜμKKkſSs 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "9 9 9 ǆǆǆǉǉǉǌǌǌ ǄǄǄǇǇǇǊǊǊ\nǆǆǆǉǉǉǌǌǌ ǄǄǄǇǇǇǊǊǊ ǄǄǄǇǇǇǊǊǊ ǆǆǆǉǉǉǌǌǌ ǄǅǆǇǈǉǊǋǌ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ǄǄǄǇǇǇǊǊǊ ǆǆǆǉǉǉǌǌǌ ǄǅǆǇǈǉǊǋǌ 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "4 4 4 ᾀᾀᾳᾳ ᾈᾈᾼᾼ\nᾀᾀᾳᾳ ᾈᾈᾼᾼ ᾈᾈᾼᾼ ᾀᾀᾳᾳ ᾀᾈᾳᾼ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ᾈᾈᾼᾼ ᾀᾀᾳᾳ ᾀᾈᾳᾼ 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "6 6 6 ﬀﬁﬃﬄﬅﬆ ﬀﬁﬃﬄﬅﬆ\nﬀﬁﬃﬄﬅﬆ ﬀﬁﬃﬄﬅﬆ ﬀﬁﬃﬄﬅﬆ ﬀﬁﬃﬄﬅﬆ ﬀﬁﬃﬄﬅﬆ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ﬀﬁﬃﬄﬅﬆ ﬀﬁﬃﬄﬅﬆ ﬀﬁﬃﬄﬅﬆ 1 1\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "6 6 6 ááǰΐ ÁÁǰΐ\nááǰΐ ÁÁǰΐ ÁÁǰΐ ááǰΐ áÁǰΐ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ÁÁǰΐ ááǰΐ áÁǰΐ 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "4 4 4 𐐨𐐨𐓘𐓘 𐐀𐐀𐒰𐒰\n𐐨𐐨𐓘𐓘 𐐀𐐀𐒰𐒰 𐐀𐐀𐒰𐒰 𐐨𐐨𐓘𐓘 𐐀𐐨𐒰𐓘\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "𐐀𐐀𐒰𐒰 𐐨𐐨𐓘𐓘 𐐀𐐨𐒰𐓘 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "4 4 4 ꭰꭰꭱꭱ ᎠᎠᎡᎡ\nꭰꭰꭱꭱ ᎠᎠᎡᎡ ᎠᎠᎡᎡ ꭰꭰꭱꭱ ᎠꭰᎡꭱ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ᎠᎠᎡᎡ ꭰꭰꭱꭱ ᎠꭰᎡꭱ 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "8 8 8 ქართულიქ ᲥᲐᲠᲗᲣᲚᲘᲥ\nქართულიქ ᲥᲐᲠᲗᲣᲚᲘᲥ ᲥᲐᲠᲗᲣᲚᲘᲥ ქართულიქ ქართულიᲥ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ᲥᲐᲠᲗᲣᲚᲘᲥ ქართულიქ ქართულიᲥ 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "4 4 4 ⲁⲁԁԁ ⲀⲀԀԀ\nⲁⲁԁԁ ⲀⲀԀԀ ⲀⲀԀԀ ⲁⲁԁԁ ⲀⲁԀԁ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ⲀⲀԀԀ ⲁⲁԁԁ ⲀⲁԀԁ 0 0\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "6 6 6 中文日本語😀 中文日本語😀\n中文日本語😀 中文日本語😀 中文日本語😀 中文日本語😀 中文日本語😀\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "中文日本語😀 中文日本語😀 中文日本語😀 1 1\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "8 8 8 \ti\nσοσ\rß \tİ\nΣΟΣ\rß\n\ti\nσοσ\rß \tİ\nΣΟΣ\rß \tI\nΣΟΣ\rß \ti\nσοσ\rß \tİ\nΣΟΣ\rß\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "\tI\nΣΟΣ\rß \ti\nσοσ\rß \tİ\nΣΟΣ\rß 0 1\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 2 2 Ɤɤ Ɤɤ\nꟋɤ Ɤɤ Ɤɤ Ɤɤ Ɤɤ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "Ɤɤ Ɤɤ Ɤɤ 1 1\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "1000 1000 1000 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣ\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσσ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣΣ 0 1\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 a\u0000σ A\u0000Σ\n3 a\u0001σ A\u0001Σ\n3 a\u0002σ A\u0002Σ\n3 a\u0003σ A\u0003Σ\n3 a\u0004σ A\u0004Σ\n3 a\u0005σ A\u0005Σ\n3 a\u0006σ A\u0006Σ\n3 a\u0007σ A\u0007Σ\n3 a\bσ A\bΣ\n3 a\tσ A\tΣ\n3 a\nσ A\nΣ\n3 a\u000bσ A\u000bΣ\n3 a\fσ A\fΣ\n3 a\rσ A\rΣ\n3 a\u000eσ A\u000eΣ\n3 a\u000fσ A\u000fΣ\n3 a\u0010σ A\u0010Σ\n3 a\u0011σ A\u0011Σ\n3 a\u0012σ A\u0012Σ\n3 a\u0013σ A\u0013Σ\n3 a\u0014σ A\u0014Σ\n3 a\u0015σ A\u0015Σ\n3 a\u0016σ A\u0016Σ\n3 a\u0017σ A\u0017Σ\n3 a\u0018σ A\u0018Σ\n3 a\u0019σ A\u0019Σ\n3 a\u001aσ A\u001aΣ\n3 a\u001bσ A\u001bΣ\n3 a\u001cσ A\u001cΣ\n3 a\u001dσ A\u001dΣ\n3 a\u001eσ A\u001eΣ\n3 a\u001fσ A\u001fΣ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "0.333333 0.333333\n0.333 0.333\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "[] []\n12 12 12\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 1 1 2 2\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 3 4\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ii II\n0 1\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "[    σßi𐐨][Σßİ]\nßİ 3\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "6\n[a][σ][b][i][c][𐐨]\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 2\n0 ΣΣ𐐀\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "ßσi𐐨 ßΣI𐐀 ßΣİ𐐨\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 4 σοσ İI 0 0\n4 σοσ İI ßẞ 𐐀𐐨\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "12 ΣΟΣ II ßß 𐐀𐐀 ΣΟΣ İı ßẞ 𐐀𐐨\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 3 010 001 0 0\n3 010 001 1e2\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "11 010 001 1E2 010 001 1e2\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 3 á É 0 0\n3 á É Ελληνικά\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "14 Á É ΕΛΛΗΝΙΚΆ Á é Ελληνικά\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 2 \u0000a Σ 0 0\n2 \u0000a Σ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "4 \u0000A\tΣ \u0000A\tΣ\n",
+      "status": 0,
+      "error": ""
+    },
+    {
+      "output": "",
+      "status": 1,
+      "error": "<cmdline>:1:21: expected expression instead of )\nBEGIN{print tolower()}\n                    ^\n"
+    },
+    {
+      "output": "",
+      "status": 1,
+      "error": "<cmdline>:1:22: expected ) instead of ,\nBEGIN{print toupper(1,2)}\n                     ^\n"
+    },
+    {
+      "output": "",
+      "status": 1,
+      "error": "<cmdline>:1:28: can't use array \"a\" as scalar\nBEGIN{a[1]=1;print tolower(a)}\n                           ^\n"
+    },
+    {
+      "output": "",
+      "status": 1,
+      "error": "<cmdline>:1:28: can't use array \"a\" as scalar\nBEGIN{a[1]=1;print toupper(a)}\n                           ^\n"
+    }
+  ]
+}

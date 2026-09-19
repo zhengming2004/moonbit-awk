@@ -14,3 +14,6 @@ evidence/awk-io-replay.json
 evidence/awk-csv-replay.json
 evidence/awk-regex-replay.json
 evidence/awk-regex-host-replay.json
+evidence/awk-string-replay.json
+evidence/awk-string-host-replay.json
+evidence/string-scalar-replay.json

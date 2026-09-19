@@ -1,16 +1,10 @@
 {
-  "utc": "2026-09-19T04:11:24.279Z",
+  "utc": "2026-09-19T04:09:54.644Z",
   "mode": "live GoAWK",
   "version": "v1.32.0",
   "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
-  "shell": {
-    "executable": "C:\\Program Files\\Git\\bin\\sh.exe",
-    "sha256": "ea70169decdb4787b7503b899495a1edfa27e9077f8bc5e0ef5980cb42fef3e8",
-    "versionOutput": "GNU bash, version 5.2.26(1)-release (x86_64-pc-msys)\nCopyright (C) 2022 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\nThis is free software; you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
-    "versionStatus": 0
-  },
-  "total": 80,
-  "passed": 80,
+  "total": 58,
+  "passed": 58,
   "failed": 0,
   "sourceSha256": {
     ".gitattributes": "e814216d0cddcb34ff1f5944e56dd695a6579fa66580d475059aa9991c25a406",

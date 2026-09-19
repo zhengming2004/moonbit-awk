@@ -31,6 +31,12 @@ jobs:
       - run: node tools/generate-regex-tests.mjs --check
       - run: node tools/test-regex-reference.mjs --golden
       - run: node tools/test-regex-host.mjs --golden
+      - run: python3 tools/generate-string-unicode.py --check
+      - run: node tools/generate-string-scalar-tests.mjs --check
+      - run: node tools/generate-string-context-tests.mjs --check
+      - run: node tools/test-string-scalars.mjs --golden
+      - run: node tools/test-string-reference.mjs --golden
+      - run: node tools/test-string-host.mjs --golden
       - run: node tools/generate-record-tests.mjs --check
       - run: node tools/generate-io-tests.mjs --check
       - run: node tools/generate-csv-tests.mjs --check

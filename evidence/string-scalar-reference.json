@@ -1,0 +1,15 @@
+{
+  "utc": "2026-09-19T04:10:03.193Z",
+  "program": "BEGIN{for(i=0;i<=1114111;i++){if(i>=55296&&i<=57343)continue;s=sprintf(\"%c\",i);printf \"%s%s\",tolower(s),toupper(s)}}",
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "options": [
+    "-c",
+    "-N",
+    "raw"
+  ],
+  "scalarCount": 1112064,
+  "caseConversions": 2224128,
+  "outputBytes": 8765167,
+  "outputSha256": "c89f08c1dd12bb3dbf6d0efce4a9be9b306fb990767ed88ee8de65723b887307"
+}

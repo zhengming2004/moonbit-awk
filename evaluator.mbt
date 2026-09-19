@@ -370,8 +370,8 @@ fn builtin(name : String, args : Array[Expr], st : State) -> Value raise {
     "cos" => finite(@math.cos(values[0].number()))
     "exp" => finite(@math.exp(values[0].number()))
     "log" => finite(@math.ln(values[0].number()))
-    "tolower" => Text(st.text(values[0]).to_lower())
-    "toupper" => Text(st.text(values[0]).to_upper())
+    "tolower" => Text(unicode_string_case(st.text(values[0]), false))
+    "toupper" => Text(unicode_string_case(st.text(values[0]), true))
     _ => raise Invalid("unsupported function " + name)
   }
 }

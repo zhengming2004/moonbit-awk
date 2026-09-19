@@ -1,17 +1,26 @@
 {
-  "utc": "2026-09-19T04:11:24.279Z",
-  "mode": "live GoAWK",
+  "utc": "2026-09-19T04:10:08.473Z",
+  "program": "BEGIN{for(i=0;i<=1114111;i++){if(i>=55296&&i<=57343)continue;s=sprintf(\"%c\",i);printf \"%s%s\",tolower(s),toupper(s)}}",
   "version": "v1.32.0",
   "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
-  "shell": {
-    "executable": "C:\\Program Files\\Git\\bin\\sh.exe",
-    "sha256": "ea70169decdb4787b7503b899495a1edfa27e9077f8bc5e0ef5980cb42fef3e8",
-    "versionOutput": "GNU bash, version 5.2.26(1)-release (x86_64-pc-msys)\nCopyright (C) 2022 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\nThis is free software; you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
-    "versionStatus": 0
-  },
-  "total": 80,
-  "passed": 80,
-  "failed": 0,
+  "options": [
+    "-c",
+    "-N",
+    "raw"
+  ],
+  "scalarCount": 1112064,
+  "caseConversions": 2224128,
+  "outputBytes": 8765167,
+  "outputSha256": "c89f08c1dd12bb3dbf6d0efce4a9be9b306fb990767ed88ee8de65723b887307",
+  "referenceUtc": "2026-09-19T04:10:03.193Z",
+  "mode": "live GoAWK",
+  "actualOutputBytes": 8765167,
+  "actualSha256": "c89f08c1dd12bb3dbf6d0efce4a9be9b306fb990767ed88ee8de65723b887307",
+  "actualStatus": 0,
+  "actualError": "",
+  "passed": true,
+  "firstByteDifference": null,
+  "scope": "Both case conversions for every Unicode scalar in code point order through the real CLI; excludes surrogate code points and arbitrary invalid UTF-8.",
   "sourceSha256": {
     ".gitattributes": "e814216d0cddcb34ff1f5944e56dd695a6579fa66580d475059aa9991c25a406",
     ".github/workflows/ci.yml": "122e8c8c3b36504c1bb25a153c66702e31e786b34967b2e8a6bf98c47b1711f3",
@@ -127,6 +136,5 @@
     "web/config.mjs": "f597eab5ece3ba1b37747d544b6208215a8d3fdcccada238253ba0f7c901688a",
     "web/engine.mjs": "fda92e804adeb27fdac3b299774f50a81b8e4793bf1ecccc10e521f2f73f1f5b",
     "web/index.html": "cdcbb5d9f2d455d4335bfd7fdcd30bac065fc0b90843d4fe616ef9726fc7aeb8"
-  },
-  "failures": []
+  }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.0 — 2026-09-19
+
+- Added pinned Unicode 15.0.0 simple upper/lower conversion using 328 compact ranges and an ASCII fast path; original strings and value-coercion rules remain intact.
+- Compared both conversions for every one of 1112064 valid Unicode scalar values with native GoAWK; saved the exact 8765167-byte output stream and generated 543 API programs in 34 backend groups.
+- Added 58 native context/type programs (4 backend groups) and 9 real CLI UTF-8/large-record checks. JS/Wasm-GC each have 140 groups; tests overlap and are not additive coverage.
+- Recorded nine performance workloads, including five correct-output comparisons against fixed 0.8.0. Full byte/locale/language/performance parity remains incomplete.
+
 ## 0.8.0 — 2026-09-19
 
 - Added pinned Unicode 15.0.0 regex categories, script names, aliases, negated and mixed classes; imported attributed Go 1.26.3 tables with deterministic regeneration.
