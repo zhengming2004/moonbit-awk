@@ -1,8 +1,14 @@
 {
-  "utc": "2026-09-19T04:51:36.009Z",
-  "checks": 10,
-  "passed": 10,
+  "utc": "2026-09-19T04:49:07.117Z",
+  "mode": "live GoAWK",
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "total": 894,
+  "passed": 894,
   "failed": 0,
+  "accepted": 664,
+  "rejected": 230,
+  "comparison": "Exact stdout and exit status on success; rejection presence only for invalid patterns, not exact diagnostics.",
   "sourceSha256": {
     ".gitattributes": "e814216d0cddcb34ff1f5944e56dd695a6579fa66580d475059aa9991c25a406",
     ".github/workflows/ci.yml": "f588c3b5f9675201c2b87280c7ad4918f9d9b69722326d11e2b5d78fad7e544d",
@@ -47,7 +53,7 @@
     "regex_quote.mbt": "c58a9469d5710918f6a2a561506db6bba60dd359cae57249534efb3f9f1eef9b",
     "regex_reference_test.mbt": "9305770f6a80f139b0257745eb38c787750844fc34b8efb49addca9bf76c6b47",
     "regex_repeat.mbt": "02c1e8cdfb853e1a496bb203137e41dbc9c5f1957ebc5f7b29699ec5dc1b18bd",
-    "regex_syntax_reference_test.mbt": "43d1f2c664b1a81cf731cd335412e69e246b6aa8a62dc05e05f4b7d90d2ab22b",
+    "regex_syntax_reference_test.mbt": "2cd76472e22bc5689bb3f23d4f58c46f5ae2bafc35daed3930691fd3bd7d8f0d",
     "regex_unicode_data.mbt": "d2f9ac7058249429be583786a4816ecc8cde8be901d597e9b3e5e4b0d259ce94",
     "regex.mbt": "c67d715f284a1aba03b376aac1ed95a1c2b4bad9b2e69f609ee27be1747f027c",
     "ROADMAP.md": "1a0f6a0b474ed8664a448aa9d3a9b0cf12c03ccd4384d256577b7b2a47351620",
@@ -126,5 +132,5 @@
     "web/engine.mjs": "2b0a26289f393756210aa4aaaf1efe7123a7d7b9bd7d4842bf8482f8c836fed7",
     "web/index.html": "cdcbb5d9f2d455d4335bfd7fdcd30bac065fc0b90843d4fe616ef9726fc7aeb8"
   },
-  "scope": "Pull callback ownership/errors/limits, interactive prompt and 1.8 MB slow output consumer; Windows host only"
+  "failures": []
 }

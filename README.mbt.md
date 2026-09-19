@@ -15,3 +15,5 @@ test "literal separator retains empty columns" {
 0.8 增加 Unicode 正则属性、完整简单大小写等价映射、十六进制与引号转义及命名分组；具体参考版本边界见 README。
 
 0.9 的 tolower/toupper 使用固定 Unicode 15.0.0 简单映射，支持非 ASCII 字符；所有有效码点的原版结果均进入 JS/Wasm-GC 回归。
+
+0.10 修复正则重复、引号与行内标志边界，保留 FS 和 split 对空匹配的不同处理。公开 API 未改变，详细语义和独立原版验证范围见 README 与 TESTING。

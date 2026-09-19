@@ -1,0 +1,14 @@
+{
+  "project": "awk",
+  "utc": "2026-09-19T04:53:44.401Z",
+  "runtime": "v24.11.0",
+  "platform": "win32",
+  "cpu": "Intel(R) Core(TM) i7-14700HX",
+  "input_utf8_bytes": 111,
+  "samples": 30,
+  "warmup": 5,
+  "median_ms": 0.3015000000000043,
+  "p95_ms": 1.2853000000000065,
+  "max_ms": 1.422700000000006,
+  "scope": "JS warm execution of documented example; no cross-project or upstream performance claim"
+}

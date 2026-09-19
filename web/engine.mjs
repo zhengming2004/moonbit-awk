@@ -908,14 +908,6 @@ _M0DTP211localreview3awk11Instruction4Fork.prototype.$tag = 3;
 function _M0DTP211localreview3awk11Instruction6Accept() {}
 _M0DTP211localreview3awk11Instruction6Accept.prototype.$tag = 4;
 const _M0DTP211localreview3awk11Instruction6Accept__ = new _M0DTP211localreview3awk11Instruction6Accept();
-function _M0DTPC16result6ResultGRPB5ArrayGcERP211localreview3awk10ParseErrorE3Err(param0) {
-  this._0 = param0;
-}
-_M0DTPC16result6ResultGRPB5ArrayGcERP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
-function _M0DTPC16result6ResultGRPB5ArrayGcERP211localreview3awk10ParseErrorE2Ok(param0) {
-  this._0 = param0;
-}
-_M0DTPC16result6ResultGRPB5ArrayGcERP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
 function _M0DTPC16result6ResultGRPB5ArrayGUiiEERP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
 }
@@ -977,9 +969,14 @@ function _M0DTP211localreview3awk9RegexTree6Repeat(param0, param1, param2) {
   this._2 = param2;
 }
 _M0DTP211localreview3awk9RegexTree6Repeat.prototype.$tag = 6;
-function _M0TPB8MutLocalGRP211localreview3awk9RegexTreeE(param0) {
-  this.val = param0;
+function _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(param0) {
+  this._0 = param0;
 }
+_M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err.prototype.$tag = 0;
+function _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok(param0) {
+  this._0 = param0;
+}
+_M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok.prototype.$tag = 1;
 function _M0DTPC16result6ResultGRP211localreview3awk5RegexRP211localreview3awk10ParseErrorE3Err(param0) {
   this._0 = param0;
 }
@@ -3837,6 +3834,9 @@ function _M0MPC16option6Option6unwrapGiE(self) {
     const _Some = self;
     return _Some;
   }
+}
+function _M0MPC16option6Option6unwrapGcE(self) {
+  return self === -1 ? $panic() : self;
 }
 function _M0MPC16option6Option10unwrap__orGRP211localreview3awk5ValueE(self, default_) {
   if (self === undefined) {
@@ -7474,6 +7474,24 @@ function _M0IPC15array5ArrayPB3Add3addGsE(self, other) {
   }
 }
 function _M0MPC15array5Array3allGsE(self, f) {
+  const _bind$4 = self.length;
+  let _tmp = 0;
+  while (true) {
+    const _ = _tmp;
+    if (_ < _bind$4) {
+      const v = self[_];
+      if (!f(v)) {
+        return false;
+      }
+      _tmp = _ + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return true;
+}
+function _M0MPC15array5Array3allGRP211localreview3awk9RegexTreeE(self, f) {
   const _bind$4 = self.length;
   let _tmp = 0;
   while (true) {
@@ -11952,54 +11970,54 @@ function _M0FPC14math2ln(_tmp) {
 function _M0FPC14math3exp(_tmp) {
   return Math.exp(_tmp);
 }
-function _M0IP211localreview3awk10ParseErrorPC15debug5Debug8to__repr(_x_1181) {
-  let _arg_1183;
+function _M0IP211localreview3awk10ParseErrorPC15debug5Debug8to__repr(_x_1203) {
+  let _arg_1205;
   _L: {
-    let _arg_1182;
+    let _arg_1204;
     _L$2: {
-      if (_x_1181.$tag === 1) {
-        const _Invalid = _x_1181;
-        const _$42$arg_1182 = _Invalid._0;
-        _arg_1182 = _$42$arg_1182;
+      if (_x_1203.$tag === 1) {
+        const _Invalid = _x_1203;
+        const _$42$arg_1204 = _Invalid._0;
+        _arg_1204 = _$42$arg_1204;
         break _L$2;
       } else {
-        const _InputFailure = _x_1181;
-        const _$42$arg_1183 = _InputFailure._0;
-        _arg_1183 = _$42$arg_1183;
+        const _InputFailure = _x_1203;
+        const _$42$arg_1205 = _InputFailure._0;
+        _arg_1205 = _$42$arg_1205;
         break _L;
       }
     }
-    return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1182) }]);
+    return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1204) }]);
   }
-  return _M0MPC15debug4Repr4ctor("InputFailure", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1183) }]);
+  return _M0MPC15debug4Repr4ctor("InputFailure", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1205) }]);
 }
-function _M0IP211localreview3awk10ParseErrorPC15debug5Debug8to__reprGRP211localreview3awk10ParseErrorE(_x_1181) {
-  let _arg_1183;
+function _M0IP211localreview3awk10ParseErrorPC15debug5Debug8to__reprGRP211localreview3awk10ParseErrorE(_x_1203) {
+  let _arg_1205;
   _L: {
-    let _arg_1182;
+    let _arg_1204;
     _L$2: {
-      if (_x_1181.$tag === 1) {
-        const _Invalid = _x_1181;
-        const _$42$arg_1182 = _Invalid._0;
-        _arg_1182 = _$42$arg_1182;
+      if (_x_1203.$tag === 1) {
+        const _Invalid = _x_1203;
+        const _$42$arg_1204 = _Invalid._0;
+        _arg_1204 = _$42$arg_1204;
         break _L$2;
       } else {
-        const _InputFailure = _x_1181;
-        const _$42$arg_1183 = _InputFailure._0;
-        _arg_1183 = _$42$arg_1183;
+        const _InputFailure = _x_1203;
+        const _$42$arg_1205 = _InputFailure._0;
+        _arg_1205 = _$42$arg_1205;
         break _L;
       }
     }
-    return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1182) }]);
+    return _M0MPC15debug4Repr4ctor("Invalid", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1204) }]);
   }
-  return _M0MPC15debug4Repr4ctor("InputFailure", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1183) }]);
+  return _M0MPC15debug4Repr4ctor("InputFailure", [{ _0: undefined, _1: _M0IPC16string6StringPC15debug5Debug8to__repr(_arg_1205) }]);
 }
-function _M0IP211localreview3awk9RunResultPB6ToJson8to__json(_x_1172) {
+function _M0IP211localreview3awk9RunResultPB6ToJson8to__json(_x_1194) {
   const _bind$4 = [];
   const $36$map = _M0MPB3Map3MapGsRPB4JsonE(new _M0TPB9ArrayViewGUsRPB4JsonEE(_bind$4, 0, 0), undefined);
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "output", _M0IPC16string6StringPB6ToJson8to__json(_x_1172.output));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "exit_status", _M0IPC13int3IntPB6ToJson8to__json(_x_1172.exit_status));
-  _M0MPB3Map3setGsRPB4JsonE($36$map, "steps", _M0IPC13int3IntPB6ToJson8to__json(_x_1172.steps));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "output", _M0IPC16string6StringPB6ToJson8to__json(_x_1194.output));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "exit_status", _M0IPC13int3IntPB6ToJson8to__json(_x_1194.exit_status));
+  _M0MPB3Map3setGsRPB4JsonE($36$map, "steps", _M0IPC13int3IntPB6ToJson8to__json(_x_1194.steps));
   return _M0MPC14json4Json6object($36$map);
 }
 function _M0FP211localreview3awk6finite(n) {
@@ -13108,6 +13126,78 @@ function _M0FP211localreview3awk20regex__match_2einner(regex, text, from, st, ba
   }
   return new _M0DTPC16result6ResultGOUiiERP211localreview3awk10ParseErrorE2Ok(best.val);
 }
+function _M0FP211localreview3awk19regex__check__depth(tree) {
+  const pending = [{ _0: tree, _1: 1 }];
+  while (true) {
+    let node;
+    let depth;
+    _L: {
+      const _bind$4 = _M0MPC15array5Array3popGRPC14json10WriteFrameE(pending);
+      if (_bind$4 === undefined) {
+        break;
+      } else {
+        const _Some = _bind$4;
+        const _x = _Some;
+        const _node = _x._0;
+        const _depth = _x._1;
+        node = _node;
+        depth = _depth;
+        break _L;
+      }
+    }
+    if (depth > 1000) {
+      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("regex tree depth limit"));
+    }
+    let items;
+    _L$2: {
+      _L$3: {
+        let item;
+        _L$4: {
+          _L$5: {
+            switch (node.$tag) {
+              case 6: {
+                const _Repeat = node;
+                const _item = _Repeat._0;
+                item = _item;
+                break _L$5;
+              }
+              case 4: {
+                const _Sequence = node;
+                const _items = _Sequence._0;
+                items = _items;
+                break _L$3;
+              }
+              case 5: {
+                const _Alternative = node;
+                const _items$2 = _Alternative._0;
+                items = _items$2;
+                break _L$3;
+              }
+            }
+            break _L$4;
+          }
+          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(pending, { _0: item, _1: depth + 1 | 0 });
+        }
+        break _L$2;
+      }
+      const _bind$4 = items.length;
+      let _tmp = 0;
+      while (true) {
+        const _ = _tmp;
+        if (_ < _bind$4) {
+          const item = items[_];
+          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(pending, { _0: item, _1: depth + 1 | 0 });
+          _tmp = _ + 1 | 0;
+          continue;
+        } else {
+          break;
+        }
+      }
+    }
+    continue;
+  }
+  return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+}
 function _M0FP211localreview3awk13regex__ranges(ranges) {
   const rows = _M0MPC15array5Array4copyGUiiEE(ranges);
   _M0MPC15array5Array8sort__byGsE(rows, (a, b) => $compare_int(a._0, b._0));
@@ -13451,89 +13541,67 @@ function _M0FP211localreview3awk14regex__compile(tree, code, next) {
   }
   return new _M0DTPC16result6ResultGiRP211localreview3awk10ParseErrorE2Ok(start.val);
 }
-function _M0FP211localreview3awk14regex__unquote(source) {
-  const chars = _M0MPC16string6String9to__array(source);
-  const result = [];
-  const pos = new _M0TPB8MutLocalGiE(0);
-  const in_class = new _M0TPB8MutLocalGbE(false);
-  const class_first = new _M0TPB8MutLocalGbE(false);
-  while (true) {
-    if (pos.val < chars.length) {
-      const c = _M0MPC15array5Array2atGcE(chars, pos.val);
-      pos.val = pos.val + 1 | 0;
-      if (c === 92 && pos.val < chars.length) {
-        const next = _M0MPC15array5Array2atGcE(chars, pos.val);
-        pos.val = pos.val + 1 | 0;
-        if (next === 81 && !in_class.val) {
-          const closed = new _M0TPB8MutLocalGbE(false);
-          while (true) {
-            if (pos.val < chars.length) {
-              const literal = _M0MPC15array5Array2atGcE(chars, pos.val);
-              pos.val = pos.val + 1 | 0;
-              if (literal === 92 && _M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(chars, pos.val), 69)) {
-                pos.val = pos.val + 1 | 0;
-                closed.val = true;
-                break;
-              }
-              if (_M0MPC15array5Array8containsGcE([92, 46, 42, 43, 63, 40, 41, 91, 93, 123, 125, 94, 36, 124], literal)) {
-                _M0MPC15array5Array4pushGcE(result, 92);
-              }
-              _M0MPC15array5Array4pushGcE(result, literal);
-              continue;
-            } else {
-              break;
-            }
+function _M0FP211localreview3awk20regex__repeat__valid(tree, available) {
+  let _tmp = tree;
+  let _tmp$2 = available;
+  _L: while (true) {
+    const tree$2 = _tmp;
+    const available$2 = _tmp$2;
+    let items;
+    _L$2: {
+      let low;
+      let item;
+      let high;
+      _L$3: {
+        switch (tree$2.$tag) {
+          case 6: {
+            const _Repeat = tree$2;
+            const _item = _Repeat._0;
+            const _low = _Repeat._1;
+            const _high = _Repeat._2;
+            low = _low;
+            item = _item;
+            high = _high;
+            break _L$3;
           }
-          if (!closed.val) {
-            return new _M0DTPC16result6ResultGRPB5ArrayGcERP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("unterminated regex quotation"));
+          case 4: {
+            const _Sequence = tree$2;
+            const _items = _Sequence._0;
+            items = _items;
+            break _L$2;
           }
+          case 5: {
+            const _Alternative = tree$2;
+            const _items$2 = _Alternative._0;
+            items = _items$2;
+            break _L$2;
+          }
+          default: {
+            return true;
+          }
+        }
+      }
+      if (high === 0) {
+        return true;
+      }
+      const copies = high < 0 ? low : high;
+      if (copies <= available$2) {
+        _tmp = item;
+        if (copies > 0) {
+          if (copies === 0) {
+            $panic();
+          }
+          _tmp$2 = available$2 / copies | 0;
         } else {
-          _M0MPC15array5Array4pushGcE(result, c);
-          _M0MPC15array5Array4pushGcE(result, next);
-          class_first.val = false;
+          _tmp$2 = available$2;
         }
         continue;
-      }
-      if (in_class.val && (c === 91 && _M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(chars, pos.val), 58))) {
-        _M0MPC15array5Array4pushGcE(result, c);
-        while (true) {
-          if (pos.val < chars.length) {
-            const item = _M0MPC15array5Array2atGcE(chars, pos.val);
-            pos.val = pos.val + 1 | 0;
-            _M0MPC15array5Array4pushGcE(result, item);
-            if (item === 58 && (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(chars, pos.val), 93) && (pos.val > 1 && _M0MPC15array5Array2atGcE(chars, pos.val - 2 | 0) !== 91))) {
-              _M0MPC15array5Array4pushGcE(result, 93);
-              pos.val = pos.val + 1 | 0;
-              break;
-            }
-            continue;
-          } else {
-            break;
-          }
-        }
-        class_first.val = false;
-        continue;
-      }
-      if (!in_class.val && c === 91) {
-        in_class.val = true;
-        class_first.val = true;
       } else {
-        if (in_class.val) {
-          if (c === 93 && !class_first.val) {
-            in_class.val = false;
-          }
-          if (c !== 94 || (!class_first.val || _M0IP016_24default__implPB2Eq10not__equalGOcE(_M0MPC15array5Array3getGcE(chars, pos.val - 2 | 0), 91))) {
-            class_first.val = false;
-          }
-        }
+        return false;
       }
-      _M0MPC15array5Array4pushGcE(result, c);
-      continue;
-    } else {
-      break;
     }
+    return _M0MPC15array5Array3allGRP211localreview3awk9RegexTreeE(items, (item) => _M0FP211localreview3awk20regex__repeat__valid(item, available$2));
   }
-  return new _M0DTPC16result6ResultGRPB5ArrayGcERP211localreview3awk10ParseErrorE2Ok(result);
 }
 function _M0FP211localreview3awk12regex__class(name) {
   switch (name) {
@@ -13938,6 +14006,183 @@ function _M0MP211localreview3awk11RegexReader6escape(self) {
   }
   return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok(new _M0DTP211localreview3awk9RegexTree9Character(new _M0TP211localreview3awk7CharSet([{ _0: n, _1: n }], false, self.fold)));
 }
+function _M0MP211localreview3awk11RegexReader6quoted(self, sequence) {
+  while (true) {
+    let c;
+    _L: {
+      const _bind$4 = _M0MP211localreview3awk11RegexReader4peek(self);
+      if (_bind$4 === -1) {
+        break;
+      } else {
+        const _Some = _bind$4;
+        const _c = _Some;
+        c = _c;
+        break _L;
+      }
+    }
+    self.pos = self.pos + 1 | 0;
+    if (c === 92 && _M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 69)) {
+      self.pos = self.pos + 1 | 0;
+      return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
+    }
+    _M0MPC15array5Array4pushGRPC14json10WriteFrameE(sequence, new _M0DTP211localreview3awk9RegexTree9Character(new _M0TP211localreview3awk7CharSet([{ _0: c, _1: c }], false, self.fold)));
+    continue;
+  }
+  return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("unterminated regex quotation"));
+}
+function _M0MP211localreview3awk11RegexReader14repeat__number(self) {
+  let _tmp;
+  let c;
+  _L: {
+    _L$2: {
+      const _bind$4 = _M0MP211localreview3awk11RegexReader4peek(self);
+      if (_bind$4 === -1) {
+        _tmp = false;
+      } else {
+        const _Some = _bind$4;
+        const _c = _Some;
+        c = _c;
+        break _L$2;
+      }
+      break _L;
+    }
+    _tmp = _M0FP211localreview3awk5digit(c);
+  }
+  if (!_tmp) {
+    return undefined;
+  }
+  if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 48)) {
+    let c$2;
+    _L$2: {
+      _L$3: {
+        const _bind$4 = _M0MPC15array5Array3getGcE(self.chars, self.pos + 1 | 0);
+        if (_bind$4 === -1) {
+        } else {
+          const _Some = _bind$4;
+          const _c = _Some;
+          c$2 = _c;
+          break _L$3;
+        }
+        break _L$2;
+      }
+      if (_M0FP211localreview3awk5digit(c$2)) {
+        return undefined;
+      }
+    }
+  }
+  const value = new _M0TPB8MutLocalGiE(0);
+  while (true) {
+    let c$2;
+    _L$2: {
+      const _bind$4 = _M0MP211localreview3awk11RegexReader4peek(self);
+      if (_bind$4 === -1) {
+        break;
+      } else {
+        const _Some = _bind$4;
+        const _c = _Some;
+        c$2 = _c;
+        break _L$2;
+      }
+    }
+    if (_M0FP211localreview3awk5digit(c$2)) {
+      value.val = value.val > 1000 ? 1001 : ((Math.imul(value.val, 10) | 0) + c$2 | 0) - 48 | 0;
+      self.pos = self.pos + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return value.val;
+}
+function _M0MP211localreview3awk11RegexReader14repeat__bounds(self) {
+  const saved = self.pos;
+  self.pos = self.pos + 1 | 0;
+  let bounds;
+  let low;
+  _L: {
+    _L$2: {
+      const _bind$4 = _M0MP211localreview3awk11RegexReader14repeat__number(self);
+      if (_bind$4 === undefined) {
+        bounds = undefined;
+      } else {
+        const _Some = _bind$4;
+        const _low = _Some;
+        low = _low;
+        break _L$2;
+      }
+      break _L;
+    }
+    let high;
+    if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 44)) {
+      self.pos = self.pos + 1 | 0;
+      high = _M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 125) ? -1 : _M0MP211localreview3awk11RegexReader14repeat__number(self);
+    } else {
+      high = low;
+    }
+    _L$3: {
+      _L$4: {
+        let high$2;
+        _L$5: {
+          if (high === undefined) {
+            break _L$4;
+          } else {
+            const _Some = high;
+            const _high = _Some;
+            if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 125)) {
+              high$2 = _high;
+              break _L$5;
+            } else {
+              break _L$4;
+            }
+          }
+        }
+        self.pos = self.pos + 1 | 0;
+        bounds = { _0: low, _1: high$2 };
+        break _L$3;
+      }
+      bounds = undefined;
+    }
+  }
+  let low$2;
+  let high;
+  _L$2: {
+    _L$3: {
+      if (bounds === undefined) {
+        self.pos = saved;
+      } else {
+        const _Some = bounds;
+        const _x = _Some;
+        const _low = _x._0;
+        const _high = _x._1;
+        low$2 = _low;
+        high = _high;
+        break _L$3;
+      }
+      break _L$2;
+    }
+    if (low$2 > 1000 || (high > 1000 || high >= 0 && high < low$2)) {
+      return new _M0DTPC16result6ResultGOUiiERP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid regex repetition count"));
+    }
+  }
+  return new _M0DTPC16result6ResultGOUiiERP211localreview3awk10ParseErrorE2Ok(bounds);
+}
+function _M0FP211localreview3awk17regex__posix__end(chars, start) {
+  const _bind$4 = chars.length - 1 | 0;
+  let _tmp = start;
+  while (true) {
+    const i = _tmp;
+    if (i < _bind$4) {
+      if (_M0MPC15array5Array2atGcE(chars, i) === 58 && _M0MPC15array5Array2atGcE(chars, i + 1 | 0) === 93) {
+        return i;
+      }
+      _tmp = i + 1 | 0;
+      continue;
+    } else {
+      break;
+    }
+  }
+  return undefined;
+}
 function _M0MP211localreview3awk11RegexReader9set__char(self) {
   const _bind$4 = _M0MP211localreview3awk11RegexReader4take(self);
   let c;
@@ -14099,69 +14344,78 @@ function _M0MP211localreview3awk11RegexReader3set(self) {
         }
       }
     }
-    if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 91) && _M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(self.chars, self.pos + 1 | 0), 58)) {
-      self.pos = self.pos + 2 | 0;
-      const begin = self.pos;
-      while (true) {
-        if (_M0IP016_24default__implPB2Eq10not__equalGOcE(_M0MP211localreview3awk11RegexReader4peek(self), -1) && _M0IP016_24default__implPB2Eq10not__equalGOcE(_M0MP211localreview3awk11RegexReader4peek(self), 58)) {
-          self.pos = self.pos + 1 | 0;
+    if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 91)) {
+      if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(self.chars, self.pos + 1 | 0), 58)) {
+        let end;
+        _L: {
+          _L$2: {
+            const _bind$4 = _M0FP211localreview3awk17regex__posix__end(self.chars, self.pos + 2 | 0);
+            if (_bind$4 === undefined) {
+            } else {
+              const _Some = _bind$4;
+              const _end = _Some;
+              end = _end;
+              break _L$2;
+            }
+            break _L;
+          }
+          self.pos = self.pos + 2 | 0;
+          const begin = self.pos;
+          self.pos = end;
+          const name = _M0MPC16string6String11from__array(_M0MPC15array5Array12view_2einnerGcE(self.chars, begin, self.pos));
+          let _tmp;
+          const _bind$4 = _M0MP211localreview3awk11RegexReader4take(self);
+          let _tmp$2;
+          if (_bind$4.$tag === 1) {
+            const _ok = _bind$4;
+            _tmp$2 = _ok._0;
+          } else {
+            return _bind$4;
+          }
+          if (_tmp$2 !== 58) {
+            _tmp = true;
+          } else {
+            const _bind$5 = _M0MP211localreview3awk11RegexReader4take(self);
+            let _tmp$3;
+            if (_bind$5.$tag === 1) {
+              const _ok = _bind$5;
+              _tmp$3 = _ok._0;
+            } else {
+              return _bind$5;
+            }
+            _tmp = _tmp$3 !== 93;
+          }
+          if (_tmp) {
+            return new _M0DTPC16result6ResultGRP211localreview3awk7CharSetRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid POSIX class"));
+          }
+          const _bind$5 = "^";
+          const negative$2 = _M0MPC16string6String11has__prefix(name, new _M0TPC16string10StringView(_bind$5, 0, _bind$5.length));
+          const name$2 = negative$2 ? _M0MPC16string6String11from__array(_M0MPC15array5Array12view_2einnerGcE(_M0MPC16string6String9to__array(name), 1, undefined)) : name;
+          const _bind$6 = _M0FP211localreview3awk12regex__class(name$2);
+          let _tmp$3;
+          if (_bind$6.$tag === 1) {
+            const _ok = _bind$6;
+            _tmp$3 = _ok._0;
+          } else {
+            return _bind$6;
+          }
+          const _bind$7 = _M0FP211localreview3awk14regex__charset(_tmp$3, negative$2, self.fold).ranges;
+          const _bind$8 = _bind$7.length;
+          let _tmp$4 = 0;
+          while (true) {
+            const _ = _tmp$4;
+            if (_ < _bind$8) {
+              const range = _bind$7[_];
+              _M0MPC15array5Array4pushGRPC14json10WriteFrameE(ranges, range);
+              _tmp$4 = _ + 1 | 0;
+              continue;
+            } else {
+              break;
+            }
+          }
           continue;
-        } else {
-          break;
         }
       }
-      const name = _M0MPC16string6String11from__array(_M0MPC15array5Array12view_2einnerGcE(self.chars, begin, self.pos));
-      let _tmp;
-      const _bind$4 = _M0MP211localreview3awk11RegexReader4take(self);
-      let _tmp$2;
-      if (_bind$4.$tag === 1) {
-        const _ok = _bind$4;
-        _tmp$2 = _ok._0;
-      } else {
-        return _bind$4;
-      }
-      if (_tmp$2 !== 58) {
-        _tmp = true;
-      } else {
-        const _bind$5 = _M0MP211localreview3awk11RegexReader4take(self);
-        let _tmp$3;
-        if (_bind$5.$tag === 1) {
-          const _ok = _bind$5;
-          _tmp$3 = _ok._0;
-        } else {
-          return _bind$5;
-        }
-        _tmp = _tmp$3 !== 93;
-      }
-      if (_tmp) {
-        return new _M0DTPC16result6ResultGRP211localreview3awk7CharSetRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid POSIX class"));
-      }
-      const _bind$5 = "^";
-      const negative$2 = _M0MPC16string6String11has__prefix(name, new _M0TPC16string10StringView(_bind$5, 0, _bind$5.length));
-      const name$2 = negative$2 ? _M0MPC16string6String11from__array(_M0MPC15array5Array12view_2einnerGcE(_M0MPC16string6String9to__array(name), 1, undefined)) : name;
-      const _bind$6 = _M0FP211localreview3awk12regex__class(name$2);
-      let _tmp$3;
-      if (_bind$6.$tag === 1) {
-        const _ok = _bind$6;
-        _tmp$3 = _ok._0;
-      } else {
-        return _bind$6;
-      }
-      const _bind$7 = _M0FP211localreview3awk14regex__charset(_tmp$3, negative$2, self.fold).ranges;
-      const _bind$8 = _bind$7.length;
-      let _tmp$4 = 0;
-      while (true) {
-        const _ = _tmp$4;
-        if (_ < _bind$8) {
-          const range = _bind$7[_];
-          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(ranges, range);
-          _tmp$4 = _ + 1 | 0;
-          continue;
-        } else {
-          break;
-        }
-      }
-      continue;
     }
     const _bind$4 = _M0MP211localreview3awk11RegexReader9set__char(self);
     let a;
@@ -14225,231 +14479,158 @@ function _M0MP211localreview3awk11RegexReader10expression(self, depth) {
   const alternatives = [];
   while (true) {
     const sequence = [];
+    const repeated = new _M0TPB8MutLocalGbE(false);
     while (true) {
       if (_M0IP016_24default__implPB2Eq10not__equalGOcE(_M0MP211localreview3awk11RegexReader4peek(self), -1) && (_M0IP016_24default__implPB2Eq10not__equalGOcE(_M0MP211localreview3awk11RegexReader4peek(self), 41) && _M0IP016_24default__implPB2Eq10not__equalGOcE(_M0MP211localreview3awk11RegexReader4peek(self), 124))) {
-        const _bind$4 = _M0MP211localreview3awk11RegexReader4take(self);
-        let c;
-        if (_bind$4.$tag === 1) {
-          const _ok = _bind$4;
-          c = _ok._0;
-        } else {
-          return _bind$4;
+        const c = _M0MPC16option6Option6unwrapGcE(_M0MP211localreview3awk11RegexReader4peek(self));
+        if (c === 92 && _M0IPC16option6OptionPB2Eq5equalGcE(_M0MPC15array5Array3getGcE(self.chars, self.pos + 1 | 0), 81)) {
+          self.pos = self.pos + 2 | 0;
+          const _bind$4 = _M0MP211localreview3awk11RegexReader6quoted(self, sequence);
+          if (_bind$4.$tag === 1) {
+            const _ok = _bind$4;
+            _ok._0;
+          } else {
+            return _bind$4;
+          }
+          repeated.val = false;
+          continue;
         }
-        let atom;
+        let bounds;
+        switch (c) {
+          case 42: {
+            self.pos = self.pos + 1 | 0;
+            bounds = { _0: 0, _1: -1 };
+            break;
+          }
+          case 43: {
+            self.pos = self.pos + 1 | 0;
+            bounds = { _0: 1, _1: -1 };
+            break;
+          }
+          case 63: {
+            self.pos = self.pos + 1 | 0;
+            bounds = { _0: 0, _1: 1 };
+            break;
+          }
+          case 123: {
+            const _bind$4 = _M0MP211localreview3awk11RegexReader14repeat__bounds(self);
+            if (_bind$4.$tag === 1) {
+              const _ok = _bind$4;
+              bounds = _ok._0;
+            } else {
+              return _bind$4;
+            }
+            break;
+          }
+          default: {
+            bounds = undefined;
+          }
+        }
+        let low;
+        let high;
         _L: {
           _L$2: {
-            switch (c) {
-              case 40: {
-                const _bind$5 = _M0MP211localreview3awk11RegexReader5group(self, depth + 1 | 0);
-                if (_bind$5.$tag === 1) {
-                  const _ok = _bind$5;
-                  atom = _ok._0;
-                } else {
-                  return _bind$5;
-                }
-                break;
-              }
-              case 91: {
-                const _bind$6 = _M0MP211localreview3awk11RegexReader3set(self);
-                let _tmp;
-                if (_bind$6.$tag === 1) {
-                  const _ok = _bind$6;
-                  _tmp = _ok._0;
-                } else {
-                  return _bind$6;
-                }
-                atom = new _M0DTP211localreview3awk9RegexTree9Character(_tmp);
-                break;
-              }
-              case 46: {
-                atom = new _M0DTP211localreview3awk9RegexTree3Dot(self.dotall);
-                break;
-              }
-              case 94: {
-                atom = new _M0DTP211localreview3awk9RegexTree9Assertion(self.multiline ? "line-start" : "^");
-                break;
-              }
-              case 36: {
-                atom = new _M0DTP211localreview3awk9RegexTree9Assertion(self.multiline ? "line-end" : "$");
-                break;
-              }
-              case 92: {
-                const _bind$7 = _M0MP211localreview3awk11RegexReader6escape(self);
-                if (_bind$7.$tag === 1) {
-                  const _ok = _bind$7;
-                  atom = _ok._0;
-                } else {
-                  return _bind$7;
-                }
-                break;
-              }
-              case 42: {
-                break _L$2;
-              }
-              case 43: {
-                break _L$2;
-              }
-              case 63: {
-                break _L$2;
-              }
-              default: {
-                atom = new _M0DTP211localreview3awk9RegexTree9Character(new _M0TP211localreview3awk7CharSet([{ _0: c, _1: c }], false, self.fold));
-              }
+            if (bounds === undefined) {
+            } else {
+              const _Some = bounds;
+              const _x = _Some;
+              const _low = _x._0;
+              const _high = _x._1;
+              low = _low;
+              high = _high;
+              break _L$2;
             }
             break _L;
           }
-          return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("regex repetition has no operand"));
+          if (repeated.val) {
+            return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("nested regex repetition operator"));
+          }
+          let previous;
+          const _bind$5 = _M0MPC15array5Array3popGRPC14json10WriteFrameE(sequence);
+          if (_bind$5 === undefined) {
+            return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("regex repetition has no operand"));
+          } else {
+            const _Some = _bind$5;
+            const _node = _Some;
+            previous = _node;
+          }
+          const node = new _M0DTP211localreview3awk9RegexTree6Repeat(previous, low, high);
+          if (c === 123 && ((low >= 2 || high >= 2) && !_M0FP211localreview3awk20regex__repeat__valid(node, 1000))) {
+            return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("nested regex repetition count exceeds 1000"));
+          }
+          if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 63)) {
+            self.pos = self.pos + 1 | 0;
+          }
+          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(sequence, node);
+          repeated.val = true;
+          continue;
         }
-        const node = new _M0TPB8MutLocalGRP211localreview3awk9RegexTreeE(atom);
-        let q;
+        self.pos = self.pos + 1 | 0;
+        let atom;
+        switch (c) {
+          case 40: {
+            const _bind$5 = _M0MP211localreview3awk11RegexReader5group(self, depth + 1 | 0);
+            if (_bind$5.$tag === 1) {
+              const _ok = _bind$5;
+              atom = _ok._0;
+            } else {
+              return _bind$5;
+            }
+            break;
+          }
+          case 91: {
+            const _bind$6 = _M0MP211localreview3awk11RegexReader3set(self);
+            let _tmp;
+            if (_bind$6.$tag === 1) {
+              const _ok = _bind$6;
+              _tmp = _ok._0;
+            } else {
+              return _bind$6;
+            }
+            atom = new _M0DTP211localreview3awk9RegexTree9Character(_tmp);
+            break;
+          }
+          case 46: {
+            atom = new _M0DTP211localreview3awk9RegexTree3Dot(self.dotall);
+            break;
+          }
+          case 94: {
+            atom = new _M0DTP211localreview3awk9RegexTree9Assertion(self.multiline ? "line-start" : "^");
+            break;
+          }
+          case 36: {
+            atom = new _M0DTP211localreview3awk9RegexTree9Assertion(self.multiline ? "line-end" : "$");
+            break;
+          }
+          case 92: {
+            const _bind$7 = _M0MP211localreview3awk11RegexReader6escape(self);
+            if (_bind$7.$tag === 1) {
+              const _ok = _bind$7;
+              atom = _ok._0;
+            } else {
+              return _bind$7;
+            }
+            break;
+          }
+          default: {
+            atom = new _M0DTP211localreview3awk9RegexTree9Character(new _M0TP211localreview3awk7CharSet([{ _0: c, _1: c }], false, self.fold));
+          }
+        }
+        let node;
         _L$2: {
           _L$3: {
-            const _bind$5 = _M0MP211localreview3awk11RegexReader4peek(self);
-            if (_bind$5 === -1) {
+            if (atom === undefined) {
             } else {
-              const _Some = _bind$5;
-              const _q = _Some;
-              q = _q;
+              const _Some = atom;
+              const _node = _Some;
+              node = _node;
               break _L$3;
             }
             break _L$2;
           }
-          _L$4: {
-            _L$5: {
-              if (q === 42) {
-                break _L$5;
-              } else {
-                if (q === 43) {
-                  break _L$5;
-                } else {
-                  if (q === 63) {
-                    break _L$5;
-                  } else {
-                    if (q === 123) {
-                      break _L$5;
-                    }
-                  }
-                }
-              }
-              break _L$4;
-            }
-            const saved = self.pos;
-            self.pos = self.pos + 1 | 0;
-            let bounds;
-            switch (q) {
-              case 42: {
-                bounds = { _0: 0, _1: -1 };
-                break;
-              }
-              case 43: {
-                bounds = { _0: 1, _1: -1 };
-                break;
-              }
-              case 63: {
-                bounds = { _0: 0, _1: 1 };
-                break;
-              }
-              default: {
-                const begin = self.pos;
-                const low = new _M0TPB8MutLocalGiE(0);
-                while (true) {
-                  let c$2;
-                  _L$6: {
-                    const _bind$5 = _M0MP211localreview3awk11RegexReader4peek(self);
-                    if (_bind$5 === -1) {
-                      break;
-                    } else {
-                      const _Some = _bind$5;
-                      const _c = _Some;
-                      c$2 = _c;
-                      break _L$6;
-                    }
-                  }
-                  if (_M0FP211localreview3awk5digit(c$2)) {
-                    low.val = ((Math.imul(low.val, 10) | 0) + c$2 | 0) - 48 | 0;
-                    if (low.val > 1000) {
-                      return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("regex repeat limit"));
-                    }
-                    self.pos = self.pos + 1 | 0;
-                    continue;
-                  } else {
-                    break;
-                  }
-                }
-                if (begin === self.pos) {
-                  self.pos = saved;
-                  bounds = undefined;
-                } else {
-                  let high;
-                  if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 44)) {
-                    self.pos = self.pos + 1 | 0;
-                    const begin$2 = self.pos;
-                    const high$2 = new _M0TPB8MutLocalGiE(0);
-                    while (true) {
-                      let c$2;
-                      _L$6: {
-                        const _bind$5 = _M0MP211localreview3awk11RegexReader4peek(self);
-                        if (_bind$5 === -1) {
-                          break;
-                        } else {
-                          const _Some = _bind$5;
-                          const _c = _Some;
-                          c$2 = _c;
-                          break _L$6;
-                        }
-                      }
-                      if (_M0FP211localreview3awk5digit(c$2)) {
-                        high$2.val = ((Math.imul(high$2.val, 10) | 0) + c$2 | 0) - 48 | 0;
-                        if (high$2.val > 1000) {
-                          return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("regex repeat limit"));
-                        }
-                        self.pos = self.pos + 1 | 0;
-                        continue;
-                      } else {
-                        break;
-                      }
-                    }
-                    high = begin$2 === self.pos ? -1 : high$2.val;
-                  } else {
-                    high = low.val;
-                  }
-                  if (_M0IP016_24default__implPB2Eq10not__equalGOcE(_M0MP211localreview3awk11RegexReader4peek(self), 125)) {
-                    self.pos = saved;
-                    bounds = undefined;
-                  } else {
-                    self.pos = self.pos + 1 | 0;
-                    if (high >= 0 && high < low.val) {
-                      return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("reversed regex repetition"));
-                    }
-                    bounds = { _0: low.val, _1: high };
-                  }
-                }
-              }
-            }
-            let low$2;
-            let high;
-            _L$6: {
-              _L$7: {
-                if (bounds === undefined) {
-                } else {
-                  const _Some = bounds;
-                  const _x = _Some;
-                  const _low = _x._0;
-                  const _high = _x._1;
-                  low$2 = _low;
-                  high = _high;
-                  break _L$7;
-                }
-                break _L$6;
-              }
-              node.val = new _M0DTP211localreview3awk9RegexTree6Repeat(node.val, low$2, high);
-              if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 63)) {
-                self.pos = self.pos + 1 | 0;
-              }
-            }
-          }
+          _M0MPC15array5Array4pushGRPC14json10WriteFrameE(sequence, node);
         }
-        _M0MPC15array5Array4pushGRPC14json10WriteFrameE(sequence, node.val);
+        repeated.val = false;
         continue;
       } else {
         break;
@@ -14520,7 +14701,7 @@ function _M0MP211localreview3awk11RegexReader5group(self, depth) {
         _tmp = _tmp$2 !== 62;
       }
       if (_tmp) {
-        return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid regex capture name"));
+        return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("invalid regex capture name"));
       }
       const _bind$4 = _M0MP211localreview3awk11RegexReader10expression(self, depth);
       let result;
@@ -14539,12 +14720,12 @@ function _M0MP211localreview3awk11RegexReader5group(self, depth) {
         return _bind$5;
       }
       if (_tmp$2 !== 41) {
-        return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("unclosed regex group"));
+        return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("unclosed regex group"));
       }
       self.fold = old._0;
       self.multiline = old._1;
       self.dotall = old._2;
-      return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok(result);
+      return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok(result);
     }
     const enabled = new _M0TPB8MutLocalGbE(true);
     const flags = new _M0TPB8MutLocalGiE(0);
@@ -14567,7 +14748,7 @@ function _M0MP211localreview3awk11RegexReader5group(self, depth) {
         switch (c) {
           case 45: {
             if (!enabled.val) {
-              return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("repeated regex flag separator"));
+              return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("repeated regex flag separator"));
             }
             enabled.val = false;
             break;
@@ -14600,11 +14781,11 @@ function _M0MP211localreview3awk11RegexReader5group(self, depth) {
       }
     }
     if (!enabled.val && after_minus.val === 0) {
-      return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("missing disabled regex flags"));
+      return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("missing disabled regex flags"));
     }
     if (_M0IPC16option6OptionPB2Eq5equalGcE(_M0MP211localreview3awk11RegexReader4peek(self), 41) && flags.val > 0) {
       self.pos = self.pos + 1 | 0;
-      return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok(_M0DTP211localreview3awk9RegexTree7Epsilon__);
+      return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok(undefined);
     }
     const _bind$4 = _M0MP211localreview3awk11RegexReader4take(self);
     let _tmp;
@@ -14615,7 +14796,7 @@ function _M0MP211localreview3awk11RegexReader5group(self, depth) {
       return _bind$4;
     }
     if (_tmp !== 58) {
-      return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("unsupported regex group extension"));
+      return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("unsupported regex group extension"));
     }
   }
   const _bind$4 = _M0MP211localreview3awk11RegexReader10expression(self, depth);
@@ -14635,36 +14816,35 @@ function _M0MP211localreview3awk11RegexReader5group(self, depth) {
     return _bind$5;
   }
   if (_tmp !== 41) {
-    return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("unclosed regex group"));
+    return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("unclosed regex group"));
   }
   self.fold = old._0;
   self.multiline = old._1;
   self.dotall = old._2;
-  return new _M0DTPC16result6ResultGRP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok(result);
+  return new _M0DTPC16result6ResultGORP211localreview3awk9RegexTreeRP211localreview3awk10ParseErrorE2Ok(result);
 }
 function _M0FP211localreview3awk14compile__regex(source) {
   if (source.length > 10000) {
     return new _M0DTPC16result6ResultGRP211localreview3awk5RegexRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("regex source limit"));
   }
-  const _bind$4 = _M0FP211localreview3awk14regex__unquote(source);
-  let _tmp;
+  const reader = new _M0TP211localreview3awk11RegexReader(_M0MPC16string6String9to__array(source), 0, false, false, true);
+  const _bind$4 = _M0MP211localreview3awk11RegexReader10expression(reader, 0);
+  let tree;
   if (_bind$4.$tag === 1) {
     const _ok = _bind$4;
-    _tmp = _ok._0;
+    tree = _ok._0;
   } else {
     return _bind$4;
   }
-  const reader = new _M0TP211localreview3awk11RegexReader(_tmp, 0, false, false, true);
-  const _bind$5 = _M0MP211localreview3awk11RegexReader10expression(reader, 0);
-  let tree;
-  if (_bind$5.$tag === 1) {
-    const _ok = _bind$5;
-    tree = _ok._0;
-  } else {
-    return _bind$5;
-  }
   if (reader.pos !== reader.chars.length) {
     return new _M0DTPC16result6ResultGRP211localreview3awk5RegexRP211localreview3awk10ParseErrorE3Err(new _M0DTPC15error5Error40localreview_2fawk_2eParseError_2eInvalid("trailing regex input"));
+  }
+  const _bind$5 = _M0FP211localreview3awk19regex__check__depth(tree);
+  if (_bind$5.$tag === 1) {
+    const _ok = _bind$5;
+    _ok._0;
+  } else {
+    return _bind$5;
   }
   const code = [_M0DTP211localreview3awk11Instruction6Accept__];
   const _bind$6 = _M0FP211localreview3awk14regex__compile(tree, code, 0);
@@ -14707,7 +14887,7 @@ function _M0MP211localreview3awk5State5regex(self, pattern) {
   _M0MPB3Map3setGsRP211localreview3awk5RegexE(self.regexes, pattern, regex$2);
   return new _M0DTPC16result6ResultGRP211localreview3awk5RegexRP211localreview3awk10ParseErrorE2Ok(regex$2);
 }
-function _M0FP211localreview3awk21split__fields_2einner(text, separator, st, is_regex) {
+function _M0FP211localreview3awk21split__fields_2einner(text, separator, st, is_regex, skip_empty) {
   if (_M0MPC16string6String9is__empty(text)) {
     return new _M0DTPC16result6ResultGRPB5ArrayGRP211localreview3awk5ValueERP211localreview3awk10ParseErrorE2Ok([]);
   }
@@ -14780,6 +14960,10 @@ function _M0FP211localreview3awk21split__fields_2einner(text, separator, st, is_
               b = _b;
               break _L;
             }
+          }
+          if (skip_empty && a === b) {
+            from.val = a + 1 | 0;
+            continue;
           }
           if (a === b && a === last_nonempty_end.val) {
             from.val = a + 1 | 0;
@@ -15394,7 +15578,7 @@ function _M0MP211localreview3awk5State14ensure__fields(self) {
     return new _M0DTPC16result6ResultGuRP211localreview3awk10ParseErrorE2Ok(undefined);
   }
   const fs = self.saved_fs;
-  const _bind$4 = _M0FP211localreview3awk21split__fields_2einner(self.record, fs, self, false);
+  const _bind$4 = _M0FP211localreview3awk21split__fields_2einner(self.record, fs, self, false, true);
   let raw;
   if (_bind$4.$tag === 1) {
     const _ok = _bind$4;
@@ -22396,7 +22580,7 @@ function _M0FP211localreview3awk7builtin(name, args, st) {
       } else {
         _tmp$2 = false;
       }
-      const _bind$7 = _M0FP211localreview3awk21split__fields_2einner(text, sep, st, _tmp$2);
+      const _bind$7 = _M0FP211localreview3awk21split__fields_2einner(text, sep, st, _tmp$2, false);
       if (_bind$7.$tag === 1) {
         const _ok = _bind$7;
         fields = _ok._0;

@@ -218,12 +218,12 @@ fn RegexReader::set(self : RegexReader) -> CharSet raise ParseError {
       }
       continue
     }
-    if self.peek() == Some('[') && self.chars.get(self.pos + 1) == Some(':') {
+    if self.peek() == Some('[') &&
+      self.chars.get(self.pos + 1) == Some(':') &&
+      regex_posix_end(self.chars, self.pos + 2) is Some(end) {
       self.pos += 2
       let begin = self.pos
-      while self.peek() != None && self.peek() != Some(':') {
-        self.pos += 1
-      }
+      self.pos = end
       let name = String::from_array(self.chars[begin:self.pos])
       if self.take() != ':' || self.take() != ']' {
         raise Invalid("invalid POSIX class")
@@ -285,89 +285,77 @@ fn RegexReader::expression(
   }
   let alternatives = []
   while true {
-    let sequence = []
+    let sequence : Array[RegexTree] = []
+    let mut repeated = false
     while self.peek() != None &&
           self.peek() != Some(')') &&
           self.peek() != Some('|') {
-      let c = self.take()
+      let c = self.peek().unwrap()
+      if c == '\\' && self.chars.get(self.pos + 1) == Some('Q') {
+        self.pos += 2
+        self.quoted(sequence)
+        repeated = false
+        continue
+      }
+      let bounds = match c {
+        '*' => {
+          self.pos += 1
+          Some((0, -1))
+        }
+        '+' => {
+          self.pos += 1
+          Some((1, -1))
+        }
+        '?' => {
+          self.pos += 1
+          Some((0, 1))
+        }
+        '{' => self.repeat_bounds()
+        _ => None
+      }
+      if bounds is Some((low, high)) {
+        if repeated {
+          raise Invalid("nested regex repetition operator")
+        }
+        let previous = match sequence.pop() {
+          Some(node) => node
+          None => raise Invalid("regex repetition has no operand")
+        }
+        let node = Repeat(previous, low, high)
+        if c == '{' &&
+          (low >= 2 || high >= 2) &&
+          !regex_repeat_valid(node, 1000) {
+          raise Invalid("nested regex repetition count exceeds 1000")
+        }
+        if self.peek() == Some('?') {
+          self.pos += 1
+        }
+        sequence.push(node)
+        repeated = true
+        continue
+      }
+      self.pos += 1
       let atom = match c {
         '(' => self.group(depth + 1)
-        '[' => Character(self.set())
-        '.' => Dot(self.dotall)
-        '^' => Assertion(if self.multiline { "line-start" } else { "^" })
-        '$' => Assertion(if self.multiline { "line-end" } else { "$" })
-        '\\' => self.escape()
-        '*' | '+' | '?' => raise Invalid("regex repetition has no operand")
+        '[' => Some(Character(self.set()))
+        '.' => Some(Dot(self.dotall))
+        '^' => Some(Assertion(if self.multiline { "line-start" } else { "^" }))
+        '$' => Some(Assertion(if self.multiline { "line-end" } else { "$" }))
+        '\\' => Some(self.escape())
         _ =>
-          Character({
-            ranges: [(c.to_int(), c.to_int())],
-            negative: false,
-            fold: self.fold,
-          })
+          Some(
+            Character({
+              ranges: [(c.to_int(), c.to_int())],
+              negative: false,
+              fold: self.fold,
+            }),
+          )
       }
-      let mut node = atom
-      if self.peek() is Some(q) &&
-        (q == '*' || q == '+' || q == '?' || q == '{') {
-        let saved = self.pos
-        self.pos += 1
-        let bounds = match q {
-          '*' => Some((0, -1))
-          '+' => Some((1, -1))
-          '?' => Some((0, 1))
-          _ => {
-            let begin = self.pos
-            let mut low = 0
-            while self.peek() is Some(c) && digit(c) {
-              low = low * 10 + c.to_int() - 48
-              if low > 1000 {
-                raise Invalid("regex repeat limit")
-              }
-              self.pos += 1
-            }
-            if begin == self.pos {
-              self.pos = saved
-              None
-            } else {
-              let high = if self.peek() == Some(',') {
-                self.pos += 1
-                let begin = self.pos
-                let mut high = 0
-                while self.peek() is Some(c) && digit(c) {
-                  high = high * 10 + c.to_int() - 48
-                  if high > 1000 {
-                    raise Invalid("regex repeat limit")
-                  }
-                  self.pos += 1
-                }
-                if begin == self.pos {
-                  -1
-                } else {
-                  high
-                }
-              } else {
-                low
-              }
-              if self.peek() != Some('}') {
-                self.pos = saved
-                None
-              } else {
-                self.pos += 1
-                if high >= 0 && high < low {
-                  raise Invalid("reversed regex repetition")
-                }
-                Some((low, high))
-              }
-            }
-          }
-        }
-        if bounds is Some((low, high)) {
-          node = Repeat(node, low, high)
-          if self.peek() == Some('?') {
-            self.pos += 1
-          }
-        }
+      if atom is Some(node) {
+        sequence.push(node)
       }
-      sequence.push(node)
+      // Flag-only groups emit no operand, but they delimit adjacent operators.
+      repeated = false
     }
     alternatives.push(
       if sequence.is_empty() {
@@ -394,7 +382,7 @@ fn RegexReader::expression(
 fn RegexReader::group(
   self : RegexReader,
   depth : Int,
-) -> RegexTree raise ParseError {
+) -> RegexTree? raise ParseError {
   let old = (self.fold, self.multiline, self.dotall)
   if self.peek() == Some('?') {
     self.pos += 1
@@ -419,7 +407,7 @@ fn RegexReader::group(
       self.fold = old.0
       self.multiline = old.1
       self.dotall = old.2
-      return result
+      return Some(result)
     }
     let mut enabled = true
     let mut flags = 0
@@ -456,7 +444,7 @@ fn RegexReader::group(
     }
     if self.peek() == Some(')') && flags > 0 {
       self.pos += 1
-      return Epsilon
+      return None
     }
     if self.take() != ':' {
       raise Invalid("unsupported regex group extension")
@@ -469,7 +457,7 @@ fn RegexReader::group(
   self.fold = old.0
   self.multiline = old.1
   self.dotall = old.2
-  result
+  Some(result)
 }
 
 ///|
@@ -547,7 +535,7 @@ fn compile_regex(source : String) -> Regex raise ParseError {
     raise Invalid("regex source limit")
   }
   let reader : RegexReader = {
-    chars: regex_unquote(source),
+    chars: source.to_array(),
     pos: 0,
     fold: false,
     multiline: false,
@@ -557,6 +545,7 @@ fn compile_regex(source : String) -> Regex raise ParseError {
   if reader.pos != reader.chars.length() {
     raise Invalid("trailing regex input")
   }
+  regex_check_depth(tree)
   let code = [Accept]
   let start = regex_compile(tree, code, 0)
   { code, start, }

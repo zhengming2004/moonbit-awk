@@ -1,0 +1,1168 @@
+{
+  "utc": "2026-09-19T04:51:02.408Z",
+  "scope": "Real Node CLI against a selected subset of saved native vectors; overlaps the API matrix and does not add independent native executions.",
+  "total": 148,
+  "passed": 148,
+  "failed": 0,
+  "sourceSha256": {
+    ".gitattributes": "e814216d0cddcb34ff1f5944e56dd695a6579fa66580d475059aa9991c25a406",
+    ".github/workflows/ci.yml": "f588c3b5f9675201c2b87280c7ad4918f9d9b69722326d11e2b5d78fad7e544d",
+    ".gitignore": "5888331e532ab1ab237555e400ea4ba0cfc4a47e0a53dbfae8c06ea877ed1a45",
+    "CHANGELOG.md": "63ee0ca8634478eb87ee18882e8102666b5621416b6ea708f43f08a327323e30",
+    "cmd/main/main.mbt": "b94adbe96a2cdcf6cd76e93285777958078ff430fd9840bafb82d25b41a39023",
+    "cmd/main/moon.pkg": "12e43ae315bc9f491ef26774a151b3709cbfb5bf64e925da7bb2f415e4ed3e1d",
+    "cmd/main/pkg.generated.mbti": "b52ff23774851facc6dbd1d8fd0cbc9fd20f23fa2d78898b6f392aaf244ee33d",
+    "cmd/web/host.mbt": "ffc44f883415385090d80fedda16e2dd3820a8591aea42ff3d9ecc4288d05b24",
+    "cmd/web/main.mbt": "a6a28ec22f95c985e1ed1a750f15779517d4aa44c385d5659047be93101ca749",
+    "cmd/web/moon.pkg": "e9af2483bf2f7041deda0316d7229124ea4b8154d78b3ea34649c4d435dcc80c",
+    "cmd/web/session.mbt": "bed4c6489234a86f5c281d5176775803c61e67d290b6f97cee90ec70307dfeba",
+    "CONTRIBUTING.md": "e066713924ff8db789960bf03122a64cea6904cf4dc7666b9747802f3b50d491",
+    "control_test.mbt": "ed2f27889337379206fb47a1ff92d5af74d469455e33c3a7f527d1954f60706f",
+    "core_test.mbt": "fa4fdd3d2028c34675d2760b2f6fe3b04e4e8d4cec3a5610e6a5ba1abb9fc333",
+    "csv_reference_test.mbt": "db97f1461f94b53d11204a7d8f9050610958bb99ac7aef826c48637b9f139651",
+    "csv_test.mbt": "efdfedfe55c0ff89b2f8502490e7084d35f2ea57657dac250b225a2b23a1bf02",
+    "csv.mbt": "c92806429024afb51beb599cb4e98552dfd2cff0cee5e30c5ef3c98d5bbe83fd",
+    "DUPLICATION.md": "4793097d2db972304e2d4dc9b16be74c56516db1b8732acd4272d5f55ac8f571",
+    "evaluator.mbt": "f761f2577b65e5b08076a6b21e41659c8d3ffab476a5dd0f3b9e1b05307e5686",
+    "FEATURES.md": "1092ab3d05072343dbdf3a5fd285743a92bb3ed0de42f7967b64fd12b115620e",
+    "formatting.mbt": "5742f652e3b7442332173f40a6924cab419f50e9528e33eee0d41f4c4babaa5b",
+    "functions.mbt": "15bd99d1e37703d6915857a7f7fe0bcf5af70ddddb1f3e221c85fb80113beff4",
+    "input_test.mbt": "6cc2998cbf3010196d659a7d9f64d27a914821ccbf248d0e6f73265ca0455810",
+    "input.mbt": "89a5542aa51fa82ec47239f4694cc8e5b51b6d8c0b290c8cc3c993d576471ff1",
+    "interpreter.mbt": "e71b118c33ebcdffd533588ddd425ed2dd9b752aeeb9a6c69743b14b01a52708",
+    "io_reference_test.mbt": "cebfdee1fb06428f252a0fcf013bd7969a549895680f8df0750353339b87b8a3",
+    "io_test.mbt": "26d86c88a133a206cfe35654cb3674c2410b71d8cd17134b348893944d1aefd6",
+    "io.mbt": "318f4bc87e42d01554c74b5fc109108f4f61c8c0d95ca947720c50fac26baa93",
+    "lexer.mbt": "9576a3dc2a22b4edd09b2ec44f4397d2ac3710a1104386dcc42e2dee3ec2a25a",
+    "LICENSE": "a2ae469f92ac7fd70592f338c7c43657c7e9510be802cfb3db880fff11df3807",
+    "MANIFEST.sha256.json.baseline": "f4abfe7b26f8a8bbda4feafdb886f5b61d13095950851fb457d8a961ef056e0c",
+    "moon.mod": "d0caf36b44e3b67550e23556c51a7df032bf2df49e91432445fe136efbcfd89c",
+    "moon.pkg": "868b5e56abfee5e7dfbbf1ce4b8d6d2ae89b4be78de53644e47bb47b5024d3d7",
+    "numbers.mbt": "977a335634af9059b3c9b4db989da1a4a819f17542f0edb2837bde62d2bc36f3",
+    "parser.mbt": "bf9bc57525c458ac6d61f18ff1dfa0d909d0552e32a324f779278d5c086564b9",
+    "pkg.generated.mbti": "1697e80febff82931ae4bedd5ae615df30db78ccfed668e1ad33c62a46006987",
+    "README.mbt.md": "616275afa7d86c8dcd2863fd94258a18d0c770e5230bdc89bc572f59b8458ff3",
+    "README.md": "12114aba69c989d1f47735becf4715552eefc9a33bab5fbd8c2c45a5541443ea",
+    "record_reference_test.mbt": "68e6385ebdd49c16277471ede7998843916d95bdb178a3e7ddb2e336a9b74f83",
+    "regex_classes.mbt": "6bc4f3ac62f5d1669be524e329e965ed7cb0c8815bfb99964c9002cae8239389",
+    "regex_quote.mbt": "c58a9469d5710918f6a2a561506db6bba60dd359cae57249534efb3f9f1eef9b",
+    "regex_reference_test.mbt": "9305770f6a80f139b0257745eb38c787750844fc34b8efb49addca9bf76c6b47",
+    "regex_repeat.mbt": "02c1e8cdfb853e1a496bb203137e41dbc9c5f1957ebc5f7b29699ec5dc1b18bd",
+    "regex_syntax_reference_test.mbt": "43d1f2c664b1a81cf731cd335412e69e246b6aa8a62dc05e05f4b7d90d2ab22b",
+    "regex_unicode_data.mbt": "d2f9ac7058249429be583786a4816ecc8cde8be901d597e9b3e5e4b0d259ce94",
+    "regex.mbt": "c67d715f284a1aba03b376aac1ed95a1c2b4bad9b2e69f609ee27be1747f027c",
+    "ROADMAP.md": "1a0f6a0b474ed8664a448aa9d3a9b0cf12c03ccd4384d256577b7b2a47351620",
+    "runtime_test.mbt": "8fcefdef9baf44f20dea787c06cf65e16033197ae68f968936b9f0e6edf5f478",
+    "sample.txt": "ff0ed8988e579387b73a3caf8d0d04ff004d0d61144e92697f5fdf166a30ca83",
+    "session.mbt": "c681e9f1aae11d9d7bc8e871577f6a9b8b5c2dd926c54d783102c2c692fbfff9",
+    "start-review.ps1": "dc7bfe671a7b08f12ab67379ed1830325aa8c747ef398637e33788985cd7e275",
+    "string_context_reference_test.mbt": "9bb3db800e63756c22ab02b06d87204bfd7c01d6d9eff3262c1fa049e3c51417",
+    "string_scalar_reference_test.mbt": "e7e9e52df1fa68265efda1aecb5a0e5064e1d3f1c46fc2535c9590433adc08d5",
+    "TESTING.md": "ed28af0a20bc898c76c4f6b3e633e7d693e6dec69ab2aa0c86b7d41caf963a92",
+    "tools/awk-buffered.mjs": "7ab1bc470f9433274a89dda64d606918f5d334c50414eae78323e0bf7bcd563c",
+    "tools/awk-host.mjs": "1d9ae842d324ecdd25d4e66a238758815ed882c12511d734965e935b488296c5",
+    "tools/awk-worker.mjs": "6bc3af2c96617503a14ef632fd833e972179b3b26a64f7a3d51dbae4e193797e",
+    "tools/awk.mjs": "bd159467db9dfc612d68d7d22a7c5ea58f6b6d3f98ccbdd9e2a40ff8940ba620",
+    "tools/benchmark-bridge.mjs": "bfe92d00ded54961485a07ec8edcd2bda78dfb010ba9f45dbae4291e4c346164",
+    "tools/benchmark-csv.mjs": "656c2352cef97b5db4d141ac3b48c6710da6d73e9c415a1f09ae924210853bb8",
+    "tools/benchmark-input.mjs": "32bba04ff49e5c71ab3e22a13b3bb708d85ffaccb6d93dcfb06789021bce0670",
+    "tools/benchmark-io.mjs": "ec55446b4d582b5d839a619996098513cc2ca54b9788d49789e772f96b9982d9",
+    "tools/benchmark-regex-syntax.mjs": "20652b862e9cb20591b8f2d6e5f65d3e27e736eb86bbde69b77688ecf6db13dd",
+    "tools/benchmark-regex.mjs": "a6565a0828293603e839312ee511a614e60d00aa4b9c857a64b0f21a99983d16",
+    "tools/benchmark-string.mjs": "5e57160cfa0fb94ed899211225c45cb966de2068996aeede816fee6b22ea8924",
+    "tools/benchmark.mjs": "53ac611536ba7cb3732017d22976ff8f38dbd9e7aa579c2469eab75b0cdc7216",
+    "tools/cli.mjs": "f98839799f2896c92a75e6565add432efe166f00bc3fed89e03d6d59eca688d4",
+    "tools/csv-cases.mjs": "c895e0fdea82f1c849c7b9c8f0fe4aa6d11db0c38027351c6843e4727f828d6c",
+    "tools/evidence.mjs": "f54fefcd829af7617ecca51f07e628821d598113e2de163792694bb8951de6fe",
+    "tools/gawk-cases.json": "1f3b572e8c5bf11e47559559538b318808fdeb52f74af0db61c1a5225e33f47d",
+    "tools/generate-csv-tests.mjs": "383cd7ed6efdfd633402b489c58a0be3164c1d1f43cec023811b0b74185a3530",
+    "tools/generate-io-tests.mjs": "2326df698d4d30a7ba8c48b5bc495079d1c7631bad4e31579912219dd1d54e21",
+    "tools/generate-record-tests.mjs": "5b1352fce9ad6ef6f7a97cf5a8e41f1fc7a47fadec9ac45c472f49ffed5fa033",
+    "tools/generate-regex-cases.py": "ac8ef1624dedbe403ad92b07ac7d6143f67fe5b903d81bc2eba812185cd219ea",
+    "tools/generate-regex-syntax-tests.mjs": "f0c7834167a69ad034cb16c61b2680ba597b32a95b011c9b569e6fe927df346d",
+    "tools/generate-regex-tests.mjs": "24bebc2081fe30b637b63e406be24a289d733ba5191da69cd46a18db3d889ba1",
+    "tools/generate-regex-unicode.py": "c4dcd15ce497dbc22db8ae81b4e402f1c1de6e6af40799aac53e02a1bb579ad6",
+    "tools/generate-string-context-tests.mjs": "e19d463b157d59a6f84bc9910753941c846e3cb279038003ee865c96b439339a",
+    "tools/generate-string-scalar-tests.mjs": "283e671d271b861e7902921c6f5299683df99cb9f5b456d4378b5c7c448477b8",
+    "tools/generate-string-unicode.py": "eb462ba5eefc2b86979f6347af6bc217ca183dde451b11d2cfb138486b247a01",
+    "tools/invalid-input.txt": "ea1f6ce72070d5d8341598d359fee33df3c8331664475232246027d825c0dd72",
+    "tools/io-cases.mjs": "e853232828298ae4e3a9b77e251409362c771072ed64ca534a26663ef34b52b2",
+    "tools/make-gawk-cases.mjs": "606b3eebe15ce4af919696e2e0b463e392853c6c200ca0c13ce3dfd6b130483f",
+    "tools/record-cases.mjs": "62184081d656134e320fddd0d14fb2d6515a87034efb66e1c4c295dde3b9c2cb",
+    "tools/reference-gawk.py": "557c1bd85893a00132d30159e2b18bc91a8f998fc884ab01a62c4e3241ce7b17",
+    "tools/regex-cases.json": "4c01d1e7865c75cbd3231ed11dd16bc81dd55a29882b56cee18b447d2da94aad",
+    "tools/regex-syntax-cases.mjs": "d2c44694a9ede1809c75c85f96880af495a25ff323fe4f0796e6f884b414ba66",
+    "tools/robustness.mjs": "24964a078897dccc448ba3d5db4c08f6446d38008424987bf26b4b6f042a21d6",
+    "tools/serve.py": "77361b08fc65d9c6a3d89bda03949d9e1a9754f76e8cc32b20ca11aa9bf1ff5e",
+    "tools/shell-evidence.mjs": "71e66bc9728824d4fb105704da1a4c81cf7b644ea9603f11103d11d6c38d79c3",
+    "tools/string-cases.mjs": "bf093b18c090fa4d1d625719c1f82bba40eb1120e348b6ffcafe2c0eb7c70ee6",
+    "tools/test-awk-cli.mjs": "a6cad94605f7e41c051f96b7fdb893a753619aba5ce20fb1cd11b7c230df9e46",
+    "tools/test-bridge-host.mjs": "0f20d658b20115b17a576b86bdcaae69573e962576dd67d71a528de5ccf7b83f",
+    "tools/test-cli.mjs": "b1acaf8992e16d37e1527fd60beeea275ce0df574a9622ab3b44d86dcaf08b03",
+    "tools/test-csv-reference.mjs": "83d265cc11b2a3977555d3a8c5575e53ff34579a7ad6ac6848bfd7676f356a66",
+    "tools/test-demo.mjs": "02ec6337b9c72c299450db6f0d2b024fd4fd96193d17e5cd501c3a8e6eb87188",
+    "tools/test-gawk.mjs": "d0121a81101950c3ee7e4bca937ada7a0c511d45e646d5c3424a81ee2fae5e64",
+    "tools/test-host-reference.mjs": "a9dd8033c86c2f43b7d4061b5d6af3ed50ff5f8d5f465a009e3309bc94afef75",
+    "tools/test-io-reference.mjs": "2c7054133087edf30dbdf77536b2a31f41acb3e9d662075b112c3e196b4bff79",
+    "tools/test-pull-host.mjs": "1b7cbb577d2b965102252256e2c6186d23196bee2cba81c85640f0ee2bf8bcd3",
+    "tools/test-record-reference.mjs": "0588f38ddc405b4ad8a6f83a47038c4a000f5d099881e35e8021a18b2c0e2081",
+    "tools/test-reference.mjs": "64176c71d56ef4acc3f083932388a53dd133c0a7d340259aa4acd0267955d0f9",
+    "tools/test-regex-host.mjs": "1c46b48b77442d0e5d09ff48bc2fd7259526a42d0180e2feb2e264809bf5d5ee",
+    "tools/test-regex-reference.mjs": "82900c9c3a4b15c03b47095f3a26bde8024cc8209559c7de53713f8ecc57ed1d",
+    "tools/test-regex-syntax-host.mjs": "69256fef2993ff0d24d9f8892766c5a188e725b59efbe78d62c1a48cb594df99",
+    "tools/test-regex-syntax.mjs": "f0e00624d1bc02c1f7b2de2fa2e924cdfb3a4805c77b20dc57a1c3170ce53e45",
+    "tools/test-session.mjs": "7d04c6e4f17b2ca3d53d7954add2a362151b28fd7daedc49f61109e09425b666",
+    "tools/test-string-host.mjs": "eee9f99cc63e2ab916cddf8dce20ad0baa153c2f3bb83e4cb8e05ad08177f820",
+    "tools/test-string-reference.mjs": "273de800a1769eb19505363a501b8b1e2866f22ca9dce8865129fb71f5961ebf",
+    "tools/test-string-scalars.mjs": "d0bfa12ea4938fe31a038eec28ecd57a51743a82319b1d1ffe1a6981333b0b01",
+    "unicode_string_data.mbt": "0d09e9b5fd9313610d0ecd87f41e225986d74d8ef32b760f3f239c9a2cf1fa94",
+    "unicode_string.mbt": "f5537e891d314877fe6d4906cd590ea94d6d5e152eb1ab4ebb6c687ffbede1bf",
+    "values.mbt": "654291043414b251803da3658383a3480f6bee4d87c268adcbd22e2cdd8a8341",
+    "vendor/go-unicode-1.26.3/LICENSE": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "vendor/go-unicode-1.26.3/README.md": "48d516a50120d644736a8d7505b3347c882ce67a1b99d69e7c9fbff61179dc65",
+    "vendor/go-unicode-1.26.3/tables.go": "6a88d48746c4b2c471cc04ae40559694b734770212e6f5ea5f1962adb0c0bdb1",
+    "verify.ps1": "ab3c024e91abebd400a68e47c1482334ac1758991c8f18db0a717cc94df291ca",
+    "web/app.mjs": "12a0cf3565b6298e2e3760355ec5da3fed88870be604b7f6e1a2f57d7334578d",
+    "web/config.mjs": "df227b84ed5a0f30ed97d1bada2ea4897f2f3fc4a5880eebec66664d339d8eb3",
+    "web/engine.mjs": "2b0a26289f393756210aa4aaaf1efe7123a7d7b9bd7d4842bf8482f8c836fed7",
+    "web/index.html": "cdcbb5d9f2d455d4335bfd7fdcd30bac065fc0b90843d4fe616ef9726fc7aeb8"
+  },
+  "results": [
+    {
+      "id": "syntax-0-dynamic",
+      "kind": "count",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-0-literal",
+      "kind": "count",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-1-dynamic",
+      "kind": "count",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-1-literal",
+      "kind": "count",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-2-dynamic",
+      "kind": "count",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-2-literal",
+      "kind": "count",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-3-dynamic",
+      "kind": "count",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-3-literal",
+      "kind": "count",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-4-dynamic",
+      "kind": "count",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-4-literal",
+      "kind": "count",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-7-dynamic",
+      "kind": "count",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-7-literal",
+      "kind": "count",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-11-dynamic",
+      "kind": "count",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-11-literal",
+      "kind": "count",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-12-dynamic",
+      "kind": "count",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-12-literal",
+      "kind": "count",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-156-dynamic",
+      "kind": "adjacent",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-156-literal",
+      "kind": "adjacent",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-157-dynamic",
+      "kind": "adjacent",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-157-literal",
+      "kind": "adjacent",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-158-dynamic",
+      "kind": "adjacent",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-158-literal",
+      "kind": "adjacent",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-159-dynamic",
+      "kind": "adjacent",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-159-literal",
+      "kind": "adjacent",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-160-dynamic",
+      "kind": "adjacent",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-160-literal",
+      "kind": "adjacent",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-161-dynamic",
+      "kind": "adjacent",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-161-literal",
+      "kind": "adjacent",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-165-dynamic",
+      "kind": "adjacent",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-165-literal",
+      "kind": "adjacent",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-168-dynamic",
+      "kind": "adjacent",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-168-literal",
+      "kind": "adjacent",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-324-dynamic",
+      "kind": "nested",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-324-literal",
+      "kind": "nested",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-325-dynamic",
+      "kind": "nested",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-325-literal",
+      "kind": "nested",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-326-dynamic",
+      "kind": "nested",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-326-literal",
+      "kind": "nested",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-327-dynamic",
+      "kind": "nested",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-327-literal",
+      "kind": "nested",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-328-dynamic",
+      "kind": "nested",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-328-literal",
+      "kind": "nested",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-329-dynamic",
+      "kind": "nested",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-329-literal",
+      "kind": "nested",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-330-dynamic",
+      "kind": "nested",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-330-literal",
+      "kind": "nested",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-334-dynamic",
+      "kind": "nested",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-334-literal",
+      "kind": "nested",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-344-dynamic",
+      "kind": "flags",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-344-literal",
+      "kind": "flags",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-345-dynamic",
+      "kind": "flags",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-345-literal",
+      "kind": "flags",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-346-dynamic",
+      "kind": "flags",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-346-literal",
+      "kind": "flags",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-347-dynamic",
+      "kind": "flags",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-347-literal",
+      "kind": "flags",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-348-dynamic",
+      "kind": "flags",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-348-literal",
+      "kind": "flags",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-349-dynamic",
+      "kind": "flags",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-349-literal",
+      "kind": "flags",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-357-dynamic",
+      "kind": "flags",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-357-literal",
+      "kind": "flags",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-358-dynamic",
+      "kind": "flags",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-358-literal",
+      "kind": "flags",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-373-dynamic",
+      "kind": "class",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-373-literal",
+      "kind": "class",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-374-dynamic",
+      "kind": "class",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-374-literal",
+      "kind": "class",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-375-dynamic",
+      "kind": "class",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-375-literal",
+      "kind": "class",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-376-dynamic",
+      "kind": "class",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-376-literal",
+      "kind": "class",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-377-dynamic",
+      "kind": "class",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-377-literal",
+      "kind": "class",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-378-dynamic",
+      "kind": "class",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-378-literal",
+      "kind": "class",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-381-dynamic",
+      "kind": "class",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-381-literal",
+      "kind": "class",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-391-dynamic",
+      "kind": "class",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-391-literal",
+      "kind": "class",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-398-dynamic",
+      "kind": "quote",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-398-literal",
+      "kind": "quote",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-399-dynamic",
+      "kind": "quote",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-399-literal",
+      "kind": "quote",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-400-dynamic",
+      "kind": "quote",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-400-literal",
+      "kind": "quote",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-401-dynamic",
+      "kind": "quote",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-401-literal",
+      "kind": "quote",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-402-dynamic",
+      "kind": "quote",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-402-literal",
+      "kind": "quote",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-403-dynamic",
+      "kind": "quote",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-403-literal",
+      "kind": "quote",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-409-dynamic",
+      "kind": "quote",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-409-literal",
+      "kind": "quote",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-410-dynamic",
+      "kind": "quote",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-410-literal",
+      "kind": "quote",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-421-dynamic",
+      "kind": "tree-depth",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-421-literal",
+      "kind": "tree-depth",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-422-dynamic",
+      "kind": "tree-depth",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-422-literal",
+      "kind": "tree-depth",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-423-dynamic",
+      "kind": "tree-depth",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-423-literal",
+      "kind": "tree-depth",
+      "context": "literal",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "syntax-424-dynamic",
+      "kind": "tree-depth",
+      "context": "dynamic",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "syntax-424-literal",
+      "kind": "tree-depth",
+      "context": "literal",
+      "status": 1,
+      "same": true
+    },
+    {
+      "id": "consumer-0-split-sub",
+      "kind": "consumer",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-0-fs",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-0-rs",
+      "kind": "consumer",
+      "context": "records",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-1-split-sub",
+      "kind": "consumer",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-1-fs",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-1-rs",
+      "kind": "consumer",
+      "context": "records",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-2-split-sub",
+      "kind": "consumer",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-2-fs",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-2-rs",
+      "kind": "consumer",
+      "context": "records",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-3-split-sub",
+      "kind": "consumer",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-3-fs",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-3-rs",
+      "kind": "consumer",
+      "context": "records",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-4-split-sub",
+      "kind": "consumer",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-4-fs",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-4-rs",
+      "kind": "consumer",
+      "context": "records",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-5-split-sub",
+      "kind": "consumer",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-5-fs",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-5-rs",
+      "kind": "consumer",
+      "context": "records",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-6-split-sub",
+      "kind": "consumer",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-6-fs",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-6-rs",
+      "kind": "consumer",
+      "context": "records",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-7-split-sub",
+      "kind": "consumer",
+      "context": "dynamic",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-7-fs",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "consumer-7-rs",
+      "kind": "consumer",
+      "context": "records",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-0",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-0",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-1",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-1",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-2",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-2",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-3",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-3",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-4",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-4",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-5",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-5",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-6",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-6",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-7",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-7",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-8",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-8",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-fs-9",
+      "kind": "consumer",
+      "context": "fields",
+      "status": 0,
+      "same": true
+    },
+    {
+      "id": "empty-split-9",
+      "kind": "consumer",
+      "context": "split",
+      "status": 0,
+      "same": true
+    }
+  ]
+}

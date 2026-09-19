@@ -17,3 +17,4 @@ evidence/awk-regex-host-replay.json
 evidence/awk-string-replay.json
 evidence/awk-string-host-replay.json
 evidence/string-scalar-replay.json
+evidence/regex-syntax-replay.json

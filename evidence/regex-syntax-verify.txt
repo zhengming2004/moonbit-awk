@@ -1,0 +1,51 @@
+Finished. moon: ran 1 task, now up to date
+Finished. moon: ran 2 tasks, now up to date
+Finished. moon: ran 3 tasks, now up to date
+Total tests: 196, passed: 196, failed: 0.
+Total tests: 196, passed: 196, failed: 0.
+Finished. moon: no work to do
+1 apple 12
+2 pear 7
+3 peach 9
+total 28
+
+awk: independent browser engine passed
+awk: CLI input/file/stdin/error/exit-status checks passed
+6 AWK CLI scenarios passed
+894 native programs in 56 backend groups verified
+syntax 200/894; differences 0
+syntax 400/894; differences 0
+syntax 600/894; differences 0
+syntax 800/894; differences 0
+894/894 syntax programs agree
+148/148 syntax CLI checks agree
+{"unicode": "15.0.0", "go": "1.26.3", "sourceSHA256": "6a88d48746c4b2c471cc04ae40559694b734770212e6f5ea5f1962adb0c0bdb1", "lookupNames": 199, "foldLinks": 2878, "tables": 165}
+{"unicode": "15.0.0", "go": "1.26.3", "sourceSHA256": "6a88d48746c4b2c471cc04ae40559694b734770212e6f5ea5f1962adb0c0bdb1", "lookupNames": 199, "foldLinks": 2878, "tables": 165}
+{"cases": 417, "propertyChecks": 276408, "foldPairs": 8634, "totalChecks": 312723}
+417 native regex programs in 27 backend groups verified
+regex comparisons 100/417, failures 0
+regex comparisons 200/417, failures 0
+regex comparisons 300/417, failures 0
+regex comparisons 400/417, failures 0
+417/417 regex programs agree (312723 observations)
+68/68 Unicode regex CLI and streaming comparisons agree
+{"unicode": "15.0.0", "go": "1.26.3", "ranges": 328, "nonidentityScalars": 2879, "sourceSHA256": "6a88d48746c4b2c471cc04ae40559694b734770212e6f5ea5f1962adb0c0bdb1"}
+1112064 Unicode scalars in 543 programs and 34 backend groups verified
+58 native string context programs in 4 backend groups verified
+{"scalarCount":1112064,"caseConversions":2224128,"bytes":8765167,"passed":true,"firstByteDifference":null}
+58/58 Unicode string context programs agree
+9/9 Unicode string CLI/streaming comparisons agree
+303 native programs in 19 backend groups verified
+251 native CSV programs in 16 backend groups verified
+40 native file IO programs in 5 backend groups verified
+10 pull host checks passed, including interactive getline and pipe backpressure
+4 bridge host checks passed
+303/303 GoAWK RS/getline comparisons agree
+Session bridge: bounded batching, partial-error output, nextfile/exit, cleanup and independent lifetime checks passed
+514/514 GoAWK reference cases agree
+65/65 GoAWK host comparisons agree (including 4.8 MB input/output)
+80/80 GoAWK file/pipe/system comparisons agree
+270/273 CSV comparisons agree; 3 documented differences; 0 failures
+{"total":46,"matched":45,"failures":[],"knownDifferences":[{"id":"constant-folding-gap","same":false,"knownDifference":"GNU Awk rejects constant division by zero during compilation even in dead branches; this interpreter checks division when evaluated.","actual":{"output":"0 1 ok\n","exit_status":0,"steps":9},"expected":{"output":"","exit_status":1},"stderr":"gawk: cmd. line:1: error: division by zero attempted\ngawk: cmd. line:1: error: division by zero attempted\ngawk: cmd. line:1: error: division by zero attempted\n"}]}
+awk: 307 bounded inputs, no uncaught runtime failure
+{"project":"awk","utc":"2026-09-19T04:53:44.401Z","runtime":"v24.11.0","platform":"win32","cpu":"Intel(R) Core(TM) i7-14700HX","input_utf8_bytes":111,"samples":30,"warmup":5,"median_ms":0.3015000000000043,"p95_ms":1.2853000000000065,"max_ms":1.422700000000006,"scope":"JS warm execution of documented example; no cross-project or upstream performance claim"}

@@ -172,6 +172,7 @@ fn split_fields(
   separator : String,
   st : State,
   is_regex? : Bool = false,
+  skip_empty? : Bool = false,
 ) -> Array[Value] raise ParseError {
   if text.is_empty() {
     return []
@@ -206,6 +207,12 @@ fn split_fields(
       match regex_match(regex, chars, from, st) {
         None => break
         Some((a, b)) => {
+          // Record fields ignore every empty separator match. The split()
+          // builtin retains the pinned reference's regexp.Split behavior.
+          if skip_empty && a == b {
+            from = a + 1
+            continue
+          }
           if a == b && a == last_nonempty_end {
             from = a + 1
             continue
@@ -268,7 +275,7 @@ fn State::ensure_fields(self : State) -> Unit raise ParseError {
     return
   }
   let fs = self.saved_fs
-  let raw = split_fields(self.record, fs, self)
+  let raw = split_fields(self.record, fs, self, skip_empty=true)
   let fields = if self.text(self.variable("RS")).is_empty() &&
     fs.to_array().length() == 1 {
     let result = []

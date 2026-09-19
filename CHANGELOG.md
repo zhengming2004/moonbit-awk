@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.0 — 2026-09-19
+
+- Fixed counted repetition recognition: malformed braces and leading-zero counts remain literal; complete out-of-range counts, missing operands, adjacent operators and excessive nested counts are rejected.
+- Flag-only groups and empty quotations delimit repetition operators without introducing operands. Quoted text is parsed in place, preventing accidental token fusion across braces, flags, property names or escapes.
+- Incomplete POSIX class prefixes fall back to ordinary class characters. Record field splitting ignores empty regex matches while split() preserves the pinned reference's distinct behavior.
+- Added 894 native syntax/consumer programs, generated into 56 JS/Wasm-GC groups; selected real CLI checks reuse the same native vectors. Seven serial CLI workloads compare with GoAWK and five also compare with fixed 0.9.0. Full compatibility and performance remain open.
+
 ## 0.9.0 — 2026-09-19
 
 - Added pinned Unicode 15.0.0 simple upper/lower conversion using 328 compact ranges and an ASCII fast path; original strings and value-coercion rules remain intact.

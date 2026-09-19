@@ -32,6 +32,12 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'CLI test failed'}
   node tools/test-awk-cli.mjs
   if ($LASTEXITCODE -ne 0) {throw 'AWK CLI test failed'}
+  node tools/generate-regex-syntax-tests.mjs --check
+  if ($LASTEXITCODE -ne 0) {throw 'regex syntax generation failed'}
+  node tools/test-regex-syntax.mjs --golden
+  if ($LASTEXITCODE -ne 0) {throw 'regex syntax replay failed'}
+  node tools/test-regex-syntax-host.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'regex syntax host failed'}
   python tools/generate-regex-unicode.py --check
   if ($LASTEXITCODE -ne 0) {throw 'Unicode data check failed'}
   python tools/generate-regex-cases.py --check
