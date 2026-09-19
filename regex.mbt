@@ -45,6 +45,7 @@ fn regex_class(name : String) -> Array[(Int, Int)] raise ParseError {
   match name {
     "alnum" => [(48, 57), (65, 90), (97, 122)]
     "alpha" => [(65, 90), (97, 122)]
+    "ascii" => [(0, 127)]
     "blank" => [(9, 9), (32, 32)]
     "cntrl" => [(0, 31), (127, 127)]
     "digit" => [(48, 57)]
@@ -80,18 +81,43 @@ fn RegexReader::take(self : RegexReader) -> Char raise ParseError {
 fn RegexReader::escape(self : RegexReader) -> RegexTree raise ParseError {
   let c = self.take()
   if ['d', 'D', 's', 'S', 'w', 'W'].contains(c) {
-    return Character({
-      ranges: if c == 's' || c == 'S' {
-        [(9, 10), (12, 13), (32, 32)]
-      } else {
-        regex_class(if c == 'd' || c == 'D' { "digit" } else { "word" })
-      },
-      negative: c == 'D' || c == 'S' || c == 'W',
-      fold: self.fold,
-    })
+    return Character(
+      regex_charset(
+        if c == 's' || c == 'S' {
+          [(9, 10), (12, 13), (32, 32)]
+        } else {
+          regex_class(if c == 'd' || c == 'D' { "digit" } else { "word" })
+        },
+        c == 'D' || c == 'S' || c == 'W',
+        self.fold,
+      ),
+    )
   }
-  if c == 'p' || c == 'P' || c == 'Q' {
-    raise Invalid("unsupported Unicode property or quoted regex escape")
+  if c == 'p' || c == 'P' {
+    let first = self.take()
+    let name = if first == '{' {
+      let begin = self.pos
+      while self.peek() != None && self.peek() != Some('}') {
+        self.pos += 1
+      }
+      let result = String::from_array(self.chars[begin:self.pos])
+      ignore(self.take())
+      result
+    } else {
+      first.to_string()
+    }
+    let negate = name.has_prefix("^")
+    return Character(
+      regex_property(
+        if negate {
+          String::from_array(name.to_array()[1:])
+        } else {
+          name
+        },
+        (c == 'P') != negate,
+        self.fold,
+      ),
+    )
   }
   if ['b', 'B', 'A', 'z'].contains(c) {
     return Assertion(c.to_string())
@@ -106,7 +132,13 @@ fn RegexReader::escape(self : RegexReader) -> RegexTree raise ParseError {
     'x' => {
       let mut value = 0
       let mut count = 0
-      while count < 2 && self.peek() is Some(ch) && ch.is_ascii_hexdigit() {
+      let braced = self.peek() == Some('{')
+      if braced {
+        self.pos += 1
+      }
+      while (braced || count < 2) &&
+            self.peek() is Some(ch) &&
+            ch.is_ascii_hexdigit() {
         self.pos += 1
         value = value * 16 +
           (if ch <= '9' {
@@ -115,8 +147,11 @@ fn RegexReader::escape(self : RegexReader) -> RegexTree raise ParseError {
             ch.to_ascii_lowercase().to_int() - 87
           })
         count += 1
+        if value > 0x10ffff {
+          raise Invalid("regex code point out of range")
+        }
       }
-      if count == 0 {
+      if count == 0 || (!braced && count != 2) || (braced && self.take() != '}') {
         raise Invalid("invalid regex hex escape")
       }
       value
@@ -124,6 +159,9 @@ fn RegexReader::escape(self : RegexReader) -> RegexTree raise ParseError {
     c if c >= '0' && c <= '7' => {
       let mut value = c.to_int() - 48
       let mut count = 1
+      if c != '0' && !(self.peek() is Some(next) && next >= '0' && next <= '7') {
+        raise Invalid("regex backreferences are unsupported")
+      }
       while count < 3 && self.peek() is Some(ch) && ch >= '0' && ch <= '7' {
         self.pos += 1
         value = value * 8 + ch.to_int() - 48
@@ -131,7 +169,9 @@ fn RegexReader::escape(self : RegexReader) -> RegexTree raise ParseError {
       }
       value
     }
-    c => c.to_int()
+    c if c.to_int() < 128 && !(c.is_ascii_alphabetic() || digit(c)) =>
+      c.to_int()
+    _ => raise Invalid("invalid regex escape")
   }
   Character({ ranges: [(n, n)], negative: false, fold: self.fold, })
 }
@@ -155,7 +195,7 @@ fn RegexReader::set(self : RegexReader) -> CharSet raise ParseError {
     first = false
     if self.peek() == Some('\\') &&
       self.chars.get(self.pos + 1) is Some(escape) &&
-      ['d', 'D', 's', 'S', 'w', 'W'].contains(escape) {
+      ['d', 'D', 's', 'S', 'w', 'W', 'p', 'P'].contains(escape) {
       self.pos += 1
       if self.escape() is Character(set) {
         if set.negative {
@@ -188,7 +228,13 @@ fn RegexReader::set(self : RegexReader) -> CharSet raise ParseError {
       if self.take() != ':' || self.take() != ']' {
         raise Invalid("invalid POSIX class")
       }
-      for range in regex_class(name) {
+      let negative = name.has_prefix("^")
+      let name = if negative {
+        String::from_array(name.to_array()[1:])
+      } else {
+        name
+      }
+      for range in regex_charset(regex_class(name), negative, self.fold).ranges {
         ranges.push(range)
       }
       continue
@@ -202,12 +248,16 @@ fn RegexReader::set(self : RegexReader) -> CharSet raise ParseError {
       if b < a {
         raise Invalid("reversed regex range")
       }
-      ranges.push((a, b))
+      for range in regex_charset([(a, b)], false, self.fold).ranges {
+        ranges.push(range)
+      }
     } else {
-      ranges.push((a, a))
+      for range in regex_charset([(a, a)], false, self.fold).ranges {
+        ranges.push(range)
+      }
     }
   }
-  { ranges, negative, fold: self.fold, }
+  regex_charset(ranges, negative, false)
 }
 
 ///|
@@ -215,6 +265,9 @@ fn RegexReader::set_char(self : RegexReader) -> Int raise ParseError {
   let c = self.take()
   if c != '\\' {
     return c.to_int()
+  }
+  if self.peek() == Some('p') || self.peek() == Some('P') {
+    raise Invalid("Unicode property cannot be a regex range endpoint")
   }
   match self.escape() {
     Character({ ranges: [(a, b)], negative: false, .. }) if a == b => a
@@ -345,12 +398,41 @@ fn RegexReader::group(
   let old = (self.fold, self.multiline, self.dotall)
   if self.peek() == Some('?') {
     self.pos += 1
+    if self.peek() == Some('<') ||
+      (self.peek() == Some('P') && self.chars.get(self.pos + 1) == Some('<')) {
+      if self.peek() == Some('P') {
+        self.pos += 1
+      }
+      self.pos += 1
+      let begin = self.pos
+      while self.peek() is Some(c) &&
+            ((c.is_ascii_alphabetic() || digit(c)) || c == '_') {
+        self.pos += 1
+      }
+      if self.pos == begin || self.take() != '>' {
+        raise Invalid("invalid regex capture name")
+      }
+      let result = self.expression(depth)
+      if self.take() != ')' {
+        raise Invalid("unclosed regex group")
+      }
+      self.fold = old.0
+      self.multiline = old.1
+      self.dotall = old.2
+      return result
+    }
     let mut enabled = true
     let mut flags = 0
+    let mut after_minus = 0
     while self.peek() is Some(c) && ['i', 'm', 's', 'U', '-'].contains(c) {
       self.pos += 1
       match c {
-        '-' => enabled = false
+        '-' => {
+          if !enabled {
+            raise Invalid("repeated regex flag separator")
+          }
+          enabled = false
+        }
         'i' => {
           self.fold = enabled
           flags += 1
@@ -365,6 +447,12 @@ fn RegexReader::group(
         }
         _ => flags += 1
       }
+      if !enabled && c != '-' {
+        after_minus += 1
+      }
+    }
+    if !enabled && after_minus == 0 {
+      raise Invalid("missing disabled regex flags")
     }
     if self.peek() == Some(')') && flags > 0 {
       self.pos += 1
@@ -386,34 +474,7 @@ fn RegexReader::group(
 
 ///|
 fn class_matches(set : CharSet, c : Char) -> Bool {
-  let codes = [c.to_int()]
-  if set.fold {
-    for s in [c.to_string().to_lower(), c.to_string().to_upper()] {
-      if s.to_array() is [ch] {
-        codes.push(ch.to_int())
-      }
-    }
-    if [75, 107, 8490].contains(c.to_int()) {
-      for n in [75, 107, 8490] {
-        codes.push(n)
-      }
-    }
-    if [83, 115, 383].contains(c.to_int()) {
-      for n in [83, 115, 383] {
-        codes.push(n)
-      }
-    }
-    if [931, 962, 963].contains(c.to_int()) {
-      for n in [931, 962, 963] {
-        codes.push(n)
-      }
-    }
-  }
-  codes
-  .iter()
-  .any(code => {
-    set.ranges.iter().any(range => code >= range.0 && code <= range.1)
-  })
+  regex_contains(set.ranges, c.to_int())
 }
 
 ///|
@@ -437,7 +498,11 @@ fn regex_compile(
 ) -> Int raise ParseError {
   match tree {
     Epsilon => next
-    Character(s) => regex_emit(code, Consume(s, next))
+    Character(s) =>
+      regex_emit(
+        code,
+        Consume(regex_charset(s.ranges, s.negative, s.fold), next),
+      )
     Dot(all) => regex_emit(code, Any(all, next))
     Assertion(a) => regex_emit(code, Assert(a, next))
     Sequence(items) => {
@@ -482,7 +547,7 @@ fn compile_regex(source : String) -> Regex raise ParseError {
     raise Invalid("regex source limit")
   }
   let reader : RegexReader = {
-    chars: source.to_array(),
+    chars: regex_unquote(source),
     pos: 0,
     fold: false,
     multiline: false,

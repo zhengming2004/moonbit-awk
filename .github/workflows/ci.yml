@@ -26,6 +26,11 @@ jobs:
       - run: node tools/test-demo.mjs
       - run: node tools/test-cli.mjs
       - run: node tools/test-awk-cli.mjs
+      - run: python3 tools/generate-regex-unicode.py --check
+      - run: python3 tools/generate-regex-cases.py --check
+      - run: node tools/generate-regex-tests.mjs --check
+      - run: node tools/test-regex-reference.mjs --golden
+      - run: node tools/test-regex-host.mjs --golden
       - run: node tools/generate-record-tests.mjs --check
       - run: node tools/generate-io-tests.mjs --check
       - run: node tools/generate-csv-tests.mjs --check

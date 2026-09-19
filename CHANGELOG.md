@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0 — 2026-09-19
+
+- Added pinned Unicode 15.0.0 regex categories, script names, aliases, negated and mixed classes; imported attributed Go 1.26.3 tables with deterministic regeneration.
+- Replaced approximate runtime case conversions with the complete simple-fold map and normalized binary-searched classes; preserved pinned property-fold quirks.
+- Added quoted literals, braced code points, named captures and stricter escape/flag validation.
+- Added 417 native regex programs, 276408 property predicates, 8634 fold pairs and 68 real CLI/streaming comparisons; native programs enter 27 backend groups, for 102 groups per target. Coverage layers overlap.
+- Added eight CLI performance workloads, five against fixed 0.7.0. Full language/byte-mode/performance parity remains open.
+
 ## 0.7.0 — 2026-09-19
 
 - Added incremental CSV/TSV input/output, lazy quotes, multiline fields, comments and Unicode separators; exposed CLI modes, per-file headers, FIELDS, readonly named fields and two-argument split.

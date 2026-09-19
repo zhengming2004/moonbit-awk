@@ -11,3 +11,5 @@ test "literal separator retains empty columns" {
 ```
 
 0.7 增加 CSV/TSV、表头和命名字段，可向 run/run_with_status/new_session 传 input_mode、output_mode。保留文件/管道与按需命令 Worker；完整 Unicode、字节模式、固定参考 BOM 差异及全部上游兼容性仍未完成。
+
+0.8 增加 Unicode 正则属性、完整简单大小写等价映射、十六进制与引号转义及命名分组；具体参考版本边界见 README。

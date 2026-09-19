@@ -12,3 +12,5 @@ evidence/awk-host-replay.json
 evidence/awk-record-replay.json
 evidence/awk-io-replay.json
 evidence/awk-csv-replay.json
+evidence/awk-regex-replay.json
+evidence/awk-regex-host-replay.json

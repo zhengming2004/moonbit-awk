@@ -1,6 +1,6 @@
 # AWK 记录处理器
 
-MoonBit 本地候选版 0.7.0。解析、表达式、正则、格式化和执行器均为 MoonBit；Node.js 负责文件、环境变量、标准输入输出和退出码。生产运行不调用 GoAWK、GNU Awk 或其他解释器。
+MoonBit 本地候选版 0.8.0。解析、表达式、正则、格式化和执行器均为 MoonBit；Node.js 负责文件、环境变量、标准输入输出和退出码。生产运行不调用 GoAWK、GNU Awk 或其他解释器。
 
 ## 快速使用
 
@@ -44,7 +44,7 @@ node tools/awk.mjs -i csv -o tsv '{$1=$1; print}' data.csv
 - 字符串、Double、数字字符串和未初始化值；算术/幂/比较/拼接、逻辑短路、三元、赋值、自增减。输入数值支持十六进制、NaN/Infinity 和前缀转换。
 - if/else、while、do/while、for、for-in、break/continue、next/nextfile/exit；关联数组、复合下标、in、元素/整数组删除。
 - 用户函数、递归、返回值、标量传值、数组传引用、尾部省略参数作为局部变量；静态检查未定义函数、参数数量和标量/数组冲突。函数内 next/nextfile/exit 可以跨调用返回执行器。
-- 正则字面量与动态模式、最左最长匹配、分组/选择/重复/区间、POSIX ASCII 类、部分 Go 风格字符类和内联标志；`~`、`!~`、`match`/RSTART/RLENGTH、sub/gsub、正则 FS/split。空 FS 按 Unicode 字符拆分。
+- 正则字面量与动态模式、最左最长匹配、分组/选择/重复/区间、POSIX ASCII 类、Unicode 属性类与简单大小写折叠、Go 风格字符类和内联标志；`~`、`!~`、`match`/RSTART/RLENGTH、sub/gsub、正则 FS/split。空 FS 按 Unicode 字符拆分。
 - printf/sprintf，整数、字符串、字符和 f/e/g 浮点格式，宽度/精度/标志及星号参数；OFMT/CONVFMT 默认 `%.6g`，十进制格式执行精确的 ties-to-even 舍入。
 - length、substr、index、split、tolower/toupper、int、sqrt、sin/cos/atan2、exp/log、rand/srand。随机序列由本实现选择，重设同一 seed 可复现；不要求与 GoAWK 的具体序列相同。
 
@@ -62,7 +62,7 @@ API 见 [pkg.generated.mbti](pkg.generated.mbti) 与 [可执行示例](README.mb
 
 本实现去除流开头的 UTF-8 BOM，并返回正常的原始记录。GoAWK 1.32 在相同输入上可能将后续字节甚至零填充字节带入 `$0`，或在未终止末行保留 BOM。本版不复制这一异常：273 项 CSV 原版对照中有 3 项明确差异，未计作匹配。该差异以及任意分块的完全一致性仍保持未完成，不能据此宣称完整 CSV/GoAWK 兼容。
 
-字符位置与字符串操作按 Unicode 字符处理，本轮 GoAWK 参考启用 `-c`；输出比较启用 `-N raw`。GoAWK 的默认字节模式、Windows 原生输出换行并不是当前宿主的默认行为。Unicode property 正则和 quoted regex escape 明确拒绝，完整 Unicode case-fold、所有 Go 正则扩展与精确诊断位置仍有缺口。POSIX 字符类使用 ASCII 范围。正则没有捕获数组 API。
+字符位置与字符串操作按 Unicode 字符处理，本轮 GoAWK 参考启用 `-c`；输出比较启用 `-N raw`。GoAWK 的默认字节模式、Windows 原生输出换行并不是当前宿主的默认行为。支持 `\p`/`\P` 属性、属性别名/否定/混合字符类、`\Q...\E` 引号、`\x{...}` 码位转义和命名分组。Unicode 15.0.0 的类别/文字系统与简单大小写映射固定为该 GoAWK 二进制所用 Go 1.26.3 数据；199 个可查询名称与 2878 条大小写映射已覆盖。保留该版本对带下划线文字系统名称的拒绝和 LC 类的特殊折叠行为；完整 Go 正则语法、Unicode 字符串转换和精确诊断仍待补齐。POSIX 字符类使用 ASCII 范围。正则没有捕获数组 API。
 
 for-in 在开始时复制并按词典序排列键；这是本实现选择，不能依赖与其他 AWK 相同的遍历顺序或循环中增删行为。NaN 比较遵循 IEEE 语义。常量除零在求值时才报错，与 GoAWK 本轮参考一致，但与 GNU Awk 对未执行常量分支的提前诊断不同。
 
@@ -95,6 +95,6 @@ node tools/benchmark-csv.mjs
 node tools/test-host-reference.mjs
 ```
 
-0.7 验证包括 JS/Wasm-GC 各 75 组公共 API 测试；固定 GoAWK v1.32.0 的 514 个历史核心、303 个 RS/getline、65 个真实 CLI、80 个文件/管道/进程场景，共 962 项；新增 CSV 273 项中 270 一致、3 项 BOM 差异，总计 1235 项中的 1232 项一致、3 项明确差异。另有 10 个 pull 宿主检查，以及 4 个桥接检查，覆盖命令运行期间的交互输入、1.8 MB 慢速输出、UTF-8 跨块解码和 Worker 启动失败。包含 4.8 MB 输入/输出。251 个原版 CSV 程序进入 16 个双后端分组，另有 4 个 CSV 读取/会话/资源契约组。最终通过记录见 evidence/csv-upgrade.json。场景由本项目独立编写，并非完整上游套件。报告记录参考二进制、生成引擎与全部非 evidence 源文件 SHA-256；golden 重放与 live 结果分别保存。详见 [TESTING.md](TESTING.md)。
+0.8 验证包括 JS/Wasm-GC 各 102 组公共 API 测试；固定 GoAWK v1.32.0 的 514 个历史核心、303 个 RS/getline、65 个真实 CLI、80 个文件/管道/进程场景，共 962 项；新增 CSV 273 项中 270 一致、3 项 BOM 差异，总计 1235 项中的 1232 项一致、3 项明确差异。另有 10 个 pull 宿主检查，以及 4 个桥接检查，覆盖命令运行期间的交互输入、1.8 MB 慢速输出、UTF-8 跨块解码和 Worker 启动失败。包含 4.8 MB 输入/输出。251 个原版 CSV 程序进入 16 个双后端分组，另有 4 个 CSV 读取/会话/资源契约组。新增 417 个 Unicode 正则程序全部一致，涉及 276408 次属性谓词和 8634 对大小写输入；68 个真实 CLI/跨块读取程序一致（其中 60 个复用矩阵）。417 个原版程序进入 27 个双后端分组。最终通过记录见 evidence/regex-upgrade.json。场景由本项目独立编写，并非完整上游套件。报告记录参考二进制、生成引擎与全部非 evidence 源文件 SHA-256；golden 重放与 live 结果分别保存。详见 [TESTING.md](TESTING.md)。
 
-参考 [GoAWK](https://github.com/benhoyt/goawk) 公开行为独立实现，没有复制其解释器代码；本仓库为 MIT。没有 remote、上传、发布或比赛提交。此目录是唯一开发主仓库；旧合集 ZIP/bundle 是历史快照；0.7 使用独立本地归档。
+参考 [GoAWK](https://github.com/benhoyt/goawk) 公开行为独立实现，没有复制其解释器代码；原创代码为 MIT；Unicode 数据由 Go 的 BSD-3-Clause 数据表生成，来源与许可见 vendor/go-unicode-1.26.3。没有 remote、上传、发布或比赛提交。此目录是唯一开发主仓库；旧合集 ZIP/bundle 是历史快照；0.8 使用独立本地归档。

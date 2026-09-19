@@ -32,6 +32,16 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'CLI test failed'}
   node tools/test-awk-cli.mjs
   if ($LASTEXITCODE -ne 0) {throw 'AWK CLI test failed'}
+  python tools/generate-regex-unicode.py --check
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode data check failed'}
+  python tools/generate-regex-cases.py --check
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode matrix check failed'}
+  node tools/generate-regex-tests.mjs --check
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode native test check failed'}
+  node tools/test-regex-reference.mjs --golden
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode regex replay failed'}
+  node tools/test-regex-host.mjs --golden
+  if ($LASTEXITCODE -ne 0) {throw 'Unicode host replay failed'}
   node tools/generate-record-tests.mjs --check
   if ($LASTEXITCODE -ne 0) {throw 'record generation check failed'}
   node tools/generate-csv-tests.mjs --check
