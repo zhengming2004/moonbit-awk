@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0 — 2026-09-19
+
+- Added file/pipe output, redirected getline, system, close and fflush with name reuse, explicit flushing and subprocess statuses.
+- Added IORequest/IOReply and close_io; a Node Worker bridge keeps synchronous MoonBit evaluation compatible with asynchronous IO and backpressure.
+- Matched native redirect-destination evaluation order, special variable assignment, missing-shell and broken-pipe behavior.
+- Added 80 independently authored native IO comparisons, 40 file cases in 5 backend groups, and two callback/budget groups; JS/Wasm-GC each have 55 groups.
+- Added nine-workload CLI performance comparison against fixed 0.5 and GoAWK; full parity, arbitrary IO scheduling and remaining CSV/Unicode/byte modes remain open.
+
 ## 0.5.0 — 2026-09-19
 
 - Added RS/RT scanning and unredirected getline with a shared main input cursor across BEGIN, records, functions, END, ARGV edits and file transitions.

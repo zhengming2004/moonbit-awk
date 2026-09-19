@@ -81,19 +81,7 @@ fn State::open_input(self : State, source : MainInput) -> Bool raise ParseError 
     source.had_file = true
     self.vars["FILENAME"] = Text(name)
     self.vars["FNR"] = Number(0.0)
-    let rs = self.text(self.variable("RS")).to_array()
-    source.mode = if rs.is_empty() {
-      2
-    } else if rs == ['\n'] {
-      0
-    } else if rs.length() == 1 && rs[0].to_int() < 128 {
-      1
-    } else {
-      3
-    }
-    if rs.length() == 1 {
-      source.separator = rs[0]
-    }
+    source.configure(self)
     return true
   } nobreak {
     false

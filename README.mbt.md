@@ -10,4 +10,4 @@ test "literal separator retains empty columns" {
 }
 ```
 
-0.5 增加 RS/RT、无重定向 getline 和共享主输入游标，保留正则、用户函数、printf/sprintf 与多文件流式宿主。重定向 getline、文件/管道、完整 Unicode 正则及 CSV/TSV 模式仍未完成。
+0.6 增加文件/管道重定向、重定向 getline、system/close/fflush 与可注入的 io 宿主。Node CLI 接入实际文件和子进程，纯库示例保留内存执行。完整 Unicode 正则、CSV/TSV 与全部上游兼容性仍未完成。

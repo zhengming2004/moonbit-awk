@@ -89,7 +89,7 @@ fn evaluate(expr : Expr, st : State) -> Value raise {
     st.eval_depth -= 1
   }
   let result = match expr {
-    Getline(target) => {
+    Getline(target, source) => {
       let location = match target {
         // GoAWK 1.32 evaluates this address but its GetlineField instruction
         // replaces $0 for every field number. Keep that pinned profile explicit.
@@ -100,8 +100,16 @@ fn evaluate(expr : Expr, st : State) -> Value raise {
         Some(e) => Some(slot(e, st))
         None => None
       }
+      let source = source.map(pair => {
+        let (pipe, expr) = pair
+        (pipe, st.text(evaluate(expr, st)))
+      })
       try {
-        match st.take_input() {
+        let record = match source {
+          Some((pipe, name)) => st.read_redirect(name, pipe)
+          None => st.take_input()
+        }
+        match record {
           None => Number(0.0)
           Some(text) => {
             match location {
@@ -189,6 +197,25 @@ fn evaluate(expr : Expr, st : State) -> Value raise {
 
 ///|
 fn builtin(name : String, args : Array[Expr], st : State) -> Value raise {
+  if name == "close" {
+    return Number(st.close_stream(st.text(evaluate(args[0], st))).to_double())
+  }
+  if name == "fflush" {
+    let stream = if args.is_empty() {
+      ""
+    } else {
+      st.text(evaluate(args[0], st))
+    }
+    return Number(st.flush_stream(stream).to_double())
+  }
+  if name == "system" {
+    let command = st.text(evaluate(args[0], st))
+    return match st.io_call(Execute(command)) {
+      IOStatus(code) => Number(code.to_double())
+      IOFailed(_) => Number(-1.0)
+      _ => raise Invalid("invalid system reply")
+    }
+  }
   if name == "rand" {
     st.random_state = st.random_state * 48271L % 2147483647L
     return Number(st.random_state.to_double() / 2147483647.0)

@@ -3141,7 +3141,7 @@
       "error": ""
     },
     {
-      "output": "red 2\nblue 2\ngreen 1\n",
+      "output": "green 1\nred 2\nblue 2\n",
       "exit_status": 0,
       "error": ""
     },

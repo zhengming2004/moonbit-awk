@@ -34,6 +34,8 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'AWK CLI test failed'}
   node tools/generate-record-tests.mjs --check
   if ($LASTEXITCODE -ne 0) {throw 'record generation check failed'}
+  node tools/generate-io-tests.mjs --check
+  if ($LASTEXITCODE -ne 0) {throw 'IO generation check failed'}
   node tools/test-pull-host.mjs
   if ($LASTEXITCODE -ne 0) {throw 'pull host checks failed'}
   node tools/test-record-reference.mjs --golden
@@ -44,6 +46,8 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'GoAWK core replay failed'}
   node tools/test-host-reference.mjs --golden
   if ($LASTEXITCODE -ne 0) {throw 'GoAWK host replay failed'}
+  node tools/test-io-reference.mjs --golden
+  if ($LASTEXITCODE -ne 0) {throw 'GoAWK IO replay failed'}
   node tools/test-gawk.mjs
   if ($LASTEXITCODE -ne 0) {throw 'GNU Awk reference comparison failed'}
   node tools/robustness.mjs

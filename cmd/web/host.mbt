@@ -46,6 +46,7 @@ pub fn host_run_json(input : String, io : HostIO) -> String {
       arguments~,
       step_limit=limit,
       clock_seconds=current_seconds(),
+      io=Some(request => bridge_io(io, request)),
       input=Some(request => {
         let response = match request {
           Open(name) => host_call(io, "open", name)
@@ -71,7 +72,10 @@ pub fn host_run_json(input : String, io : HostIO) -> String {
         }
       }),
     )
-    defer session.close_input()
+    defer {
+      session.close_input()
+      session.close_io()
+    }
     session.begin()
     if session.needs_input() {
       while session.advance() {
@@ -87,5 +91,54 @@ pub fn host_run_json(input : String, io : HostIO) -> String {
   } catch {
     e =>
       Json::object({ "ok": false, "error": Repr(e).to_string().to_json() }).stringify()
+  }
+}
+
+///|
+fn bridge_io(io : HostIO, request : @lib.IORequest) -> @lib.IOReply {
+  let value : Json = match request {
+    OpenReader(name, pipe) =>
+      Json::object({
+        "op": "open-reader",
+        "name": name.to_json(),
+        "pipe": pipe.to_json(),
+      })
+    ReadReader(name) =>
+      Json::object({ "op": "read-reader", "name": name.to_json() })
+    OpenWriter(name, mode) =>
+      Json::object({
+        "op": "open-writer",
+        "name": name.to_json(),
+        "mode": mode.to_json(),
+      })
+    WriteWriter(name, text) =>
+      Json::object({
+        "op": "write-writer",
+        "name": name.to_json(),
+        "text": text.to_json(),
+      })
+    CloseStream(name) => Json::object({ "op": "close", "name": name.to_json() })
+    FlushStream(name) => Json::object({ "op": "flush", "name": name.to_json() })
+    Execute(command) =>
+      Json::object({ "op": "system", "command": command.to_json() })
+  }
+  let response = host_call(io, "io", value.stringify())
+  if response == "O" {
+    @lib.IOReady
+  } else if response == "E" {
+    @lib.IOEnd
+  } else if response.has_prefix("D") {
+    @lib.IOData(response[1:].to_owned())
+  } else if response.has_prefix("S") {
+    try {
+      match @json.parse(response[1:].to_owned()) {
+        Number(n, ..) => @lib.IOStatus(n.to_int())
+        _ => @lib.IOFailed("invalid status reply")
+      }
+    } catch {
+      _ => @lib.IOFailed("invalid status reply")
+    }
+  } else {
+    @lib.IOFailed(response)
   }
 }

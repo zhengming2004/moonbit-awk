@@ -31,25 +31,33 @@ fn execute_statement(stmt : Statement, st : State) -> Flow raise {
       ignore(evaluate(expr, st))
       Normal
     }
-    Print(exprs) => {
-      let values = []
-      for expr in exprs {
-        values.push(st.text(evaluate(expr, st), printing=true))
+    Print(exprs, redirect) => {
+      let destination = evaluate_destination(redirect, st)
+      let values = exprs.map(e => evaluate(e, st))
+      if destination is Some((mode, name)) {
+        st.open_writer(name, mode)
       }
       let line = if exprs.is_empty() {
         st.record
       } else {
-        values.join(st.text(st.variable("OFS")))
+        values
+        .map(value => st.text(value, printing=true))
+        .join(st.text(st.variable("OFS")))
       }
-      st.emit(line + st.text(st.variable("ORS")))
+      emit_redirect(line + st.text(st.variable("ORS")), destination, st)
       Normal
     }
-    Printf(exprs) => {
+    Printf(exprs, redirect) => {
+      let destination = evaluate_destination(redirect, st)
       let values = exprs.map(e => evaluate(e, st))
       if values.is_empty() {
         raise Invalid("printf requires a format")
       }
-      st.emit(format_values(st.text(values[0]), values[1:].to_owned(), st))
+      emit_redirect(
+        format_values(st.text(values[0]), values[1:].to_owned(), st),
+        destination,
+        st,
+      )
       Normal
     }
     If(condition, yes, no) =>
@@ -256,5 +264,28 @@ fn execute_record_rule(rule : Rule, st : State) -> Flow raise ParseError {
     Jump(flow) => flow
     Invalid(message) => raise Invalid(message)
     e => raise Invalid(Repr(e).to_string())
+  }
+}
+
+///|
+fn evaluate_destination(
+  redirect : (String, Expr)?,
+  st : State,
+) -> (String, String)? raise {
+  match redirect {
+    None => None
+    Some((mode, expression)) => Some((mode, st.text(evaluate(expression, st))))
+  }
+}
+
+///|
+fn emit_redirect(
+  text : String,
+  destination : (String, String)?,
+  st : State,
+) -> Unit raise ParseError {
+  match destination {
+    None => st.emit(text)
+    Some((mode, name)) => st.write_redirect(name, mode, text)
   }
 }

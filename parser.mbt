@@ -12,14 +12,14 @@ priv enum Expr {
   Increment(Expr, Int, Bool)
   Conditional(Expr, Expr, Expr)
   Call(String, Array[Expr])
-  Getline(Expr?)
+  Getline(Expr?, (Bool, Expr)?)
 }
 
 ///|
 priv enum Statement {
   Block(Array[Statement])
-  Print(Array[Expr])
-  Printf(Array[Expr])
+  Print(Array[Expr], (String, Expr)?)
+  Printf(Array[Expr], (String, Expr)?)
   Expression(Expr)
   If(Expr, Statement, Statement?)
   While(Expr, Statement)
@@ -121,21 +121,13 @@ fn Cursor::expression(
       Tuple(entries)
     }
   } else if t.text == "getline" {
-    let next = self.peek()
-    let target = if next == "$" ||
-      (identifier(next) && !reserved(next) && !builtin_name(next)) {
-      let target = self.expression(14, depth + 1)
-      if !lvalue(target) {
-        raise Invalid("getline target must be assignable")
-      }
-      Some(target)
+    let target = self.getline_target(depth + 1)
+    let source = if self.eat("<") {
+      Some((false, self.expression(14, depth + 1)))
     } else {
       None
     }
-    if self.peek() == "<" {
-      raise Invalid("redirected getline is unsupported")
-    }
-    Getline(target)
+    Getline(target, source)
   } else if t.text == "$" {
     Field(self.expression(14, depth + 1))
   } else if ["+", "-", "!"].contains(t.text) {
@@ -147,6 +139,11 @@ fn Cursor::expression(
     }
     Increment(target, if t.text == "++" { 1 } else { -1 }, true)
   } else if identifier(t.text) && !reserved(t.text) {
+    if builtin_name(t.text) &&
+      self.peek() != "(" &&
+      (t.text != "length" || self.peek() == "[") {
+      raise Invalid("builtin requires parentheses")
+    }
     if self.eat("[") {
       let keys = self.arguments("]", depth + 1)
       if keys.is_empty() {
@@ -179,9 +176,14 @@ fn Cursor::expression(
   while true {
     let op = self.peek()
     if printing && [">", ">>", "|"].contains(op) {
-      raise Invalid(
-        "print redirection is unsupported; parenthesize a comparison",
-      )
+      break
+    }
+    if op == "|" && min <= 1 {
+      self.pos += 1
+      self.need("getline")
+      let target = self.getline_target(depth + 1)
+      left = Getline(target, Some((true, left)))
+      continue
     }
     let mut p = priority(op)
     let mut concat = false
@@ -223,6 +225,7 @@ fn Cursor::expression(
         p + 1
       },
       depth + 1,
+      printing~,
     )
     if p == 1 {
       if !lvalue(left) {
@@ -234,6 +237,20 @@ fn Cursor::expression(
     }
   }
   left
+}
+
+///|
+fn Cursor::getline_target(self : Cursor, depth : Int) -> Expr? raise ParseError {
+  let next = self.peek()
+  if next == "$" || (identifier(next) && !reserved(next) && !builtin_name(next)) {
+    let target = self.expression(14, depth)
+    if !lvalue(target) {
+      raise Invalid("getline target must be assignable")
+    }
+    Some(target)
+  } else {
+    None
+  }
 }
 
 ///|
@@ -334,7 +351,7 @@ fn Cursor::statement(self : Cursor, depth : Int) -> Statement raise ParseError {
       self.need("print")
     }
     let values = []
-    if ![";", "\n", "}", "<eof>", "else"].contains(self.peek()) {
+    if ![";", "\n", "}", "<eof>", "else", ">", ">>", "|"].contains(self.peek()) {
       match self.expression(1, 0, printing=true) {
         Tuple(xs) =>
           for x in xs {
@@ -346,10 +363,16 @@ fn Cursor::statement(self : Cursor, depth : Int) -> Statement raise ParseError {
         values.push(self.expression(1, 0, printing=true))
       }
     }
-    if formatted {
-      Printf(values)
+    let redirect = if [">", ">>", "|"].contains(self.peek()) {
+      let mode = self.take().text
+      Some((mode, self.expression(1, 0)))
     } else {
-      Print(values)
+      None
+    }
+    if formatted {
+      Printf(values, redirect)
+    } else {
+      Print(values, redirect)
     }
   } else if self.eat("break") {
     Break
@@ -473,7 +496,7 @@ fn parse(program : String) -> Program raise ParseError {
       c.statement(0)
     } else if phase == "record" && condition is Some(_) {
       c.end_statement()
-      Print([])
+      Print([], None)
     } else {
       raise Invalid("expected rule action")
     }
@@ -526,5 +549,6 @@ fn builtin_name(name : String) -> Bool {
   [
     "length", "substr", "index", "split", "int", "sqrt", "tolower", "toupper", "sprintf",
     "match", "sub", "gsub", "sin", "cos", "atan2", "exp", "log", "rand", "srand",
+    "system", "close", "fflush",
   ].contains(name)
 }

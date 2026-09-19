@@ -76,6 +76,10 @@ priv struct State {
   mut random_seed : Double
   clock_seconds : Double
   input : MainInput?
+  io : ((IORequest) -> IOReply)?
+  readers : Map[String, MainInput]
+  writers : Map[String, String]
+  mut protected_stdin : Bool
   output_sink : ((String) -> String?)?
 }
 
@@ -327,6 +331,7 @@ fn State::write(
           self.fields.push(Empty)
         }
         self.rebuild()
+        self.vars["NF"] = value
       } else {
         if ["ARGV", "ENVIRON"].contains(name) {
           raise Invalid("unsupported special variable " + name)
@@ -336,14 +341,7 @@ fn State::write(
         }
         match (if global { None } else { self.local_frame(name) }) {
           Some(frame) => frame.vars[name] = value
-          None =>
-            self.vars[name] = if ["NR", "FNR", "ARGC", "RSTART", "RLENGTH"].contains(
-                name,
-              ) {
-              Number(value.number().trunc())
-            } else {
-              value
-            }
+          None => self.vars[name] = value
         }
       }
     }

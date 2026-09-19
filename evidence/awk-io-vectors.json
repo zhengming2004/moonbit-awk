@@ -1,0 +1,1552 @@
+{
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "platform": "win32",
+  "shell": {
+    "executable": "C:\\Program Files\\Git\\bin\\sh.exe",
+    "sha256": "ea70169decdb4787b7503b899495a1edfa27e9077f8bc5e0ef5980cb42fef3e8",
+    "versionOutput": "GNU bash, version 5.2.26(1)-release (x86_64-pc-msys)\nCopyright (C) 2022 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\nThis is free software; you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
+    "versionStatus": 0
+  },
+  "options": [
+    "-c",
+    "-N",
+    "raw"
+  ],
+  "cases": [
+    {
+      "id": "io-0",
+      "program": "BEGIN{print \"one\" > \"out.txt\";print \"two\" > \"out.txt\";print close(\"out.txt\");print close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-1",
+      "program": "BEGIN{print \"one\" > \"out.txt\";print close(\"out.txt\");print \"two\" > \"out.txt\";print close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-2",
+      "program": "BEGIN{print \"one\" >> \"out.txt\";print \"two\" >> \"out.txt\";print close(\"out.txt\");print close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-3",
+      "program": "BEGIN{print \"one\" >> \"out.txt\";print close(\"out.txt\");print \"two\" >> \"out.txt\";print close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-4",
+      "program": "BEGIN{print \"one\">\"out.txt\";print \"two\">>\"out.txt\"}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-5",
+      "program": "BEGIN{print \"one\">>\"out.txt\";print \"two\">\"out.txt\"}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-6",
+      "program": "BEGIN{printf \"%s:%04d\",\"item\",7>\"out.txt\";print \"end\">\"out.txt\"}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-7",
+      "program": "{print >\"out.txt\"} END{print NR,close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-8",
+      "program": "BEGIN{print \"one\">\"text one.txt\";fflush(\"text one.txt\");print \"two\">\"out.txt\";print fflush(),fflush(\"\"),close(\"text one.txt\"),close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-9",
+      "program": "BEGIN{print close(\"missing\"),fflush(\"missing\"),fflush(\"stdout\"),fflush(\"stderr\"),fflush()}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-10",
+      "program": "BEGIN{print \"one\">\"-\";print \"two\">\"/dev/stdout\";print \"warning\">\"/dev/stderr\";print close(\"-\"),close(\"/dev/stdout\"),close(\"/dev/stderr\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-11",
+      "program": "BEGIN{print \"before\";print 1/zero>\"out.txt\";print \"bad\"}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-12",
+      "program": "BEGIN{print \"before\";printf \"%q\",1>\"out.txt\"}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-13",
+      "program": "BEGIN{print \"before\";print \"bad\">\"absent/out.txt\";print \"after\"}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-14",
+      "program": "BEGIN{while((getline x<\"in.txt\")>0)print \"[\"x\"]\",NR,FNR,FILENAME,NF,RT;print x,(getline x<\"in.txt\"),close(\"in.txt\");print (getline x<\"in.txt\"),x,close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-15",
+      "program": "BEGIN{while((getline<\"in.txt\")>0)print NR,FNR,FILENAME,NF,$1,$2,RT;print $0;print close(\"in.txt\")} {print \"main\",NR,FNR,$0}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-16",
+      "program": "BEGIN{i=0;print (getline x<\"in.txt\"),i,NR,FNR,NF,$0,x,a[1],RT;print close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-17",
+      "program": "BEGIN{i=0;print (getline a[++i]<\"in.txt\"),i,NR,FNR,NF,$0,x,a[1],RT;print close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-18",
+      "program": "BEGIN{i=0;print (getline $++i<\"in.txt\"),i,NR,FNR,NF,$0,x,a[1],RT;print close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-19",
+      "program": "BEGIN{i=0;print (getline NF<\"in.txt\"),i,NR,FNR,NF,$0,x,a[1],RT;print close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-20",
+      "program": "BEGIN{i=0;print (getline NR<\"in.txt\"),i,NR,FNR,NF,$0,x,a[1],RT;print close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-21",
+      "program": "BEGIN{i=0;print (getline RT<\"in.txt\"),i,NR,FNR,NF,$0,x,a[1],RT;print close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-22",
+      "program": "BEGIN{x=\"old\";print (getline x<\"absent.txt\"),x,NR,FNR;print (getline x<\"absent.txt\"),close(\"absent.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-23",
+      "program": "BEGIN{print (getline x<\"in.txt\");print \"bad\">\"in.txt\"}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-24",
+      "program": "BEGIN{print \"new\">\"out.txt\";print (getline x<\"out.txt\")}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-25",
+      "program": "BEGIN{print \"new\">\"out.txt\";print close(\"out.txt\");print (getline x<\"out.txt\"),x,close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-26",
+      "program": "BEGIN{while((getline x<\"-\")>0)print x,NR,FNR;print close(\"-\");print (getline x<\"-\"),x} END{print NR}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-27",
+      "program": "BEGIN{RS=\":\";RT=\"initial\";while((getline x<\"records.txt\")>0)printf \"[%s]<%s> %d\n\",x,RT,NR;print close(\"records.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-28",
+      "program": "BEGIN{RS=\"::+\";while((getline x<\"records.txt\")>0)printf \"[%s]<%s> %d\n\",x,RT,NR;print close(\"records.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-29",
+      "program": "BEGIN{RS=\"\";FS=\":\";while((getline<\"paragraph.txt\")>0)printf \"[%s]<%s> %d\n\",$0,RT,NF;print close(\"paragraph.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-30",
+      "program": "function read(a,i){return getline a[i]<\"in.txt\"} BEGIN{while(read(a,++n)>0)print a[n];print n,NR,close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-31",
+      "program": "BEGIN{f=\"out.txt\";print 1+2>f;print (1>2)>f;print 1&&2>f;print 0?4:5>f;print close(f)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-32",
+      "program": "BEGIN{print (x=1),x>(x=\"out.txt\");print x;close(x)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-33",
+      "program": "BEGIN{print 1,2>(OFS=\"out.txt\");close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-34",
+      "program": "BEGIN{print 1/3>(OFMT=\"out.txt\");close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-35",
+      "program": "BEGIN{print \"a\">(\"out\" \".txt\");print \"b\">\"out\" \".txt\";close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-36",
+      "program": "BEGIN{f=\"in\";print (getline x<f \".txt\"),x,close(f)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-37",
+      "program": "BEGIN{f=\"in\";print (getline x<(f \".txt\")),x,close(\"in.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-38",
+      "program": "BEGIN{print 9>\"out.txt\";print fflush(\"out.txt\");print (getline x<\"./out.txt\"),x;close(\"out.txt\");close(\"./out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-39",
+      "program": "BEGIN{print 9>\"out.txt\";print (getline x<\"./out.txt\"),x;print close(\"out.txt\"),close(\"./out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-40",
+      "program": "BEGIN{cmd=\"node helper.mjs emit 0\";while((cmd|getline x)>0)print x,NR,FNR;print (cmd|getline x),close(cmd),close(cmd);print (cmd|getline x),x;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-41",
+      "program": "BEGIN{cmd=\"node helper.mjs copy 0\";print \"one\"|cmd;printf \"%s\n\",\"two\"|cmd;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-42",
+      "program": "BEGIN{print \"before\";print system(\"node helper.mjs emit 0\");print \"after\"}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-43",
+      "program": "BEGIN{cmd=\"node helper.mjs emit 3\";while((cmd|getline x)>0)print x,NR,FNR;print (cmd|getline x),close(cmd),close(cmd);print (cmd|getline x),x;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-44",
+      "program": "BEGIN{cmd=\"node helper.mjs copy 3\";print \"one\"|cmd;printf \"%s\n\",\"two\"|cmd;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-45",
+      "program": "BEGIN{print \"before\";print system(\"node helper.mjs emit 3\");print \"after\"}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-46",
+      "program": "BEGIN{cmd=\"node helper.mjs emit 7\";while((cmd|getline x)>0)print x,NR,FNR;print (cmd|getline x),close(cmd),close(cmd);print (cmd|getline x),x;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-47",
+      "program": "BEGIN{cmd=\"node helper.mjs copy 7\";print \"one\"|cmd;printf \"%s\n\",\"two\"|cmd;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-48",
+      "program": "BEGIN{print \"before\";print system(\"node helper.mjs emit 7\");print \"after\"}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-49",
+      "program": "BEGIN{cmd=\"node helper.mjs emit 0\";while(cmd|getline)print $1,$2,NF,NR;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-50",
+      "program": "BEGIN{cmd=\"node helper.mjs emit 0\";print ((cmd|getline x)>0),x;print (cmd|getline x)+2,x;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-51",
+      "program": "BEGIN{cmd=\"node helper.mjs emit 0\";cmd|getline a[++i];cmd|getline $++i;print i,a[1],$0,NF,NR;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-52",
+      "program": "BEGIN{cmd=\"node helper.mjs copy 0\";print \"one\"|cmd;print \"two\"|cmd;print fflush(cmd);print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-53",
+      "program": "BEGIN{print \"one\">\"out.txt\";print system(\"node helper.mjs inspect out.txt\");print \"two\">\"out.txt\";print close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-54",
+      "program": "BEGIN{cmd=\"node helper.mjs emit 0\";print (cmd|getline x),x;print \"bad\"|cmd}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-55",
+      "program": "BEGIN{cmd=\"node helper.mjs copy 0\";print \"one\"|cmd;print (cmd|getline x)}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-56",
+      "program": "BEGIN{print system(\"\"),close(\"\"),fflush(\"\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-57",
+      "program": "BEGIN{print system(\"moonbit_missing_executable_93271\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-58",
+      "program": "BEGIN{cmd=\"moonbit_missing_executable_93271\";print (cmd|getline x),x;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-59",
+      "program": "BEGIN{cmd=\"node helper.mjs emit 0\";cmd|getline x;print x;exit 4} END{print (cmd|getline y),y;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-60",
+      "program": "BEGIN{print \"one\">\"out.txt\";print \"before\";print 1/zero}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-61",
+      "program": "BEGIN{cmd=\"node helper.mjs copy 0\";print \"one\"|cmd;print 1/zero}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-62",
+      "program": "BEGIN{for(i=0;i<300000;i++)print \"value\" >\"out.txt\";print close(\"out.txt\");while((getline x<\"out.txt\")>0)n++;print n,close(\"out.txt\")}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-63",
+      "program": "BEGIN{cmd=\"node helper.mjs large 0\";while((cmd|getline x)>0)n++;print n,close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-64",
+      "program": "BEGIN{cmd=\"node helper.mjs copy 0\";for(i=0;i<180000;i++)print \"abcdefghi\"|cmd;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-65",
+      "program": "BEGIN{system()}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-66",
+      "program": "BEGIN{close()}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-67",
+      "program": "BEGIN{fflush(1,2)}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-68",
+      "program": "BEGIN{print system}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-69",
+      "program": "BEGIN{fflush[1]=2}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-70",
+      "program": "BEGIN{1|2}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-71",
+      "program": "BEGIN{printf >\"out.txt\"}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-72",
+      "program": "BEGIN{cmd=\"node helper.mjs closed\";printf \"\"|cmd;system(\"node helper.mjs waitmarker\");print \"one\"|cmd;print close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-73",
+      "program": "BEGIN{cmd=\"node helper.mjs closed\";printf \"\"|cmd;system(\"node helper.mjs waitmarker\");for(i=0;i<100000;i++)print \"abcdefghi\"|cmd}",
+      "input": "main 1\nmain 2\n",
+      "error": true
+    },
+    {
+      "id": "io-74",
+      "program": "BEGIN{cmd=\"-\";print (cmd|getline x),close(cmd)}",
+      "input": "main 1\nmain 2\n"
+    },
+    {
+      "id": "io-75",
+      "program": "BEGIN{print (getline x<\"-\"),x;cmd=\"-\";print \"one\"|cmd;print close(cmd);print (getline x<\"-\"),x}",
+      "input": "one\ntwo\n"
+    },
+    {
+      "id": "io-76",
+      "program": "BEGIN{print system(\"ignored\"),system(\"ignored again\")}",
+      "input": "main 1\nmain 2\n",
+      "missingShell": true
+    },
+    {
+      "id": "io-77",
+      "program": "BEGIN{cmd=\"ignored\";print (cmd|getline x),x,close(cmd);print (cmd|getline x),close(cmd)}",
+      "input": "main 1\nmain 2\n",
+      "missingShell": true
+    },
+    {
+      "id": "io-78",
+      "program": "BEGIN{cmd=\"ignored\";print \"one\"|cmd;print \"two\"|cmd;print fflush(cmd),close(cmd),close(cmd)}",
+      "input": "main 1\nmain 2\n",
+      "missingShell": true
+    },
+    {
+      "id": "io-79",
+      "program": "BEGIN{print \"one\"|\"ignored\";print \"done\"}",
+      "input": "main 1\nmain 2\n",
+      "missingShell": true
+    }
+  ],
+  "fixtures": {
+    "in.txt": "a 2\nb 3\n",
+    "other.txt": "c 4\nd 5\n",
+    "out.txt": "initial\n",
+    "records.txt": ":a::b:::c:",
+    "paragraph.txt": "\n\na:b\nc:d\n\n\ne:f\n",
+    "helper.mjs": "import fs from 'node:fs';\nconst [mode,arg]=process.argv.slice(2);\nif(mode==='emit'){process.stdout.write('alpha 2\\nbeta 3\\n');process.exitCode=Number(arg);}\nelse if(mode==='copy'){process.stdin.pipe(process.stdout);process.stdin.on('end',()=>{process.exitCode=Number(arg);});}\nelse if(mode==='inspect'){process.stdout.write(fs.readFileSync(arg));}\nelse if(mode==='closed'){fs.closeSync(0);fs.writeFileSync('closed.marker','done');setTimeout(()=>{process.exitCode=3;},200);}\nelse if(mode==='waitmarker'){for(let i=0;!fs.existsSync('closed.marker')&&i<2500;i++)await new Promise(r=>setTimeout(r,2));if(!fs.existsSync('closed.marker'))process.exitCode=7;}\nelse if(mode==='large'){for(let i=0;i<180000;i++)process.stdout.write('abcdefghi\\n');process.exitCode=Number(arg);}\n"
+  },
+  "references": [
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 5,
+        "sha256": "c7b4ea6821495a8eb0ebc912a385717bcbc0fde124e8f92195d96e25455db0af",
+        "text": "0\n-1\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 8,
+          "sha256": "c3f9c8c283a2b1f2f1896f27a01cbe3cddc0c9d93f752e4639035a0f5b36f6e8",
+          "text": "one\ntwo\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 4,
+        "sha256": "52f96c26a39ed25108a6db43d6e11c6051eba8a498a5baab1891adfa7ac7c262",
+        "text": "0\n0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 4,
+          "sha256": "27dd8ed44a83ff94d557f9fd0412ed5a8cbca69ea04922d88c01184a07300a5a",
+          "text": "two\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 5,
+        "sha256": "c7b4ea6821495a8eb0ebc912a385717bcbc0fde124e8f92195d96e25455db0af",
+        "text": "0\n-1\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 16,
+          "sha256": "a264a8eee92229f8a0951e281bcd14fcf4cc15e8d45976aad9dd9e812e59f973",
+          "text": "initial\none\ntwo\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 4,
+        "sha256": "52f96c26a39ed25108a6db43d6e11c6051eba8a498a5baab1891adfa7ac7c262",
+        "text": "0\n0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 16,
+          "sha256": "a264a8eee92229f8a0951e281bcd14fcf4cc15e8d45976aad9dd9e812e59f973",
+          "text": "initial\none\ntwo\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 8,
+          "sha256": "c3f9c8c283a2b1f2f1896f27a01cbe3cddc0c9d93f752e4639035a0f5b36f6e8",
+          "text": "one\ntwo\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 16,
+          "sha256": "a264a8eee92229f8a0951e281bcd14fcf4cc15e8d45976aad9dd9e812e59f973",
+          "text": "initial\none\ntwo\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 13,
+          "sha256": "7865b81ebebea8877541e85f3a47ae4d38eceb95083ceb0d6d6162996452e3e4",
+          "text": "item:0007end\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 4,
+        "sha256": "4516f6eaaa675488778d6ca333df14bc68c27fb7d7b8015073220d4571aa9c51",
+        "text": "2 0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 14,
+          "sha256": "b1d80984ce95bb42306e9b0ff2b8a47a2cffa53510302bb977376fdbabd00c7f",
+          "text": "main 1\nmain 2\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 8,
+        "sha256": "c5bea6d5172950ed3fc3f0433afd51fc1913e545f5dd34c849c65dc166209a00",
+        "text": "0 0 0 0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 4,
+          "sha256": "27dd8ed44a83ff94d557f9fd0412ed5a8cbca69ea04922d88c01184a07300a5a",
+          "text": "two\n"
+        },
+        "text one.txt": {
+          "length": 4,
+          "sha256": "2c8b08da5ce60398e1f19af0e5dccc744df274b826abe585eaba68c525434806",
+          "text": "one\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 14,
+        "sha256": "3d1e1fc35e1c56ab72d6ae52d3812275d2f0265a94dc04eb318997d132b33c30",
+        "text": "-1 -1 -1 -1 0\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "error flushing \"missing\": not an output file or pipe\nerror flushing \"stdout\": not an output file or pipe\nerror flushing \"stderr\": not an output file or pipe\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 17,
+        "sha256": "13eea0fb8a059db74eec4e51405574a9dda7fce02e80d7e9d891fe9d679bcd6f",
+        "text": "one\ntwo\n-1 -1 -1\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "warning\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 7,
+        "sha256": "9160d4be34c8695bd172a76c7c7966587ea5a4d991ad22c87b2b91af54aa9ebb",
+        "text": "before\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "division by zero\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 7,
+        "sha256": "9160d4be34c8695bd172a76c7c7966587ea5a4d991ad22c87b2b91af54aa9ebb",
+        "text": "before\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "format error: invalid format type 'q'\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 7,
+        "sha256": "9160d4be34c8695bd172a76c7c7966587ea5a4d991ad22c87b2b91af54aa9ebb",
+        "text": "before\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "output redirection error: open absent/out.txt: The system cannot find the path specified.\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 44,
+        "sha256": "5316621a89df6c217cce6ccb6fc6e1497c82de352e4ef81f4a9fc58f9fed86d5",
+        "text": "[a 2] 0 0  0 \n[b 3] 0 0  0 \nb 3 0 0\n1 a 2 0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 62,
+        "sha256": "f4cd7e711b65d4b75d26f135576bb1a7f5a034742868e618bc8775c696a7bf3c",
+        "text": "0 0  2 a 2 \n0 0  2 b 3 \nb 3\n0\nmain 1 1 main 1\nmain 2 2 main 2\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 19,
+        "sha256": "5db2e2cf0320ef8b855fc9ca1fec732d78aa7396655a2ce5727d33fc24097a16",
+        "text": "1 0 0 0 0  a 2  \n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 19,
+        "sha256": "b5ecf015b06635a42adca429f05f0025359266eda80c9eebd7786bec9aed3bd8",
+        "text": "1 1 0 0 0   a 2 \n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 19,
+        "sha256": "188ff75f57ffeff6c2513f60293dd8301542ec7238c6833d5ffc325a4dfb8f2e",
+        "text": "1 1 0 0 2 a 2   \n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 18,
+        "sha256": "0bded3acfe1af357bb6adbd3dc7279acde951212118176005910ee14dae6699a",
+        "text": "1 0 0 0 a 2    \n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 18,
+        "sha256": "479a6a373d5958950b722faff119629658a478373ab5ba52e177b4703a819fcb",
+        "text": "1 0 a 2 0 0    \n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 19,
+        "sha256": "d6b52b45fe18e27f4e62095ce707ced7434358e1e9b1cdd53e8507b13f5f298e",
+        "text": "1 0 0 0 0    a 2\n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 17,
+        "sha256": "f246cd1a754ed737d7fccab328b9b7995585020220ecccaa2bfa5d85496ee95f",
+        "text": "-1 old 0 0\n-1 -1\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "text": "1\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "can't write to reader stream\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {
+        "out.txt": {
+          "length": 4,
+          "sha256": "7aa7a5359173d05b63cfd682e3c38487f3cb4f7f1d60659fe59fab1505977d4c",
+          "text": "new\n"
+        }
+      },
+      "stderr": "can't read from writer stream\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 10,
+        "sha256": "d6eda3284b1f6da63f27b0ed3039d2429618f37d837dee4181e5829a0ca8c22d",
+        "text": "0\n1 new 0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 4,
+          "sha256": "7aa7a5359173d05b63cfd682e3c38487f3cb4f7f1d60659fe59fab1505977d4c",
+          "text": "new\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 36,
+        "sha256": "ccdc1f7c26a1d4afb6823e29591bb42496d0729b64994aed7c7c749961f9c887",
+        "text": "main 1 0 0\nmain 2 0 0\n-1\n0 main 2\n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:80: can't have newline in string\nBEGIN{RS=\":\";RT=\"initial\";while((getline x<\"records.txt\")>0)printf \"[%s]<%s> %d\n                                                                               ^\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:69: can't have newline in string\nBEGIN{RS=\"::+\";while((getline x<\"records.txt\")>0)printf \"[%s]<%s> %d\n                                                                    ^\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:73: can't have newline in string\nBEGIN{RS=\"\";FS=\":\";while((getline<\"paragraph.txt\")>0)printf \"[%s]<%s> %d\n                                                                        ^\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 14,
+        "sha256": "db73c16c2978ec7a19059f6cf8246bef7cb626eb4b17616d0017a299717a51f2",
+        "text": "a 2\nb 3\n3 0 0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 4,
+        "sha256": "52f96c26a39ed25108a6db43d6e11c6051eba8a498a5baab1891adfa7ac7c262",
+        "text": "0\n0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 6,
+          "sha256": "3a3ff1473fe98c85ae097d78bb23eceff607745eb7de740e014d19ed549da866",
+          "text": "3\n0\n1\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 2,
+        "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+        "text": "1\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 4,
+          "sha256": "3f11ad6bbc7ecca0b2416b713dee77f1a635c00aaeaa946e14cde1c2bfae56d5",
+          "text": "1 1\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 10,
+          "sha256": "3804bf6aaf6fea3ef8b7c8b20803375a8d64521c3232ba1bc40fdda9c2250799",
+          "text": "1out.txt2\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 8,
+          "sha256": "7b68e7f4912e01f85ab97b6a6709c47a22f728f86eacd39d2914e9d5a6a05c76",
+          "text": "out.txt\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 4,
+          "sha256": "911169ddaaf146aff539f58c26c489af3b892dff0fe283c1c264c65ae5aa59a2",
+          "text": "a\nb\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 11,
+        "sha256": "7f563b124e17d595953c299fe76c8a105dec1c3453a704475f7a0e4e3ecf3bde",
+        "text": "-1.txt  -1\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 8,
+        "sha256": "703a6fb5c319a698b0e22af224077c1fa9b8ba79f26a7bb9cebd29c1b2a25db7",
+        "text": "1 a 2 0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 6,
+        "sha256": "bed84bfaa970d74958febf65c40238352f16371f7623528e8c4338c607ade01c",
+        "text": "0\n1 9\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 2,
+          "sha256": "2e6d31a5983a91251bfae5aefa1c0a19d8ba3cf601d0e8a706b4cfa9661a6b8a",
+          "text": "9\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 7,
+        "sha256": "fa52acaec188ca3271c2e57233644de307c1d0f25236660ef6caf654a4716cfd",
+        "text": "0 \n0 0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 2,
+          "sha256": "2e6d31a5983a91251bfae5aefa1c0a19d8ba3cf601d0e8a706b4cfa9661a6b8a",
+          "text": "9\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 42,
+        "sha256": "73b9c1990d77189cb1855af4490f839ab7bdb611a10298198673e47f9f5b4647",
+        "text": "alpha 2 0 0\nbeta 3 0 0\n0 0 -1\n1 alpha 2\n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:62: can't have newline in string\nBEGIN{cmd=\"node helper.mjs copy 0\";print \"one\"|cmd;printf \"%s\n                                                             ^\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 30,
+        "sha256": "62a31955c3e9e96a9932f32c2b7bb7d7b22c54f4db627446dbb38aba67aff278",
+        "text": "before\nalpha 2\nbeta 3\n0\nafter\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 42,
+        "sha256": "f2ba8db74eb3f1747da1e7804e21483ea8eb6d8a96f08750ba34cbc55c2d7cb7",
+        "text": "alpha 2 0 0\nbeta 3 0 0\n0 3 -1\n1 alpha 2\n3\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:62: can't have newline in string\nBEGIN{cmd=\"node helper.mjs copy 3\";print \"one\"|cmd;printf \"%s\n                                                             ^\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 30,
+        "sha256": "e28acea52d00872ea621411f77e2a181879923f8a447a3cc0fef753fff2aaaa4",
+        "text": "before\nalpha 2\nbeta 3\n3\nafter\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 42,
+        "sha256": "cb0c104455cdb8c24f5c0d3e0b788874a79a7ac812bb1de4687b0098a8ee467a",
+        "text": "alpha 2 0 0\nbeta 3 0 0\n0 7 -1\n1 alpha 2\n7\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:62: can't have newline in string\nBEGIN{cmd=\"node helper.mjs copy 7\";print \"one\"|cmd;printf \"%s\n                                                             ^\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 30,
+        "sha256": "4e58a710a88a739bec474141528482550e1fcffeb115275aa03b1881d967976e",
+        "text": "before\nalpha 2\nbeta 3\n7\nafter\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 25,
+        "sha256": "35cae12498a1e6371cd2ff095a79fac18a5badf6ec192f3c42c78bc8e5daef4b",
+        "text": "alpha 2 2 0\nbeta 3 2 0\n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 21,
+        "sha256": "f69eb37aa0e7c7df1e4eb75a2d7342f9504f77628aa44f2774e17856910bd1bd",
+        "text": "1 alpha 2\n3 beta 3\n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 23,
+        "sha256": "ef9abc4a2d34eb870a94c30de7bcdb9a0faef7c4c52e0122cb13f76f9a83843b",
+        "text": "2 alpha 2 beta 3 2 0\n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 12,
+        "sha256": "608851e359cb3ac36f067ce5d88206988d617305623b8490650317641c59da9e",
+        "text": "one\ntwo\n0\n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 8,
+        "sha256": "de48b2b8f2a4a3c62582109fd033951c62c270c65e63a872dd1351c6ed48fcda",
+        "text": "one\n0\n0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 8,
+          "sha256": "c3f9c8c283a2b1f2f1896f27a01cbe3cddc0c9d93f752e4639035a0f5b36f6e8",
+          "text": "one\ntwo\n"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 10,
+        "sha256": "9a7b8500be0209534e41609f8f677af1f00bf02d4cba05e02d0bc1ccc6b0ec21",
+        "text": "1 alpha 2\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "can't write to reader stream\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 4,
+        "sha256": "2c8b08da5ce60398e1f19af0e5dccc744df274b826abe585eaba68c525434806",
+        "text": "one\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "can't read from writer stream\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 7,
+        "sha256": "244b4b0a09b596012e9285631fbef4f2c2d1cd3c25f30631795848b65d6ec91b",
+        "text": "0 -1 0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 4,
+        "sha256": "743c7850cccfba5e53a9002663ec1ddd1079315a98bdbfdde10e6044f56abefe",
+        "text": "127\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "/usr/bin/bash: line 1: moonbit_missing_executable_93271: command not found\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 7,
+        "sha256": "b76704617d7e82ff8caedcc29ad8ebadb6eee7630df4f882fbcc64246bf6c3b1",
+        "text": "0 \n127\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "/usr/bin/bash: line 1: moonbit_missing_executable_93271: command not found\n"
+    },
+    {
+      "status": 4,
+      "nativeStatus": 4,
+      "output": {
+        "length": 19,
+        "sha256": "7771562aa99bcab84d7d431b07f383eca162559de161243d1ecac696d2309294",
+        "text": "alpha 2\n1 beta 3\n0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 7,
+        "sha256": "9160d4be34c8695bd172a76c7c7966587ea5a4d991ad22c87b2b91af54aa9ebb",
+        "text": "before\n"
+      },
+      "hasError": true,
+      "files": {
+        "out.txt": {
+          "length": 4,
+          "sha256": "2c8b08da5ce60398e1f19af0e5dccc744df274b826abe585eaba68c525434806",
+          "text": "one\n"
+        }
+      },
+      "stderr": "division by zero\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 4,
+        "sha256": "2c8b08da5ce60398e1f19af0e5dccc744df274b826abe585eaba68c525434806",
+        "text": "one\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "division by zero\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 11,
+        "sha256": "c2a53804e5628aa82956fd7a751bfb674339afedc9a5e7c2bd22de6910eb0bee",
+        "text": "0\n300000 0\n"
+      },
+      "hasError": false,
+      "files": {
+        "out.txt": {
+          "length": 1800000,
+          "sha256": "1d2bd64f404799ccf7eaab4e46513b88cad73ee4ab93c72eb4af80ffe6c172f1",
+          "text": null
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 9,
+        "sha256": "6e256dc442387c78a1b95deac53970c23b28c927bc114b430a39a7a88d1804b3",
+        "text": "180000 0\n"
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 1800002,
+        "sha256": "c60ca7ee512c9c32fd9aac3d4f782baeb6c615b3734601e495cc5bd8d99740e4",
+        "text": null
+      },
+      "hasError": false,
+      "files": {},
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:14: expected expression instead of )\nBEGIN{system()}\n             ^\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:13: expected expression instead of )\nBEGIN{close()}\n            ^\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:15: expected ) instead of ,\nBEGIN{fflush(1,2)}\n              ^\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:19: expected ( instead of }\nBEGIN{print system}\n                  ^\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:13: expected ( instead of [\nBEGIN{fflush[1]=2}\n            ^\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:9: expected getline instead of number\nBEGIN{1|2}\n        ^\n"
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "<cmdline>:1:24: expected printf args, got none\nBEGIN{printf >\"out.txt\"}\n                       ^\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 2,
+        "sha256": "1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2",
+        "text": "3\n"
+      },
+      "hasError": false,
+      "files": {
+        "closed.marker": {
+          "length": 4,
+          "sha256": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+          "text": "done"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": {
+        "length": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "text": ""
+      },
+      "hasError": true,
+      "files": {
+        "closed.marker": {
+          "length": 4,
+          "sha256": "a4c3ed04a95a3da14a9d235c83d868bed7c0f45cf7f3faa751ee8f50598d2211",
+          "text": "done"
+        }
+      },
+      "stderr": "write |1: The pipe has been ended.\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 4,
+        "sha256": "665ae877edd92e755fe8504188724e0438a217c62edad817b262fb85e6289a88",
+        "text": "0 2\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "/usr/bin/bash: -c: option requires an argument\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 14,
+        "sha256": "9596b4122a67d36768104601f2324fee50af9424af2a1f436580693de85a698b",
+        "text": "1 one\n2\n1 two\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "/usr/bin/bash: -c: option requires an argument\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 6,
+        "sha256": "6a21cc779f3d818249174e17300f40755781616556335315b3866c69bf98562f",
+        "text": "-1 -1\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "exec: \"sh\": executable file not found in %PATH%\nexec: \"sh\": executable file not found in %PATH%\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 11,
+        "sha256": "6c6bc433067d6efe0695eef6eba3641c4e9cd14f4ffed9fca706f99a7935b8e9",
+        "text": "0  -1\n0 -1\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "exec: \"sh\": executable file not found in %PATH%\nexec: \"sh\": executable file not found in %PATH%\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 8,
+        "sha256": "1a7c0a597bfb8529d7c053fb27d6bbbd32f2f96c80a2b7303205df947f94cf6b",
+        "text": "0 -1 -1\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "exec: \"sh\": executable file not found in %PATH%\n"
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": {
+        "length": 5,
+        "sha256": "d117fa006ba9208500b2930ce69cbde436c647afa917cb7396a9bc9111a46dd2",
+        "text": "done\n"
+      },
+      "hasError": true,
+      "files": {},
+      "stderr": "exec: \"sh\": executable file not found in %PATH%\n"
+    }
+  ]
+}

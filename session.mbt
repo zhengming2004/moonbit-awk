@@ -18,6 +18,7 @@ pub fn new_session(
   arguments? : Array[String] = ["moonbit-awk"],
   step_limit? : Int = 100000000,
   clock_seconds? : Double = 0.0,
+  io? : ((IORequest) -> IOReply)? = None,
   input? : ((InputRequest) -> InputReply)? = None,
   output_sink? : ((String) -> String?)? = None,
 ) -> Session raise ParseError {
@@ -60,6 +61,10 @@ pub fn new_session(
     random_seed: 1.0,
     clock_seconds,
     output_sink,
+    io,
+    readers: Map([]),
+    writers: Map([]),
+    protected_stdin: false,
     input: input.map(reader => {
       reader,
       data: [],

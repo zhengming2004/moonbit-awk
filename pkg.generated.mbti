@@ -6,7 +6,7 @@ import {
 }
 
 // Values
-pub fn new_session(String, separator? : String, variables? : Map[String, String], environment? : Map[String, String], arguments? : Array[String], step_limit? : Int, clock_seconds? : Double, input? : ((InputRequest) -> InputReply)?, output_sink? : ((String) -> String?)?) -> Session raise ParseError
+pub fn new_session(String, separator? : String, variables? : Map[String, String], environment? : Map[String, String], arguments? : Array[String], step_limit? : Int, clock_seconds? : Double, io? : ((IORequest) -> IOReply)?, input? : ((InputRequest) -> InputReply)?, output_sink? : ((String) -> String?)?) -> Session raise ParseError
 
 pub fn run(String, String, separator? : String) -> String raise ParseError
 
@@ -19,6 +19,24 @@ pub suberror ParseError {
 } derive(@debug.Debug)
 
 // Types and methods
+pub(all) enum IOReply {
+  IOReady
+  IOData(String)
+  IOEnd
+  IOStatus(Int)
+  IOFailed(String)
+}
+
+pub(all) enum IORequest {
+  OpenReader(String, Bool)
+  ReadReader(String)
+  OpenWriter(String, String)
+  WriteWriter(String, String)
+  CloseStream(String)
+  FlushStream(String)
+  Execute(String)
+}
+
 pub(all) enum InputReply {
   Ready
   Chunk(String)
@@ -48,6 +66,7 @@ pub fn Session::assign(Self, String, String) -> Unit raise ParseError
 pub fn Session::begin(Self) -> Unit raise ParseError
 pub fn Session::begin_file(Self, String) -> Unit raise ParseError
 pub fn Session::close_input(Self) -> Unit
+pub fn Session::close_io(Self) -> Unit
 pub fn Session::drain(Self) -> String
 pub fn Session::exit_status(Self) -> Int
 pub fn Session::feed(Self, String) -> Unit raise ParseError

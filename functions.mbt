@@ -52,7 +52,14 @@ fn validate_expr(
 ) -> Unit raise ParseError {
   match e {
     Literal(_) | RegexLiteral(_) => ()
-    Getline(target) => if target is Some(e) { validate_expr(e, program, scope) }
+    Getline(target, source) => {
+      if target is Some(e) {
+        validate_expr(e, program, scope)
+      }
+      if source is Some((_, e)) {
+        validate_expr(e, program, scope)
+      }
+    }
     Variable(name) => mark_kind(program, scope, name, 1)
     Field(e) | Unary(_, e) | Increment(e, _, _) =>
       validate_expr(e, program, scope)
@@ -86,7 +93,7 @@ fn validate_expr(
     Call(name, args) =>
       if builtin_name(name) {
         let (low, high) = match name {
-          "length" | "srand" => (0, 1)
+          "length" | "srand" | "fflush" => (0, 1)
           "rand" => (0, 0)
           "substr" | "split" | "sub" | "gsub" => (2, 3)
           "index" | "match" | "atan2" => (2, 2)
@@ -146,10 +153,14 @@ fn validate_statement(
       for x in xs {
         validate_statement(x, program, scope)
       }
-    Print(xs) | Printf(xs) =>
+    Print(xs, redirect) | Printf(xs, redirect) => {
       for x in xs {
         validate_expr(x, program, scope)
       }
+      if redirect is Some((_, e)) {
+        validate_expr(e, program, scope)
+      }
+    }
     Expression(x) => validate_expr(x, program, scope)
     If(c, a, b) => {
       validate_expr(c, program, scope)
