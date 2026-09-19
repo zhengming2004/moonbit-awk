@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.1 — 2026-09-19
+
+- Execute MoonBit and bounded synchronous file IO on the main thread; start an asynchronous command IO worker only when a command is used.
+- Preserve flush boundaries, child statuses, stream reuse and OS backpressure, including partial writes and EINTR/EAGAIN retries.
+- Handle failed command-module startup through shared failure state instead of leaving the caller blocked.
+- Added four bridge host checks and a nine-workload comparison against fixed 0.6, native GoAWK and the six original workloads from 0.5. Full compatibility and performance parity remain open.
+
 ## 0.6.0 — 2026-09-19
 
 - Added file/pipe output, redirected getline, system, close and fflush with name reuse, explicit flushing and subprocess statuses.

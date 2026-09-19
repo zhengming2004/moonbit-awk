@@ -38,6 +38,8 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'IO generation check failed'}
   node tools/test-pull-host.mjs
   if ($LASTEXITCODE -ne 0) {throw 'pull host checks failed'}
+  node tools/test-bridge-host.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'bridge host checks failed'}
   node tools/test-record-reference.mjs --golden
   if ($LASTEXITCODE -ne 0) {throw 'record reference replay failed'}
   node tools/test-session.mjs

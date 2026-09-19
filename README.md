@@ -1,6 +1,6 @@
 # AWK 记录处理器
 
-MoonBit 本地候选版 0.6.0。解析、表达式、正则、格式化和执行器均为 MoonBit；Node.js 负责文件、环境变量、标准输入输出和退出码。生产运行不调用 GoAWK、GNU Awk 或其他解释器。
+MoonBit 本地候选版 0.6.1。解析、表达式、正则、格式化和执行器均为 MoonBit；Node.js 负责文件、环境变量、标准输入输出和退出码。生产运行不调用 GoAWK、GNU Awk 或其他解释器。
 
 ## 快速使用
 
@@ -54,7 +54,7 @@ API 见 [pkg.generated.mbti](pkg.generated.mbti) 与 [可执行示例](README.mb
 
 for-in 在开始时复制并按词典序排列键；这是本实现选择，不能依赖与其他 AWK 相同的遍历顺序或循环中增删行为。NaN 比较遵循 IEEE 语义。常量除零在求值时才报错，与 GoAWK 本轮参考一致，但与 GNU Awk 对未执行常量分支的提前诊断不同。
 
-资源边界：程序 100,000 个 UTF-16 单元、单记录/字符串/未 drain 输出各 1,000,000、字段最多 10,000、数组元素合计 100,000；内存 API 的总输入另限 1,000,000。pull 输入回调的单块上限为 65,536；CLI 使用 Node Worker 执行同步核心，由主线程处理异步文件和进程 IO；读取块为 64 KiB 并保留 UTF-8 解码状态，每个输出流约 64 KiB 即写出，sink 输出不累积在内存 API 的输出数组中。Session/CLI 总步数默认 100,000,000，内存 API 默认 1,000,000，可设 1–1,000,000,000。函数调用深度 64、表达式求值深度 128；正则模式 10,000 字符、语法深度 64、NFA 节点 4096、重复上界 1000、缓存 128 项；格式精度最多 1000、宽度最多 1,000,000。JS 会话桥最多 64 个同时存活会话，每批最多 1000 条，输出约 64 KiB 后返回实际处理条数。重定向命名流最多 128 个。超限报错。步数上限不限制外部命令的等待时间；close 等待命令退出，与参考行为一致。
+资源边界：程序 100,000 个 UTF-16 单元、单记录/字符串/未 drain 输出各 1,000,000、字段最多 10,000、数组元素合计 100,000；内存 API 的总输入另限 1,000,000。pull 输入回调的单块上限为 65,536；CLI 主线程执行 MoonBit 核心并同步读写文件，只在实际调用命令时启动负责异步进程 IO 的 Worker；读取块为 64 KiB 并保留 UTF-8 解码状态，每个输出流约 64 KiB 即写出，sink 输出不累积在内存 API 的输出数组中。Session/CLI 总步数默认 100,000,000，内存 API 默认 1,000,000，可设 1–1,000,000,000。函数调用深度 64、表达式求值深度 128；正则模式 10,000 字符、语法深度 64、NFA 节点 4096、重复上界 1000、缓存 128 项；格式精度最多 1000、宽度最多 1,000,000。JS 会话桥最多 64 个同时存活会话，每批最多 1000 条，输出约 64 KiB 后返回实际处理条数。重定向命名流最多 128 个。超限报错。步数上限不限制外部命令的等待时间；close 等待命令退出，与参考行为一致。
 
 退出状态在核心保存为 32 位整数，操作系统决定进程状态的外部表示：Windows 保留 32 位，POSIX 通常取低 8 位。非有限数值状态变为 0。CLI 的参数、文件和执行错误返回 1；旧组合输入 CLI 保留自身的错误协议。
 
@@ -65,6 +65,7 @@ for-in 在开始时复制并按词典序排列键；这是本实现选择，不�
 ```powershell
 node tools/test-session.mjs
 node tools/test-pull-host.mjs
+node tools/test-bridge-host.mjs
 node tools/test-io-reference.mjs --golden
 node tools/generate-io-tests.mjs --check
 node tools/test-record-reference.mjs --golden
@@ -75,10 +76,10 @@ $env:GOAWK_REFERENCE = 'C:/path/to/goawk.exe'
 node tools/test-reference.mjs
 node tools/test-record-reference.mjs
 node tools/test-io-reference.mjs
-node tools/benchmark-io.mjs
+node tools/benchmark-bridge.mjs
 node tools/test-host-reference.mjs
 ```
 
-0.6 验证包括 JS/Wasm-GC 各 55 组公共 API 测试；固定 GoAWK v1.32.0 的 514 个历史核心、303 个 RS/getline、65 个真实 CLI、80 个文件/管道/进程场景，共 962 项；另有 10 个 pull 宿主检查，含交互提示和慢速管道。包含 4.8 MB 输入/输出。最终通过记录见 evidence/io-upgrade.json。场景由本项目独立编写，并非完整上游套件。报告记录参考二进制、生成引擎与全部非 evidence 源文件 SHA-256；golden 重放与 live 结果分别保存。详见 [TESTING.md](TESTING.md)。
+0.6.1 验证包括 JS/Wasm-GC 各 55 组公共 API 测试；固定 GoAWK v1.32.0 的 514 个历史核心、303 个 RS/getline、65 个真实 CLI、80 个文件/管道/进程场景，共 962 项；另有 10 个 pull 宿主检查，以及 4 个桥接检查，覆盖命令运行期间的交互输入、1.8 MB 慢速输出、UTF-8 跨块解码和 Worker 启动失败。包含 4.8 MB 输入/输出。最终通过记录见 evidence/bridge-upgrade.json。场景由本项目独立编写，并非完整上游套件。报告记录参考二进制、生成引擎与全部非 evidence 源文件 SHA-256；golden 重放与 live 结果分别保存。详见 [TESTING.md](TESTING.md)。
 
-参考 [GoAWK](https://github.com/benhoyt/goawk) 公开行为独立实现，没有复制其解释器代码；本仓库为 MIT。没有 remote、上传、发布或比赛提交。此目录是唯一开发主仓库；旧合集 ZIP/bundle 是历史快照；0.6 使用独立本地归档。
+参考 [GoAWK](https://github.com/benhoyt/goawk) 公开行为独立实现，没有复制其解释器代码；本仓库为 MIT。没有 remote、上传、发布或比赛提交。此目录是唯一开发主仓库；旧合集 ZIP/bundle 是历史快照；0.6.1 使用独立本地归档。

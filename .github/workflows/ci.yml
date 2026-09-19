@@ -29,6 +29,7 @@ jobs:
       - run: node tools/generate-record-tests.mjs --check
       - run: node tools/generate-io-tests.mjs --check
       - run: node tools/test-pull-host.mjs
+      - run: node tools/test-bridge-host.mjs
       - run: node tools/test-record-reference.mjs --golden
       - run: node tools/test-session.mjs
       - run: node tools/test-reference.mjs --golden

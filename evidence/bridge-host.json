@@ -1,7 +1,14 @@
 {
-  "utc": "2026-09-19T02:44:13.298Z",
-  "checks": 10,
-  "passed": 10,
+  "utc": "2026-09-19T02:44:15.482Z",
+  "platform": "win32",
+  "shell": {
+    "executable": "C:\\Program Files\\Git\\bin\\sh.exe",
+    "sha256": "ea70169decdb4787b7503b899495a1edfa27e9077f8bc5e0ef5980cb42fef3e8",
+    "versionOutput": "GNU bash, version 5.2.26(1)-release (x86_64-pc-msys)\nCopyright (C) 2022 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\nThis is free software; you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.",
+    "versionStatus": 0
+  },
+  "checks": 4,
+  "passed": 4,
   "failed": 0,
   "sourceSha256": {
     ".gitattributes": "968aed8752f58f3554e38c1db0b611ba4663668909552d8d17c2874ff5966312",
@@ -86,5 +93,5 @@
     "web/engine.mjs": "7a5d27886cf26adbe7f3104f2bc8174a5cd75e756e86b943923215cccf6bdf63",
     "web/index.html": "cdcbb5d9f2d455d4335bfd7fdcd30bac065fc0b90843d4fe616ef9726fc7aeb8"
   },
-  "scope": "Pull callback ownership/errors/limits, interactive prompt and 1.8 MB slow output consumer; Windows host only"
+  "scope": "UTF-8 carry beyond chunk limit, interactive command with blocking main input, 1.8 MB slow command output consumer, and failed command-worker module startup"
 }
