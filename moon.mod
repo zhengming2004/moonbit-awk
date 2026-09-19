@@ -1,4 +1,4 @@
-name = "localreview/awk"
+name = "zhengming2004/awk"
 
 version = "0.10.0"
 
