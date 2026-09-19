@@ -1,0 +1,23 @@
+Finished. moon: ran 4 tasks, now up to date
+Finished. moon: ran 3 tasks, now up to date
+Finished. moon: ran 4 tasks, now up to date
+Total tests: 48, passed: 48, failed: 0.
+Total tests: 48, passed: 48, failed: 0.
+Finished. moon: ran 5 tasks, now up to date
+1 apple 12
+2 pear 7
+3 peach 9
+total 28
+
+awk: independent browser engine passed
+awk: CLI input/file/stdin/error/exit-status checks passed
+6 AWK CLI scenarios passed
+303 native programs in 19 backend groups verified
+10 pull host checks passed, including interactive getline and pipe backpressure
+303/303 GoAWK RS/getline comparisons agree
+Session bridge: bounded batching, partial-error output, nextfile/exit, cleanup and independent lifetime checks passed
+514/514 GoAWK reference cases agree
+65/65 GoAWK host comparisons agree (including 4.8 MB input/output)
+{"total":46,"matched":45,"failures":[],"knownDifferences":[{"id":"constant-folding-gap","same":false,"knownDifference":"GNU Awk rejects constant division by zero during compilation even in dead branches; this interpreter checks division when evaluated.","actual":{"output":"0 1 ok\n","exit_status":0,"steps":9},"expected":{"output":"","exit_status":1},"stderr":"gawk: cmd. line:1: error: division by zero attempted\ngawk: cmd. line:1: error: division by zero attempted\ngawk: cmd. line:1: error: division by zero attempted\n"}]}
+awk: 307 bounded inputs, no uncaught runtime failure
+{"project":"awk","utc":"2026-09-19T01:54:37.649Z","runtime":"v24.11.0","platform":"win32","cpu":"Intel(R) Core(TM) i7-14700HX","input_utf8_bytes":111,"samples":30,"warmup":5,"median_ms":0.27309999999999945,"p95_ms":0.7951999999999941,"max_ms":0.9304000000000059,"scope":"JS warm execution of documented example; no cross-project or upstream performance claim"}

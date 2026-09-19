@@ -1,0 +1,3355 @@
+{
+  "version": "v1.32.0",
+  "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+  "options": [
+    "-c",
+    "-N",
+    "raw"
+  ],
+  "cases": [
+    {
+      "id": "records-0",
+      "program": "BEGIN{RS=\"\\n\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-1",
+      "program": "BEGIN{RS=\"\\n\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-2",
+      "program": "BEGIN{RS=\"\\n\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-3",
+      "program": "BEGIN{RS=\"\\n\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-4",
+      "program": "BEGIN{RS=\"\\n\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-5",
+      "program": "BEGIN{RS=\"\\n\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-6",
+      "program": "BEGIN{RS=\"\\n\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-7",
+      "program": "BEGIN{RS=\"\\n\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-8",
+      "program": "BEGIN{RS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-9",
+      "program": "BEGIN{RS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-10",
+      "program": "BEGIN{RS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-11",
+      "program": "BEGIN{RS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-12",
+      "program": "BEGIN{RS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-13",
+      "program": "BEGIN{RS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-14",
+      "program": "BEGIN{RS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-15",
+      "program": "BEGIN{RS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-16",
+      "program": "BEGIN{RS=\"|\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-17",
+      "program": "BEGIN{RS=\"|\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-18",
+      "program": "BEGIN{RS=\"|\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-19",
+      "program": "BEGIN{RS=\"|\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-20",
+      "program": "BEGIN{RS=\"|\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-21",
+      "program": "BEGIN{RS=\"|\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-22",
+      "program": "BEGIN{RS=\"|\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-23",
+      "program": "BEGIN{RS=\"|\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-24",
+      "program": "BEGIN{RS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-25",
+      "program": "BEGIN{RS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-26",
+      "program": "BEGIN{RS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-27",
+      "program": "BEGIN{RS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-28",
+      "program": "BEGIN{RS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-29",
+      "program": "BEGIN{RS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-30",
+      "program": "BEGIN{RS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-31",
+      "program": "BEGIN{RS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-32",
+      "program": "BEGIN{RS=\"$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-33",
+      "program": "BEGIN{RS=\"$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-34",
+      "program": "BEGIN{RS=\"$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-35",
+      "program": "BEGIN{RS=\"$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-36",
+      "program": "BEGIN{RS=\"$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-37",
+      "program": "BEGIN{RS=\"$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-38",
+      "program": "BEGIN{RS=\"$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-39",
+      "program": "BEGIN{RS=\"$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-40",
+      "program": "BEGIN{RS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-41",
+      "program": "BEGIN{RS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-42",
+      "program": "BEGIN{RS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-43",
+      "program": "BEGIN{RS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-44",
+      "program": "BEGIN{RS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-45",
+      "program": "BEGIN{RS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-46",
+      "program": "BEGIN{RS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-47",
+      "program": "BEGIN{RS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-48",
+      "program": "BEGIN{RS=\"🙂\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-49",
+      "program": "BEGIN{RS=\"🙂\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-50",
+      "program": "BEGIN{RS=\"🙂\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-51",
+      "program": "BEGIN{RS=\"🙂\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-52",
+      "program": "BEGIN{RS=\"🙂\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-53",
+      "program": "BEGIN{RS=\"🙂\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-54",
+      "program": "BEGIN{RS=\"🙂\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-55",
+      "program": "BEGIN{RS=\"🙂\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-56",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-57",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-58",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-59",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-60",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-61",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-62",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-63",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-64",
+      "program": "BEGIN{RS=\"::+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-65",
+      "program": "BEGIN{RS=\"::+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-66",
+      "program": "BEGIN{RS=\"::+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-67",
+      "program": "BEGIN{RS=\"::+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-68",
+      "program": "BEGIN{RS=\"::+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-69",
+      "program": "BEGIN{RS=\"::+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-70",
+      "program": "BEGIN{RS=\"::+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-71",
+      "program": "BEGIN{RS=\"::+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-72",
+      "program": "BEGIN{RS=\"[,:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-73",
+      "program": "BEGIN{RS=\"[,:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-74",
+      "program": "BEGIN{RS=\"[,:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-75",
+      "program": "BEGIN{RS=\"[,:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-76",
+      "program": "BEGIN{RS=\"[,:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-77",
+      "program": "BEGIN{RS=\"[,:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-78",
+      "program": "BEGIN{RS=\"[,:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-79",
+      "program": "BEGIN{RS=\"[,:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-80",
+      "program": "BEGIN{RS=\"x*\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-81",
+      "program": "BEGIN{RS=\"x*\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-82",
+      "program": "BEGIN{RS=\"x*\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-83",
+      "program": "BEGIN{RS=\"x*\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-84",
+      "program": "BEGIN{RS=\"x*\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-85",
+      "program": "BEGIN{RS=\"x*\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-86",
+      "program": "BEGIN{RS=\"x*\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-87",
+      "program": "BEGIN{RS=\"x*\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-88",
+      "program": "BEGIN{RS=\"^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-89",
+      "program": "BEGIN{RS=\"^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-90",
+      "program": "BEGIN{RS=\"^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-91",
+      "program": "BEGIN{RS=\"^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-92",
+      "program": "BEGIN{RS=\"^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-93",
+      "program": "BEGIN{RS=\"^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-94",
+      "program": "BEGIN{RS=\"^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-95",
+      "program": "BEGIN{RS=\"^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-96",
+      "program": "BEGIN{RS=\"a|ab\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-97",
+      "program": "BEGIN{RS=\"a|ab\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-98",
+      "program": "BEGIN{RS=\"a|ab\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-99",
+      "program": "BEGIN{RS=\"a|ab\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-100",
+      "program": "BEGIN{RS=\"a|ab\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-101",
+      "program": "BEGIN{RS=\"a|ab\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-102",
+      "program": "BEGIN{RS=\"a|ab\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-103",
+      "program": "BEGIN{RS=\"a|ab\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-104",
+      "program": "BEGIN{RS=\"ab|a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-105",
+      "program": "BEGIN{RS=\"ab|a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-106",
+      "program": "BEGIN{RS=\"ab|a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-107",
+      "program": "BEGIN{RS=\"ab|a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-108",
+      "program": "BEGIN{RS=\"ab|a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-109",
+      "program": "BEGIN{RS=\"ab|a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-110",
+      "program": "BEGIN{RS=\"ab|a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-111",
+      "program": "BEGIN{RS=\"ab|a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-112",
+      "program": "BEGIN{RS=\"x|$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-113",
+      "program": "BEGIN{RS=\"x|$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-114",
+      "program": "BEGIN{RS=\"x|$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-115",
+      "program": "BEGIN{RS=\"x|$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-116",
+      "program": "BEGIN{RS=\"x|$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-117",
+      "program": "BEGIN{RS=\"x|$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-118",
+      "program": "BEGIN{RS=\"x|$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-119",
+      "program": "BEGIN{RS=\"x|$\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-120",
+      "program": "BEGIN{RS=\"(?m)^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-121",
+      "program": "BEGIN{RS=\"(?m)^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-122",
+      "program": "BEGIN{RS=\"(?m)^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-123",
+      "program": "BEGIN{RS=\"(?m)^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-124",
+      "program": "BEGIN{RS=\"(?m)^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-125",
+      "program": "BEGIN{RS=\"(?m)^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-126",
+      "program": "BEGIN{RS=\"(?m)^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-127",
+      "program": "BEGIN{RS=\"(?m)^a\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-128",
+      "program": "BEGIN{RS=\"(?-s).+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-129",
+      "program": "BEGIN{RS=\"(?-s).+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-130",
+      "program": "BEGIN{RS=\"(?-s).+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-131",
+      "program": "BEGIN{RS=\"(?-s).+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-132",
+      "program": "BEGIN{RS=\"(?-s).+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-133",
+      "program": "BEGIN{RS=\"(?-s).+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-134",
+      "program": "BEGIN{RS=\"(?-s).+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-135",
+      "program": "BEGIN{RS=\"(?-s).+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-136",
+      "program": "BEGIN{RS=\"\\\\bxx\\\\b\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-137",
+      "program": "BEGIN{RS=\"\\\\bxx\\\\b\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a",
+      "separator": " "
+    },
+    {
+      "id": "records-138",
+      "program": "BEGIN{RS=\"\\\\bxx\\\\b\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n",
+      "separator": " "
+    },
+    {
+      "id": "records-139",
+      "program": "BEGIN{RS=\"\\\\bxx\\\\b\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-140",
+      "program": "BEGIN{RS=\"\\\\bxx\\\\b\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": ":a::b:::c:",
+      "separator": " "
+    },
+    {
+      "id": "records-141",
+      "program": "BEGIN{RS=\"\\\\bxx\\\\b\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a象🙂b🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-142",
+      "program": "BEGIN{RS=\"\\\\bxx\\\\b\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-143",
+      "program": "BEGIN{RS=\"\\\\bxx\\\\b\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "aaabcxx\naxx\nbab",
+      "separator": " "
+    },
+    {
+      "id": "records-144",
+      "program": "BEGIN{RS=\"\";FS=\" \"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n",
+      "separator": " "
+    },
+    {
+      "id": "records-145",
+      "program": "BEGIN{RS=\"\";FS=\" \"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-146",
+      "program": "BEGIN{RS=\"\";FS=\" \"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\r\na:b\r\nc:d\r\n\r\nx\r\n",
+      "separator": " "
+    },
+    {
+      "id": "records-147",
+      "program": "BEGIN{RS=\"\";FS=\" \"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a\n象b\n\n",
+      "separator": " "
+    },
+    {
+      "id": "records-148",
+      "program": "BEGIN{RS=\"\";FS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n",
+      "separator": " "
+    },
+    {
+      "id": "records-149",
+      "program": "BEGIN{RS=\"\";FS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-150",
+      "program": "BEGIN{RS=\"\";FS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\r\na:b\r\nc:d\r\n\r\nx\r\n",
+      "separator": " "
+    },
+    {
+      "id": "records-151",
+      "program": "BEGIN{RS=\"\";FS=\":\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a\n象b\n\n",
+      "separator": " "
+    },
+    {
+      "id": "records-152",
+      "program": "BEGIN{RS=\"\";FS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n",
+      "separator": " "
+    },
+    {
+      "id": "records-153",
+      "program": "BEGIN{RS=\"\";FS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-154",
+      "program": "BEGIN{RS=\"\";FS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\r\na:b\r\nc:d\r\n\r\nx\r\n",
+      "separator": " "
+    },
+    {
+      "id": "records-155",
+      "program": "BEGIN{RS=\"\";FS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a\n象b\n\n",
+      "separator": " "
+    },
+    {
+      "id": "records-156",
+      "program": "BEGIN{RS=\"\";FS=\"[:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n",
+      "separator": " "
+    },
+    {
+      "id": "records-157",
+      "program": "BEGIN{RS=\"\";FS=\"[:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-158",
+      "program": "BEGIN{RS=\"\";FS=\"[:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\r\na:b\r\nc:d\r\n\r\nx\r\n",
+      "separator": " "
+    },
+    {
+      "id": "records-159",
+      "program": "BEGIN{RS=\"\";FS=\"[:]+\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a\n象b\n\n",
+      "separator": " "
+    },
+    {
+      "id": "records-160",
+      "program": "BEGIN{RS=\"\";FS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n",
+      "separator": " "
+    },
+    {
+      "id": "records-161",
+      "program": "BEGIN{RS=\"\";FS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-162",
+      "program": "BEGIN{RS=\"\";FS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\r\na:b\r\nc:d\r\n\r\nx\r\n",
+      "separator": " "
+    },
+    {
+      "id": "records-163",
+      "program": "BEGIN{RS=\"\";FS=\".\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a\n象b\n\n",
+      "separator": " "
+    },
+    {
+      "id": "records-164",
+      "program": "BEGIN{RS=\"\";FS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\na:b\nc:d\n",
+      "separator": " "
+    },
+    {
+      "id": "records-165",
+      "program": "BEGIN{RS=\"\";FS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "a:b\nc:d\n\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-166",
+      "program": "BEGIN{RS=\"\";FS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\r\na:b\r\nc:d\r\n\r\nx\r\n",
+      "separator": " "
+    },
+    {
+      "id": "records-167",
+      "program": "BEGIN{RS=\"\";FS=\"象\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "象a\n象b\n\n",
+      "separator": " "
+    },
+    {
+      "id": "records-168",
+      "program": "BEGIN{RS=\"\\n\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\\n\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-169",
+      "program": "BEGIN{RS=\"\\n\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\":\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-170",
+      "program": "BEGIN{RS=\"\\n\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-171",
+      "program": "BEGIN{RS=\"\\n\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"x+\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-172",
+      "program": "BEGIN{RS=\"\\n\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"象\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-173",
+      "program": "BEGIN{RS=\":\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\\n\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-174",
+      "program": "BEGIN{RS=\":\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\":\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-175",
+      "program": "BEGIN{RS=\":\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-176",
+      "program": "BEGIN{RS=\":\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"x+\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-177",
+      "program": "BEGIN{RS=\":\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"象\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-178",
+      "program": "BEGIN{RS=\"\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\\n\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-179",
+      "program": "BEGIN{RS=\"\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\":\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-180",
+      "program": "BEGIN{RS=\"\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-181",
+      "program": "BEGIN{RS=\"\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"x+\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-182",
+      "program": "BEGIN{RS=\"\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"象\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-183",
+      "program": "BEGIN{RS=\"::+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\\n\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-184",
+      "program": "BEGIN{RS=\"::+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\":\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-185",
+      "program": "BEGIN{RS=\"::+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-186",
+      "program": "BEGIN{RS=\"::+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"x+\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-187",
+      "program": "BEGIN{RS=\"::+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"象\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-188",
+      "program": "BEGIN{RS=\"[,:]+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\\n\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-189",
+      "program": "BEGIN{RS=\"[,:]+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\":\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-190",
+      "program": "BEGIN{RS=\"[,:]+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-191",
+      "program": "BEGIN{RS=\"[,:]+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"x+\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-192",
+      "program": "BEGIN{RS=\"[,:]+\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"象\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-193",
+      "program": "BEGIN{RS=\"象\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\\n\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-194",
+      "program": "BEGIN{RS=\"象\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\":\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-195",
+      "program": "BEGIN{RS=\"象\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-196",
+      "program": "BEGIN{RS=\"象\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"x+\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-197",
+      "program": "BEGIN{RS=\"象\"} {printf \"[%s]<%s> %d\\n\",$0,RT,NF;RS=\"象\"} END{print NR}",
+      "input": "a:b::cx\nd\n\nef象gh\n",
+      "separator": " "
+    },
+    {
+      "id": "records-198",
+      "program": "BEGIN{print (getline x),NR,FNR,FILENAME,\"[\" $0 \"]\",NF,\"[\" x \"]\";print (getline),NR,FNR,\"[\" $0 \"]\",NF} {print \"record\",NR,FNR,$0} END{print \"end\",NR,FNR,(getline y),\"[\" y \"]\",RT}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-199",
+      "program": "BEGIN{x=\"old\";while((getline x)>0)print x,NR,FNR,(x==7),(x==2);print \"eof\",x,(getline x),x}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-200",
+      "program": "{print \"before\",NR,NF,$0;print (getline x),NR,FNR,NF,$0,x;print (getline),NR,FNR,NF,$0} END{print NR,FNR,$0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-201",
+      "program": "function read(a,n){return getline a[n]} BEGIN{while(read(a,++n)>0)print n,a[n];print n,NR,length(a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-202",
+      "program": "BEGIN{i=0;print (getline a[++i]),i;print (getline a[++i]),i;print (getline a[++i]),i;print length(a)}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-203",
+      "program": "BEGIN{i=0;print (getline $++i),i,$0,NF;print (getline $i),i,$0,NF}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-204",
+      "program": "BEGIN{print getline(x),x,NR;print getline 2,NR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-205",
+      "program": "BEGIN{exit 7} END{print (getline),NR,FNR,FILENAME,$0;exit 3}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-206",
+      "program": "{print $0;exit} END{while((getline x)>0)print NR,FNR,x;print $0}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-207",
+      "program": "BEGIN{NR=9;FNR=8;print (getline),NR,FNR;NR=100;FNR=7;print (getline),NR,FNR}",
+      "input": "",
+      "separator": " "
+    },
+    {
+      "id": "records-208",
+      "program": "BEGIN{print (getline x),NR,FNR,FILENAME,\"[\" $0 \"]\",NF,\"[\" x \"]\";print (getline),NR,FNR,\"[\" $0 \"]\",NF} {print \"record\",NR,FNR,$0} END{print \"end\",NR,FNR,(getline y),\"[\" y \"]\",RT}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-209",
+      "program": "BEGIN{x=\"old\";while((getline x)>0)print x,NR,FNR,(x==7),(x==2);print \"eof\",x,(getline x),x}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-210",
+      "program": "{print \"before\",NR,NF,$0;print (getline x),NR,FNR,NF,$0,x;print (getline),NR,FNR,NF,$0} END{print NR,FNR,$0}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-211",
+      "program": "function read(a,n){return getline a[n]} BEGIN{while(read(a,++n)>0)print n,a[n];print n,NR,length(a)}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-212",
+      "program": "BEGIN{i=0;print (getline a[++i]),i;print (getline a[++i]),i;print (getline a[++i]),i;print length(a)}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-213",
+      "program": "BEGIN{i=0;print (getline $++i),i,$0,NF;print (getline $i),i,$0,NF}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-214",
+      "program": "BEGIN{print getline(x),x,NR;print getline 2,NR}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-215",
+      "program": "BEGIN{exit 7} END{print (getline),NR,FNR,FILENAME,$0;exit 3}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-216",
+      "program": "{print $0;exit} END{while((getline x)>0)print NR,FNR,x;print $0}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-217",
+      "program": "BEGIN{NR=9;FNR=8;print (getline),NR,FNR;NR=100;FNR=7;print (getline),NR,FNR}",
+      "input": "1 2\n",
+      "separator": " "
+    },
+    {
+      "id": "records-218",
+      "program": "BEGIN{print (getline x),NR,FNR,FILENAME,\"[\" $0 \"]\",NF,\"[\" x \"]\";print (getline),NR,FNR,\"[\" $0 \"]\",NF} {print \"record\",NR,FNR,$0} END{print \"end\",NR,FNR,(getline y),\"[\" y \"]\",RT}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-219",
+      "program": "BEGIN{x=\"old\";while((getline x)>0)print x,NR,FNR,(x==7),(x==2);print \"eof\",x,(getline x),x}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-220",
+      "program": "{print \"before\",NR,NF,$0;print (getline x),NR,FNR,NF,$0,x;print (getline),NR,FNR,NF,$0} END{print NR,FNR,$0}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-221",
+      "program": "function read(a,n){return getline a[n]} BEGIN{while(read(a,++n)>0)print n,a[n];print n,NR,length(a)}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-222",
+      "program": "BEGIN{i=0;print (getline a[++i]),i;print (getline a[++i]),i;print (getline a[++i]),i;print length(a)}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-223",
+      "program": "BEGIN{i=0;print (getline $++i),i,$0,NF;print (getline $i),i,$0,NF}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-224",
+      "program": "BEGIN{print getline(x),x,NR;print getline 2,NR}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-225",
+      "program": "BEGIN{exit 7} END{print (getline),NR,FNR,FILENAME,$0;exit 3}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-226",
+      "program": "{print $0;exit} END{while((getline x)>0)print NR,FNR,x;print $0}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-227",
+      "program": "BEGIN{NR=9;FNR=8;print (getline),NR,FNR;NR=100;FNR=7;print (getline),NR,FNR}",
+      "input": "a b\nc d\ne f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-228",
+      "program": "BEGIN{print (getline x),NR,FNR,FILENAME,\"[\" $0 \"]\",NF,\"[\" x \"]\";print (getline),NR,FNR,\"[\" $0 \"]\",NF} {print \"record\",NR,FNR,$0} END{print \"end\",NR,FNR,(getline y),\"[\" y \"]\",RT}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-229",
+      "program": "BEGIN{x=\"old\";while((getline x)>0)print x,NR,FNR,(x==7),(x==2);print \"eof\",x,(getline x),x}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-230",
+      "program": "{print \"before\",NR,NF,$0;print (getline x),NR,FNR,NF,$0,x;print (getline),NR,FNR,NF,$0} END{print NR,FNR,$0}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-231",
+      "program": "function read(a,n){return getline a[n]} BEGIN{while(read(a,++n)>0)print n,a[n];print n,NR,length(a)}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-232",
+      "program": "BEGIN{i=0;print (getline a[++i]),i;print (getline a[++i]),i;print (getline a[++i]),i;print length(a)}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-233",
+      "program": "BEGIN{i=0;print (getline $++i),i,$0,NF;print (getline $i),i,$0,NF}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-234",
+      "program": "BEGIN{print getline(x),x,NR;print getline 2,NR}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-235",
+      "program": "BEGIN{exit 7} END{print (getline),NR,FNR,FILENAME,$0;exit 3}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-236",
+      "program": "{print $0;exit} END{while((getline x)>0)print NR,FNR,x;print $0}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-237",
+      "program": "BEGIN{NR=9;FNR=8;print (getline),NR,FNR;NR=100;FNR=7;print (getline),NR,FNR}",
+      "input": "0007\n+2\nword\n",
+      "separator": " "
+    },
+    {
+      "id": "records-238",
+      "program": "BEGIN{print (getline x),NR,FNR,FILENAME,\"[\" $0 \"]\",NF,\"[\" x \"]\";print (getline),NR,FNR,\"[\" $0 \"]\",NF} {print \"record\",NR,FNR,$0} END{print \"end\",NR,FNR,(getline y),\"[\" y \"]\",RT}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-239",
+      "program": "BEGIN{x=\"old\";while((getline x)>0)print x,NR,FNR,(x==7),(x==2);print \"eof\",x,(getline x),x}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-240",
+      "program": "{print \"before\",NR,NF,$0;print (getline x),NR,FNR,NF,$0,x;print (getline),NR,FNR,NF,$0} END{print NR,FNR,$0}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-241",
+      "program": "function read(a,n){return getline a[n]} BEGIN{while(read(a,++n)>0)print n,a[n];print n,NR,length(a)}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-242",
+      "program": "BEGIN{i=0;print (getline a[++i]),i;print (getline a[++i]),i;print (getline a[++i]),i;print length(a)}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-243",
+      "program": "BEGIN{i=0;print (getline $++i),i,$0,NF;print (getline $i),i,$0,NF}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-244",
+      "program": "BEGIN{print getline(x),x,NR;print getline 2,NR}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-245",
+      "program": "BEGIN{exit 7} END{print (getline),NR,FNR,FILENAME,$0;exit 3}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-246",
+      "program": "{print $0;exit} END{while((getline x)>0)print NR,FNR,x;print $0}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-247",
+      "program": "BEGIN{NR=9;FNR=8;print (getline),NR,FNR;NR=100;FNR=7;print (getline),NR,FNR}",
+      "input": "象 🙂\n🙂 象\n",
+      "separator": " "
+    },
+    {
+      "id": "records-248",
+      "program": "BEGIN{print (getline x),NR,FNR,FILENAME,\"[\" $0 \"]\",NF,\"[\" x \"]\";print (getline),NR,FNR,\"[\" $0 \"]\",NF} {print \"record\",NR,FNR,$0} END{print \"end\",NR,FNR,(getline y),\"[\" y \"]\",RT}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-249",
+      "program": "BEGIN{x=\"old\";while((getline x)>0)print x,NR,FNR,(x==7),(x==2);print \"eof\",x,(getline x),x}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-250",
+      "program": "{print \"before\",NR,NF,$0;print (getline x),NR,FNR,NF,$0,x;print (getline),NR,FNR,NF,$0} END{print NR,FNR,$0}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-251",
+      "program": "function read(a,n){return getline a[n]} BEGIN{while(read(a,++n)>0)print n,a[n];print n,NR,length(a)}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-252",
+      "program": "BEGIN{i=0;print (getline a[++i]),i;print (getline a[++i]),i;print (getline a[++i]),i;print length(a)}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-253",
+      "program": "BEGIN{i=0;print (getline $++i),i,$0,NF;print (getline $i),i,$0,NF}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-254",
+      "program": "BEGIN{print getline(x),x,NR;print getline 2,NR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-255",
+      "program": "BEGIN{exit 7} END{print (getline),NR,FNR,FILENAME,$0;exit 3}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-256",
+      "program": "{print $0;exit} END{while((getline x)>0)print NR,FNR,x;print $0}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-257",
+      "program": "BEGIN{NR=9;FNR=8;print (getline),NR,FNR;NR=100;FNR=7;print (getline),NR,FNR}",
+      "input": "a\r\nb\rc\r",
+      "separator": " "
+    },
+    {
+      "id": "records-258",
+      "program": "BEGIN{RS=\":\";FS=\":\";while((getline)>0)printf \"[%s]<%s> %d %d\\n\",$0,RT,NF,NR}",
+      "input": "\n\na:b::c象d\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-259",
+      "program": "BEGIN{RS=\"\";FS=\":\";while((getline)>0)printf \"[%s]<%s> %d %d\\n\",$0,RT,NF,NR}",
+      "input": "\n\na:b::c象d\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-260",
+      "program": "BEGIN{RS=\"::+\";FS=\":\";while((getline)>0)printf \"[%s]<%s> %d %d\\n\",$0,RT,NF,NR}",
+      "input": "\n\na:b::c象d\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-261",
+      "program": "BEGIN{RS=\"象\";FS=\":\";while((getline)>0)printf \"[%s]<%s> %d %d\\n\",$0,RT,NF,NR}",
+      "input": "\n\na:b::c象d\n\ne:f\n",
+      "separator": " "
+    },
+    {
+      "id": "records-262",
+      "program": "BEGIN{print (0 && getline x),(1 || getline x),NR;print (1 ? getline x : 9),x,NR}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "records-263",
+      "program": "BEGIN{while(getline>0)print}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "records-264",
+      "program": "BEGIN{print (getline x) + 2,x}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "records-265",
+      "program": "BEGIN{a[1]=\"old\";print (getline a[1]),a[1];print (getline a[1]),a[1]}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "records-266",
+      "program": "BEGIN{print (getline NF),NF,$0;print (getline NR),NR,FNR;print (getline RS),RS} {print NR,$0}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "records-267",
+      "program": "function read(x){getline x;return x} BEGIN{x=\"global\";print read(),x,NR}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "records-268",
+      "program": "BEGIN{RT=\"custom\";print RT,(getline),RT;RT=\"other\";print (getline),RT}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": false
+    },
+    {
+      "id": "records-269",
+      "program": "BEGIN{RS=\"[a\"}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "records-270",
+      "program": "BEGIN{getline x++}",
+      "input": "2\n3\n:\na:b\n",
+      "separator": " ",
+      "error": true
+    },
+    {
+      "id": "records-271",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a\tb:",
+      "separator": " "
+    },
+    {
+      "id": "records-272",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a\nb:",
+      "separator": " "
+    },
+    {
+      "id": "records-273",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a\u000bb:",
+      "separator": " "
+    },
+    {
+      "id": "records-274",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a\fb:",
+      "separator": " "
+    },
+    {
+      "id": "records-275",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a\rb:",
+      "separator": " "
+    },
+    {
+      "id": "records-276",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-277",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "ab:",
+      "separator": " "
+    },
+    {
+      "id": "records-278",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-279",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-280",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-281",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-282",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-283",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-284",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-285",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-286",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a b:",
+      "separator": " "
+    },
+    {
+      "id": "records-287",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a　b:",
+      "separator": " "
+    },
+    {
+      "id": "records-288",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a​b:",
+      "separator": " "
+    },
+    {
+      "id": "records-289",
+      "program": "BEGIN{RS=\":\"} {print NF,$1,$2}",
+      "input": "a﻿b:",
+      "separator": " "
+    },
+    {
+      "id": "records-290",
+      "program": "BEGIN{$0=\"old record\";print (getline $0),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-291",
+      "program": "BEGIN{$0=\"old record\";print (getline $1),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-292",
+      "program": "BEGIN{$0=\"old record\";print (getline $2),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-293",
+      "program": "BEGIN{$0=\"old record\";print (getline $NF+1),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-294",
+      "program": "BEGIN{$0=\"old record\";print (getline $++i),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-295",
+      "program": "BEGIN{$0=\"old record\";print (getline $(1+2)),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-296",
+      "program": "BEGIN{$0=\"old record\";print (getline $(-1)),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-297",
+      "program": "BEGIN{$0=\"old record\";print (getline $10001),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-298",
+      "program": "BEGIN{$0=\"old record\";print (getline $(sqrt(-1))),$0,NF,$1,$2,i}",
+      "input": "new input value\n",
+      "separator": " "
+    },
+    {
+      "id": "records-299",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\n象🙂\n",
+      "separator": " "
+    },
+    {
+      "id": "records-300",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\r\n象棋🙂\r\n",
+      "separator": " "
+    },
+    {
+      "id": "records-301",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n\n\n象🙂",
+      "separator": " "
+    },
+    {
+      "id": "records-302",
+      "program": "BEGIN{RS=\"\"}{printf \"R[%s]T[%s] NR=%d FNR=%d NF=%d\",$0,RT,NR,FNR,NF;for(i=1;i<=NF;i++)printf \" F[%s]\",$i;print \"\"} END{printf \"END[%s] %d %d\\n\",RT,NR,FNR}",
+      "input": "\n🙂\n",
+      "separator": " "
+    }
+  ],
+  "references": [
+    {
+      "output": "END[\n] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[\n] NR=1 FNR=1 NF=1 F[a]\nEND[\n] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[\n] NR=1 FNR=1 NF=0\nEND[\n] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[\n] NR=1 FNR=1 NF=1 F[a]\nR[b\rc]T[\n] NR=2 FNR=2 NF=2 F[b] F[c]\nEND[\n] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[\n] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[\n] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[\n] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[\n] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[\n] NR=1 FNR=1 NF=0\nR[]T[\n] NR=2 FNR=2 NF=0\nR[a:b]T[\n] NR=3 FNR=3 NF=1 F[a:b]\nR[c:d]T[\n] NR=4 FNR=4 NF=1 F[c:d]\nR[]T[\n] NR=5 FNR=5 NF=0\nR[]T[\n] NR=6 FNR=6 NF=0\nR[e:f]T[\n] NR=7 FNR=7 NF=1 F[e:f]\nEND[\n] 7 7\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx]T[\n] NR=1 FNR=1 NF=1 F[aaabcxx]\nR[axx]T[\n] NR=2 FNR=2 NF=1 F[axx]\nR[bab]T[\n] NR=3 FNR=3 NF=1 F[bab]\nEND[\n] 3 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[:] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[:] NR=1 FNR=1 NF=1 F[a]\nEND[:] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[:] NR=1 FNR=1 NF=0\nEND[:] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[:] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[:] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[:] NR=1 FNR=1 NF=0\nR[a]T[:] NR=2 FNR=2 NF=1 F[a]\nR[]T[:] NR=3 FNR=3 NF=0\nR[b]T[:] NR=4 FNR=4 NF=1 F[b]\nR[]T[:] NR=5 FNR=5 NF=0\nR[]T[:] NR=6 FNR=6 NF=0\nR[c]T[:] NR=7 FNR=7 NF=1 F[c]\nEND[:] 7 7\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[:] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[:] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na]T[:] NR=1 FNR=1 NF=1 F[a]\nR[b\nc]T[:] NR=2 FNR=2 NF=2 F[b] F[c]\nR[d\n\n\ne]T[:] NR=3 FNR=3 NF=2 F[d] F[e]\nR[f\n]T[:] NR=4 FNR=4 NF=1 F[f]\nEND[:] 4 4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[:] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[:] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[|] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[|] NR=1 FNR=1 NF=1 F[a]\nEND[|] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[|] NR=1 FNR=1 NF=0\nEND[|] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[|] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[|] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[|] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[|] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[|] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[|] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[|] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[|] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[|] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[|] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[.] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[.] NR=1 FNR=1 NF=1 F[a]\nEND[.] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[.] NR=1 FNR=1 NF=0\nEND[.] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[.] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[.] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[.] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[.] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[.] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[.] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[.] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[.] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[.] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[.] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[$] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[$] NR=1 FNR=1 NF=1 F[a]\nEND[$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[$] NR=1 FNR=1 NF=0\nEND[$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[$] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[$] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[$] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[$] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[$] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[象] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[] NR=1 FNR=1 NF=1 F[a]\nEND[象] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[象] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[象] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[象] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[象] NR=1 FNR=1 NF=0\nR[a]T[象] NR=2 FNR=2 NF=1 F[a]\nR[🙂b🙂]T[] NR=3 FNR=3 NF=1 F[🙂b🙂]\nEND[象] 3 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[象] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[象] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[🙂] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[] NR=1 FNR=1 NF=1 F[a]\nEND[🙂] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[🙂] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[🙂] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[🙂] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象]T[🙂] NR=1 FNR=1 NF=1 F[象a象]\nR[b]T[🙂] NR=2 FNR=2 NF=1 F[b]\nEND[🙂] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[🙂] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[🙂] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[] NR=1 FNR=1 NF=1 F[a]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc]T[\r] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[\n\n\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nR[e:f]T[\n] NR=2 FNR=2 NF=1 F[e:f]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[::+] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[] NR=1 FNR=1 NF=1 F[a]\nEND[::+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[::+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[::+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a]T[::] NR=1 FNR=1 NF=1 F[:a]\nR[b]T[:::] NR=2 FNR=2 NF=1 F[b]\nR[c:]T[] NR=3 FNR=3 NF=1 F[c:]\nEND[::+] 3 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[::+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[::+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[::+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[[,:]+] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[] NR=1 FNR=1 NF=1 F[a]\nEND[[,:]+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[[,:]+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[[,:]+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[:] NR=1 FNR=1 NF=0\nR[a]T[::] NR=2 FNR=2 NF=1 F[a]\nR[b]T[:::] NR=3 FNR=3 NF=1 F[b]\nR[c]T[:] NR=4 FNR=4 NF=1 F[c]\nEND[[,:]+] 4 4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[[,:]+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na]T[:] NR=1 FNR=1 NF=1 F[a]\nR[b\nc]T[:] NR=2 FNR=2 NF=2 F[b] F[c]\nR[d\n\n\ne]T[:] NR=3 FNR=3 NF=2 F[d] F[e]\nR[f\n]T[] NR=4 FNR=4 NF=1 F[f]\nEND[[,:]+] 4 4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[[,:]+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[x*] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[] NR=1 FNR=1 NF=1 F[a]\nEND[x*] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[x*] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[x*] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[x*] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[x*] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[x*] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[x*] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[^a] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nEND[^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nR[\r\nb\rc\r]T[] NR=2 FNR=2 NF=2 F[b] F[c]\nEND[^a] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nR[]T[a] NR=2 FNR=2 NF=0\nR[]T[a] NR=3 FNR=3 NF=0\nR[bcxx\naxx\nbab]T[] NR=4 FNR=4 NF=3 F[bcxx] F[axx] F[bab]\nEND[^a] 4 4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[a|ab] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nEND[a|ab] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[a|ab] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nR[\r\nb\rc\r]T[] NR=2 FNR=2 NF=2 F[b] F[c]\nEND[a|ab] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:]T[a] NR=1 FNR=1 NF=1 F[:]\nR[::b:::c:]T[] NR=2 FNR=2 NF=1 F[::b:::c:]\nEND[a|ab] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象]T[a] NR=1 FNR=1 NF=1 F[象]\nR[象🙂b🙂]T[] NR=2 FNR=2 NF=1 F[象🙂b🙂]\nEND[a|ab] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\n]T[a] NR=1 FNR=1 NF=0\nR[:b\nc:d\n\n\ne:f\n]T[] NR=2 FNR=2 NF=3 F[:b] F[c:d] F[e:f]\nEND[a|ab] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nR[]T[a] NR=2 FNR=2 NF=0\nR[]T[ab] NR=3 FNR=3 NF=0\nR[cxx\n]T[a] NR=4 FNR=4 NF=1 F[cxx]\nR[xx\nb]T[ab] NR=5 FNR=5 NF=2 F[xx] F[b]\nEND[a|ab] 5 5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[ab|a] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nEND[ab|a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[ab|a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nR[\r\nb\rc\r]T[] NR=2 FNR=2 NF=2 F[b] F[c]\nEND[ab|a] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:]T[a] NR=1 FNR=1 NF=1 F[:]\nR[::b:::c:]T[] NR=2 FNR=2 NF=1 F[::b:::c:]\nEND[ab|a] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象]T[a] NR=1 FNR=1 NF=1 F[象]\nR[象🙂b🙂]T[] NR=2 FNR=2 NF=1 F[象🙂b🙂]\nEND[ab|a] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\n]T[a] NR=1 FNR=1 NF=0\nR[:b\nc:d\n\n\ne:f\n]T[] NR=2 FNR=2 NF=3 F[:b] F[c:d] F[e:f]\nEND[ab|a] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nR[]T[a] NR=2 FNR=2 NF=0\nR[]T[ab] NR=3 FNR=3 NF=0\nR[cxx\n]T[a] NR=4 FNR=4 NF=1 F[cxx]\nR[xx\nb]T[ab] NR=5 FNR=5 NF=2 F[xx] F[b]\nEND[ab|a] 5 5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[x|$] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[] NR=1 FNR=1 NF=1 F[a]\nEND[x|$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[x|$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[x|$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[x|$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[x|$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[x|$] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabc]T[x] NR=1 FNR=1 NF=1 F[aaabc]\nR[]T[x] NR=2 FNR=2 NF=0\nR[\na]T[x] NR=3 FNR=3 NF=1 F[a]\nR[]T[x] NR=4 FNR=4 NF=0\nR[\nbab]T[] NR=5 FNR=5 NF=1 F[bab]\nEND[x|$] 5 5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[(?m)^a] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nEND[(?m)^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[(?m)^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nR[\r\nb\rc\r]T[] NR=2 FNR=2 NF=2 F[b] F[c]\nEND[(?m)^a] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[(?m)^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[(?m)^a] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\n]T[a] NR=1 FNR=1 NF=0\nR[:b\nc:d\n\n\ne:f\n]T[] NR=2 FNR=2 NF=3 F[:b] F[c:d] F[e:f]\nEND[(?m)^a] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nR[]T[a] NR=2 FNR=2 NF=0\nR[]T[a] NR=3 FNR=3 NF=0\nR[bcxx\n]T[a] NR=4 FNR=4 NF=1 F[bcxx]\nR[xx\nbab]T[] NR=5 FNR=5 NF=2 F[xx] F[bab]\nEND[(?m)^a] 5 5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[(?-s).+] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a] NR=1 FNR=1 NF=0\nEND[(?-s).+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[(?-s).+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[a\r] NR=1 FNR=1 NF=0\nR[\n]T[b\rc\r] NR=2 FNR=2 NF=0\nEND[(?-s).+] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[:a::b:::c:] NR=1 FNR=1 NF=0\nEND[(?-s).+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[象a象🙂b🙂] NR=1 FNR=1 NF=0\nEND[(?-s).+] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\n]T[a:b] NR=1 FNR=1 NF=0\nR[\n]T[c:d] NR=2 FNR=2 NF=0\nR[\n\n\n]T[e:f] NR=3 FNR=3 NF=0\nR[\n]T[] NR=4 FNR=4 NF=0\nEND[(?-s).+] 4 4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[]T[aaabcxx] NR=1 FNR=1 NF=0\nR[\n]T[axx] NR=2 FNR=2 NF=0\nR[\n]T[bab] NR=3 FNR=3 NF=0\nEND[(?-s).+] 3 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "END[\\bxx\\b] 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a]T[] NR=1 FNR=1 NF=1 F[a]\nEND[\\bxx\\b] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n]T[] NR=1 FNR=1 NF=0\nEND[\\bxx\\b] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a\r\nb\rc\r]T[] NR=1 FNR=1 NF=3 F[a] F[b] F[c]\nEND[\\bxx\\b] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[:a::b:::c:]T[] NR=1 FNR=1 NF=1 F[:a::b:::c:]\nEND[\\bxx\\b] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a象🙂b🙂]T[] NR=1 FNR=1 NF=1 F[象a象🙂b🙂]\nEND[\\bxx\\b] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[\n\na:b\nc:d\n\n\ne:f\n]T[] NR=1 FNR=1 NF=3 F[a:b] F[c:d] F[e:f]\nEND[\\bxx\\b] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[aaabcxx\naxx\nbab]T[] NR=1 FNR=1 NF=3 F[aaabcxx] F[axx] F[bab]\nEND[\\bxx\\b] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[:d\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[\n\n\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nR[e:f]T[\n] NR=2 FNR=2 NF=1 F[e:f]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\r\nc:d]T[\n\r\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nR[x]T[\r\n] NR=2 FNR=2 NF=1 F[x]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a\n象b]T[\n\n] NR=1 FNR=1 NF=2 F[象a] F[象b]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[:d\n] NR=1 FNR=1 NF=4 F[a] F[b] F[c] F[d]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[\n\n\n] NR=1 FNR=1 NF=4 F[a] F[b] F[c] F[d]\nR[e:f]T[\n] NR=2 FNR=2 NF=2 F[e] F[f]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\r\nc:d]T[\n\r\n] NR=1 FNR=1 NF=4 F[a] F[b] F[c] F[d]\nR[x]T[\r\n] NR=2 FNR=2 NF=1 F[x]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a\n象b]T[\n\n] NR=1 FNR=1 NF=2 F[象a] F[象b]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[:d\n] NR=1 FNR=1 NF=7 F[a] F[:] F[b] F[\n] F[c] F[:] F[d]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[\n\n\n] NR=1 FNR=1 NF=7 F[a] F[:] F[b] F[\n] F[c] F[:] F[d]\nR[e:f]T[\n] NR=2 FNR=2 NF=3 F[e] F[:] F[f]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\r\nc:d]T[\n\r\n] NR=1 FNR=1 NF=8 F[a] F[:] F[b] F[\r] F[\n] F[c] F[:] F[d]\nR[x]T[\r\n] NR=2 FNR=2 NF=1 F[x]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a\n象b]T[\n\n] NR=1 FNR=1 NF=5 F[象] F[a] F[\n] F[象] F[b]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[:d\n] NR=1 FNR=1 NF=3 F[a] F[b\nc] F[d]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[\n\n\n] NR=1 FNR=1 NF=3 F[a] F[b\nc] F[d]\nR[e:f]T[\n] NR=2 FNR=2 NF=2 F[e] F[f]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\r\nc:d]T[\n\r\n] NR=1 FNR=1 NF=3 F[a] F[b\r\nc] F[d]\nR[x]T[\r\n] NR=2 FNR=2 NF=1 F[x]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a\n象b]T[\n\n] NR=1 FNR=1 NF=1 F[象a\n象b]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[:d\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[\n\n\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nR[e:f]T[\n] NR=2 FNR=2 NF=1 F[e:f]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\r\nc:d]T[\n\r\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nR[x]T[\r\n] NR=2 FNR=2 NF=1 F[x]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a\n象b]T[\n\n] NR=1 FNR=1 NF=2 F[象a] F[象b]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[:d\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\nc:d]T[\n\n\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nR[e:f]T[\n] NR=2 FNR=2 NF=1 F[e:f]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[a:b\r\nc:d]T[\n\r\n] NR=1 FNR=1 NF=2 F[a:b] F[c:d]\nR[x]T[\r\n] NR=2 FNR=2 NF=1 F[x]\nEND[] 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象a\n象b]T[\n\n] NR=1 FNR=1 NF=4 F[] F[a] F[] F[b]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx]<\n> 1\n[d]<\n> 1\n[]<\n> 0\n[ef象gh]<\n> 1\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx]<\n> 1\n[d]<:> 1\n[]<:> 0\n[ef象gh]<:> 1\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx]<\n> 1\n[d]<> 1\n[]<> 0\n[ef象gh]<> 1\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx]<\n> 1\n[d]<x+> 1\n[]<x+> 0\n[ef象gh]<x+> 1\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx]<\n> 1\n[d]<象> 1\n[]<象> 0\n[ef象gh]<象> 1\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b]<\n> 1\n[]<\n> 0\n[cx\nd\n\nef象gh\n]<\n> 3\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b]<:> 1\n[]<:> 0\n[cx\nd\n\nef象gh\n]<:> 3\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b]<> 1\n[]<> 0\n[cx\nd\n\nef象gh\n]<> 3\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b]<x+> 1\n[]<x+> 0\n[cx\nd\n\nef象gh\n]<x+> 3\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b]<象> 1\n[]<象> 0\n[cx\nd\n\nef象gh\n]<象> 3\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd]<\n\n> 2\n[ef象gh]<\n> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd]<\n\n> 2\n[ef象gh]<\n> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd]<\n\n> 2\n[ef象gh]<\n> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd]<\n\n> 2\n[ef象gh]<\n> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd]<\n\n> 2\n[ef象gh]<\n> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b]<::> 1\n[cx]<\n> 1\n[d]<\n> 1\n[]<\n> 0\n[ef象gh]<\n> 1\n5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b]<::> 1\n[cx\nd\n\nef象gh\n]<> 3\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b]<::> 1\n[cx\nd\n\nef象gh\n]<> 3\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b]<::> 1\n[c]<x> 1\n[\nd\n\nef象gh\n]<> 2\n3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b]<::> 1\n[cx\nd\n\nef]<象> 3\n[gh\n]<> 1\n3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b::cx]<\n> 1\n[d]<\n> 1\n[]<\n> 0\n[ef象gh]<\n> 1\n5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b]<:> 1\n[]<:> 0\n[cx\nd\n\nef象gh\n]<> 3\n4\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b::cx\nd\n\nef象gh\n]<> 3\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b::c]<x> 1\n[\nd\n\nef象gh\n]<> 2\n3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a]<:> 1\n[b::cx\nd\n\nef]<象> 3\n[gh\n]<> 1\n3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd\n\nef]<象> 3\n[gh]<\n> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd\n\nef]<象> 3\n[gh\n]<> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd\n\nef]<象> 3\n[gh\n]<> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd\n\nef]<象> 3\n[gh\n]<> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::cx\nd\n\nef]<象> 3\n[gh\n]<> 1\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 0 - [] 0 []\n0 0 0 [] 0\nend 0 0 0 [] \n\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "eof old 0 old\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 0 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 1\n0 2\n0 3\n0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 1  0\n0 1  0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0  0\n02 0\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 0 0 - \n",
+      "exit_status": 3,
+      "error": ""
+    },
+    {
+      "output": "\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 9 0\n0 100 7\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - [] 0 [1 2]\n0 1 1 [] 0\nend 1 1 0 [] \n\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 2 1 1 0 0\neof 1 2 0 1 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "before 1 2 1 2\n0 1 1 2 1 2 \n0 1 1 2 1 2\n1 1 1 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 2\n2 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n0 2\n0 3\n1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 2 2\n0 1 1 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1  1\n02 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - 1 2\n",
+      "exit_status": 3,
+      "error": ""
+    },
+    {
+      "output": "1 2\n1 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 10 1\n0 100 7\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - [] 0 [a b]\n1 2 2 [c d] 2\nrecord 3 3 e f\nend 3 3 0 [] \n\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "a b 1 1 0 0\nc d 2 2 0 0\ne f 3 3 0 0\neof e f 0 e f\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "before 1 2 a b\n1 2 2 2 a b c d\n1 3 3 2 e f\n3 3 e f\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 a b\n2 c d\n3 e f\n4 3 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n1 2\n1 3\n3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 a b 2\n1 1 c d 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1  1\n12 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - a b\n",
+      "exit_status": 3,
+      "error": ""
+    },
+    {
+      "output": "a b\n2 2 c d\n3 3 e f\na b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 10 1\n1 101 8\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - [] 0 [0007]\n1 2 2 [+2] 1\nrecord 3 3 word\nend 3 3 0 [] \n\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0007 1 1 1 0\n+2 2 2 0 1\nword 3 3 0 0\neof word 0 word\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "before 1 1 0007\n1 2 2 1 0007 +2\n1 3 3 1 word\n3 3 word\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 0007\n2 +2\n3 word\n4 3 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n1 2\n1 3\n3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 0007 1\n1 1 +2 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1  1\n12 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - 0007\n",
+      "exit_status": 3,
+      "error": ""
+    },
+    {
+      "output": "0007\n2 2 +2\n3 3 word\n0007\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 10 1\n1 101 8\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - [] 0 [象 🙂]\n1 2 2 [🙂 象] 2\nend 2 2 0 [] \n\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "象 🙂 1 1 0 0\n🙂 象 2 2 0 0\neof 🙂 象 0 🙂 象\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "before 1 2 象 🙂\n1 2 2 2 象 🙂 🙂 象\n0 2 2 2 象 🙂\n2 2 象 🙂\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 象 🙂\n2 🙂 象\n3 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n1 2\n0 3\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 象 🙂 2\n1 1 🙂 象 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1  1\n12 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - 象 🙂\n",
+      "exit_status": 3,
+      "error": ""
+    },
+    {
+      "output": "象 🙂\n2 2 🙂 象\n象 🙂\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 10 1\n1 101 8\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - [] 0 [a]\n1 2 2 [b\rc] 2\nend 2 2 0 [] \n\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "a 1 1 0 0\nb\rc 2 2 0 0\neof b\rc 0 b\rc\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "before 1 1 a\n1 2 2 1 a b\rc\n0 2 2 1 a\n2 2 a\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 a\n2 b\rc\n3 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1\n1 2\n0 3\n2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 a 1\n1 1 b\rc 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1  1\n12 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 1 1 - a\n",
+      "exit_status": 3,
+      "error": ""
+    },
+    {
+      "output": "a\n2 2 b\rc\na\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 10 1\n1 101 8\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[\n\na]<:> 1 1\n[b]<:> 1 2\n[]<:> 0 3\n[c象d\n\ne]<:> 1 4\n[f\n]<:> 1 5\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[a:b::c象d]<\n\n> 4 1\n[e:f]<\n> 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[\n\na:b]<::> 2 1\n[c象d\n\ne:f\n]<> 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "[\n\na:b::c]<象> 4 1\n[d\n\ne:f\n]<> 2 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "0 1 0\n1 2 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2\n3\n:\na:b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "3 2\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 2\n1 3\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 2  \n1 3 2\n1 :\n5 a:b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 global 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "custom 1 \n\n1 \n\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "invalid regex \"[a\": error parsing regexp: missing closing ]: `[a)`\n"
+    },
+    {
+      "output": "",
+      "exit_status": 1,
+      "error": "<cmdline>:1:18: expected lvalue after ++\nBEGIN{getline x++}\n                 ^\n"
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 a b\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 a​b \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 a﻿b \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 new input value 3 new input \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 new input value 3 new input \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 new input value 3 new input \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "2 new input value 3 new input \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 new input value 3 new input 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 new input value 3 new input \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 new input value 3 new input \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 new input value 3 new input \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "1 new input value 3 new input \n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象🙂]T[��\n] NR=1 FNR=1 NF=1 F[象🙂]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象棋🙂]T[��\r\n] NR=1 FNR=1 NF=1 F[象棋🙂]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[象🙂]T[���] NR=1 FNR=1 NF=1 F[象🙂]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    },
+    {
+      "output": "R[🙂]T[�\n] NR=1 FNR=1 NF=1 F[🙂]\nEND[] 1 1\n",
+      "exit_status": 0,
+      "error": ""
+    }
+  ]
+}

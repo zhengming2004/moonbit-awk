@@ -9,6 +9,9 @@ pkgtype(kind: "executable")
 
 options(
   link: {
-    "js": { "exports": [ "run", "execute", "session_json" ], "format": "esm" },
+    "js": {
+      "exports": [ "run", "execute", "session_json", "host_run_json" ],
+      "format": "esm",
+    },
   },
 )

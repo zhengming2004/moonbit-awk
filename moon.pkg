@@ -2,4 +2,5 @@ import {
   "moonbitlang/core/string" @strconv,
   "moonbitlang/core/math",
   "moonbitlang/core/bigint",
+  "moonbitlang/core/encoding/utf8",
 }

@@ -182,30 +182,33 @@ pub fn run_with_status(
   if input.length() > 1000000 {
     raise Invalid("input limit")
   }
-  let session = new_session(program, separator~, step_limit~, clock_seconds~)
-  session.begin()
-  if !session.is_stopped() && session.needs_input() {
-    session.begin_file("-")
-    let lines = input.split("\n").collect()
-    let count = if input.is_empty() {
-      0
-    } else if input.has_suffix("\n") {
-      lines.length() - 1
-    } else {
-      lines.length()
-    }
-    for i in 0..<count {
-      let line = lines[i].to_owned()
-      session.feed(
-        if line.has_suffix("\r") {
-          line[:line.length() - 1].to_owned()
-        } else {
-          line
-        },
-      )
-      if session.is_stopped() || session.should_skip_file() {
-        break
+  let chars = input.to_array()
+  let position = Ref(0)
+  let session = new_session(
+    program,
+    separator~,
+    step_limit~,
+    clock_seconds~,
+    input=Some(request => {
+      match request {
+        Open(_) | Close => Ready
+        Read =>
+          if position.val == chars.length() {
+            End
+          } else {
+            let end = (position.val + 32768).min(chars.length())
+            let text = String::from_array(chars[position.val:end])
+            position.val = end
+            Chunk(text)
+          }
       }
+    }),
+  )
+  defer session.close_input()
+  session.begin()
+  if session.needs_input() {
+    while session.advance() {
+      ()
     }
   }
   session.finish()

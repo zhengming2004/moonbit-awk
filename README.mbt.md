@@ -10,4 +10,4 @@ test "literal separator retains empty columns" {
 }
 ```
 
-0.4 已增加正则、用户函数、printf/sprintf、Session API 和多文件流式宿主；RS/getline/重定向、完整 Unicode 正则及 CSV/TSV 模式仍未完成。
+0.5 增加 RS/RT、无重定向 getline 和共享主输入游标，保留正则、用户函数、printf/sprintf 与多文件流式宿主。重定向 getline、文件/管道、完整 Unicode 正则及 CSV/TSV 模式仍未完成。

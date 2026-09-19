@@ -89,6 +89,33 @@ fn evaluate(expr : Expr, st : State) -> Value raise {
     st.eval_depth -= 1
   }
   let result = match expr {
+    Getline(target) => {
+      let location = match target {
+        // GoAWK 1.32 evaluates this address but its GetlineField instruction
+        // replaces $0 for every field number. Keep that pinned profile explicit.
+        Some(Field(index)) => {
+          ignore(evaluate(index, st))
+          Some(FieldSlot(0))
+        }
+        Some(e) => Some(slot(e, st))
+        None => None
+      }
+      try {
+        match st.take_input() {
+          None => Number(0.0)
+          Some(text) => {
+            match location {
+              Some(FieldSlot(_)) | None => st.set_record(text)
+              Some(location) => st.write(location, input_value(text))
+            }
+            Number(1.0)
+          }
+        }
+      } catch {
+        InputFailure(_) => Number(-1.0)
+        e => raise e
+      }
+    }
     Literal(v) => v
     RegexLiteral(pattern) =>
       boolean(

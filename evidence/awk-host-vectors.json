@@ -327,6 +327,255 @@
       ],
       "input": "",
       "error": true
+    },
+    {
+      "id": "host-37",
+      "args": [
+        "BEGIN{while((getline x)>0)print FILENAME,FNR,NR,x} END{print \"end\",NR}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-38",
+      "args": [
+        "BEGIN{print (getline),FILENAME,FNR,NR,$0} {print \"rule\",FILENAME,FNR,NR,$0;print (getline x),FILENAME,FNR,NR,x} END{print $0,NR}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-39",
+      "args": [
+        "function read(x){print (getline x),x} BEGIN{x=\"global\";read(\"local\");print x} {print x,$0}",
+        "x=changed",
+        "a.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-40",
+      "args": [
+        "BEGIN{print (getline),$0;ARGV[2]=\"b.txt\";ARGC=3} {print FILENAME,FNR,NR,$0}",
+        "a.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-41",
+      "args": [
+        "BEGIN{while((getline x)>0)print x;ARGV[ARGC++]=\"b.txt\";print (getline x),FILENAME,FNR,NR,x} END{print NR}",
+        "a.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-42",
+      "args": [
+        "BEGIN{print (getline x),x,FILENAME;print (getline x),x,FILENAME} END{print NR}",
+        "missing.txt"
+      ],
+      "input": "fallback stdin\n"
+    },
+    {
+      "id": "host-43",
+      "args": [
+        "BEGIN{print (getline x),x,FILENAME;print (getline x),x,FILENAME} END{print NR}",
+        "missing.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-44",
+      "args": [
+        "BEGIN{print (getline x),x,FILENAME} {print} END{print NR}",
+        "missing.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-45",
+      "args": [
+        "{print FILENAME,$0;getline x;print FILENAME,x;nextfile} END{print NR}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-46",
+      "args": [
+        "{print FILENAME,$0;getline;getline;print FILENAME,$0;nextfile} END{print NR}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-47",
+      "args": [
+        "BEGIN{exit 4} END{while((getline x)>0)print FILENAME,FNR,NR,x}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-48",
+      "args": [
+        "{print $0;exit} END{while((getline x)>0)print FILENAME,FNR,NR,x}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-49",
+      "args": [
+        "BEGIN{RS=\":\"} {print FILENAME,FNR,NR,\"[\" $0 \"]\",RT}",
+        "records.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-50",
+      "args": [
+        "BEGIN{RS=\"\";FS=\":\"} {printf \"[%s]<%s> %d %d\n\",$0,RT,NF,NR}",
+        "paragraphs.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-51",
+      "args": [
+        "BEGIN{RS=\"END\"} {print length($0),RT}",
+        "boundary.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-52",
+      "args": [
+        "BEGIN{RS=\"END\";while((getline x)>0)print length(x),RT} END{print NR}",
+        "boundary.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-53",
+      "args": [
+        "{print length($0),$2}",
+        "unicode-boundary.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-54",
+      "args": [
+        "BEGIN{while((getline x)>0)n++} END{print n,NR,FNR}",
+        "large.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-55",
+      "args": [
+        "BEGIN{while((getline)>0)print} END{print NR}",
+        "large.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-56",
+      "args": [
+        "BEGIN{RS=\":\";while((getline x)>0)n++} END{print n,NR}",
+        "large-records.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-57",
+      "args": [
+        "BEGIN{RS=\"\n\"} {print FILENAME,FNR,NR,NF;RS=\":\"}",
+        "a.txt",
+        "records.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-58",
+      "args": [
+        "{print FILENAME,FNR,NR,NF}",
+        "RS=:",
+        "records.txt",
+        "RS=\n",
+        "a.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-59",
+      "args": [
+        "BEGIN{while((getline x)>0)print FILENAME,FNR,NR,x}",
+        "empty.txt",
+        "a.txt",
+        "empty.txt",
+        "b.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-60",
+      "args": [
+        "BEGIN{while((getline x)>0)print FILENAME,FNR,NR,x}",
+        "-",
+        "a.txt",
+        "-"
+      ],
+      "input": "one\ntwo\n"
+    },
+    {
+      "id": "host-61",
+      "args": [
+        "BEGIN{while((getline x)>0){print x;if(NR==2)print 1/zero}} END{print \"bad\"}",
+        "a.txt",
+        "b.txt"
+      ],
+      "input": "",
+      "error": true
+    },
+    {
+      "id": "host-62",
+      "args": [
+        "{print FILENAME,FNR,NR,NF}",
+        "RS=:",
+        "records.txt",
+        "RS=\\n",
+        "a.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-63",
+      "args": [
+        "BEGIN{print (getline x),x,y}",
+        "y=first\nsecond",
+        "a.txt"
+      ],
+      "input": ""
+    },
+    {
+      "id": "host-64",
+      "args": [
+        "{print length($0),NF}",
+        "unicode-carry.txt"
+      ],
+      "input": ""
     }
   ],
   "references": [
@@ -625,6 +874,230 @@
       "outputLength": 0,
       "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "hasError": true
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a.txt 1 1 a 2\na.txt 2 2 b 3\nb.txt 1 3 c 4\nb.txt 2 4 d 5\nend 4\n",
+      "outputLength": 62,
+      "outputSha256": "b76a91eef5f6ce8b4634f5b8be7881af5b045539bfaf9e3bc9f694eb8b247824",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "1 a.txt 1 1 a 2\nrule a.txt 2 2 b 3\n1 b.txt 1 3 c 4\nrule b.txt 2 4 d 5\n0 b.txt 2 4 c 4\nd 5 4\n",
+      "outputLength": 92,
+      "outputSha256": "a08fc5ec25a38f60099b275022a099485f76ad1bc90ebcf10e3af95f1c3b1478",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "1 a 2\nchanged\nchanged b 3\n",
+      "outputLength": 26,
+      "outputSha256": "73e6138625ed17a3014acf2f9461d0f6fe9d483bbbf29d89e071e52d02c2b0f8",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "1 a 2\na.txt 2 2 b 3\nb.txt 1 3 c 4\nb.txt 2 4 d 5\n",
+      "outputLength": 48,
+      "outputSha256": "614f194eae7513c7eb024c73bdc7f650b5e699320257c7c7dae091108e03d227",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a 2\nb 3\n1 b.txt 1 3 c 4\n4\n",
+      "outputLength": 26,
+      "outputSha256": "595a348f1dc97cda5653be85c157ccf2ea045414a6412f6800fefdde628b64e9",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "-1  \n1 fallback stdin -\n1\n",
+      "outputLength": 26,
+      "outputSha256": "f650befc539381b97b2a3abfe37257479fdd8d96f93395cfc304bb87a21e7a5e",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "-1  \n1 c 4 b.txt\n2\n",
+      "outputLength": 19,
+      "outputSha256": "b4efdbde8a3c2f3f60710effed3928fc736ab46d4a40d8df4fa3c51cf315a84e",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "-1  \nc 4\nd 5\n2\n",
+      "outputLength": 15,
+      "outputSha256": "970d5c045176ce25882c4e21ac72931030eb15df04f5d02e3162fe8a495d24af",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a.txt a 2\na.txt b 3\nb.txt c 4\nb.txt d 5\n4\n",
+      "outputLength": 42,
+      "outputSha256": "e18e3aa45bd9ece8b524ff3a36c424891d6bfbf77f1fc254b460fa54286b2a28",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a.txt a 2\nb.txt c 4\n3\n",
+      "outputLength": 22,
+      "outputSha256": "d70edb1bbd5b2de872e5160f9b2a46ad7ca050960530175b71160c751d8eb073",
+      "hasError": false
+    },
+    {
+      "status": 4,
+      "nativeStatus": 4,
+      "output": "a.txt 1 1 a 2\na.txt 2 2 b 3\nb.txt 1 3 c 4\nb.txt 2 4 d 5\n",
+      "outputLength": 56,
+      "outputSha256": "d317ed5dd5971b4f4571150c948cb458a1cc59a129038b12d0a08aeac1e09a4e",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a 2\na.txt 2 2 b 3\nb.txt 1 3 c 4\nb.txt 2 4 d 5\n",
+      "outputLength": 46,
+      "outputSha256": "e8b673702d297ff5dbb00cf879b8dfbf712c43020576a6374198fc00f82eab63",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "records.txt 1 1 [] :\nrecords.txt 2 2 [a] :\nrecords.txt 3 3 [] :\nrecords.txt 4 4 [b] :\nrecords.txt 5 5 [c] :\nb.txt 1 6 [c 4\nd 5\n] :\n",
+      "outputLength": 131,
+      "outputSha256": "4ebee09746cdcc4519f37cf4d9b4a00a9111407eedd220a090627cb552cbcc53",
+      "hasError": false
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "",
+      "outputLength": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hasError": true
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "65534 END\n4 END\n",
+      "outputLength": 16,
+      "outputSha256": "10d4b63744b2ffc006e67374d7c4f7816702fb4f100d95025e0da7e21cbbd85c",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "65534 END\n4 END\n2\n",
+      "outputLength": 18,
+      "outputSha256": "0f278101d102a6dbed19575851235c954285893ad6d33f8037279b8ebcd8979e",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "65539 3\n",
+      "outputLength": 8,
+      "outputSha256": "9788ec70866c27e3581a96c4c36a180528450b99431896e50f0a9a7f4cb79f53",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "600000 600000 600000\n",
+      "outputLength": 21,
+      "outputSha256": "88024a00e473dc73e2cdf99be523ce7fa2715a111c650e673e1642eaf89d0a67",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": null,
+      "outputLength": 4800007,
+      "outputSha256": "a187e36fc60d10527d7962012853f86eaead5a48bbfc359f43ba14218302569a",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "600000 600000\n",
+      "outputLength": 14,
+      "outputSha256": "6977283a8976c589279b28c60f61824957f17e06f54ed3c411ed4a35f5eff3fb",
+      "hasError": false
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "",
+      "outputLength": 0,
+      "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hasError": true
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "records.txt 1 1 0\nrecords.txt 2 2 1\nrecords.txt 3 3 0\nrecords.txt 4 4 1\nrecords.txt 5 5 1\na.txt 1 6 4\n",
+      "outputLength": 102,
+      "outputSha256": "f679f1b0d9f8fa56236f10c3357f01848b8ddff800377634ff8747d52e6f6e80",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "a.txt 1 1 a 2\na.txt 2 2 b 3\nb.txt 1 3 c 4\nb.txt 2 4 d 5\n",
+      "outputLength": 56,
+      "outputSha256": "d317ed5dd5971b4f4571150c948cb458a1cc59a129038b12d0a08aeac1e09a4e",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "- 1 1 one\n- 2 2 two\na.txt 1 3 a 2\na.txt 2 4 b 3\n",
+      "outputLength": 48,
+      "outputSha256": "2389cb1fb4673ef73a976ceea46fd684623c0e330912696c9297df7440f9d6d7",
+      "hasError": false
+    },
+    {
+      "status": 1,
+      "nativeStatus": 1,
+      "output": "a 2\nb 3\n",
+      "outputLength": 8,
+      "outputSha256": "8f9c2fb3d5b963b84ac14ad9af31a7fa2b9b82e610679a5f2ed161e0a2b367ea",
+      "hasError": true
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "records.txt 1 1 0\nrecords.txt 2 2 1\nrecords.txt 3 3 0\nrecords.txt 4 4 1\nrecords.txt 5 5 1\na.txt 1 6 2\na.txt 2 7 2\n",
+      "outputLength": 114,
+      "outputSha256": "40fa46f24e055693af5fdc91460e96887c252e51bd03306a9666184881d1adf3",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "1 a 2 first\n",
+      "outputLength": 12,
+      "outputSha256": "370e98723063ec0f3fc62d4578f2827f73a58cc68cca95ea03b25f2fb4804cec",
+      "hasError": false
+    },
+    {
+      "status": 0,
+      "nativeStatus": 0,
+      "output": "131072 1\n",
+      "outputLength": 9,
+      "outputSha256": "18b404afd3a18e4d1a7060312bf70c789ac597f52f98ac79086a70049dcfc18d",
+      "hasError": false
     }
   ]
 }

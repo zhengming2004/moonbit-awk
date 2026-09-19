@@ -1,6 +1,7 @@
 ///|
 pub suberror ParseError {
   Invalid(String)
+  InputFailure(String)
 } derive(Debug)
 
 ///|

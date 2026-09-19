@@ -6,7 +6,7 @@ import {
 }
 
 // Values
-pub fn new_session(String, separator? : String, variables? : Map[String, String], environment? : Map[String, String], arguments? : Array[String], step_limit? : Int, clock_seconds? : Double) -> Session raise ParseError
+pub fn new_session(String, separator? : String, variables? : Map[String, String], environment? : Map[String, String], arguments? : Array[String], step_limit? : Int, clock_seconds? : Double, input? : ((InputRequest) -> InputReply)?, output_sink? : ((String) -> String?)?) -> Session raise ParseError
 
 pub fn run(String, String, separator? : String) -> String raise ParseError
 
@@ -15,9 +15,23 @@ pub fn run_with_status(String, String, separator? : String, step_limit? : Int, c
 // Errors
 pub suberror ParseError {
   Invalid(String)
+  InputFailure(String)
 } derive(@debug.Debug)
 
 // Types and methods
+pub(all) enum InputReply {
+  Ready
+  Chunk(String)
+  End
+  Failed(String)
+}
+
+pub(all) enum InputRequest {
+  Open(String)
+  Read
+  Close
+}
+
 pub(all) struct RunResult {
   output : String
   exit_status : Int
@@ -27,11 +41,13 @@ pub(all) struct RunResult {
 pub struct Session {
   // private fields
 }
+pub fn Session::advance(Self) -> Bool raise ParseError
 pub fn Session::argument(Self, Int) -> String raise ParseError
 pub fn Session::argument_count(Self) -> Int raise ParseError
 pub fn Session::assign(Self, String, String) -> Unit raise ParseError
 pub fn Session::begin(Self) -> Unit raise ParseError
 pub fn Session::begin_file(Self, String) -> Unit raise ParseError
+pub fn Session::close_input(Self) -> Unit
 pub fn Session::drain(Self) -> String
 pub fn Session::exit_status(Self) -> Int
 pub fn Session::feed(Self, String) -> Unit raise ParseError

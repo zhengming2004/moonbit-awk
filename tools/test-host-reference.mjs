@@ -47,6 +47,35 @@ add(['-f','-'], 'BEGIN{print "source from stdin"}\n');
 add(['--','BEGIN{print "ok"}']);
 add(['-v','bad','BEGIN{}'], '', {error:true});
 add(['-f','absent.awk'], '', {error:true});
+
+add(['BEGIN{while((getline x)>0)print FILENAME,FNR,NR,x} END{print "end",NR}', 'a.txt','b.txt']);
+add(['BEGIN{print (getline),FILENAME,FNR,NR,$0} {print "rule",FILENAME,FNR,NR,$0;print (getline x),FILENAME,FNR,NR,x} END{print $0,NR}', 'a.txt','b.txt']);
+add(['function read(x){print (getline x),x} BEGIN{x="global";read("local");print x} {print x,$0}', 'x=changed','a.txt']);
+add(['BEGIN{print (getline),$0;ARGV[2]="b.txt";ARGC=3} {print FILENAME,FNR,NR,$0}', 'a.txt']);
+add(['BEGIN{while((getline x)>0)print x;ARGV[ARGC++]="b.txt";print (getline x),FILENAME,FNR,NR,x} END{print NR}', 'a.txt']);
+add(['BEGIN{print (getline x),x,FILENAME;print (getline x),x,FILENAME} END{print NR}', 'missing.txt'], 'fallback stdin\n');
+add(['BEGIN{print (getline x),x,FILENAME;print (getline x),x,FILENAME} END{print NR}', 'missing.txt','b.txt']);
+add(['BEGIN{print (getline x),x,FILENAME} {print} END{print NR}', 'missing.txt','b.txt']);
+add(['{print FILENAME,$0;getline x;print FILENAME,x;nextfile} END{print NR}', 'a.txt','b.txt']);
+add(['{print FILENAME,$0;getline;getline;print FILENAME,$0;nextfile} END{print NR}', 'a.txt','b.txt']);
+add(['BEGIN{exit 4} END{while((getline x)>0)print FILENAME,FNR,NR,x}', 'a.txt','b.txt']);
+add(['{print $0;exit} END{while((getline x)>0)print FILENAME,FNR,NR,x}', 'a.txt','b.txt']);
+add(['BEGIN{RS=":"} {print FILENAME,FNR,NR,"[" $0 "]",RT}', 'records.txt','b.txt']);
+add(['BEGIN{RS="";FS=":"} {printf "[%s]<%s> %d %d\n",$0,RT,NF,NR}', 'paragraphs.txt']);
+add(['BEGIN{RS="END"} {print length($0),RT}', 'boundary.txt']);
+add(['BEGIN{RS="END";while((getline x)>0)print length(x),RT} END{print NR}', 'boundary.txt']);
+add(['{print length($0),$2}', 'unicode-boundary.txt']);
+add(['BEGIN{while((getline x)>0)n++} END{print n,NR,FNR}', 'large.txt']);
+add(['BEGIN{while((getline)>0)print} END{print NR}', 'large.txt']);
+add(['BEGIN{RS=":";while((getline x)>0)n++} END{print n,NR}', 'large-records.txt']);
+add(['BEGIN{RS="\n"} {print FILENAME,FNR,NR,NF;RS=":"}', 'a.txt','records.txt']);
+add(['{print FILENAME,FNR,NR,NF}', 'RS=:','records.txt','RS=\n','a.txt']);
+add(['BEGIN{while((getline x)>0)print FILENAME,FNR,NR,x}', 'empty.txt','a.txt','empty.txt','b.txt']);
+add(['BEGIN{while((getline x)>0)print FILENAME,FNR,NR,x}', '-','a.txt','-'], 'one\ntwo\n');
+add(['BEGIN{while((getline x)>0){print x;if(NR==2)print 1/zero}} END{print "bad"}', 'a.txt','b.txt'], '', {error:true});
+add(['{print FILENAME,FNR,NR,NF}', 'RS=:', 'records.txt', String.raw`RS=\n`, 'a.txt']);
+add(['BEGIN{print (getline x),x,y}', 'y=first\nsecond','a.txt']);
+add(['{print length($0),NF}', 'unicode-carry.txt']);
 const golden=process.argv.includes('--golden');
 let saved,version,binarySha256,references;
 if(golden){saved=JSON.parse(fs.readFileSync(new URL('../evidence/awk-host-vectors.json',import.meta.url),'utf8'));assert.deepEqual(saved.cases,cases);({version,binarySha256,references}=saved);}
@@ -58,7 +87,7 @@ const hash=s=>createHash('sha256').update(s).digest('hex');
 const summarize=r=>({status:r.status&255,nativeStatus:r.status,output:r.stdout.length<=10000?r.stdout:null,outputLength:r.stdout.length,outputSha256:hash(r.stdout),hasError:Boolean(r.stderr)});
 const failures=[];
 try {
-  for(const [name,content] of Object.entries({'a.txt':'a 2\nb 3\n','b.txt':'c 4\nd 5\n','empty.txt':'','unicode.txt':'象棋 2\n🙂 3\n','large.txt':'value 2\n'.repeat(600000),'one.awk':'BEGIN{print "begin"}\n{sum+=$2}','two.awk':'END{print NR,sum}'}))fs.writeFileSync(path.join(folder,name),content);
+  for(const [name,content] of Object.entries({'a.txt':'a 2\nb 3\n','b.txt':'c 4\nd 5\n','empty.txt':'','unicode.txt':'象棋 2\n🙂 3\n','large.txt':'value 2\n'.repeat(600000),'one.awk':'BEGIN{print "begin"}\n{sum+=$2}','two.awk':'END{print NR,sum}', 'records.txt':':a::b:c:', 'paragraphs.txt':'\r\na:b\r\nc:d\r\n\r\ne:f\n', 'boundary.txt':'x'.repeat(65534)+'ENDlastEND', 'unicode-boundary.txt':'x'.repeat(65535)+'象🙂 3\n', 'large-records.txt':'value:'.repeat(600000), 'unicode-carry.txt':'x'.repeat(65535)+'象'+'y'.repeat(65536)+'\n'}))fs.writeFileSync(path.join(folder,name),content);
   for(let i=0;i<cases.length;i++){
     const test=cases[i], options={cwd:folder,input:test.input,encoding:'utf8',windowsHide:true,timeout:60000,maxBuffer:8*1024*1024,env:{...process.env,MOON_AWK_TEST:'fixture-value'}};
     if(!golden){const r=spawnSync(process.env.GOAWK_REFERENCE,['-c','-N','raw',...test.args],options);assert(!r.error&&!r.signal,String(r.error||r.signal));references.push(summarize(r));}

@@ -10,7 +10,7 @@ priv struct Frame {
 fn special_variable(name : String) -> Bool {
   [
     "FS", "OFS", "RS", "ORS", "NR", "FNR", "NF", "FILENAME", "OFMT", "CONVFMT", "SUBSEP",
-    "RSTART", "RLENGTH", "ARGC", "ARGV", "ENVIRON",
+    "RSTART", "RLENGTH", "RT", "ARGC", "ARGV", "ENVIRON",
   ].contains(name)
 }
 
@@ -52,6 +52,7 @@ fn validate_expr(
 ) -> Unit raise ParseError {
   match e {
     Literal(_) | RegexLiteral(_) => ()
+    Getline(target) => if target is Some(e) { validate_expr(e, program, scope) }
     Variable(name) => mark_kind(program, scope, name, 1)
     Field(e) | Unary(_, e) | Increment(e, _, _) =>
       validate_expr(e, program, scope)

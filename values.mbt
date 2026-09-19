@@ -75,6 +75,8 @@ priv struct State {
   mut random_state : Int64
   mut random_seed : Double
   clock_seconds : Double
+  input : MainInput?
+  output_sink : ((String) -> String?)?
 }
 
 ///|
@@ -164,13 +166,18 @@ fn split_fields(
     return text.to_array().map(c => input_value(c.to_string()))
   }
   if separator == " " && !is_regex {
-    text
-    .split(" ")
-    .flat_map(s => s.split("\t"))
-    .flat_map(s => s.split("\n"))
-    .filter(s => !s.is_empty())
-    .map(s => input_value(s.to_owned()))
-    .collect()
+    let chars = text.to_array()
+    let result = []
+    let mut start = 0
+    for i in 0..<=chars.length() {
+      if i == chars.length() || chars[i].is_whitespace() {
+        if i > start {
+          result.push(input_value(String::from_array(chars[start:i])))
+        }
+        start = i + 1
+      }
+    }
+    result
   } else if separator.to_array().length() == 1 && !is_regex {
     text.split(separator).map(s => input_value(s.to_owned())).collect()
   } else {
@@ -219,7 +226,20 @@ fn State::set_record(self : State, text : String) -> Unit raise ParseError {
     raise Invalid("record length budget")
   }
   self.record = text
-  let fields = split_fields(text, self.text(self.variable("FS")), self)
+  let fs = self.text(self.variable("FS"))
+  let raw = split_fields(text, fs, self)
+  let fields = if self.text(self.variable("RS")).is_empty() &&
+    fs.to_array().length() == 1 {
+    let result = []
+    for value in raw {
+      for part in value.text().split("\n") {
+        result.push(input_value(drop_record_cr(part.to_owned())))
+      }
+    }
+    result
+  } else {
+    raw
+  }
   if fields.length() > 10000 {
     raise Invalid("field count budget")
   }
@@ -287,10 +307,15 @@ fn State::write(
   self : State,
   slot : Slot,
   value : Value,
+  global? : Bool = false,
 ) -> Unit raise ParseError {
   match slot {
     VariableSlot(name) => {
-      if self.has_array(name) {
+      if (if global {
+          self.arrays.contains(name)
+        } else {
+          self.has_array(name)
+        }) {
         raise Invalid("array used as scalar: " + name)
       }
       if name == "NF" {
@@ -303,10 +328,13 @@ fn State::write(
         }
         self.rebuild()
       } else {
-        if ["RS", "ARGV", "ENVIRON"].contains(name) {
+        if ["ARGV", "ENVIRON"].contains(name) {
           raise Invalid("unsupported special variable " + name)
         }
-        match self.local_frame(name) {
+        if name == "RS" && self.text(value).to_array().length() > 1 {
+          ignore(self.regex(self.text(value)))
+        }
+        match (if global { None } else { self.local_frame(name) }) {
           Some(frame) => frame.vars[name] = value
           None =>
             self.vars[name] = if ["NR", "FNR", "ARGC", "RSTART", "RLENGTH"].contains(
@@ -335,6 +363,15 @@ fn State::write(
 
 ///|
 fn State::emit(self : State, text : String) -> Unit raise ParseError {
+  if text.length() > 1000000 {
+    raise Invalid("output length budget")
+  }
+  if self.output_sink is Some(sink) {
+    if sink(text) is Some(message) {
+      raise Invalid("output: " + message)
+    }
+    return
+  }
   if text.length() > 1000000 - self.output_size {
     raise Invalid("output length budget")
   }

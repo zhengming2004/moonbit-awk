@@ -32,6 +32,12 @@ try {
   if ($LASTEXITCODE -ne 0) {throw 'CLI test failed'}
   node tools/test-awk-cli.mjs
   if ($LASTEXITCODE -ne 0) {throw 'AWK CLI test failed'}
+  node tools/generate-record-tests.mjs --check
+  if ($LASTEXITCODE -ne 0) {throw 'record generation check failed'}
+  node tools/test-pull-host.mjs
+  if ($LASTEXITCODE -ne 0) {throw 'pull host checks failed'}
+  node tools/test-record-reference.mjs --golden
+  if ($LASTEXITCODE -ne 0) {throw 'record reference replay failed'}
   node tools/test-session.mjs
   if ($LASTEXITCODE -ne 0) {throw 'session bridge test failed'}
   node tools/test-reference.mjs --golden

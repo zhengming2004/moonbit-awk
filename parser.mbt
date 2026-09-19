@@ -12,6 +12,7 @@ priv enum Expr {
   Increment(Expr, Int, Bool)
   Conditional(Expr, Expr, Expr)
   Call(String, Array[Expr])
+  Getline(Expr?)
 }
 
 ///|
@@ -119,6 +120,22 @@ fn Cursor::expression(
     } else {
       Tuple(entries)
     }
+  } else if t.text == "getline" {
+    let next = self.peek()
+    let target = if next == "$" ||
+      (identifier(next) && !reserved(next) && !builtin_name(next)) {
+      let target = self.expression(14, depth + 1)
+      if !lvalue(target) {
+        raise Invalid("getline target must be assignable")
+      }
+      Some(target)
+    } else {
+      None
+    }
+    if self.peek() == "<" {
+      raise Invalid("redirected getline is unsupported")
+    }
+    Getline(target)
   } else if t.text == "$" {
     Field(self.expression(14, depth + 1))
   } else if ["+", "-", "!"].contains(t.text) {
@@ -173,6 +190,7 @@ fn Cursor::expression(
         op == "<string>" ||
         op == "(" ||
         op == "$" ||
+        op == "getline" ||
         (identifier(op) && !reserved(op)) ||
         (op.to_array().get(0) is Some(c) && digit(c))
       ) {

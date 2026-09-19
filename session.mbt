@@ -18,6 +18,8 @@ pub fn new_session(
   arguments? : Array[String] = ["moonbit-awk"],
   step_limit? : Int = 100000000,
   clock_seconds? : Double = 0.0,
+  input? : ((InputRequest) -> InputReply)? = None,
+  output_sink? : ((String) -> String?)? = None,
 ) -> Session raise ParseError {
   if step_limit < 1 || step_limit > 1000000000 {
     raise Invalid("step limit 1..1000000000 required")
@@ -30,6 +32,8 @@ pub fn new_session(
       "NF": Number(0.0),
       "FS": Text(separator),
       "OFS": Text(" "),
+      "RS": Text("\n"),
+      "RT": Text(""),
       "ORS": Text("\n"),
       "SUBSEP": Text("\u001c"),
       "OFMT": Text("%.6g"),
@@ -55,6 +59,19 @@ pub fn new_session(
     random_state: 1L,
     random_seed: 1.0,
     clock_seconds,
+    output_sink,
+    input: input.map(reader => {
+      reader,
+      data: [],
+      start: 0,
+      eof: false,
+      opened: false,
+      failure: None,
+      index: 1,
+      had_file: false,
+      mode: 0,
+      separator: '\n',
+    }),
   }
   for name, kind in parsed.kinds {
     if kind == 2 && !name.contains("::") {
@@ -90,10 +107,19 @@ pub fn Session::assign(
   name : String,
   text : String,
 ) -> Unit raise ParseError {
+  self.state.assign_argument(name, text)
+}
+
+///|
+fn State::assign_argument(
+  self : State,
+  name : String,
+  text : String,
+) -> Unit raise ParseError {
   if !identifier(name) ||
     reserved(name) ||
     builtin_name(name) ||
-    self.state.functions.contains(name) {
+    self.functions.contains(name) {
     raise Invalid("invalid assignment name")
   }
   if text.length() > 1000000 {
@@ -111,7 +137,7 @@ pub fn Session::assign(
       out.write_char(c)
     }
   }
-  self.state.write(VariableSlot(name), input_value(out.to_string()))
+  self.write(VariableSlot(name), input_value(out.to_string()), global=true)
 }
 
 ///|
@@ -161,6 +187,12 @@ pub fn Session::feed(self : Session, record : String) -> Unit raise ParseError {
   st.set_record(record)
   st.vars["NR"] = Number(st.variable("NR").number() + 1.0)
   st.vars["FNR"] = Number(st.variable("FNR").number() + 1.0)
+  self.process_record()
+}
+
+///|
+fn Session::process_record(self : Session) -> Unit raise ParseError {
+  let st = self.state
   for rule in self.rules {
     if rule.phase == "record" {
       match execute_record_rule(rule, st) {
@@ -242,11 +274,7 @@ pub fn Session::steps(self : Session) -> Int {
 
 ///|
 pub fn Session::argument_count(self : Session) -> Int raise ParseError {
-  let n = self.state.variable("ARGC").number()
-  if n < 0.0 || n > 100000.0 || n.is_nan() {
-    raise Invalid("ARGC out of range")
-  }
-  n.to_int()
+  self.state.argument_count()
 }
 
 ///|

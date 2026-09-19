@@ -9,3 +9,4 @@ evidence/current-validation.json
 evidence/validation-console.txt
 evidence/awk-reference-replay.json
 evidence/awk-host-replay.json
+evidence/awk-record-replay.json

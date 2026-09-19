@@ -1,14 +1,11 @@
 {
-  "utc": "2026-09-19T01:56:54.178Z",
+  "utc": "2026-09-19T01:56:24.422Z",
   "mode": "live GoAWK",
   "version": "v1.32.0",
   "binarySha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
-  "total": 65,
-  "passed": 65,
+  "total": 303,
+  "passed": 303,
   "failed": 0,
-  "engineSha256": "503e7cb721ed7a73043b552d5f18b0dbbd68bea8daba4f3be083289102727f30",
-  "cliSha256": "dc13edf9729fe0998e86c4566aa4e46a78553926f37cb38e951e1ecebdc54c6f",
-  "platform": "win32",
   "sourceSha256": {
     ".gitattributes": "968aed8752f58f3554e38c1db0b611ba4663668909552d8d17c2874ff5966312",
     ".github/workflows/ci.yml": "d031e3621ac4db4d3b46027230b4b6282bb7a5677c6b68b4ccdf17e0a3c7df06",

@@ -506,13 +506,18 @@ fn regex_word(c : Char?) -> Bool {
 }
 
 ///|
-fn regex_assert(kind : String, text : Array[Char], pos : Int) -> Bool {
-  let left = if pos > 0 { text.get(pos - 1) } else { None }
+fn regex_assert(
+  kind : String,
+  text : Array[Char],
+  pos : Int,
+  base : Int,
+) -> Bool {
+  let left = if pos > base { text.get(pos - 1) } else { None }
   let right = text.get(pos)
   match kind {
-    "line-start" => pos == 0 || left == Some('\n')
+    "line-start" => pos == base || left == Some('\n')
     "line-end" => pos == text.length() || right == Some('\n')
-    "^" | "A" => pos == 0
+    "^" | "A" => pos == base
     "$" | "z" => pos == text.length()
     "b" => regex_word(left) != regex_word(right)
     "B" => regex_word(left) == regex_word(right)
@@ -526,6 +531,7 @@ fn regex_match(
   text : Array[Char],
   from : Int,
   st : State,
+  base? : Int = 0,
 ) -> (Int, Int)? raise ParseError {
   let mut threads : Map[Int, Int] = Map([])
   let mut best : (Int, Int)? = None
@@ -562,7 +568,7 @@ fn regex_match(
           stack.push((b, start))
         }
         Assert(kind, target) =>
-          if regex_assert(kind, text, pos) {
+          if regex_assert(kind, text, pos, base) {
             stack.push((target, start))
           }
         Any(all, target) =>
