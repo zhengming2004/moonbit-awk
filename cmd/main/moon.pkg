@@ -1,5 +1,5 @@
 import {
-  "localreview/awk" @lib,
+  "zhengming2004/awk" @lib,
 }
 
 pkgtype(kind: "executable")
