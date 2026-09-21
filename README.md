@@ -1,5 +1,13 @@
 # AWK 记录处理器
 
+## 获取与验证入口
+
+公开源码：[github.com/zhengming2004/moonbit-awk](https://github.com/zhengming2004/moonbit-awk)；MoonBit 模块名为 `zhengming2004/awk`。
+
+从源码运行：`git clone https://github.com/zhengming2004/moonbit-awk.git` 后进入该目录，按下文和 [TESTING.md](TESTING.md) 安装所需工具。仓库公开不等于已在 Mooncakes 发布，不承诺 `moon add` 当前可用。
+
+查看 [GitHub Actions](https://github.com/zhengming2004/moonbit-awk/actions) 时请核对 run 的 commit SHA；历史 evidence、旧 ZIP 与本地测试不能替代当前提交的 CI 结果。下文保留各版本的验证范围和兼容性限制。
+
 MoonBit 本地候选版 0.10.0。解析、表达式、正则、格式化和执行器均为 MoonBit；Node.js 负责文件、环境变量、标准输入输出和退出码。生产运行不调用 GoAWK、GNU Awk 或其他解释器。
 
 ## 快速使用
@@ -99,4 +107,4 @@ node tools/test-host-reference.mjs
 
 0.9 验证包括 JS/Wasm-GC 各 140 组公共 API 测试；固定 GoAWK v1.32.0 的 514 个历史核心、303 个 RS/getline、65 个真实 CLI、80 个文件/管道/进程场景，共 962 项；新增 CSV 273 项中 270 一致、3 项 BOM 差异，总计 1235 项中的 1232 项一致、3 项明确差异。另有 10 个 pull 宿主检查，以及 4 个桥接检查，覆盖命令运行期间的交互输入、1.8 MB 慢速输出、UTF-8 跨块解码和 Worker 启动失败。包含 4.8 MB 输入/输出。251 个原版 CSV 程序进入 16 个双后端分组，另有 4 个 CSV 读取/会话/资源契约组。新增 417 个 Unicode 正则程序全部一致，涉及 276408 次属性谓词和 8634 对大小写输入；68 个真实 CLI/跨块读取程序一致（其中 60 个复用矩阵）。417 个原版程序进入 27 个双后端分组。新增大小写验证逐字节比较全部 1112064 个有效 Unicode 码点的 2224128 个结果，并将原版输出切为 543 个公开 API 程序、34 个双后端组；另有 58 个语境/类型程序（4 组）和 9 个真实 CLI/UTF-8 分块检查。最终记录见 evidence/string-upgrade.json。场景由本项目独立编写，并非完整上游套件。报告记录参考二进制、生成引擎与全部非 evidence 源文件 SHA-256；golden 重放与 live 结果分别保存。详见 [TESTING.md](TESTING.md)。
 
-参考 [GoAWK](https://github.com/benhoyt/goawk) 公开行为独立实现，没有复制其解释器代码；原创代码为 MIT；Unicode 数据由 Go 的 BSD-3-Clause 数据表生成，来源与许可见 vendor/go-unicode-1.26.3。没有 remote、上传、发布或比赛提交。此目录是唯一开发主仓库；旧合集 ZIP/bundle 是历史快照；0.9 使用独立本地归档。
+> 历史开发记录（以下发布/归档状态不代表当前仓库；当前入口见文首）：参考 [GoAWK](https://github.com/benhoyt/goawk) 公开行为独立实现，没有复制其解释器代码；原创代码为 MIT；Unicode 数据由 Go 的 BSD-3-Clause 数据表生成，来源与许可见 vendor/go-unicode-1.26.3。没有 remote、上传、发布或比赛提交。此目录是唯一开发主仓库；旧合集 ZIP/bundle 是历史快照；0.9 使用独立本地归档。
