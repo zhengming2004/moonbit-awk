@@ -2,6 +2,8 @@
 
 ## 获取与验证入口
 
+许可范围：原创实现使用 [MIT](LICENSE)；随包的 Go Unicode 数据及其派生表使用 [BSD-3-Clause](vendor/go-unicode-1.26.3/LICENSE)。`moon.mod` 的组合许可描述分发内容，不改变各文件原有许可。
+
 公开源码：[github.com/zhengming2004/moonbit-awk](https://github.com/zhengming2004/moonbit-awk)；MoonBit 模块名为 `zhengming2004/awk`。
 
 从源码运行：`git clone https://github.com/zhengming2004/moonbit-awk.git` 后进入该目录，按下文和 [TESTING.md](TESTING.md) 安装所需工具。仓库公开不等于已在 Mooncakes 发布，不承诺 `moon add` 当前可用。
