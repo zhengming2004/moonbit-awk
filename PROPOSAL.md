@@ -1,7 +1,7 @@
 # AWK 记录与 CSV 数据处理器 · 修订申报草稿
 
 本项目仓库：https://github.com/zhengming2004/moonbit-awk
-模块 / 本地版本：`zhengming2004/awk` / `0.10.0`；许可证：MIT。
+模块 / 本地版本：`zhengming2004/awk` / `0.10.0`；许可证：MIT AND BSD-3-Clause。
 修订状态：保留候选；本轮仅本地修订，未推送或提交表单。
 
 ## 任务与选择依据
