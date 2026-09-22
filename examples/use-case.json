@@ -1,0 +1,16 @@
+{
+  "title": "含引号 CSV 的订单汇总",
+  "scope": "原创合成订单，使用 AWK 记录语义和 CSV 读取；不是现存客户脚本。",
+  "steps": [
+    {
+      "args": [
+        "tools/awk.mjs",
+        "--csv",
+        "-f",
+        "examples/use-case/summary.awk",
+        "examples/use-case/orders.csv"
+      ]
+    }
+  ],
+  "expected": "orders=3 total=24.00；逗号位于带引号的姓名内，不增加字段数。"
+}
