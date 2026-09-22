@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-22",
+  "project": "awk",
+  "package": "zhengming2004/awk",
+  "version": "0.10.0",
+  "code_base_commit_before_materials": "5458d18d26c6f86dc9dfe1dd71538ee5afc65988",
+  "core_checks": [
+    {
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "js"
+      ],
+      "exit": 0,
+      "seconds": 20.23,
+      "log": "awk-test---target-js.log"
+    },
+    {
+      "command": [
+        "moon",
+        "test",
+        "--target",
+        "wasm-gc"
+      ],
+      "exit": 0,
+      "seconds": 16.47,
+      "log": "awk-test---target-wasm-gc.log"
+    },
+    {
+      "command": [
+        "moon",
+        "build",
+        "--target",
+        "js"
+      ],
+      "exit": 0,
+      "seconds": 1.47,
+      "log": "awk-build---target-js.log"
+    }
+  ],
+  "workflow_checks": [
+    {
+      "command": [
+        "node",
+        "tools/test-awk-cli.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.86,
+      "log": "awk-workflow-0.log"
+    }
+  ],
+  "interpretation": "真实 CLI 测试覆盖脚本参数、文件/stdin、CSV 记录处理和错误退出；支持脚本须按 README 范围选择。",
+  "limit": "不是 POSIX/GNU Awk 全兼容；参考 GoAWK 的版本特定行为和资源限制见 README。没有宣称已有企业存量脚本迁移客户。",
+  "remote_push_performed": false
+}
