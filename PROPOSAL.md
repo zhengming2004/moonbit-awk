@@ -1,7 +1,10 @@
 # AWK 记录与 CSV 数据处理器 · 修订申报草稿
 
+
+本次实质修复：嵌入式请求严格检查执行预算、会话ID和宿主回复；小数ID不再截断到其他会话，错误类型不再静默使用大默认预算。[契约与用途](docs/REQUEST-CONTRACT.md)。GoAWK参考版本为v1.32.0；当前只验证受影响的桥接/消费路径，没有重跑全部历史差分。
+
 本项目仓库：https://github.com/zhengming2004/moonbit-awk
-模块 / 本地版本：`zhengming2004/awk` / `0.10.0`；许可证：MIT AND BSD-3-Clause。
+模块 / 本地版本：`zhengming2004/awk` / `0.10.1`；许可证：MIT AND BSD-3-Clause。
 修订状态：保留候选；本轮仅本地修订，未推送或提交表单。
 
 ## 任务与选择依据

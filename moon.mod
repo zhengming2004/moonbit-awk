@@ -1,6 +1,6 @@
 name = "zhengming2004/awk"
 
-version = "0.10.0"
+version = "0.10.1"
 
 license = "MIT AND BSD-3-Clause"
 

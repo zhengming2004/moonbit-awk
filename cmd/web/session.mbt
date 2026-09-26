@@ -17,25 +17,90 @@ fn string_field(
   request : Json,
   name : String,
   default? : String = "",
-) -> String {
-  if request is Object(fields) && fields.get(name) is Some(String(s)) {
-    s
-  } else {
-    default
+  required? : Bool = false,
+) -> String raise BridgeError {
+  let fields = match request {
+    Object(fields) => fields
+    _ => raise InvalidRequest("request must be an object")
+  }
+  match fields.get(name) {
+    Some(String(s)) => s
+    None =>
+      if required {
+        raise InvalidRequest("missing string field: " + name)
+      } else {
+        default
+      }
+    _ => raise InvalidRequest("field must be a string: " + name)
   }
 }
 
 ///|
-fn string_map(request : Json, name : String) -> Map[String, String] {
+fn string_map(
+  request : Json,
+  name : String,
+) -> Map[String, String] raise BridgeError {
   let out = Map([])
-  if request is Object(fields) && fields.get(name) is Some(Object(values)) {
-    for k, v in values {
-      if v is String(s) {
-        out[k] = s
+  let fields = match request {
+    Object(fields) => fields
+    _ => raise InvalidRequest("request must be an object")
+  }
+  match fields.get(name) {
+    Some(Object(values)) =>
+      for k, v in values {
+        match v {
+          String(s) => out[k] = s
+          _ => raise InvalidRequest("map values must be strings: " + name)
+        }
       }
-    }
+    None => ()
+    _ => raise InvalidRequest("field must be an object: " + name)
   }
   out
+}
+
+///|
+fn request_integer(
+  request : Json,
+  name : String,
+  minimum : Int,
+  maximum : Int,
+  default? : Int,
+) -> Int raise BridgeError {
+  let fields = match request {
+    Object(fields) => fields
+    _ => raise InvalidRequest("request must be an object")
+  }
+  match fields.get(name) {
+    Some(Number(n, ..)) if n >= minimum.to_double() &&
+      n <= maximum.to_double() &&
+      n.floor() == n => n.to_int()
+    None =>
+      match default {
+        Some(n) => n
+        None => raise InvalidRequest("missing integer: " + name)
+      }
+    _ => raise InvalidRequest("field requires exact integer in range: " + name)
+  }
+}
+
+///|
+fn request_arguments(request : Json) -> Array[String] raise BridgeError {
+  let fields = match request {
+    Object(fields) => fields
+    _ => raise InvalidRequest("request must be an object")
+  }
+  match fields.get("arguments") {
+    Some(Array(xs)) =>
+      xs.map(x => {
+        match x {
+          String(s) => s
+          _ => raise InvalidRequest("arguments must contain strings")
+        }
+      })
+    None => ["moonbit-awk"]
+    _ => raise InvalidRequest("arguments must be an array")
+  }
 }
 
 ///|
@@ -65,32 +130,21 @@ pub fn session_json(input : String) -> String {
   let prefix = StringBuilder()
   try {
     let request = @json.parse(input)
-    let action = string_field(request, "action")
+    let action = string_field(request, "action", required=true)
     if action == "open" {
-      if sessions.length() >= 64 {
+      if sessions.length() >= 64 || next_session.val == 2147483647 {
         raise InvalidRequest("too many sessions")
       }
-      let arguments = match request {
-        { "arguments": Array(xs), .. } =>
-          xs.map(x => {
-            match x {
-              String(s) => s
-              _ => ""
-            }
-          })
-        _ => ["moonbit-awk"]
-      }
-      let limit = match request {
-        { "stepLimit": Number(n, ..), .. } =>
-          if n >= 1.0 && n <= 1000000000.0 {
-            n.to_int()
-          } else {
-            raise InvalidRequest("invalid step limit")
-          }
-        _ => 100000000
-      }
+      let arguments = request_arguments(request)
+      let limit = request_integer(
+        request,
+        "stepLimit",
+        1,
+        1000000000,
+        default=100000000,
+      )
       let session = @lib.new_session(
-        string_field(request, "program"),
+        string_field(request, "program", required=true),
         separator=string_field(request, "separator", default=" "),
         input_mode=string_field(request, "inputMode"),
         output_mode=string_field(request, "outputMode"),
@@ -107,10 +161,7 @@ pub fn session_json(input : String) -> String {
       session.begin()
       return session_result(session, id, 0).stringify()
     }
-    id = match request {
-      { "session": Number(n, ..), .. } => n.to_int()
-      _ => raise InvalidRequest("missing session")
-    }
+    id = request_integer(request, "session", 1, 2147483647)
     if action == "close" {
       sessions.remove(id)
       return "{\"ok\":true}"
@@ -122,9 +173,9 @@ pub fn session_json(input : String) -> String {
     active = Some(session)
     let mut processed = 0
     match action {
-      "file" => session.begin_file(string_field(request, "name"))
+      "file" => session.begin_file(string_field(request, "name", required=true))
       "record" => {
-        session.feed(string_field(request, "record"))
+        session.feed(string_field(request, "record", required=true))
         processed = 1
       }
       "records" => {
@@ -153,14 +204,11 @@ pub fn session_json(input : String) -> String {
       }
       "assign" =>
         session.assign(
-          string_field(request, "name"),
-          string_field(request, "value"),
+          string_field(request, "name", required=true),
+          string_field(request, "value", required=true),
         )
       "argument" => {
-        let index = match request {
-          { "index": Number(n, ..), .. } => n.to_int()
-          _ => 0
-        }
+        let index = request_integer(request, "index", 0, 2147483647, default=0)
         return Json::object({
           "ok": true,
           "argc": session.argument_count().to_json(),

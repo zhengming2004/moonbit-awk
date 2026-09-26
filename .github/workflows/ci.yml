@@ -48,6 +48,7 @@ jobs:
       - run: node tools/test-bridge-host.mjs
       - run: node tools/test-record-reference.mjs --golden
       - run: node tools/test-session.mjs
+      - run: node tools/test-request-contract.mjs
       - run: node tools/test-reference.mjs --golden
       - run: node tools/test-host-reference.mjs --golden
       - run: node tools/test-io-reference.mjs --golden

@@ -9,7 +9,7 @@ extern "js" fn host_call(
   value : String,
 ) -> String =
   #|(io, action, value) => {
-  #|  try { return io(action, value); }
+  #|  try { const reply = io(action, value); return typeof reply === 'string' ? reply : '!host callback must return a string'; }
   #|  catch (error) { return '!' + String(error?.message ?? error); }
   #|}
 
@@ -19,27 +19,16 @@ extern "js" fn host_call(
 pub fn host_run_json(input : String, io : HostIO) -> String {
   try {
     let request = @json.parse(input)
-    let arguments = match request {
-      { "arguments": Array(xs), .. } =>
-        xs.map(x => {
-          match x {
-            String(s) => s
-            _ => ""
-          }
-        })
-      _ => ["moonbit-awk"]
-    }
-    let limit = match request {
-      { "stepLimit": Number(n, ..), .. } =>
-        if n >= 1.0 && n <= 1000000000.0 {
-          n.to_int()
-        } else {
-          raise InvalidRequest("invalid step limit")
-        }
-      _ => 100000000
-    }
+    let arguments = request_arguments(request)
+    let limit = request_integer(
+      request,
+      "stepLimit",
+      1,
+      1000000000,
+      default=100000000,
+    )
     let session = @lib.new_session(
-      string_field(request, "program"),
+      string_field(request, "program", required=true),
       separator=string_field(request, "separator", default=" "),
       input_mode=string_field(request, "inputMode"),
       output_mode=string_field(request, "outputMode"),
@@ -134,7 +123,9 @@ fn bridge_io(io : HostIO, request : @lib.IORequest) -> @lib.IOReply {
   } else if response.has_prefix("S") {
     try {
       match @json.parse(response[1:].to_owned()) {
-        Number(n, ..) => @lib.IOStatus(n.to_int())
+        Number(n, ..) if n >= -2147483648.0 &&
+          n <= 2147483647.0 &&
+          n.floor() == n => @lib.IOStatus(n.to_int())
         _ => @lib.IOFailed("invalid status reply")
       }
     } catch {
