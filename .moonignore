@@ -1,0 +1,25 @@
+# Publication policy: preserve repository exclusions, plus required hidden fixtures.
+_build/
+target/
+.mooncakes/
+__pycache__/
+evidence/benchmark.json
+evidence/robustness.json
+evidence/coverage*
+evidence/current-validation.json
+evidence/validation-console.txt
+evidence/awk-reference-replay.json
+evidence/awk-host-replay.json
+evidence/awk-record-replay.json
+evidence/awk-io-replay.json
+evidence/awk-csv-replay.json
+evidence/awk-regex-replay.json
+evidence/awk-regex-host-replay.json
+evidence/awk-string-replay.json
+evidence/awk-string-host-replay.json
+evidence/string-scalar-replay.json
+evidence/regex-syntax-replay.json
+
+# Toolchain instructions in TOOLCHAIN.md must remain runnable from the archive.
+!/.moonbit-version
+!/.moonignore
