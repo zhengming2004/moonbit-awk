@@ -9,7 +9,7 @@
   "actualUsersClaimed": false,
   "defaultBranch": "origin/main",
   "localChangesPublished": false,
-  "proposalLines": 28,
+  "proposalLines": 30,
   "useCase": "在MoonBit程序内分步运行记录/CSV处理，并严格校验执行预算及会话身份",
   "diff": "GoAWK是成熟参考；价值限于MoonBit可消费的AWK记录语义，非生态首个解释器",
   "historicalAnonymousClone": {
@@ -23,7 +23,7 @@
   "remoteCIRunByThisTask": false,
   "currentValidation": "evidence/request-20260927/LOCAL-CHECKS.json",
   "currentEvidence": "evidence/request-20260927/LOCAL-CHECKS.json",
-  "metadataReviewedOn": "2026-09-27",
+  "metadataReviewedOn": "2026-09-28",
   "currentEvidenceScope": "Exact session ID/budget contract; invalid requests cannot close another session",
   "reviewDecision": "保留有界语言移植"
 }
