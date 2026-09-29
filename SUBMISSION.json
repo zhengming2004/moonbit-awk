@@ -1,15 +1,15 @@
 {
   "project": "awk",
-  "title": "AWK 记录与 CSV 数据处理器",
+  "title": "MoonBit AWK：可嵌入的记录、字段与 CSV 处理器",
   "module": "zhengming2004/awk",
   "version": "0.10.1",
   "repository": "https://github.com/zhengming2004/moonbit-awk",
-  "status": "审核结果未知；本地工程复核完成，待团队同步",
+  "status": "已公开对应版号及成功 CI；本轮材料仅本地修订，赛事审核结果待核实；换题是否批准待核实",
   "remainingRisk": "不是POSIX/GNU AWK全兼容或恶意脚本沙箱；没有存量脚本用户证明",
   "actualUsersClaimed": false,
   "defaultBranch": "origin/main",
   "localChangesPublished": false,
-  "proposalLines": 30,
+  "proposalLines": 23,
   "useCase": "在MoonBit程序内分步运行记录/CSV处理，并严格校验执行预算及会话身份",
   "diff": "GoAWK是成熟参考；价值限于MoonBit可消费的AWK记录语义，非生态首个解释器",
   "historicalAnonymousClone": {
@@ -23,7 +23,16 @@
   "remoteCIRunByThisTask": false,
   "currentValidation": "evidence/request-20260927/LOCAL-CHECKS.json",
   "currentEvidence": "evidence/request-20260927/LOCAL-CHECKS.json",
-  "metadataReviewedOn": "2026-09-28",
+  "metadataReviewedOn": "2026-09-29",
   "currentEvidenceScope": "Exact session ID/budget contract; invalid requests cannot close another session",
-  "reviewDecision": "保留有界语言移植"
+  "reviewDecision": "保留有界语言移植",
+  "publicRepositoryCreated": true,
+  "publicStatusCheckedOn": "2026-09-29",
+  "publishedVersion": "0.10.1",
+  "observedRemoteCiCommit": "736ef949591fb0b37c0318192c7da15fd1630f73",
+  "observedRemoteCiUrl": "https://github.com/zhengming2004/moonbit-awk/actions/runs/36435855000",
+  "observedRemoteCiConclusion": "success",
+  "currentCoreDiffersFromObservedCi": false,
+  "publishedCoreSourceComparedOn": "2026-09-29",
+  "publishedCoreSourceMatchesLocal": true
 }
