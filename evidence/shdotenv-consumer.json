@@ -1,0 +1,69 @@
+{
+  "utc": "2026-09-29T12:27:38.019Z",
+  "mode": "live public consumer shell entrypoint: unmodified source, pinned GoAWK, and MoonBit AWK CLI",
+  "consumer": {
+    "project": "ko1nksm/shdotenv",
+    "release": "v0.14.0",
+    "commit": "777e8edb65482b036e0275a895d4cb6be8511c7d",
+    "license": "MIT",
+    "sourceUrl": "https://github.com/ko1nksm/shdotenv/tree/777e8edb65482b036e0275a895d4cb6be8511c7d",
+    "sourceSha256": {
+      "LICENSE": "6f7a7ecf95b3a928208b952fd6f49d8ac3350f315de601f488e5ccb3264ff682",
+      "src/shdotenv": "2dd8f67907d485a57fec193639347024e00ff654ea85a396de70cdb5d10107e8",
+      "src/lib.awk": "22299d05942e0300afd8702fb555f7b7457cb2f8b71481582debd560a6af076c",
+      "src/parser.awk": "975bc3889baffe0ea6ca898aa8f2e60e2652a713823d2201f4b81240162e1423",
+      "src/exporter.awk": "f87057b9160ff66180fbddf8bdbf9d656734d84b04159e3aa88ff26b1cc46b2b"
+    },
+    "input": "examples/third-party/shdotenv-v0.14.0/consumer.env",
+    "inputSha256": "2c98b82927f33d6e175c3294472da5748df4b0c12f48369d3cbfc2b547c3b6ac",
+    "inputBytes": 220,
+    "invokedPath": "src/shdotenv --format json --ignore-environment --sort --env consumer.env",
+    "scope": "one normal dotenv parse invocation; the preserved shell script selects src/lib.awk plus src/parser.awk"
+  },
+  "reference": {
+    "project": "benhoyt/goawk",
+    "release": "v1.32.0",
+    "windowsAmd64ZipSha256": "2cebd8d64a8eaf84b2787edec8c0274760166e077bc2bdbb69d41537b56cf32c",
+    "versionOutput": "v1.32.0",
+    "executableSha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b",
+    "executablePath": "D:\\CodexLocal\\ban\\work\\acceptance-20260928\\goawk-v1.32.0-windows\\goawk.exe"
+  },
+  "shell": {
+    "path": "C:\\Program Files\\Git\\bin\\sh.exe",
+    "sha256": "ea70169decdb4787b7503b899495a1edfa27e9077f8bc5e0ef5980cb42fef3e8",
+    "versionOutput": "GNU bash, version 5.2.26(1)-release (x86_64-pc-msys)\nCopyright (C) 2022 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n\nThis is free software; you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law."
+  },
+  "hostRuntime": {
+    "nodeVersion": "v24.11.0",
+    "platform": "win32",
+    "architecture": "x64"
+  },
+  "moonbit": {
+    "moduleVersion": "0.10.2",
+    "compilerPin": "0.10.14+7d59c7ec9",
+    "command": "tools/awk.mjs selected through SHDOTENV_AWK",
+    "cliSha256": "bd159467db9dfc612d68d7d22a7c5ea58f6b6d3f98ccbdd9e2a40ff8940ba620",
+    "engineSha256": "a1d4a56f546a9d153d95825da0e0652f6777e4cf487de3581d0b648214587fb3"
+  },
+  "compared": {
+    "nativeStatus": 0,
+    "moonbitStatus": 0,
+    "rawStdoutEqual": false,
+    "normalizedStdoutEqual": true,
+    "newlineNormalization": "CRLF to LF only; the pinned Windows GoAWK binary emits CRLF while the Node host emits LF",
+    "stderrEmpty": true,
+    "goawkRawBytes": 257,
+    "goawkRawSha256": "07579ab9faccfefe4d6060b4a4b3d88e4077c890231db85a969d1557f8a24097",
+    "moonbitRawBytes": 246,
+    "moonbitRawSha256": "ae18c9fa1fff98ab377bcc786ccd1f6193a5613501f826ae545d6d5412234ace",
+    "outputSha256": "ae18c9fa1fff98ab377bcc786ccd1f6193a5613501f826ae545d6d5412234ace",
+    "output": "{\n  \"APP_NAME\": \"ledger\",\n  \"BASE_URL\": \"https://api.example.test\",\n  \"DISPLAY_NAME\": \"Zoë\",\n  \"EMPTY\": \"\",\n  \"GREETING\": \"Hello ledger\",\n  \"HASH\": \"hash#literal\",\n  \"INLINE\": \"note\",\n  \"MULTILINE\": \"line one\\nline two\",\n  \"LOG_LEVEL\": \"info\"\n}\n",
+    "scenarios": 1,
+    "failed": 0
+  },
+  "limits": [
+    "The input is a reproducible synthetic fixture, not an upstream fixture or private user data.",
+    "This does not establish shdotenv adoption, migration by its author/users, full dialect coverage, or full AWK compatibility.",
+    "The separate shdotenv export path is not exercised."
+  ]
+}

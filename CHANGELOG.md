@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.2 — local, not published
+
+- Added a reproducible replay of the unmodified public shdotenv v0.14.0 parser through its original shell entrypoint, compared with pinned GoAWK v1.32.0. This is a consumer-path example and evidence update; AWK core behavior and public APIs are unchanged.
+
 ## 0.10.0 — 2026-09-19
 
 - Fixed counted repetition recognition: malformed braces and leading-zero counts remain literal; complete out-of-range counts, missing operands, adjacent operators and excessive nested counts are rejected.

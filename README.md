@@ -5,7 +5,7 @@
 
 **本项目仓库：[https://github.com/zhengming2004/moonbit-awk](https://github.com/zhengming2004/moonbit-awk)**
 
-模块 `zhengming2004/awk`，本地版本 **0.10.1**，MIT AND BSD-3-Clause。当前评审状态：**保留候选**。本文件是当前入口，旧轮次说明与详细用法保存在 [历史/完整使用说明](README-BEFORE-VALUE-REWORK.md)。
+模块 `zhengming2004/awk`，本地版本 **0.10.2（未发布）**，MIT AND BSD-3-Clause；公开版仍为 0.10.1。当前评审状态：**保留候选**。本文件是当前入口，旧轮次说明与详细用法保存在 [历史/完整使用说明](README-BEFORE-VALUE-REWORK.md)。
 
 ## 解决什么任务
 
@@ -30,6 +30,20 @@ node examples/run-use-case.mjs
 应观察：orders=3 total=24.00；逗号位于带引号的姓名内，不增加字段数。
 
 具体命令和输入路径见 [使用任务](USE-CASE.md) 与 [机器可读流程](examples/use-case.json)。只把这个脚本当复现入口，不把通用运行器计作核心技术贡献。
+
+## 真实公开 AWK 消费脚本回放
+
+新增复现采用公开项目 [shdotenv](https://github.com/ko1nksm/shdotenv) v0.14.0：它的原始 `src/shdotenv` 入口实际拼接 `src/lib.awk` 与 `src/parser.awk`，再调用配置的 AWK 程序。MIT 许可的原始文件按发布提交 `777e8edb65482b036e0275a895d4cb6be8511c7d` 未改写保存在 `examples/third-party/shdotenv-v0.14.0/`，来源、许可证和逐文件 SHA-256 见其中的 `SOURCE.md` 与 `source.json`。
+
+在 Windows PowerShell 中准备 `SOURCE.md` 所指、SHA-256 已固定的 GoAWK v1.32.0 Windows amd64 程序，以及 POSIX shell（例如 Git for Windows）：
+
+```powershell
+$env:GOAWK_REFERENCE = 'D:/path/to/goawk.exe'
+$env:SHDOTENV_SHELL = 'C:/Program Files/Git/bin/sh.exe'
+node tools/test-shdotenv-consumer.mjs
+```
+
+回放通过同一个上游 shell 入口和 `.env` 输入，先后调用未修改的 GoAWK 与本项目 `tools/awk.mjs`；单条任务覆盖变量展开、单双引号、空值、尾注释、多行值和 UTF-8 值。两者 stdout 仅将 Windows GoAWK 的 CRLF 换行规范为 LF 后逐字节比较，原始输出长度与 SHA-256 也分别记录；当前结果见 [消费者证据](evidence/shdotenv-consumer.json)。输入是本项目编写的合成数据；这只验证一个解析路径，不代表上游或其用户采用、全方言兼容，也没有覆盖 `export` 子命令。
 
 ## 实现与已有项目的关系
 
@@ -59,7 +73,7 @@ node tools/test-awk-cli.mjs
 
 ## 复审材料状态
 
-没有确认的存量脚本用户，不将原创示例称为迁移案例。
+没有确认的存量脚本用户，不将原创示例称为迁移案例。shdotenv 回放证明本地解析器能完成所列真实消费者入口的一项任务，不证明该项目或其用户采用了本库。
 
 2026-09-22 匿名新克隆成功；默认分支 `main`，核验公开提交 `a460e921a52ebe859921c5b3e000cbebfedb9d6c`。这条历史记录只证明当日状态；2026-09-29 公开 HEAD 仍早于本次本地文档提交，报名表地址须另核。
 
@@ -79,9 +93,9 @@ moon build --target js --deny-warn
 moon package
 ```
 
-跨平台复核（2026-09-28，本地 Ubuntu-D 26.04 WSL2）：从当时的源码归档全新解包，固定 `moonc 0.10.14+7d59c7ec9` 下通过 `moon update`、`moon fmt --check`、`moon info`、严格检查、JS/Wasm-GC 测试及 JS release 构建；Node 24.21.0 跑通本仓一条宿主入口。本次补记仅修改文档，代码与 CI 未变；复核日志在本地交接包中，公开提交后的 GitHub Actions 仍须单独核对。
+跨平台复核（2026-09-28，本地 Ubuntu-D 26.04 WSL2）：从当时的源码归档全新解包，固定 `moonc 0.10.14+7d59c7ec9` 下通过 `moon update`、`moon fmt --check`、`moon info`、严格检查、JS/Wasm-GC 测试及 JS release 构建；Node 24.21.0 跑通本仓一条宿主入口。当时补记仅修改文档，代码与 CI 未变；复核日志在本地交接包中，公开提交后的 GitHub Actions 仍须单独核对。
 
 本地核验：JS/Wasm-GC 测试、CLI、正则/字符串/记录/IO/CSV 参考及桥接宿主检查通过。 `moon package` 已完成离线打包预检，它不等于已发布到 Mooncakes。
 
 
-**公开状态（2026-09-29 核对）**：GitHub [公开仓库](https://github.com/zhengming2004/moonbit-awk)、[Mooncakes 0.10.1](https://mooncakes.io/docs/zhengming2004/awk@0.10.1) 已可访问；[CI 成功记录](https://github.com/zhengming2004/moonbit-awk/actions/runs/36435855000) 对应 `736ef949591f`。本次材料更新尚未推送；该远端 CI 对应所列公开提交。报名表一致性及赛事审核结果尚未核实。
+**公开状态（2026-09-29 核对）**：GitHub [公开仓库](https://github.com/zhengming2004/moonbit-awk)、[Mooncakes 0.10.1](https://mooncakes.io/docs/zhengming2004/awk@0.10.1) 已可访问；[CI 成功记录](https://github.com/zhengming2004/moonbit-awk/actions/runs/36435855000) 对应旧公开提交 `736ef949591fb0b37c0318192c7da15fd1630f73`。本地新增的消费者回放、证据和材料均未发布；此处版号与 CI 只描述原公开提交。报名表一致性及赛事审核结果尚未核实。

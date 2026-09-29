@@ -1,0 +1,20 @@
+{
+  "project": "ko1nksm/shdotenv",
+  "release": "v0.14.0",
+  "commit": "777e8edb65482b036e0275a895d4cb6be8511c7d",
+  "license": "MIT",
+  "sourceUrl": "https://github.com/ko1nksm/shdotenv/tree/777e8edb65482b036e0275a895d4cb6be8511c7d",
+  "files": {
+    "LICENSE": "6f7a7ecf95b3a928208b952fd6f49d8ac3350f315de601f488e5ccb3264ff682",
+    "src/shdotenv": "2dd8f67907d485a57fec193639347024e00ff654ea85a396de70cdb5d10107e8",
+    "src/lib.awk": "22299d05942e0300afd8702fb555f7b7457cb2f8b71481582debd560a6af076c",
+    "src/parser.awk": "975bc3889baffe0ea6ca898aa8f2e60e2652a713823d2201f4b81240162e1423",
+    "src/exporter.awk": "f87057b9160ff66180fbddf8bdbf9d656734d84b04159e3aa88ff26b1cc46b2b"
+  },
+  "reference": {
+    "project": "benhoyt/goawk",
+    "release": "v1.32.0",
+    "windowsAmd64ZipSha256": "2cebd8d64a8eaf84b2787edec8c0274760166e077bc2bdbb69d41537b56cf32c",
+    "windowsAmd64ExecutableSha256": "ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b"
+  }
+}

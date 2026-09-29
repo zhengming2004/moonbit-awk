@@ -1,0 +1,207 @@
+#!/bin/sh
+
+set -eu
+
+# Explicitly reset the IFS for the old dash (ash)
+IFS=$(printf '\n\t') && IFS=" ${IFS#?}${IFS%?}"
+
+version() { echo 0.14.0; }
+
+usage() {
+  printf '%s\n' "Usage: shdotenv [OPTION]... [--] [[COMMAND | export] [ARG]...]" \
+    "" \
+    "  If the COMMAND is specified, it will load .env files and run the command." \
+    "  If the COMMAND is omitted, it will output the result of interpreting .env" \
+    "  files. It can be safely loaded into the shell (For example, using eval)." \
+    "" \
+    "Options:" \
+    "  -d, --dialect DIALECT     Specify the .env dialect [default: posix]" \
+    "                                posix, ruby, node, python," \
+    "                                php, go, rust, docker" \
+    "  -f, --format FORMAT       Output in the specified format [default: sh]" \
+    "                                sh, csh, fish, json, jsonl, yaml" \
+    "  -e, --env ENV_PATH        Location of the .env file [default: .env]" \
+    "                              Multiple -e options are allowed" \
+    "                              If the ENV_PATH is \"-\", read from stdin" \
+    "  -i, --ignore-environment  Ignore the current environment variables" \
+    "      --overload            Overload predefined variables" \
+    "  -n, --name-only           Output only name" \
+    "      --no-allexport        Disable all variable export" \
+    "      --no-nounset          Allow references to undefined variables" \
+    "      --grep PATTERN        Output only names that match the regexp pattern" \
+    "  -s, --sort                Sort variable names" \
+    "  -q, --quiet               Suppress all output (useful for test .env files)" \
+    "      --version             Show the version and exit" \
+    "      --help                Show this message and exit" \
+    "" \
+    "Usage: shdotenv [OPTION]... export [-0ps] [-n | -v] [--] [NAME]..." \
+    "  Exports environment variables. Default output is POSIX-compliant .env format." \
+    "" \
+    "  -0  end each output line with NUL, not newline" \
+    "  -p  Append \"export\" prefix to environment variable names" \
+    "  -s  Empty string instead of error if name is missing" \
+    "  -n  List environment variable names only" \
+    "  -v  List environment variable values only" \
+    "" \
+    "  This will be output after the .env files is loaded. If you do not want" \
+    "  to load it, specify \"-e /dev/null\". This is similar to \"export\", \"env\"" \
+    "  and \"printenv\" commands, but quoting correctly and exports only portable" \
+    "  environment variable name that are valid as identifier for posix shell."
+}
+
+abort() { echo "$_shdotenv_progname:" "$1" >&2 && exit "${2:-1}"; }
+requires() {
+  [ $# -gt 1 ] || abort "error: $1 option requires an argument"
+  _shdotenv_pos=$((_shdotenv_pos + 1))
+}
+
+parse_options() {
+  while [ $# -gt 0 ]; do
+    case $1 in
+      -d | --dialect) requires "$@" && shift && _shdotenv_dialect="$1" ;;
+      -f | --format) requires "$@" && shift && _shdotenv_format="$1" ;;
+      -e | --env)
+        requires "$@" && shift
+        _shdotenv_envfiles="$_shdotenv_envfiles \"\${$_shdotenv_pos}\""
+        ;;
+      -i | --ignore-environment) _shdotenv_ignore=1 ;;
+      --overload) _shdotenv_overload=1 ;;
+      -n | --name-only) _shdotenv_nameonly=1 ;;
+      --no-allexport) _shdotenv_allexport='' ;;
+      --no-nounset) _shdotenv_nounset='' ;;
+      --grep) requires "$@" && shift && _shdotenv_grep="$1" ;;
+      -s | --sort) _shdotenv_sort=1 ;;
+      -q | --quiet) _shdotenv_quiet=1 ;;
+      --version) version && exit 0 ;;
+      --help) usage && exit 0 ;;
+      --) _shdotenv_pos=$((_shdotenv_pos + 1)) && break ;;
+      -*) abort "unknown option: $1" ;;
+      *) break ;;
+    esac
+    shift
+    _shdotenv_pos=$((_shdotenv_pos + 1))
+  done
+}
+
+trim() {
+  eval "$1=\${2#\"\${2%%[!\$IFS]*}\"} && $1=\${$1%\"\${$1##*[!\$IFS]}\"}"
+}
+
+escape_awk_value() {
+  set -- "$1" "$2\\" ""
+  while [ "$2" ]; do
+    set -- "$1" "${2#*\\}" "$3${2%%\\*}\\\\"
+  done
+  eval "$1=\${3%??}"
+}
+
+unexport() {
+  while [ $# -gt 0 ]; do
+    unset "${1%%=*}"
+    eval "${1%%=*}=\${1#*=}"
+    shift
+  done
+}
+
+init_vars() {
+  set -- _shdotenv_progname= _shdotenv_pos=1 _shdotenv_line=
+  set -- "$@" _shdotenv_libawk= _shdotenv_parser= _shdotenv_exporter=
+  set -- "$@" _shdotenv_dialect= _shdotenv_format="${SHDOTENV_FORMAT:-}"
+  set -- "$@" _shdotenv_envfiles= _shdotenv_overload= _shdotenv_grep=
+  set -- "$@" _shdotenv_nameonly= _shdotenv_allexport=1 _shdotenv_nounset=1
+  set -- "$@" _shdotenv_quiet= _shdotenv_ignore= _shdotenv_sort=
+  unexport "$@"
+
+  _shdotenv_libawk=$(cat src/lib.awk)        # @INCLUDE-FILE
+  _shdotenv_parser=$(cat src/parser.awk)     # @INCLUDE-FILE
+  _shdotenv_exporter=$(cat src/exporter.awk) # @INCLUDE-FILE
+}
+
+read_config_file() {
+  [ -e "$1" ] || return 0
+  while IFS= read -r _shdotenv_line || [ "$_shdotenv_line" ]; do
+    _shdotenv_line=${_shdotenv_line%%#*}
+    trim _shdotenv_line "$_shdotenv_line"
+    case $_shdotenv_line in
+      dialect:*) trim _shdotenv_dialect "${_shdotenv_line#*:}" ;;
+      *) abort "unknown line in $1: $_shdotenv_line" ;;
+    esac
+  done <"$1"
+}
+
+exec_parser() {
+  eval "set -- ${_shdotenv_envfiles:-.env}"
+  set -- "${_shdotenv_libawk}${_shdotenv_parser}" "$@"
+  set -- -v PROGNAME="$_shdotenv_progname" "$@"
+  set -- -v DIALECT="$_shdotenv_dialect" "$@"
+  set -- -v FORMAT="$_shdotenv_format" "$@"
+  set -- -v OVERLOAD="$_shdotenv_overload" "$@"
+  set -- -v NAMEONLY="$_shdotenv_nameonly" "$@"
+  set -- -v ALLEXPORT="$_shdotenv_allexport" "$@"
+  set -- -v NOUNSET="$_shdotenv_nounset" "$@"
+  set -- -v GREP="$_shdotenv_grep" "$@"
+  set -- -v IGNORE="$_shdotenv_ignore" "$@"
+  set -- -v SORT="$_shdotenv_sort" "$@"
+  "${SHDOTENV_AWK:-awk}" "$@"
+}
+
+exec_exporter() {
+  set -- - "$@"
+
+  # These variables use the values of the current shell
+  #   Special environment variables in gawk
+  [ "${AWKPATH+x}" ] && set -- "AWKPATH=$AWKPATH" "$@"
+  [ "${AWKLIBPATH+x}" ] && set -- "AWKLIBPATH=$AWKLIBPATH" "$@"
+
+  set -- "${_shdotenv_libawk}${_shdotenv_exporter}" "$@"
+  set -- -v PROGNAME="$_shdotenv_progname" "$@"
+  "${SHDOTENV_AWK:-awk}" "$@"
+}
+
+exists() {
+  case $1 in
+    */*) [ -x "$1" ] && return 0 ;;
+    *)
+      set -- "$1" "${PATH:-}:"
+      while [ "$2" ]; do
+        set -- "$1" "${2#*:}" "${2%%:*}"
+        if [ -f "${3:-./}/$1" ] && [ -x "${3:-./}/$1" ]; then
+          return 0
+        fi
+      done
+      ;;
+  esac
+  return 1
+}
+
+init_vars
+_shdotenv_progname="${0##*/}"
+parse_options "$@"
+
+read_config_file ".shdotenv"
+
+escape_awk_value _shdotenv_format "$_shdotenv_format"
+escape_awk_value _shdotenv_grep "$_shdotenv_grep"
+if ! exists "${SHDOTENV_AWK:-awk}"; then
+  abort "the awk command is required"
+fi
+
+if [ $(($# - _shdotenv_pos + 1)) -eq 0 ]; then
+  [ "$_shdotenv_quiet" ] && exec >/dev/null
+  exec_parser "$@"
+else
+  _shdotenv_format="sh"
+  _shdotenv_env=$(exec_parser "$@")
+  shift $((_shdotenv_pos - 1))
+  eval "$_shdotenv_env"
+  case $1 in
+    export)
+      shift
+      exec_exporter "$@"
+      ;;
+    *)
+      exists "$1" || abort "$1: command not found" 127
+      exec "$@"
+      ;;
+  esac
+fi
