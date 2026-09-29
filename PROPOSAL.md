@@ -14,10 +14,14 @@ MoonBit 应用处理日志或表格时，已有 AWK 模式—动作规则可直�
 
 按照 README 可运行带引号 CSV 汇总，也可重放真实公开消费者 [shdotenv v0.14.0](https://github.com/ko1nksm/shdotenv)：固定提交 `777e8edb65482b036e0275a895d4cb6be8511c7d`、保留 MIT 原始脚本和 AWK 源，以同一 `.env` 任务通过原入口调用 GoAWK v1.32.0 与本库 CLI；只将 Windows GoAWK 的 CRLF 规范为 LF 后，stdout 逐字节一致，原始摘要也分别留存。输入、源码 SHA、命令与回执见 [消费者证据](evidence/shdotenv-consumer.json)；它是兼容性复现，不是采用证明。其他 CLI 与 CSV 检查、GoAWK 历史差分分别记录，不能混称本轮全量重跑。JS/Wasm-GC 核心共用实现。
 
+相同消费者回放已配置为独立 Windows CI job：下载并固定校验 GoAWK v1.32.0 Windows amd64 包，安装 `.moonbit-version` 指定的 MoonBit，构建 JS runtime 后运行 Git for Windows POSIX shell 入口；job 成功时上传结果回执。目前只证明 workflow 配置与本地 Windows 回放，未观察到该 job 的 GitHub Actions 成功运行。
+
+本地固定工具链的 `moon package --frozen` 离线预检通过；没有执行推送或发布。
+
 ## 既有工作与交付边界
 
 [GoAWK](https://github.com/benhoyt/goawk) 已成熟实现 AWK，MoonBit 也已有多种解释器。本项目贡献是 AWK 的记录/字段语义及其 MoonBit 嵌入接口，不申报语言发明或“首个脚本解释器”；同类检索和许可见 [DUPLICATION](DUPLICATION.md)。在 AI 可以生成处理脚本的情况下，库的作用仍是固定执行语义、宿主约束和可复核结果，而不是重复生成一次性脚本。
 
 不承诺 POSIX/GNU Awk 全兼容，也不把受限执行入口称为恶意代码沙箱。shdotenv 回放只覆盖一个解析输入，未验证其 `export` 路径和全部方言；尚无确认的存量脚本迁移使用方。交付包含 MoonBit 库、CLI/宿主、原创样例、公开消费者复现、测试与第三方来源说明。
 
-**公开状态（2026-09-29 核对）**：GitHub [公开仓库](https://github.com/zhengming2004/moonbit-awk)、[Mooncakes 0.10.1](https://mooncakes.io/docs/zhengming2004/awk@0.10.1) 已可访问；[CI 成功记录](https://github.com/zhengming2004/moonbit-awk/actions/runs/36435855000) 对应旧公开提交 `736ef949591fb0b37c0318192c7da15fd1630f73`。本地消费者回放、证据与材料尚未发布；已发布版号和 CI 只描述该旧提交。报名表一致性及赛事审核结果尚未核实。
+**公开状态（2026-09-29 核对）**：GitHub [公开仓库](https://github.com/zhengming2004/moonbit-awk)、[Mooncakes 0.10.1](https://mooncakes.io/docs/zhengming2004/awk@0.10.1) 已可访问；[CI 成功记录](https://github.com/zhengming2004/moonbit-awk/actions/runs/36435855000) 对应旧公开提交 `736ef949591fb0b37c0318192c7da15fd1630f73`。本地 0.10.2 与新增 Windows CI 配置尚未发布；新 job 尚无已观察运行结果，旧 CI 只描述旧公开提交。报名表一致性及赛事审核结果尚未核实。

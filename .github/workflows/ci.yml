@@ -60,3 +60,60 @@ jobs:
         with:
           name: quality-evidence
           path: evidence/
+  shdotenv-consumer:
+    name: shdotenv consumer replay (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install and verify pinned GoAWK and Git shell
+        shell: pwsh
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP 'goawk_v1.32.0_windows_amd64.zip'
+          $destination = Join-Path $env:RUNNER_TEMP 'goawk-v1.32.0'
+          Invoke-WebRequest -Uri 'https://github.com/benhoyt/goawk/releases/download/v1.32.0/goawk_v1.32.0_windows_amd64.zip' -OutFile $archive
+          if ((Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne '2cebd8d64a8eaf84b2787edec8c0274760166e077bc2bdbb69d41537b56cf32c') { throw 'GoAWK archive hash mismatch' }
+          Expand-Archive -LiteralPath $archive -DestinationPath $destination
+          $executable = Join-Path $destination 'goawk.exe'
+          if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) { throw 'GoAWK executable is missing' }
+          if ((Get-FileHash $executable -Algorithm SHA256).Hash.ToLowerInvariant() -ne 'ab0575dd3662183428e672e2ad9fe5b7742d7c63a659a50e24a8739c58ef359b') { throw 'GoAWK executable hash mismatch' }
+          $shell = Join-Path $env:ProgramFiles 'Git\bin\sh.exe'
+          if (-not (Test-Path -LiteralPath $shell -PathType Leaf)) { throw 'Git for Windows POSIX shell is missing' }
+          & $shell --version
+          if ($LASTEXITCODE -ne 0) { throw 'Git for Windows POSIX shell failed to start' }
+          "GOAWK_REFERENCE=$executable" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "SHDOTENV_SHELL=$shell" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Install pinned MoonBit
+        shell: pwsh
+        run: |
+          $env:MOONBIT_INSTALL_VERSION = (Get-Content .moonbit-version -Raw).Trim()
+          $env:MOON_HOME = Join-Path $env:RUNNER_TEMP 'moonbit'
+          Invoke-RestMethod -Uri 'https://cli.moonbitlang.com/install/powershell.ps1' | Invoke-Expression
+          $moonBin = Join-Path $env:MOON_HOME 'bin'
+          $env:PATH = "$moonBin;$env:PATH"
+          "MOON_HOME=$env:MOON_HOME" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          $moonBin | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+          $version = & (Join-Path $moonBin 'moon.exe') version --all 2>&1 | Out-String
+          Write-Output $version
+          if ($LASTEXITCODE -ne 0 -or $version -notmatch [regex]::Escape($env:MOONBIT_INSTALL_VERSION)) { throw 'Installed MoonBit does not match .moonbit-version' }
+      - name: Resolve pinned dependencies
+        shell: pwsh
+        run: |
+          moon update
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Check and build the JavaScript runtime
+        shell: pwsh
+        run: |
+          moon check --deny-warn
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          moon build --target js --deny-warn
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Copy-Item -LiteralPath '_build/js/debug/build/cmd/web/web.js' -Destination 'web/engine.mjs' -Force
+      - name: Replay the pinned public consumer
+        run: node tools/test-shdotenv-consumer.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shdotenv-consumer-windows
+          path: evidence/shdotenv-consumer.json

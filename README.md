@@ -45,6 +45,8 @@ node tools/test-shdotenv-consumer.mjs
 
 回放通过同一个上游 shell 入口和 `.env` 输入，先后调用未修改的 GoAWK 与本项目 `tools/awk.mjs`；单条任务覆盖变量展开、单双引号、空值、尾注释、多行值和 UTF-8 值。两者 stdout 仅将 Windows GoAWK 的 CRLF 换行规范为 LF 后逐字节比较，原始输出长度与 SHA-256 也分别记录；当前结果见 [消费者证据](evidence/shdotenv-consumer.json)。输入是本项目编写的合成数据；这只验证一个解析路径，不代表上游或其用户采用、全方言兼容，也没有覆盖 `export` 子命令。
 
+同一回放已接入独立的 `windows-latest` CI job：从 v1.32.0 发布包下载并核验 ZIP 与 `goawk.exe` SHA-256，安装 `.moonbit-version` 指定的 MoonBit，重新构建 JS runtime，再通过 Git for Windows `sh.exe` 运行上游入口；成功时上传本轮回执。这个 workflow 配置尚无已观察的 GitHub Actions 运行结果，本地回执不能代替远端 CI 证据。
+
 ## 实现与已有项目的关系
 
 MoonBit 负责词法、解析、表达式、正则、格式化和执行；Node 负责真实文件、管道、环境和标准流。
@@ -53,7 +55,7 @@ MoonBit 负责词法、解析、表达式、正则、格式化和执行；Node �
 
 同类项目和检索边界见 [DUPLICATION](DUPLICATION.md)。查重用于避免错误的首创表述；关键词零结果不能证明生态空白，Node 宿主能力也不计为 MoonBit 原生 I/O。
 
-库使用从 [公共 API](pkg.generated.mbti) 和根包源码开始；可在本 checkout 的消费包中导入 `"zhengming2004/awk"`。源码中的网络/文件宿主入口及完整参数仍见 [完整使用说明](README-BEFORE-VALUE-REWORK.md)。是否已发布到 Mooncakes 需另核实，本文不把 `moon add` 的下载成功作为已完成事项。
+库使用从 [公共 API](pkg.generated.mbti) 和根包源码开始；可在本 checkout 的消费包中导入 `"zhengming2004/awk"`。源码中的网络/文件宿主入口及完整参数仍见 [完整使用说明](README-BEFORE-VALUE-REWORK.md)。Mooncakes 公开版 0.10.1 已核实；本地 0.10.2 的新消费者回放按当前源码复现，尚未发布。
 
 ## 验证与边界
 
@@ -90,12 +92,12 @@ moon check --deny-warn
 moon test --target wasm-gc --deny-warn
 moon test --target js --deny-warn
 moon build --target js --deny-warn
-moon package
+moon package --frozen
 ```
 
 跨平台复核（2026-09-28，本地 Ubuntu-D 26.04 WSL2）：从当时的源码归档全新解包，固定 `moonc 0.10.14+7d59c7ec9` 下通过 `moon update`、`moon fmt --check`、`moon info`、严格检查、JS/Wasm-GC 测试及 JS release 构建；Node 24.21.0 跑通本仓一条宿主入口。当时补记仅修改文档，代码与 CI 未变；复核日志在本地交接包中，公开提交后的 GitHub Actions 仍须单独核对。
 
-本地核验：JS/Wasm-GC 测试、CLI、正则/字符串/记录/IO/CSV 参考及桥接宿主检查通过。 `moon package` 已完成离线打包预检，它不等于已发布到 Mooncakes。
+本地核验：JS/Wasm-GC 测试、CLI、正则/字符串/记录/IO/CSV 参考及桥接宿主检查通过。 `moon package --frozen` 已完成离线打包预检，不等于已发布到 Mooncakes。
 
 
 **公开状态（2026-09-29 核对）**：GitHub [公开仓库](https://github.com/zhengming2004/moonbit-awk)、[Mooncakes 0.10.1](https://mooncakes.io/docs/zhengming2004/awk@0.10.1) 已可访问；[CI 成功记录](https://github.com/zhengming2004/moonbit-awk/actions/runs/36435855000) 对应旧公开提交 `736ef949591fb0b37c0318192c7da15fd1630f73`。本地新增的消费者回放、证据和材料均未发布；此处版号与 CI 只描述原公开提交。报名表一致性及赛事审核结果尚未核实。
