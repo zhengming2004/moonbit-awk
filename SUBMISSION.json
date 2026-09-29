@@ -34,5 +34,7 @@
   "observedRemoteCiConclusion": "success",
   "currentCoreDiffersFromObservedCi": false,
   "publishedCoreSourceComparedOn": "2026-09-29",
-  "publishedCoreSourceMatchesLocal": true
+  "publishedCoreSourceMatchesLocal": false,
+  "publishedAlgorithmSourceMatchesLocal": true,
+  "publishedDifferenceScope": "Module version and new consumer fixtures differ; AWK algorithm and public API unchanged"
 }
